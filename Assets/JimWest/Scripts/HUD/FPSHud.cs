@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections;
  
-public class FPSHud : Hud 
+[AddComponentMenu( "Utilities/HUDFPS")]
+public class FPSHud : MonoBehaviour
 {
- 
-	// Attach this to a GUIText to make a frames/second indicator.
+	// Attach this to any object to make a frames/second indicator.
 	//
 	// It calculates frames/second over each updateInterval,
 	// so the display does not keep changing wildly.
@@ -12,65 +12,67 @@ public class FPSHud : Hud
 	// It is also fairly accurate at very low FPS counts (<10).
 	// We do this not by simply counting frames per interval, but
 	// by accumulating FPS for each frame. This way we end up with
-	// correct overall FPS even if the interval renders something like
+	// corstartRect overall FPS even if the interval renders something like
 	// 5.5 frames.
-	 
-	public  float updateInterval = 0.5F;
-	 
-	private float accum   = 0; // FPS accumulated over the interval
+ 
+	public Rect startRect = new Rect( 10, 10, 75, 50 ); // The rect the window is initially displayed at.
+	public bool updateColor = true; // Do you want the color to change if the FPS gets low
+	public bool allowDrag = true; // Do you want to allow the dragging of the FPS window
+	public  float frequency = 0.5F; // The update frequency of the fps
+	public int nbDecimal = 1; // How many decimal do you want to display
+ 
+	private float accum   = 0f; // FPS accumulated over the interval
 	private int   frames  = 0; // Frames drawn over the interval
-	private float timeleft; // Left time for current interval
-	public GUIText fpsGUIText;
-	 
-	public override void Start()
+	private Color color = Color.white; // The color of the GUI, depending of the FPS ( R < 10, Y < 30, G >= 30 )
+	private string sFPS = ""; // The fps formatted into a string.
+	private GUIStyle style; // The style the text will be displayed at, based en defaultSkin.label.
+ 
+	void Start()
 	{
-		this.SetTop(10);
-		this.SetLeft(Screen.width - 50);
-		
-		//Create a Text
-		if (guiText == null)
-		{
-			GameObject go = new GameObject("FPSCounter");
-			fpsGUIText = (GUIText)go.AddComponent(typeof(GUIText));
-			fpsGUIText.anchor = TextAnchor.MiddleRight;
-			fpsGUIText.font = new Font("Arial");
-			fpsGUIText.alignment = TextAlignment.Right;
-			fpsGUIText.text = "";
-			fpsGUIText.transform.position = new Vector3(this.GetLeft(), this.GetTop());
-		}
-	    timeleft = updateInterval;  
+	    StartCoroutine( FPS() );
 	}
-	 
+ 
+	void Update()
+	{
+	    accum += Time.timeScale/ Time.deltaTime;
+	    ++frames;
+	}
+ 
+	IEnumerator FPS()
+	{
+		// Infinite loop executed every "frenquency" secondes.
+		while( true )
+		{
+			// Update the FPS
+		    float fps = accum/frames;
+		    sFPS = fps.ToString( "f" + Mathf.Clamp( nbDecimal, 0, 10 ) );
+ 
+			//Update the color
+			color = (fps >= 30) ? Color.green : ((fps > 10) ? Color.red : Color.yellow);
+ 
+	        accum = 0.0F;
+	        frames = 0;
+ 
+			yield return new WaitForSeconds( frequency );
+		}
+	}
+ 
 	void OnGUI()
 	{
-		fpsGUIText.transform.position = new Vector2(this.GetTop(), this.GetLeft());
-	    timeleft -= Time.deltaTime;
-	    accum += Time.timeScale/Time.deltaTime;
-	    ++frames;
-	 
-	    // Interval ended - update GUI text and start new interval
-	    if( timeleft <= 0.0 )
-	    {
-	        // display two fractional digits (f2 format)
-			float fps = accum/frames;
-			string format = System.String.Format("{0:F2} FPS",fps);
-			fpsGUIText.text = format;
-		 
-			if(fps < 30)
-			{
-				fpsGUIText.material.color = Color.yellow;
-			}
-			else 
-			{
-				if(fps < 10)
-					fpsGUIText.material.color = Color.red;
-				else
-					fpsGUIText.material.color = Color.green;
-				//	DebugConsole.Log(format,level);
-		        timeleft = updateInterval;
-		        accum = 0.0F;
-		        frames = 0;
-			}
-	    }
+		// Copy the default label skin, change the color and the alignement
+		if( style == null ){
+			style = new GUIStyle( GUI.skin.label );
+			style.normal.textColor = Color.white;
+			style.alignment = TextAnchor.MiddleCenter;
+		}
+ 
+		GUI.color = updateColor ? color : Color.white;
+		startRect = GUI.Window(0, startRect, DoMyWindow, "");
+	}
+ 
+	void DoMyWindow(int windowID)
+	{
+		GUI.Label( new Rect(0, 0, startRect.width, startRect.height), sFPS + " FPS", style );
+		if( allowDrag ) GUI.DragWindow(new Rect(0, 0, Screen.width, Screen.height));
 	}
 }

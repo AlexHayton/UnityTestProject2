@@ -112,10 +112,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd63b51891eae2543975bca3a92033b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  top: 0
-  left: 0
-  updateInterval: .5
-  fpsGUIText: {fileID: 0}
+  startRect:
+    serializedVersion: 2
+    x: 10
+    y: 10
+    width: 75
+    height: 50
+  updateColor: 1
+  allowDrag: 1
+  frequency: .5
+  nbDecimal: 1
 --- !u!1 &913796132
 GameObject:
   m_ObjectHideFlags: 0
