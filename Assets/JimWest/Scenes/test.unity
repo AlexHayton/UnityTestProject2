@@ -681,7 +681,7 @@ MonoBehaviour:
     width: 50
     height: 50
   updateColor: 1
-  allowDrag: 0
+  allowDrag: 1
   frequency: .5
   nbDecimal: 1
 --- !u!1 &1482100228
