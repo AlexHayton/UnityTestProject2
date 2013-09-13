@@ -2,37 +2,33 @@ using UnityEngine;
 using System.Collections;
 	
 public abstract class GUIBase : MonoBehaviour {
-
-	public float top;
-	public float left;
-	public bool visible;
-	private bool hovering;
-	public Vector3 scale;
-	public Texture normalTexture;
-	public Texture hoveringTexture;
 	
-	// Use this for initialization
-	public virtual void Start () {
-	}
+	// Position and scale are in screen percent
+	public Vector2 position;
+	public Vector2 scale;
+	public bool visible;
+	public GUIContent content;
+	public GUIStyle style;
 	
 	public virtual float GetTop()
 	{
-		return this.top;
+		return (float)Screen.height * (this.position.y / 100.0f);
 	}
 	
+	// In percentage of screen
 	protected void SetTop(float top)
 	{
-		this.top = top;
+		this.position.y = top;
 	}
 	
 	public virtual float GetLeft()
 	{
-		return left;
+		return (float)Screen.width * (this.position.x / 100.0f);
 	}
 	
 	protected void SetLeft(float left)
 	{
-		this.left = left;
+		this.position.x = left;
 	}
 	
 	protected bool GetIsVisible()
@@ -50,39 +46,51 @@ public abstract class GUIBase : MonoBehaviour {
 		return this.scale;
 	}
 	
+	// In percentage of screen!
 	public void SetScale(Vector3 scale)
 	{
 		this.scale = scale;
 	}
 	
+	public GUIContent GetContent()
+	{
+		return this.content;
+	}
+	
+	public GUIStyle GetStyle()
+	{
+		return this.style;
+	}
+	
+	public float GetPixelWidth()
+	{
+		return Screen.width * this.scale.x / 100.0f;
+	}
+	
+	public float GetPixelHeight()
+	{
+		return Screen.height * this.scale.y / 100.0f;
+	}
+	
 	public virtual Bounds GetBounds()
 	{
-		Vector3 center = new Vector3(this.GetLeft() + this.scale.x / 2.0f, this.GetTop() + this.scale.y / 2.0f, 0);
-		Vector3 size = new Vector3(this.scale.x / 2.0f, this.scale.y / 2.0f, 1.0f);
+		Vector3 center = new Vector3(this.GetLeft() + this.GetPixelWidth() / 2.0f, this.GetTop() + this.GetPixelHeight() / 2.0f, 0);
+		Vector3 size = new Vector3(this.GetPixelWidth(), this.GetPixelHeight(), 2.0f);
 		return new UnityEngine.Bounds(center, size);
 	}
 	
-	protected virtual bool GetIsHovering()
+	protected virtual bool GetIsMouseOver()
 	{
 		if (Screen.showCursor && !Screen.lockCursor)
 		{			
-			if (this.GetBounds().Contains(Input.mousePosition))
+			if (this.GetBounds().Contains(Event.current.mousePosition))
 			{
+				Debug.Log ("MouseOver " + this.content.text);
 				return true;
 			}
 		}
 		
 		return false;
-	}
-	
-	protected Texture GetNormalTexture()
-	{
-		return this.normalTexture;
-	}
-	
-	protected Texture GetHoveringTexture()
-	{
-		return this.hoveringTexture;
 	}
 }
 
