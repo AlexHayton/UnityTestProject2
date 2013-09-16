@@ -1,35 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
-/// Weapon script.
+/// Weapon Holder script.
 /// This handles the available weapons and firing them.
 /// </summary>
 public class WeaponScript : MonoBehaviour {
 
-	private Weapon currentWeapon;
-	
-	private Weapon leftWeapon;
-	private Weapon rightWeapon;
+	private WeaponBase leftWeapon;
+	private WeaponBase rightWeapon;
+	private RigidPlayerScript playerScript;
 
 	// Use this for initialization
 	void Start () {
-		this.leftWeapon = new Rifle();
-		this.leftWeapon.Start();
-		this.rightWeapon = new Rifle();
-		this.rightWeapon.Start();
+		playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>(); 
+		this.leftWeapon = this.AttachWeaponToGameObject<Rifle>();
+		this.rightWeapon = this.AttachWeaponToGameObject<Rifle>();
 	}
 	
-	private IList<Weapon> m_allWeapons;
-	private IList<Weapon> m_availableWeapons;
-	private IList<Weapon> GetAllWeapons()
+	private IList<WeaponBase> m_availableWeapons;
+	private IList<WeaponBase> GetAvailableWeapons()
 	{
-		
+		// Gets a collection of all weapons and puts it in a static var.
+		return CacheUtility.CacheVariable<WeaponScript, IList<WeaponBase>>(this, 
+			ref m_availableWeapons, 
+			delegate(WeaponScript self)
+			{
+				return ClassUtility.GetInstances<WeaponBase>();
+			});
 	}
-	private IList<Weapon> GetAvailableWeapons()
+	
+	private WeaponType AttachWeaponToGameObject<WeaponType>() where WeaponType : WeaponBase
 	{
-		
+		WeaponType weapon = (WeaponType)this.gameObject.AddComponent(typeof(WeaponType));
+		return weapon;
 	}
 	
 	// Update is called once per frame

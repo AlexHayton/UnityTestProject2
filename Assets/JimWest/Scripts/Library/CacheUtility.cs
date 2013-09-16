@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 /// <summary>
 /// Cache utility.
@@ -6,13 +7,18 @@ using System;
 /// </summary>
 public static class CacheUtility
 {	
-	public static CachedVariable<varType, objType> (this objType self, ref varType variable, Func<varType> lookupFunc)
+	public static varType CacheVariable<objType, varType> ( objType self, 
+															ref varType variable, 
+															Func<objType, varType> lookupFunc) where objType : MonoBehaviour
 	{
-		if (variable == null)
+		if (variable != null)
+		{
+			return variable;
+		}
+		else
 		{
 			variable = lookupFunc(self);
+			return variable;
 		}
-		
-		return variable;
 	}
 }

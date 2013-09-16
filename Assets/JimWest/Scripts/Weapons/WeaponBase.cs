@@ -1,25 +1,23 @@
-using System;
+using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class WeaponBase : MonoBehaviour
 {
-	private RigidPlayerScript playerScript;
-	private GameObject tempMuzzle;
-	private ParticleSystem muzzleParticle;
+	protected GameObject tempMuzzle;
+	protected ParticleSystem muzzleParticle;
 	
-	public Transform muzzlePosition;
-	public GameObject muzzlePrefab;
-	public GameObject bulletPrefab;
-	public float frequency  = 10f;
-	public float coneAngle = 1.5f;
-	public bool firing = false;
-	public float damagePerSecond = 20.0f;
-	public float forcePerSecond  = 20.0f;
+	protected Transform muzzlePosition;
+	protected GameObject muzzlePrefab;
+	protected GameObject bulletPrefab;
+	protected float frequency  = 10f;
+	protected float coneAngle = 1.5f;
+	protected bool firing = false;
+	protected float damagePerSecond = 20.0f;
+	protected float forcePerSecond  = 20.0f;
 	
 	private float lastFireTime = -1f;
 	
-	public void Start()
+	public virtual void Start()
 	{
-		playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>(); 
 		GameObject tempMuzzle = (GameObject)Instantiate(muzzlePrefab, muzzlePosition.position, muzzlePosition.rotation);
 		tempMuzzle.transform.parent = this.transform;
 		muzzleParticle = tempMuzzle.GetComponent<ParticleSystem>();

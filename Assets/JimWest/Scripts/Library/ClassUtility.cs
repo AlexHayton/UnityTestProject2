@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// Class utility.
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 /// </summary>
 public class ClassUtility
 {
-	private static IList<T> GetInstances<T>()
+	public static IList<T> GetInstances<T>()
 	{
         return (from t in Assembly.GetExecutingAssembly().GetTypes()
                        where t.BaseType == (typeof(T)) && t.GetConstructor(Type.EmptyTypes) != null
