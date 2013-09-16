@@ -1,25 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
+/// <summary>
+/// Weapon Holder script.
+/// This handles the available weapons and firing them.
+/// </summary>
 public class WeaponScript : MonoBehaviour {
-	
-	public Transform muzzlePosition;
-	public GameObject muzzlePrefab;
-	public GameObject bulletPrefab;
-	public float frequency  = 10f;
-	public float coneAngle = 1.5f;
-	
-	private float lastFireTime = -1f;
+
+	public WeaponBase leftWeapon;
+	public WeaponBase rightWeapon;
 	private RigidPlayerScript playerScript;
-	private GameObject tempMuzzle;
-	private ParticleSystem muzzleParticle;
 
 	// Use this for initialization
 	void Start () {
 		playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>(); 
-		GameObject tempMuzzle = (GameObject)Instantiate(muzzlePrefab, muzzlePosition.position, muzzlePosition.rotation);
-		tempMuzzle.transform.parent = this.transform;
-		muzzleParticle = tempMuzzle.GetComponent<ParticleSystem>();
+	}
+	
+	private IList<WeaponBase> m_availableWeapons;
+	private IList<WeaponBase> GetAvailableWeapons()
+	{
+		// Gets a collection of all weapons and puts it in a static var.
+		return CacheUtility.CacheVariable<WeaponScript, IList<WeaponBase>>(this, 
+			ref m_availableWeapons, 
+			delegate(WeaponScript self)
+			{
+				return ClassUtility.GetInstances<WeaponBase>();
+			});
+	}
+	
+	private WeaponType AttachWeaponToGameObject<WeaponType>() where WeaponType : WeaponBase
+	{
+		WeaponType weapon = (WeaponType)this.gameObject.AddComponent(typeof(WeaponType));
+		return weapon;
 	}
 	
 	// Update is called once per frame
@@ -27,39 +41,12 @@ public class WeaponScript : MonoBehaviour {
 		// left mouse button click
 		if (playerScript) {
 			if (Input.GetButtonDown("Fire1") | Input.GetButton("Fire1")) {				
-				
-				if (Time.time > lastFireTime + 1 / frequency) {
-					
-					// forward vector
-					Vector3 endPoint = playerScript.GetMouseOnPlane();
-					Vector3 direction = endPoint - muzzlePosition.position;
-					direction.Normalize();	
-					
-					// apply scatter
-					Quaternion tempRot = bulletPrefab.transform.rotation;
-					Quaternion test = Quaternion.FromToRotation(bulletPrefab.transform.position, direction);
-					Debug.Log (test.eulerAngles.y);
-					
-					//tempRot.y = Quaternion.FromToRotation(transform.position, endPoint).y;
-					//Quaternion coneRandomRotation = Quaternion.Euler (Random.Range (-coneAngle, coneAngle), Random.Range (-coneAngle, coneAngle), 0);
-					//tempRot *= coneRandomRotation;
-					
-					//Debug.Log (tempRot.ToString ());
-					//tempRot.y = transform.rotation.y;
-
-					// Spawn visual bullet	and set values for start					
-					GameObject go = (GameObject)Instantiate (bulletPrefab, muzzlePosition.position, bulletPrefab.transform.rotation);
-					BulletBase bullet = go.GetComponent<BulletBase> ();
-					go.transform.RotateAround(bullet.transform.position, Vector3.up, test.eulerAngles.y);
-					bullet.SetStartValues(playerScript.gameObject, direction);
-					
-					// show visul muzzle
-					muzzleParticle.Emit(1);									
-					lastFireTime = Time.time;
-				}				
+				this.leftWeapon.Fire ();
 			}
-			
+			else if (Input.GetButtonDown("Fire2") | Input.GetButton("Fire2")) {			
+				this.rightWeapon.Fire ();
+			}
 		}
-	}	
+	}
 
 }
