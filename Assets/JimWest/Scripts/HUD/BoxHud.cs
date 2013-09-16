@@ -4,10 +4,10 @@ using System.Collections;
 public abstract class BoxHud : Hud
 {
 	internal Rect rect;
-	internal float width = Screen.width / 3;
-	internal Texture2D texture;
-	internal Color color;
-	internal GUIStyle style;
+	public float width = Screen.width / 3;
+	public Texture2D texture;
+	public Color color;
+	public GUIStyle style;
 	
 	public override void Start () {		
 		base.Start();	

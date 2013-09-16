@@ -9,15 +9,13 @@ using System.Linq;
 /// </summary>
 public class WeaponScript : MonoBehaviour {
 
-	private WeaponBase leftWeapon;
-	private WeaponBase rightWeapon;
+	public WeaponBase leftWeapon;
+	public WeaponBase rightWeapon;
 	private RigidPlayerScript playerScript;
 
 	// Use this for initialization
 	void Start () {
 		playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>(); 
-		this.leftWeapon = this.AttachWeaponToGameObject<Rifle>();
-		this.rightWeapon = this.AttachWeaponToGameObject<Rifle>();
 	}
 	
 	private IList<WeaponBase> m_availableWeapons;

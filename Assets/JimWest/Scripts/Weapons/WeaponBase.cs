@@ -1,20 +1,20 @@
 using UnityEngine;
 
-public abstract class WeaponBase : MonoBehaviour
+public class WeaponBase : MonoBehaviour
 {
 	protected GameObject tempMuzzle;
 	protected ParticleSystem muzzleParticle;
 	
-	protected Transform muzzlePosition;
-	protected GameObject muzzlePrefab;
-	protected GameObject bulletPrefab;
-	protected float frequency  = 10f;
-	protected float coneAngle = 1.5f;
-	protected bool firing = false;
-	protected float damagePerSecond = 20.0f;
-	protected float forcePerSecond  = 20.0f;
+	public Transform muzzlePosition;
+	public GameObject muzzlePrefab;
+	public GameObject bulletPrefab;
+	public float frequency  = 10f;
+	public float coneAngle = 1.5f;
+	public bool firing = false;
+	public float damagePerSecond = 20.0f;
+	public float forcePerSecond  = 20.0f;
 	
-	private float lastFireTime = -1f;
+	public float lastFireTime = -1f;
 	
 	public virtual void Start()
 	{
