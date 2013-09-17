@@ -27,7 +27,7 @@ public class WeaponBase : MonoBehaviour
 	
 	public void Fire()
 	{
-		if (Time.time > lastFireTime + 1 / frequency) 
+		if (Time.time > ((lastFireTime + 1) / frequency))
 		{
 			// forward vector
 			Vector3 endPoint = playerScript.GetMouseOnPlane();
@@ -37,7 +37,7 @@ public class WeaponBase : MonoBehaviour
 			// apply scatter
 			Quaternion tempRot = bulletPrefab.transform.rotation;
 			Quaternion test = Quaternion.FromToRotation(bulletPrefab.transform.position, direction);
-			Debug.Log (test.eulerAngles.y);
+			//Debug.Log (test.eulerAngles.y);
 			
 			//tempRot.y = Quaternion.FromToRotation(transform.position, endPoint).y;
 			//Quaternion coneRandomRotation = Quaternion.Euler (Random.Range (-coneAngle, coneAngle), Random.Range (-coneAngle, coneAngle), 0);
@@ -53,7 +53,10 @@ public class WeaponBase : MonoBehaviour
 			bullet.SetStartValues(playerScript.gameObject, direction);
 			
 			// show visul muzzle
-			muzzleParticle.Emit(1);									
+			if (muzzleParticle) {
+				muzzleParticle.Emit(1);									
+			}
+			
 			lastFireTime = Time.time;
 		}				
 	}
