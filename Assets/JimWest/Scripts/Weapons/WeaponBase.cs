@@ -35,8 +35,11 @@ public class WeaponBase : MonoBehaviour
 			direction.Normalize();	
 			
 			// apply scatter
-			Quaternion tempRot = bulletPrefab.transform.rotation;
-			Quaternion test = Quaternion.FromToRotation(bulletPrefab.transform.position, direction);
+			Quaternion tempRot = bulletPrefab.transform.rotation;			
+			tempRot.SetFromToRotation(bulletPrefab.transform.forward, direction);
+			//tempRot.y = playerScript.transform.rotation.y;	
+			//tempRot.y = transform.rotation.y;
+			//tempRot.y = Quaternion.FromToRotation(bulletPrefab.transform.position, direction).y;
 			//Debug.Log (test.eulerAngles.y);
 			
 			//tempRot.y = Quaternion.FromToRotation(transform.position, endPoint).y;
@@ -47,9 +50,8 @@ public class WeaponBase : MonoBehaviour
 			//tempRot.y = transform.rotation.y;
 
 			// Spawn visual bullet	and set values for start					
-			GameObject go = (GameObject)Instantiate (bulletPrefab, muzzlePosition.position, bulletPrefab.transform.rotation);
+			GameObject go = (GameObject)Instantiate (bulletPrefab, muzzlePosition.position, tempRot);
 			BulletBase bullet = go.GetComponent<BulletBase> ();
-			go.transform.RotateAround(bullet.transform.position, Vector3.up, test.eulerAngles.y);
 			bullet.SetStartValues(playerScript.gameObject, direction);
 			
 			// show visul muzzle
