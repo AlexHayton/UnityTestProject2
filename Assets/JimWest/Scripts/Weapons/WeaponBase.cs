@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponBase : MonoBehaviour
+public class WeaponBase : MonoBehaviour, ISelfTest
 {
 	RigidPlayerScript playerScript;
 	protected GameObject tempMuzzle;
@@ -14,15 +14,26 @@ public class WeaponBase : MonoBehaviour
 	public bool firing = false;
 	public float damagePerSecond = 20.0f;
 	public float forcePerSecond  = 20.0f;
+	public bool showInMenu = true;
+	public int cost = 100;
 	
 	public float lastFireTime = -1f;
 	
 	public virtual void Start()
 	{
-		playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>(); 
+		this.playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>(); 
 		GameObject tempMuzzle = (GameObject)Instantiate(muzzlePrefab, muzzlePosition.position, muzzlePosition.rotation);
 		tempMuzzle.transform.parent = this.transform;
-		muzzleParticle = tempMuzzle.GetComponent<ParticleSystem>();
+		this.muzzleParticle = tempMuzzle.GetComponent<ParticleSystem>();
+		
+		this.selfTest();
+	}
+	
+	public bool SelfTest()
+	{
+		bool fail;
+		SelfTestUtility.HasComponent<ParticleSystem>(ref fail, this.muzzlePrefab);
+		SelfTestUtility.HasComponent<BulletBase>(ref fail, this.bulletPrefab);
 	}
 	
 	public void Fire()

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,11 @@ using System.Linq;
 /// Weapon Holder script.
 /// This handles the available weapons and firing them.
 /// </summary>
-public class WeaponScript : MonoBehaviour {
+public class WeaponScript : MonoBehaviour, ISelfTest {
 
 	public WeaponBase leftWeapon;
 	public WeaponBase rightWeapon;
+	public static List<GameObject> allWeapons;
 	private RigidPlayerScript playerScript;
 
 	// Use this for initialization
@@ -18,16 +19,13 @@ public class WeaponScript : MonoBehaviour {
 		playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>(); 
 	}
 	
-	private IList<WeaponBase> m_availableWeapons;
-	private IList<WeaponBase> GetAvailableWeapons()
+	public void SelfTest()
 	{
-		// Gets a collection of all weapons and puts it in a static var.
-		return CacheUtility.CacheVariable<WeaponScript, IList<WeaponBase>>(this, 
-			ref m_availableWeapons, 
-			delegate(WeaponScript self)
-			{
-				return ClassUtility.GetInstances<WeaponBase>();
-			});
+		bool fail;
+		for (GameObject weapon in allWeapons)
+		{
+			SelfTestUtility.HasComponent<WeaponBase>(ref fail, weapon);
+		}
 	}
 	
 	private WeaponType AttachWeaponToGameObject<WeaponType>() where WeaponType : WeaponBase
