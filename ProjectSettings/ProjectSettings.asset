@@ -148,10 +148,10 @@ PlayerSettings:
   scriptingDefineSymbols:
     data:
       first: 1
-      second: 
+      second: MainMenuButtonPrefab
     data:
       first: 2
-      second: 
+      second: MainMenuButtonPrefab
     data:
       first: 4
       second: 
