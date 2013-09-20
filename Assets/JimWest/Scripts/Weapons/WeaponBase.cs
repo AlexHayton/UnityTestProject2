@@ -26,14 +26,15 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 		tempMuzzle.transform.parent = this.transform;
 		this.muzzleParticle = tempMuzzle.GetComponent<ParticleSystem>();
 		
-		this.selfTest();
+		this.SelfTest();
 	}
 	
 	public bool SelfTest()
 	{
-		bool fail;
+		bool fail = false;
 		SelfTestUtility.HasComponent<ParticleSystem>(ref fail, this.muzzlePrefab);
 		SelfTestUtility.HasComponent<BulletBase>(ref fail, this.bulletPrefab);
+		return fail;
 	}
 	
 	public void Fire()

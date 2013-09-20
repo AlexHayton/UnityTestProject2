@@ -9,16 +9,16 @@ public static class SelfTestUtility
 {	
 	public static void NotNull(ref bool fail, string varName, object variable)
 	{
-		if (object == null)
+		if (variable == null)
 		{
 			Debug.Log(varName + " must not be null.");
 			fail = true;
 		}
 	}
 	
-	public static void HasComponent<ComponentType>(ref bool fail, GameObject variable)
+	public static void HasComponent<ComponentType>(ref bool fail, GameObject gameObject) where ComponentType : Component
 	{
-		ComponentType component = variable.GetComponent<ComponentType>();
+		ComponentType component = gameObject.GetComponent<ComponentType>();
 		if (component == null)
 		{
 			string varName = gameObject.transform.name;

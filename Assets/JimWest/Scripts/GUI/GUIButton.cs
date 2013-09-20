@@ -6,20 +6,23 @@ public abstract class GUIButton : GUIBase {
 	
 	public void OnGUI()
 	{			
-		// Handle clicks
-		if (this.GetIsMouseOver())
+		if (!Application.isPlaying)
 		{
-			if (Event.current != null && Event.current.isMouse)
+			// Handle clicks
+			if (this.GetIsMouseOver())
 			{
-				switch (Event.current.button)
+				if (Event.current != null && Event.current.isMouse)
 				{
-				case 0: 
-					this.HandleClickButton(Event.current, this.OnLeftButtonDown, this.OnLeftButtonUp);
-					break;
-					
-				case 1:
-					this.HandleClickButton(Event.current, this.OnRightButtonDown, this.OnRightButtonUp);;
-					break;
+					switch (Event.current.button)
+					{
+					case 0: 
+						this.HandleClickButton(Event.current, this.OnLeftButtonDown, this.OnLeftButtonUp);
+						break;
+						
+					case 1:
+						this.HandleClickButton(Event.current, this.OnRightButtonDown, this.OnRightButtonUp);;
+						break;
+					}
 				}
 			}
 		}

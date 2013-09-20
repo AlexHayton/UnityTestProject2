@@ -19,13 +19,14 @@ public class WeaponScript : MonoBehaviour, ISelfTest {
 		playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>(); 
 	}
 	
-	public void SelfTest()
+	public bool SelfTest()
 	{
-		bool fail;
-		for (GameObject weapon in allWeapons)
+		bool fail = false;
+		foreach (GameObject weapon in allWeapons)
 		{
 			SelfTestUtility.HasComponent<WeaponBase>(ref fail, weapon);
 		}
+		return fail;
 	}
 	
 	private WeaponType AttachWeaponToGameObject<WeaponType>() where WeaponType : WeaponBase

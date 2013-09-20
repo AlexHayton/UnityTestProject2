@@ -6,7 +6,7 @@ public abstract class GUIBase : MonoBehaviour {
 	// Position and scale are in screen percent
 	public Vector2 position;
 	public Vector2 scale;
-	public bool visible;
+	public bool visible = true;
 	public GUIContent content;
 	public GUIStyle style;
 	
@@ -85,7 +85,6 @@ public abstract class GUIBase : MonoBehaviour {
 		{			
 			if (this.GetBounds().Contains(Event.current.mousePosition))
 			{
-				Debug.Log ("MouseOver " + this.content.text);
 				return true;
 			}
 		}

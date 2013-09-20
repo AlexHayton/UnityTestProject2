@@ -5,5 +5,5 @@ using System;
 /// </summary>
 public interface ISelfTest
 {
-	public bool SelfTest();
+	bool SelfTest();
 }
