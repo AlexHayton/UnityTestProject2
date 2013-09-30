@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 	
+[ExecuteInEditMode()]
 public abstract class GUIBase : MonoBehaviour {
 	
 	// Position and scale are in screen percent
 	public Vector2 position;
 	public Vector2 scale;
 	public bool visible = true;
+	public bool menuVisible = true;
 	public GUIContent content;
 	public GUIStyle style;
 	
@@ -33,7 +35,7 @@ public abstract class GUIBase : MonoBehaviour {
 	
 	protected bool GetIsVisible()
 	{
-		return this.visible;
+		return this.menuVisible && this.visible;
 	}
 	
 	protected void SetIsVisible(bool visible)

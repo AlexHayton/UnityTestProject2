@@ -1493,6 +1493,8 @@ MonoBehaviour:
   firing: 0
   damagePerSecond: 35
   forcePerSecond: 20
+  showInMenu: 1
+  cost: 100
   lastFireTime: -1
 --- !u!1 &1932880543
 GameObject:
@@ -2867,6 +2869,8 @@ MonoBehaviour:
   firing: 0
   damagePerSecond: 20
   forcePerSecond: 20
+  showInMenu: 1
+  cost: 100
   lastFireTime: -1
 --- !u!95 &2136718500
 Animator:

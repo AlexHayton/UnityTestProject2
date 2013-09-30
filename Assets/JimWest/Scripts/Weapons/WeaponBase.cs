@@ -9,7 +9,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 	public Transform muzzlePosition;
 	public GameObject muzzlePrefab;
 	public GameObject bulletPrefab;
-	public float frequency  = 10f;
+	public float frequency = 10f;
 	public float coneAngle = 1.5f;
 	public bool firing = false;
 	public float damagePerSecond = 20.0f;

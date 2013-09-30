@@ -215,6 +215,7 @@ MonoBehaviour:
   position: {x: 35, y: 65}
   scale: {x: 30, y: 10}
   visible: 1
+  menuVisible: 1
   content:
     m_Text: Quit
     m_Image: {fileID: 0}
@@ -411,7 +412,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
+  m_BackGroundColor: {r: .380392164, g: .380392164, b: .380392164, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -500,6 +501,7 @@ MonoBehaviour:
   position: {x: 35, y: 50}
   scale: {x: 30, y: 10}
   visible: 1
+  menuVisible: 1
   content:
     m_Text: Start Game
     m_Image: {fileID: 0}
