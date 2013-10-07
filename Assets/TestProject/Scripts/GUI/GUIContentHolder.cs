@@ -12,7 +12,7 @@ public class GUIContentHolder : GUIBase {
 		return this.content;
 	}
 	
-	public void OnGUI()
+	public virtual void OnGUI()
 	{			
 		if (this.GetIsVisible())
 		{
@@ -21,9 +21,9 @@ public class GUIContentHolder : GUIBase {
 				this.GetTop(), 
 				this.GetPixelWidth(),
 				this.GetPixelHeight()), 
-				this.GetContent(), 
+				this.content.text, 
 				this.GetStyle());
 		}
-	}    	
+	}
 }
 
