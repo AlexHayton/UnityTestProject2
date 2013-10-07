@@ -29,7 +29,7 @@ public abstract class GUIButton : GUIContentHolder {
 		
 		if (this.GetIsVisible())
 		{
-			GUI.Button(new Rect(
+			GUI.Box(new Rect(
 				this.GetLeft(),
 				this.GetTop(), 
 				this.GetPixelWidth(),
