@@ -6,12 +6,36 @@ public abstract class GUIBase : MonoBehaviour {
 	
 	// Position and scale are in screen percent
 	public Vector2 position;
-	public Vector2 scale;
 	public bool visible = true;
-	public bool menuVisible = true;
-	public GUIContent content;
-	public GUIStyle style;
+	public GUIStylePrefab guiStylePrefab;
 	
+	public virtual void Start()
+	{
+		this.SelfTest();
+	}
+	
+	public bool SelfTest()
+	{
+		bool fail = false;
+		
+		SelfTestUtility.NotNull(ref fail, "guiStylePrefab", guiStylePrefab);
+		
+		return fail;
+	}
+	
+	private bool menuVisible = true;
+	public bool MenuVisible 
+	{
+		get
+		{
+			return menuVisible;
+		}
+		internal set
+		{
+			menuVisible = value;
+		}
+	}
+		
 	public virtual float GetTop()
 	{
 		return (float)Screen.height * (this.position.y / 100.0f);
@@ -45,33 +69,28 @@ public abstract class GUIBase : MonoBehaviour {
 	
 	public Vector3 GetScale()
 	{
-		return this.scale;
+		return this.guiStylePrefab.scale;
 	}
 	
 	// In percentage of screen!
 	public void SetScale(Vector3 scale)
 	{
-		this.scale = scale;
-	}
-	
-	public GUIContent GetContent()
-	{
-		return this.content;
+		this.guiStylePrefab.scale = scale;
 	}
 	
 	public GUIStyle GetStyle()
 	{
-		return this.style;
+		return this.guiStylePrefab.style;
 	}
 	
 	public float GetPixelWidth()
 	{
-		return Screen.width * this.scale.x / 100.0f;
+		return Screen.width * this.guiStylePrefab.scale.x / 100.0f;
 	}
 	
 	public float GetPixelHeight()
 	{
-		return Screen.height * this.scale.y / 100.0f;
+		return Screen.height * this.guiStylePrefab.scale.y / 100.0f;
 	}
 	
 	public virtual Bounds GetBounds()

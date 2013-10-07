@@ -4,10 +4,17 @@ using System;
 	
 public abstract class GUIButton : GUIBase {
 	
+	public GUIContent content;
+	
+	public GUIContent GetContent()
+	{
+		return this.content;
+	}
+	
 	public void OnGUI()
 	{			
-		if (!Application.isPlaying)
 		{
+			if (!Application.isPlaying)
 			// Handle clicks
 			if (this.GetIsMouseOver())
 			{
