@@ -2,19 +2,12 @@ using UnityEngine;
 using System.Collections;
 using System;
 	
-public abstract class GUIButton : GUIBase {
+public abstract class GUIButton : GUIContentHolder {
 	
-	public GUIContent content;
-	
-	public GUIContent GetContent()
-	{
-		return this.content;
-	}
-	
-	public void OnGUI()
+	public override void OnGUI()
 	{			
+		if (!Application.isPlaying)
 		{
-			if (!Application.isPlaying)
 			// Handle clicks
 			if (this.GetIsMouseOver())
 			{
