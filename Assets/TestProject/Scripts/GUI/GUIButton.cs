@@ -6,7 +6,7 @@ public abstract class GUIButton : GUIContentHolder {
 	
 	public override void OnGUI()
 	{			
-		if (!Application.isPlaying)
+		if (Application.isPlaying)
 		{
 			// Handle clicks
 			if (this.GetIsMouseOver())
