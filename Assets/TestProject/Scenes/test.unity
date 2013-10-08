@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaf2ae06323ebb479e682dea7bbd8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   isEnabled: 1
   enemyPrefab: {fileID: 100004, guid: 9bff48f9d4e6eb64b84bdd334b3cb797, type: 2}
   spawnAmount: 4
@@ -317,6 +318,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07af1f86f47949f4684b81ec2ad3c79c, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   gizmoColor: {r: 1, g: 0, b: 0, a: .5}
 --- !u!33 &820600761
@@ -2703,6 +2705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abaf2ae06323ebb479e682dea7bbd8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   isEnabled: 1
   enemyPrefab: {fileID: 100004, guid: 9bff48f9d4e6eb64b84bdd334b3cb797, type: 2}
   spawnAmount: 4
@@ -2717,6 +2720,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07af1f86f47949f4684b81ec2ad3c79c, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   gizmoColor: {r: 1, g: 0, b: 0, a: .5}
 --- !u!33 &1996895198

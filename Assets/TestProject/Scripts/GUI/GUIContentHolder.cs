@@ -14,16 +14,16 @@ public class GUIContentHolder : GUIBase {
 	
 	public virtual void OnGUI()
 	{			
-		if (this.GetIsVisible())
+		this.RenderGUI(delegate() 
 		{
 			GUI.Box(new Rect(
 				this.GetLeft(),
 				this.GetTop(), 
 				this.GetPixelWidth(),
 				this.GetPixelHeight()), 
-				this.content.text, 
+				this.GetContent(), 
 				this.GetStyle());
-		}
+		});
 	}
 }
 

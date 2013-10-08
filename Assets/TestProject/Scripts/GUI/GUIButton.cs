@@ -27,7 +27,7 @@ public abstract class GUIButton : GUIContentHolder {
 			}
 		}
 		
-		if (this.GetIsVisible())
+		this.RenderGUI(delegate()
 		{
 			GUI.Box(new Rect(
 				this.GetLeft(),
@@ -36,7 +36,7 @@ public abstract class GUIButton : GUIContentHolder {
 				this.GetPixelHeight()), 
 				this.GetContent(), 
 				this.GetStyle());
-		}
+		});
 	}    	
 	
 	protected void HandleClickButton(Event currentEvent, Action downFunc, Action upFunc)

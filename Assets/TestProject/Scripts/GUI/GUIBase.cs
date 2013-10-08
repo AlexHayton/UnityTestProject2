@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 	
 [ExecuteInEditMode()]
 public abstract class GUIBase : MonoBehaviour {
@@ -8,6 +9,7 @@ public abstract class GUIBase : MonoBehaviour {
 	public Vector2 position;
 	public bool visible = true;
 	public GUIStylePrefab guiStylePrefab;
+	public int depth = 100;
 	
 	public virtual void Start()
 	{
@@ -111,6 +113,30 @@ public abstract class GUIBase : MonoBehaviour {
 		}
 		
 		return false;
+	}
+	
+	public virtual int GetDepth()
+	{
+		return this.depth;
+	}
+	
+	public void SetDepth(int depth)
+	{
+		this.depth = depth;
+	}
+	
+	/// <summary>
+	/// Sets the depth layer in Unity and checks visibility.
+	/// Pass this your render function.
+ 	/// GUI.depth is modified before any other calls to get the depth right.
+	/// </summary>
+	protected virtual void RenderGUI(Action f)
+	{
+		if (this.GetIsVisible())
+		{
+			GUI.depth = this.depth;
+			f();
+		}
 	}
 }
 

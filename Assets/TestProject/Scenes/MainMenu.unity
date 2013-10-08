@@ -185,6 +185,10 @@ Prefab:
       propertyPath: visible
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 4cb3502115a23b1458fa963cfaf2dda8, type: 2}
+      propertyPath: layer
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4cb3502115a23b1458fa963cfaf2dda8, type: 2}
   m_RootGameObject: {fileID: 1839013151}
@@ -279,6 +283,7 @@ MonoBehaviour:
   position: {x: 35, y: 65}
   visible: 1
   guiStylePrefab: {fileID: 1660099387}
+  depth: 100
   content:
     m_Text: Quit
     m_Image: {fileID: 0}
@@ -324,6 +329,7 @@ MonoBehaviour:
   position: {x: 21.2299995, y: -9}
   visible: 1
   guiStylePrefab: {fileID: 1978636219}
+  depth: 100
   content:
     m_Text: 
     m_Image: {fileID: 0}
@@ -784,8 +790,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
-  visible: 0
+  visible: 1
   guiStylePrefab: {fileID: 1635210834}
+  depth: 150
   content:
     m_Text: 
     m_Image: {fileID: 0}
@@ -821,6 +828,7 @@ MonoBehaviour:
   position: {x: 35, y: 50}
   visible: 1
   guiStylePrefab: {fileID: 1660099387}
+  depth: 100
   content:
     m_Text: Start Game
     m_Image: {fileID: 0}
