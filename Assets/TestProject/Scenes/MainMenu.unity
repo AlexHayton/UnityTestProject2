@@ -575,7 +575,7 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   scale: {x: 100, y: 100}
-  lockRatio: 1
+  lockScaleRatio: 1
 --- !u!1 &1660099385
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +675,7 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   scale: {x: 20, y: 10}
-  lockRatio: 1
+  lockScaleRatio: 1
 --- !u!1 &1735163031
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,7 +965,7 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   scale: {x: 50, y: 50}
-  lockRatio: 1
+  lockScaleRatio: 1
 --- !u!1 &2102479026
 GameObject:
   m_ObjectHideFlags: 0
