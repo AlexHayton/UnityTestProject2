@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System;
+using UnityEditor;
 
 [ExecuteInEditMode()]
 public class GUIButtonQuit : GUIButton {
@@ -11,7 +13,14 @@ public class GUIButtonQuit : GUIButton {
 	
 	public void Quit()
 	{
-		Application.Quit();
+		try
+		{
+			EditorApplication.ExecuteMenuItem("Edit/Play");
+		}
+		catch (Exception)
+		{
+			Application.Quit();
+		}
 	}
 	
 }

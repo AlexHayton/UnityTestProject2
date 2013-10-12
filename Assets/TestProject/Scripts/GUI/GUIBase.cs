@@ -10,6 +10,7 @@ public abstract class GUIBase : MonoBehaviour {
 	public bool visible = true;
 	public GUIStylePrefab guiStylePrefab;
 	public int depth = 100;
+	public Color color = new Color(1, 1, 1, 1);
 	
 	public virtual void Start()
 	{
@@ -125,6 +126,16 @@ public abstract class GUIBase : MonoBehaviour {
 		this.depth = depth;
 	}
 	
+	public virtual Color GetColor()
+	{
+		return this.color;
+	}
+	
+	public void SetColor(Color color)
+	{
+		this.color = color;
+	}
+	
 	/// <summary>
 	/// Sets the depth layer in Unity and checks visibility.
 	/// Pass this your render function.
@@ -134,6 +145,7 @@ public abstract class GUIBase : MonoBehaviour {
 	{
 		if (this.GetIsVisible())
 		{
+			GUI.color = this.color;
 			GUI.depth = this.depth;
 			f();
 		}

@@ -119,7 +119,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 9485776a0451f4b4eb77767bb465ca38, type: 2}
       propertyPath: scale.y
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9485776a0451f4b4eb77767bb465ca38, type: 2}
@@ -188,6 +188,22 @@ Prefab:
     - target: {fileID: 11400000, guid: 4cb3502115a23b1458fa963cfaf2dda8, type: 2}
       propertyPath: layer
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 4cb3502115a23b1458fa963cfaf2dda8, type: 2}
+      propertyPath: color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 4cb3502115a23b1458fa963cfaf2dda8, type: 2}
+      propertyPath: color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 4cb3502115a23b1458fa963cfaf2dda8, type: 2}
+      propertyPath: color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 4cb3502115a23b1458fa963cfaf2dda8, type: 2}
+      propertyPath: color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4cb3502115a23b1458fa963cfaf2dda8, type: 2}
@@ -284,6 +300,7 @@ MonoBehaviour:
   visible: 1
   guiStylePrefab: {fileID: 1660099387}
   depth: 100
+  color: {r: 1, g: .980392158, b: .980392158, a: .588235319}
   content:
     m_Text: Quit
     m_Image: {fileID: 0}
@@ -330,6 +347,7 @@ MonoBehaviour:
   visible: 1
   guiStylePrefab: {fileID: 1978636219}
   depth: 100
+  color: {r: 1, g: 1, b: 1, a: 1}
   content:
     m_Text: 
     m_Image: {fileID: 0}
@@ -557,6 +575,7 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   scale: {x: 100, y: 100}
+  lockRatio: 1
 --- !u!1 &1660099385
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +674,8 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  scale: {x: 20, y: 7}
+  scale: {x: 20, y: 10}
+  lockRatio: 1
 --- !u!1 &1735163031
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +813,7 @@ MonoBehaviour:
   visible: 1
   guiStylePrefab: {fileID: 1635210834}
   depth: 150
+  color: {r: 0, g: 0, b: 0, a: 0}
   content:
     m_Text: 
     m_Image: {fileID: 0}
@@ -829,6 +850,7 @@ MonoBehaviour:
   visible: 1
   guiStylePrefab: {fileID: 1660099387}
   depth: 100
+  color: {r: 1, g: 1, b: 1, a: 1}
   content:
     m_Text: Start Game
     m_Image: {fileID: 0}
@@ -943,6 +965,7 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   scale: {x: 50, y: 50}
+  lockRatio: 1
 --- !u!1 &2102479026
 GameObject:
   m_ObjectHideFlags: 0
