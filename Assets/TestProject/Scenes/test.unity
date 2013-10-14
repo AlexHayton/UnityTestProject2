@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037073738c790ac4797fb0da9c227cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: .479999989, y: .75999999}
+  position: {x: .389999986, y: .959999979}
   visible: 1
   guiStylePrefab: {fileID: 547980456}
   depth: 100
@@ -385,7 +385,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  scale: {x: 30, y: 5}
+  scale: {x: 27.5599995, y: 4.63999987}
   lockScaleRatio: 0
 --- !u!1 &549554363
 GameObject:
@@ -535,7 +535,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  scale: {x: 30, y: 5}
+  scale: {x: 29.1399994, y: 3.5999999}
   lockScaleRatio: 0
 --- !u!4 &698700109
 Transform:
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037073738c790ac4797fb0da9c227cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: .209999993, y: 4.44999981}
+  position: {x: .400000006, y: 5.5999999}
   visible: 1
   guiStylePrefab: {fileID: 698700108}
   depth: 100
