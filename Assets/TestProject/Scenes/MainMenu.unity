@@ -340,7 +340,7 @@ MonoBehaviour:
   visible: 1
   guiStylePrefab: {fileID: 1660099387}
   depth: 100
-  color: {r: 1, g: .980392158, b: .980392158, a: .588235319}
+  color: {r: 1, g: .647058845, b: .647058845, a: .521568656}
   content:
     m_Text: Quit
     m_Image: {fileID: 0}
