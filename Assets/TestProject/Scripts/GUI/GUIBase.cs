@@ -11,8 +11,14 @@ public abstract class GUIBase : MonoBehaviour {
 	public GUIStylePrefab guiStylePrefab;
 	public int depth = 100;
 	public Color color = new Color(1, 1, 1, 1);
+	public AutoXPosition autoXPosition;
 	
 	public virtual void Start()
+	{
+		this.SelfTest();
+	}
+	
+	public virtual void Update()
 	{
 		this.SelfTest();
 	}
@@ -21,7 +27,7 @@ public abstract class GUIBase : MonoBehaviour {
 	{
 		bool fail = false;
 		
-		SelfTestUtility.NotNull(ref fail, "guiStylePrefab", guiStylePrefab);
+		SelfTestUtility.NotNull(ref fail, this, "guiStylePrefab");
 		
 		return fail;
 	}
@@ -83,7 +89,7 @@ public abstract class GUIBase : MonoBehaviour {
 	
 	public GUIStyle GetStyle()
 	{
-		return this.guiStylePrefab.style;
+		return this.guiStylePrefab.GetStyle();
 	}
 	
 	public float GetPixelWidth()

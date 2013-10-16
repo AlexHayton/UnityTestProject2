@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Reflection;
 
 /// <summary>
 /// SelfTestUtility
@@ -22,25 +23,50 @@ public static class SelfTestUtility
 	            || value is decimal;
 	}
 	
-	public static void GreaterThanZero(ref bool fail, string varName, ValueType variable)
+	private static object GetPropertyFromComponent(Component component, string varName)
 	{
-		if (IsNumber(variable))
+		if (component == null)
+			return null;
+		
+		FieldInfo prop = component.GetType().GetField(varName);
+		if (prop == null)
 		{
-			
-			if (variable == null)
+			Debug.Log(component.gameObject.name + "." + component.name + "." + varName + ": Could not find this property!");
+			return null;
+		}
+		
+		object variable = prop.GetValue(component);
+		return variable;
+	}
+	
+	public static void GreaterThanZero(ref bool fail, Component component, string varName)
+	{
+		NotNull(ref fail, component, varName);
+		
+		if (!fail)
+		{
+			object variable = GetPropertyFromComponent(component, varName);
+			if (IsNumber(variable))
 			{
-				Debug.Log(varName + " must not be null.");
-				fail = true;
+				if ((double)variable <= 0)
+				{
+					Debug.Log(component.gameObject.name + "." + component.name + "." + varName + ": must be greater than 0.");
+					fail = true;
+				}
 			}
-			
+			else if (variable is Vector2)
+			{
+				Vector2 v2Variable = (Vector2)variable;
+			}
 		}
 	}
 	
-	public static void NotNull(ref bool fail, string varName, object variable)
+	public static void NotNull(ref bool fail, Component component, string varName)
 	{
+		object variable = GetPropertyFromComponent(component, varName);
 		if (variable == null)
 		{
-			Debug.Log(varName + " must not be null.");
+			Debug.Log(component.gameObject.name + "." + component.name + "." + varName + ": must not be null.");
 			fail = true;
 		}
 	}
@@ -51,7 +77,7 @@ public static class SelfTestUtility
 		if (component == null)
 		{
 			string varName = gameObject.transform.name;
-			Debug.Log(varName + " must have a " + typeof(ComponentType).ToString());
+			Debug.Log(component.gameObject.name + "." + component.name + "." + varName + ": must have a " + typeof(ComponentType).ToString() + " component");
 			fail = true;
 		}
 	}

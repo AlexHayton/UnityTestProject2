@@ -3,7 +3,18 @@ using System.Collections;
 	
 [ExecuteInEditMode()]
 public class GUIStylePrefab : MonoBehaviour, ISelfTest {
-	public GUIStyle style;
+	public Texture2D normalBackground;
+	public Color normalTextColor = new Color(1,1,1,1);
+	public Texture2D hoverBackground;
+	public Color hoverTextColor = new Color(1,1,1,1);
+	public Texture2D activeBackground;
+	public Color activeTextColor = new Color(1,1,1,1);
+	
+	public Font font;
+	public int fontSize;
+	public FontStyle fontStyle;
+	public TextAnchor alignment;
+	
 	public Vector2 scale = new Vector2(10, 10);
 	public bool lockScaleRatio = true;
 	private Vector2 lastScale;
@@ -22,8 +33,7 @@ public class GUIStylePrefab : MonoBehaviour, ISelfTest {
 	{
 		bool fail = false;
 		
-		SelfTestUtility.GreaterThanZero(ref fail, "scale.x", this.scale.x);
-		SelfTestUtility.GreaterThanZero(ref fail, "scale.y", this.scale.y);
+		SelfTestUtility.GreaterThanZero(ref fail, this, "scale");
 		
 		return fail;
 	}
@@ -32,6 +42,28 @@ public class GUIStylePrefab : MonoBehaviour, ISelfTest {
 	{
 		this.lastScale.x = this.scale.x;
 		this.lastScale.y = this.scale.y;
+	}
+	
+	private GUIStyle m_ComputedGUIStyle = null;
+	public GUIStyle GetStyle()
+	{
+		//if (m_ComputedGUIStyle == null)
+		//{
+			m_ComputedGUIStyle = new GUIStyle();
+		
+			m_ComputedGUIStyle.normal.background = this.normalBackground;
+			m_ComputedGUIStyle.normal.textColor = this.normalTextColor;
+			m_ComputedGUIStyle.hover.background = this.hoverBackground;
+			m_ComputedGUIStyle.hover.textColor = this.hoverTextColor;
+			m_ComputedGUIStyle.active.background = this.activeBackground;
+			m_ComputedGUIStyle.active.textColor = this.activeTextColor;
+			m_ComputedGUIStyle.font = this.font;
+			m_ComputedGUIStyle.fontSize = this.fontSize;
+			m_ComputedGUIStyle.fontStyle = this.fontStyle;
+			m_ComputedGUIStyle.alignment = this.alignment;
+		//}
+		
+		return m_ComputedGUIStyle;
 	}
 	
 	public void OnGUI()
