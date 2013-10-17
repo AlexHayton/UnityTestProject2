@@ -20,6 +20,22 @@ public abstract class GUIBase : MonoBehaviour {
 	
 	public virtual void Update()
 	{
+		switch (autoXPosition)
+		{
+			case AutoXPosition.Centre:
+				this.position.x = (float)Screen.width/2.0f - this.GetPixelWidth()/2.0f;
+				break;
+			case AutoXPosition.Left:
+				this.position.x = (float)Screen.width - this.GetPixelWidth();
+				break;
+			case AutoXPosition.Right:
+				this.position.x = (float)Screen.width - this.GetPixelWidth();
+				break;
+			case AutoXPosition.None:
+			default:
+				break;
+		}
+		
 		this.SelfTest();
 	}
 	
