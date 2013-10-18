@@ -6,6 +6,8 @@ public abstract class GUIButton : GUIContentHolder {
 	
 	public override void OnGUI()
 	{			
+		base.OnGUI();
+		
 		if (Application.isPlaying)
 		{
 			// Handle clicks
@@ -26,17 +28,6 @@ public abstract class GUIButton : GUIContentHolder {
 				}
 			}
 		}
-		
-		this.RenderGUI(delegate()
-		{
-			GUI.Box(new Rect(
-				this.GetLeft(),
-				this.GetTop(), 
-				this.GetPixelWidth(),
-				this.GetPixelHeight()), 
-				this.GetContent(), 
-				this.GetStyle());
-		});
 	}    	
 	
 	protected void HandleClickButton(Event currentEvent, Action downFunc, Action upFunc)

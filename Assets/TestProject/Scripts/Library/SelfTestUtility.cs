@@ -57,6 +57,11 @@ public static class SelfTestUtility
 			else if (variable is Vector2)
 			{
 				Vector2 v2Variable = (Vector2)variable;
+				if (v2Variable.x <= 0 || v2Variable.y <= 0)
+				{
+					Debug.Log(component.gameObject.name + "." + component.name + "." + varName + ": must be greater than 0.");
+					fail = true;
+				}
 			}
 		}
 	}
