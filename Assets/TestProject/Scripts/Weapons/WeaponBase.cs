@@ -32,8 +32,13 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 	public bool SelfTest()
 	{
 		bool fail = false;
+		// Check that we have a particleSystem and bulletBase in our prefabs
 		SelfTestUtility.HasComponent<ParticleSystem>(ref fail, this.muzzlePrefab);
 		SelfTestUtility.HasComponent<BulletBase>(ref fail, this.bulletPrefab);
+		
+		// Check that we have the right components on the player script.
+		SelfTestUtility.NotNull(ref fail, this, "playerScript");
+		SelfTestUtility.HasComponent<XPHandler>(ref fail, this.playerScript.gameObject);
 		return fail;
 	}
 	

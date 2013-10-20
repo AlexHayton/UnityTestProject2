@@ -245,10 +245,8 @@ MonoBehaviour:
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
-  content:
-    m_Text: 
-    m_Image: {fileID: 0}
-    m_Tooltip: 
+  text: 
+  image: {fileID: 0}
 --- !u!1 &251681537
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,10 +818,8 @@ MonoBehaviour:
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
-  content:
-    m_Text: 
-    m_Image: {fileID: 0}
-    m_Tooltip: 
+  text: 
+  image: {fileID: 0}
 --- !u!1 &946764744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2403,10 +2399,8 @@ MonoBehaviour:
   depth: 100
   color: {r: 1, g: 1, b: 1, a: .588235319}
   autoXPosition: 0
-  content:
-    m_Text: 
-    m_Image: {fileID: 0}
-    m_Tooltip: 
+  text: 
+  image: {fileID: 0}
 --- !u!1 &1920927628
 GameObject:
   m_ObjectHideFlags: 0

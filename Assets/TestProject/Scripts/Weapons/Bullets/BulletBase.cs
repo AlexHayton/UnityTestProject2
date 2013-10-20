@@ -43,6 +43,12 @@ public class BulletBase : MonoBehaviour {
 				health.DeductHealth(damageOnHit);				
 			}
 			
+			if (owner != null)
+			{
+				XPHandler xphandler = owner.GetComponent<XPHandler>();
+				xphandler.AddXp(100);
+			}
+			
 			if (destroyPrefab) {
 				// show the explosion
 				Vector3 destroyPos = collider.transform.position;

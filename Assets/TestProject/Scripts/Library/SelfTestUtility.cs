@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using System.Reflection;
+using System.Linq;
+using System.Collections.Generic;
 
 /// <summary>
 /// SelfTestUtility
@@ -28,7 +30,11 @@ public static class SelfTestUtility
 		if (component == null)
 			return null;
 		
-		FieldInfo prop = component.GetType().GetField(varName);
+		FieldInfo prop = null;
+		// Get the field in the first nested type.
+		IEnumerable<Type> types = component.GetType().GetNestedTypes().Union(new Type[] { component.GetType() });
+		IEnumerable<FieldInfo> fields = types.Select(t => t.GetField(varName));
+		prop = fields.Where(f => f != null).FirstOrDefault();
 		if (prop == null)
 		{
 			Debug.Log(component.gameObject.name + "." + component.name + "." + varName + ": Could not find this property!");
