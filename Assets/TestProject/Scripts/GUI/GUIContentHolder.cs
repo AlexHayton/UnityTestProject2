@@ -8,11 +8,21 @@ public class GUIContentHolder : GUIBase {
 	public string text;
 	public Texture2D image;
 	
-	public GUIContent GetContent()
+	public virtual string GetText()
+	{
+		return this.text;
+	}
+	
+	public virtual Texture2D GetImage()
+	{
+		return this.image;
+	}
+	
+	public virtual GUIContent GetContent()
 	{
 		GUIContent content = new GUIContent();
-		content.text = this.text;
-		content.image = this.image;
+		content.text = this.GetText();
+		content.image = this.GetImage();
 		return content;
 	}
 	

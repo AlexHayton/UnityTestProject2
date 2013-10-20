@@ -4,8 +4,9 @@ using System;
 	
 public abstract class GUIHorizontalBar : GUIContentHolder {
 	
-	public abstract float GetPercentageFull();
 	private float cachedPercentage = 100.0f;
+	
+	public abstract float GetPercentageFull();
 	
 	public override float GetPixelWidth()
 	{
@@ -15,13 +16,16 @@ public abstract class GUIHorizontalBar : GUIContentHolder {
 	public override GUIContent GetContent()
 	{
 		GUIContent content = base.GetContent();
-		content.image = content.image.Crop(0, cachedPercentage);
+		content.text = this.GetText();
+		content.image = this.GetImage();
+		//content.image = content.image.Crop(0, cachedPercentage);
+		return content;
 	}
 	
 	public override void OnGUI()
 	{			
 		// Size and offset the texture based on %
-		cachedPercentage = this.PercentageFull();
+		cachedPercentage = this.GetPercentageFull();
 	
 		this.RenderGUI(delegate()
 		{

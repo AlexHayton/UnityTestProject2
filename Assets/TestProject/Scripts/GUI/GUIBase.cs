@@ -112,12 +112,12 @@ public abstract class GUIBase : MonoBehaviour {
 		return this.guiStylePrefab.GetStyle();
 	}
 	
-	public float GetPixelWidth()
+	public virtual float GetPixelWidth()
 	{
 		return Screen.width * this.guiStylePrefab.scale.x / 100.0f;
 	}
 	
-	public float GetPixelHeight()
+	public virtual float GetPixelHeight()
 	{
 		return Screen.height * this.guiStylePrefab.scale.y / 100.0f;
 	}

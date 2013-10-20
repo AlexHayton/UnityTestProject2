@@ -6,8 +6,9 @@ public abstract class GUIHealthBar : GUIHorizontalBar {
 
 	private GameObject player;
 
-	public void Start()
+	public override void Start()
 	{
+		base.Start();
 		player = PlayerUtility.GetPlayer ();
 	}
 	
@@ -21,8 +22,6 @@ public abstract class GUIHealthBar : GUIHorizontalBar {
 		} else {
 			 return 0;
 		}
-
-		return tempWidth; 
 	}	
 	
 	public override string GetText (){

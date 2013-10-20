@@ -7,7 +7,7 @@ public class EnergyHandler : MonoBehaviour {
 	public float energy = 100;
 	
 	public float regenEnergyRate = 10.0f;
-	public float regenSpeed = 0.2f;
+	public float regenInterval = 0.2f;
 	private float nextRegen = 0.0f;
 	
 	public bool infiniteEnergy = false;
@@ -16,17 +16,17 @@ public class EnergyHandler : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (regenHealth > 0) {
+		if (regenEnergyRate > 0) {
 			
-			if (health < maxHealth) {				
+			if (energy < maxEnergy) {				
 							
 				if (nextRegen == 0.0f) {
-					nextRegen = Time.time + regenSpeed;
+					nextRegen = Time.time + regenInterval;
 				} else if (Time.time > nextRegen) {
 					// regen health
-					Debug.Log ("Regen");
+					//Debug.Log ("Regen");
 					this.energy = Mathf.Min (this.energy + this.regenEnergyRate, maxEnergy);
-					nextRegen = Time.time + regenSpeed;
+					nextRegen = Time.time + regenInterval;
 				}
 				
 			}
@@ -40,9 +40,9 @@ public class EnergyHandler : MonoBehaviour {
 	
 	public bool DeductEnergy(int energy) {	
 		
-		int newEnergy = Mathf.Max (this.energy - energy, 0);
+		float newEnergy = Mathf.Max (this.energy - energy, 0);
 		
-		if (invincible)
+		if (infiniteEnergy)
 		{
 			newEnergy = this.energy;
 		}
