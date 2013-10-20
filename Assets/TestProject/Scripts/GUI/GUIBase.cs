@@ -20,22 +20,6 @@ public abstract class GUIBase : MonoBehaviour {
 	
 	public virtual void Update()
 	{
-		switch (autoXPosition)
-		{
-			case AutoXPosition.Centre:
-				this.position.x = (float)Screen.width/2.0f - this.GetPixelWidth()/2.0f;
-				break;
-			case AutoXPosition.Left:
-				this.position.x = (float)Screen.width - this.GetPixelWidth();
-				break;
-			case AutoXPosition.Right:
-				this.position.x = (float)Screen.width - this.GetPixelWidth();
-				break;
-			case AutoXPosition.None:
-			default:
-				break;
-		}
-		
 		this.SelfTest();
 	}
 	
@@ -46,6 +30,26 @@ public abstract class GUIBase : MonoBehaviour {
 		SelfTestUtility.NotNull(ref fail, this, "guiStylePrefab");
 		
 		return fail;
+	}
+	
+	public virtual void OnGUI()
+	{
+		// Set the auto X position.
+		switch (autoXPosition)
+		{
+			case AutoXPosition.Centre:
+				this.position.x = 50.0f - this.GetScale().x/2.0f;
+				break;
+			case AutoXPosition.Left:
+				this.position.x = 0;
+				break;
+			case AutoXPosition.Right:
+				this.position.x = 100.0f- this.GetScale().x;
+				break;
+			case AutoXPosition.None:
+			default:
+				break;
+		}
 	}
 	
 	private bool menuVisible = true;

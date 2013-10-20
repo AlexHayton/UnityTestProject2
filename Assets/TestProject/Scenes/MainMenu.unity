@@ -292,10 +292,8 @@ MonoBehaviour:
   depth: 200
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
-  content:
-    m_Text: 
-    m_Image: {fileID: 0}
-    m_Tooltip: 
+  text: 
+  image: {fileID: 0}
 --- !u!1001 &713184486
 Prefab:
   m_ObjectHideFlags: 0
@@ -423,16 +421,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82fbf87303e2402aa1d943dbe329518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 35, y: 70}
+  position: {x: 40, y: 70}
   visible: 1
   guiStylePrefab: {fileID: 1660099387}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: .635294139}
-  autoXPosition: 0
-  content:
-    m_Text: Quit
-    m_Image: {fileID: 0}
-    m_Tooltip: 
+  autoXPosition: 1
+  text: Quit
+  image: {fileID: 0}
 --- !u!1 &830490552
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,16 +509,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037073738c790ac4797fb0da9c227cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 21.2299995, y: -9}
+  position: {x: 25, y: -5}
   visible: 1
   guiStylePrefab: {fileID: 1978636219}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
-  autoXPosition: 0
-  content:
-    m_Text: 
-    m_Image: {fileID: 0}
-    m_Tooltip: 
+  autoXPosition: 1
+  text: 
+  image: {fileID: 0}
 --- !u!1001 &1054471435
 Prefab:
   m_ObjectHideFlags: 0
@@ -754,6 +748,18 @@ Prefab:
       propertyPath: guiStylePrefab
       value: 
       objectReference: {fileID: 1660099387}
+    - target: {fileID: 11400000, guid: 1e43a840a28d54477915096a37a3bcc2, type: 2}
+      propertyPath: autoXPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 1e43a840a28d54477915096a37a3bcc2, type: 2}
+      propertyPath: position.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 1e43a840a28d54477915096a37a3bcc2, type: 2}
+      propertyPath: text
+      value: Start Game
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e43a840a28d54477915096a37a3bcc2, type: 2}
   m_RootGameObject: {fileID: 1839013151}
@@ -900,6 +906,18 @@ Prefab:
       propertyPath: guiStylePrefab
       value: 
       objectReference: {fileID: 1978636219}
+    - target: {fileID: 11400000, guid: ef9f9a13bfa184f7ea30caf812122285, type: 2}
+      propertyPath: position.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef9f9a13bfa184f7ea30caf812122285, type: 2}
+      propertyPath: autoXPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ef9f9a13bfa184f7ea30caf812122285, type: 2}
+      propertyPath: position.x
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef9f9a13bfa184f7ea30caf812122285, type: 2}
   m_RootGameObject: {fileID: 911323356}
@@ -1162,16 +1180,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27ab68b3703747aa8e5978bfad58213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 35, y: 50}
+  position: {x: 40, y: 50}
   visible: 1
   guiStylePrefab: {fileID: 1660099387}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
-  autoXPosition: 0
-  content:
-    m_Text: Start Game
-    m_Image: {fileID: 0}
-    m_Tooltip: 
+  autoXPosition: 1
+  text: Start Game
+  image: {fileID: 0}
   scene: 1
 --- !u!4 &1839013153
 Transform:
@@ -1223,6 +1239,18 @@ Prefab:
       propertyPath: guiStylePrefab
       value: 
       objectReference: {fileID: 1660099387}
+    - target: {fileID: 11400000, guid: e18e0b9d374014966913e0b94ce54f94, type: 2}
+      propertyPath: autoXPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e18e0b9d374014966913e0b94ce54f94, type: 2}
+      propertyPath: position.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e18e0b9d374014966913e0b94ce54f94, type: 2}
+      propertyPath: text
+      value: Quit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e18e0b9d374014966913e0b94ce54f94, type: 2}
   m_RootGameObject: {fileID: 767640411}

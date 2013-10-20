@@ -5,15 +5,21 @@ using System;
 [ExecuteInEditMode()]
 public class GUIContentHolder : GUIBase {
 	
-	public GUIContent content;
+	public string text;
+	public Texture2D image;
 	
 	public GUIContent GetContent()
 	{
-		return this.content;
+		GUIContent content = new GUIContent();
+		content.text = this.text;
+		content.image = this.image;
+		return content;
 	}
 	
-	public virtual void OnGUI()
+	public override void OnGUI()
 	{			
+		base.OnGUI();
+		
 		this.RenderGUI(delegate() 
 		{
 			GUI.Box(new Rect(
