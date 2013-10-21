@@ -33,12 +33,22 @@ public class EnergyHandler : MonoBehaviour {
 		}
 	}
 	
-	public void AddEnergy(int energy) {		
+	public float GetEnergy()
+	{
+		return this.energy;
+	}
+	
+	public float GetMaxEnergy()
+	{
+		return this.maxEnergy;
+	}
+	
+	public void AddEnergy(float energy) {		
 		// not greater than maxHealth
 		this.energy = Mathf.Min (this.energy + energy, maxEnergy);		
 	}
 	
-	public bool DeductEnergy(int energy) {	
+	public bool DeductEnergy(float energy) {	
 		
 		float newEnergy = Mathf.Max (this.energy - energy, 0);
 		

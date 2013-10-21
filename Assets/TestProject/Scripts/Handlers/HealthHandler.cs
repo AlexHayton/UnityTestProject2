@@ -37,6 +37,16 @@ public class HealthHandler : MonoBehaviour {
 		}
 	}
 	
+	public float GetHealth()
+	{
+		return this.health;
+	}
+	
+	public float GetMaxHealth()
+	{
+		return this.maxHealth;
+	}
+	
 	public void AddHealth(int health) {		
 		// not greater than maxHealth
 		this.health = Mathf.Min (this.health + health, maxHealth);		

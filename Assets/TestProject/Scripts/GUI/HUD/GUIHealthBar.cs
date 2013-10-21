@@ -13,7 +13,7 @@ public class GUIHealthBar : GUIHorizontalBar {
 		player = PlayerUtility.GetPlayer ();
 	}
 	
-	public override float GetPercentageFull()
+	public override float GetFullScalar()
 	{
 		if (Application.isPlaying)
 		{
@@ -22,14 +22,14 @@ public class GUIHealthBar : GUIHorizontalBar {
 			float health = handler.GetHealth();
 			
 			if (health > 0) {
-				 return maxHealth / health;
+				 return health / maxHealth;
 			} else {
 				 return 0;
 			}
 		}
 		else
 		{
-			return 100.0f;
+			return 1.0f;
 		}
 	}	
 	

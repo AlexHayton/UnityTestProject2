@@ -122,6 +122,11 @@ public abstract class GUIBase : MonoBehaviour {
 		return Screen.height * this.guiStylePrefab.scale.y / 100.0f;
 	}
 	
+	public virtual Texture2D GetBackground()
+	{
+		return this.GetStyle().normal.background;
+	}
+	
 	public virtual Bounds GetBounds()
 	{
 		Vector3 center = new Vector3(this.GetLeft() + this.GetPixelWidth() / 2.0f, this.GetTop() + this.GetPixelHeight() / 2.0f, 0);

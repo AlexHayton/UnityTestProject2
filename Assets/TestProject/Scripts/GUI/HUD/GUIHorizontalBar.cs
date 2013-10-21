@@ -4,18 +4,15 @@ using System;
 	
 public abstract class GUIHorizontalBar : GUIContentHolder {
 	
-	private float cachedPercentage = 100.0f;
+	private float cachedScalar = 1.0f;
 	
-	public abstract float GetPercentageFull();
+	public bool showText = true;
+	
+	public abstract float GetFullScalar();
 	
 	public override float GetPixelWidth()
 	{
-		return this.GetPixelWidth() * cachedPercentage;
-	}
-	
-	public override int GetTextureWidth()
-	{
-		return (int)Math.Round (this.GetImage().width * cachedPercentage);
+		return base.GetPixelWidth() * cachedScalar;
 	}
 	
 	public Rect GetSourceRect()
@@ -23,8 +20,8 @@ public abstract class GUIHorizontalBar : GUIContentHolder {
 		return new Rect(
 			0,
 			0,
-			this.GetTextureWidth(),
-			this.GetTextureHeight());
+			cachedScalar,
+			1);
 	}
 	
 	public override GUIContent GetContent()
@@ -32,14 +29,13 @@ public abstract class GUIHorizontalBar : GUIContentHolder {
 		GUIContent content = base.GetContent();
 		content.text = this.GetText();
 		content.image = this.GetImage();
-		//content.image = content.image.Crop(0, cachedPercentage);
 		return content;
 	}
 	
 	public override void OnGUI()
 	{			
 		// Size and offset the texture based on %
-		cachedPercentage = this.GetPercentageFull();
+		cachedScalar = this.GetFullScalar();
 	
 		this.RenderGUI(delegate()
 		{
@@ -50,7 +46,7 @@ public abstract class GUIHorizontalBar : GUIContentHolder {
 				this.GetTop(), 
 				this.GetPixelWidth(),
 				this.GetPixelHeight()), 
-				this.GetImage(),
+				this.GetBackground(),
 				this.GetSourceRect());
 			}
 		});

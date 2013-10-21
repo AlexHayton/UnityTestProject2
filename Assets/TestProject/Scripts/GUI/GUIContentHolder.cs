@@ -18,16 +18,6 @@ public class GUIContentHolder : GUIBase {
 		return this.image;
 	}
 	
-	public virtual int GetTextureWidth()
-	{
-		return this.GetImage().width;
-	}
-	
-	public virtual int GetTextureHeight()
-	{
-		return this.GetImage().height;
-	}
-	
 	public virtual GUIContent GetContent()
 	{
 		GUIContent content = new GUIContent();

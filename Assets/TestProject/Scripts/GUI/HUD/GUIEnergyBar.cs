@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System;
 	
-public abstract class GUIHealthBar : GUIHorizontalBar {
+[ExecuteInEditMode()]
+public class GUIEnergyBar : GUIHorizontalBar {
 
 	private GameObject player;
 
@@ -12,16 +13,23 @@ public abstract class GUIHealthBar : GUIHorizontalBar {
 		player = PlayerUtility.GetPlayer ();
 	}
 	
-	public override float GetPercentageFull()
+	public override float GetFullScalar()
 	{
-		EnergyHandler handler = player.GetComponent<EnergyHandler>();
-		float maxEnergy = handler.GetMaxEnergy();
-		float energy = handler.GetEnergy();
-		
-		if (energy > 0) {
-			 return maxEnergy / energy;
-		} else {
-			 return 0;
+		if (Application.isPlaying)
+		{
+			EnergyHandler handler = player.GetComponent<EnergyHandler>();
+			float maxEnergy = handler.GetMaxEnergy();
+			float energy = handler.GetEnergy();
+			
+			if (energy > 0) {
+				 return energy / maxEnergy;
+			} else {
+				 return 0;
+			}
+		}
+		else
+		{
+			return 1.0f;
 		}
 	}	
 	

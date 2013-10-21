@@ -37,7 +37,7 @@ public class WeaponScript : MonoBehaviour, ISelfTest {
 	
 	public List<WeaponBase> GetWeaponList()
 	{
-		return this.allWeapons.Select(w => w as WeaponBase).Where(w => w != null);
+		return this.allWeapons.Select(w => w.GetComponent<WeaponBase>()).Where(w => w != null).ToList();
 	}
 	
 	// Update is called once per frame
