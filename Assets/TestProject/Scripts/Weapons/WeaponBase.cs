@@ -15,6 +15,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 	public float damagePerSecond = 20.0f;
 	public float forcePerSecond  = 20.0f;
 	public bool showInMenu = true;
+	public float energyCost = 1;
 	public int cost = 100;
 	
 	public float lastFireTime = -1f;
@@ -39,6 +40,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 		// Check that we have the right components on the player script.
 		SelfTestUtility.NotNull(ref fail, this, "playerScript");
 		SelfTestUtility.HasComponent<XPHandler>(ref fail, this.playerScript.gameObject);
+		SelfTestUtility.HasComponent<EnergyHandler>(ref fail, this.playerScript.gameObject);
 		return fail;
 	}
 	
@@ -70,6 +72,8 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 			GameObject go = (GameObject)Instantiate (bulletPrefab, muzzlePosition.position, tempRot);
 			BulletBase bullet = go.GetComponent<BulletBase> ();
 			bullet.SetStartValues(playerScript.gameObject, direction);
+			
+			this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(this.energyCost);
 			
 			// show visul muzzle
 			if (muzzleParticle) {
