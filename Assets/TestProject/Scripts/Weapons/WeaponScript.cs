@@ -11,7 +11,7 @@ public class WeaponScript : MonoBehaviour, ISelfTest {
 
 	public WeaponBase leftWeapon;
 	public WeaponBase rightWeapon;
-	public static List<GameObject> allWeapons;
+	public List<GameObject> allWeapons;
 	private RigidPlayerScript playerScript;
 
 	// Use this for initialization
@@ -33,6 +33,11 @@ public class WeaponScript : MonoBehaviour, ISelfTest {
 	{
 		WeaponType weapon = (WeaponType)this.gameObject.AddComponent(typeof(WeaponType));
 		return weapon;
+	}
+	
+	public List<WeaponBase> GetWeaponList()
+	{
+		return this.allWeapons.Select(w => w as WeaponBase).Where(w => w != null);
 	}
 	
 	// Update is called once per frame
