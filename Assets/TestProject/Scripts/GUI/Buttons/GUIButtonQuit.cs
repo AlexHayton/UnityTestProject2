@@ -1,7 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [ExecuteInEditMode()]
 public class GUIButtonQuit : GUIButton {
@@ -12,7 +14,10 @@ public class GUIButtonQuit : GUIButton {
 	}
 	
 	public void Quit()
-	{
+	{   
+#if !UNITY_EDITOR
+			Application.Quit();
+#else
 		try
 		{
 			EditorApplication.ExecuteMenuItem("Edit/Play");
@@ -21,6 +26,7 @@ public class GUIButtonQuit : GUIButton {
 		{
 			Application.Quit();
 		}
+#endif
 	}
 	
 }
