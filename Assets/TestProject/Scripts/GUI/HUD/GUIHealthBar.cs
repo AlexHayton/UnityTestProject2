@@ -17,8 +17,9 @@ public class GUIHealthBar : GUIHorizontalBar {
 	{
 		if (Application.isPlaying)
 		{
-			float maxHealth = HealthUtility.GetMaxHealth (player);
-			float health = HealthUtility.GetHealth (player);
+			HealthHandler handler = player.GetComponent<HealthHandler>();
+			float maxHealth = handler.GetMaxHealth();
+			float health = handler.GetHealth();
 			
 			if (health > 0) {
 				 return maxHealth / health;
@@ -29,20 +30,14 @@ public class GUIHealthBar : GUIHorizontalBar {
 		else
 		{
 			return 100.0f;
-		HealthHandler handler = player.GetComponent<HealthHandler>();
-		float maxHealth = handler.GetMaxHealth();
-		float health = handler.GetHealth();
-		
-		if (health > 0) {
-			 return maxHealth / health;
-		} else {
-			 return 0;
 		}
 	}	
 	
 	public override string GetText (){
-		float maxHealth = HealthUtility.GetMaxHealth (player);
-		float health = HealthUtility.GetHealth (player);
+		HealthHandler handler = player.GetComponent<HealthHandler>();
+		float maxHealth = handler.GetMaxHealth();
+		float health = handler.GetHealth();
+		
 		maxHealth = Mathf.Ceil (maxHealth);
 		health = Mathf.Ceil (health);
 		return ( health + "/" + maxHealth);
