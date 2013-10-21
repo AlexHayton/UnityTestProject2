@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037073738c790ac4797fb0da9c227cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: .389999986, y: .959999979}
+  position: {x: .300000012, y: 1}
   visible: 1
   guiStylePrefab: {fileID: 547980456}
   depth: 100
@@ -492,7 +492,7 @@ MonoBehaviour:
   fontSize: 0
   fontStyle: 0
   alignment: 0
-  scale: {x: 27.5599995, y: 4.63999987}
+  scale: {x: 23.6000004, y: 5.5}
   lockScaleRatio: 0
 --- !u!1 &549554363
 GameObject:
@@ -648,7 +648,7 @@ MonoBehaviour:
   fontSize: 0
   fontStyle: 0
   alignment: 0
-  scale: {x: 29.1399994, y: 3.5999999}
+  scale: {x: 25, y: 4.19999981}
   lockScaleRatio: 0
 --- !u!4 &698700109
 Transform:
@@ -709,7 +709,7 @@ MonoBehaviour:
   fontSize: 0
   fontStyle: 0
   alignment: 0
-  scale: {x: 30, y: 10}
+  scale: {x: 25.6000004, y: 11.6000004}
   lockScaleRatio: 0
 --- !u!1 &820600758
 GameObject:
@@ -812,7 +812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037073738c790ac4797fb0da9c227cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: .400000006, y: 5.5999999}
+  position: {x: .300000012, y: 6}
   visible: 1
   guiStylePrefab: {fileID: 698700108}
   depth: 100
@@ -1422,7 +1422,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1317802881}
-  - 114: {fileID: 1317802883}
   - 114: {fileID: 1317802882}
   - 114: {fileID: 1317802884}
   m_Layer: 0
@@ -1456,85 +1455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b329df3ae4200a41aa859b3ee03c205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  top: 491
+  top: 292
   left: 0
-  width: 254
-  texture: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  style:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_Alignment: 0
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
---- !u!114 &1317802883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 77fd80936ce1b0847aa6e2cead50c7e3,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1317802880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 849ed182857a38f4c91f3a169f66d394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  top: 0
-  left: 0
-  width: 254
+  width: 247
   texture: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
   style:
@@ -1691,6 +1614,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1341069450}
+  - 114: {fileID: 1341069451}
   m_Layer: 0
   m_Name: HealthEnergyBar
   m_TagString: Untagged
@@ -1712,6 +1636,18 @@ Transform:
   - {fileID: 1920293982}
   - {fileID: 219347328}
   m_Father: {fileID: 1317802881}
+--- !u!114 &1341069451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1341069449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41731fa73323a824da2d0d5721e96701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 1
 --- !u!1 &1465963546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,6 +1729,7 @@ GameObject:
   - 114: {fileID: 1482100233}
   - 114: {fileID: 1482100235}
   - 114: {fileID: 1482100236}
+  - 114: {fileID: 1482100237}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -1865,7 +1802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5844686a5bcc63f4ca186f0e432c96b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 2022849121}
+  mainCamera: {fileID: 0}
   cameraHeight: 10
   speed: 5
   gravity: 10
@@ -1920,6 +1857,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xp: 0
+--- !u!114 &1482100237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1482100228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281dcae3fbe8f459aaebcbd350d83852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnergy: 100
+  energy: 100
+  regenEnergyRate: 10
+  regenInterval: .200000003
+  infiniteEnergy: 0
 --- !u!1 &1580444598
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,8 +2350,8 @@ MonoBehaviour:
   visible: 1
   guiStylePrefab: {fileID: 797158639}
   depth: 100
-  color: {r: 1, g: 1, b: 1, a: .588235319}
-  autoXPosition: 0
+  color: {r: 1, g: 1, b: 1, a: 1}
+  autoXPosition: 2
   text: 
   image: {fileID: 0}
 --- !u!1 &1920927628
@@ -3936,8 +3889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad9fb709e4a88b4cadf8abbea30e56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  health: 30
+  maxHealth: 100
+  health: 100
   dead: 0
   regenHealth: 0
   regenSpeed: 1

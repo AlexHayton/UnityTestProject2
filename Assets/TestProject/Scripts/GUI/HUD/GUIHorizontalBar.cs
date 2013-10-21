@@ -10,7 +10,21 @@ public abstract class GUIHorizontalBar : GUIContentHolder {
 	
 	public override float GetPixelWidth()
 	{
-		return base.GetPixelWidth() * cachedPercentage;
+		return this.GetPixelWidth() * cachedPercentage;
+	}
+	
+	public override int GetTextureWidth()
+	{
+		return (int)Math.Round (this.GetImage().width * cachedPercentage);
+	}
+	
+	public Rect GetSourceRect()
+	{
+		return new Rect(
+			0,
+			0,
+			this.GetTextureWidth(),
+			this.GetTextureHeight());
 	}
 	
 	public override GUIContent GetContent()
@@ -29,13 +43,16 @@ public abstract class GUIHorizontalBar : GUIContentHolder {
 	
 		this.RenderGUI(delegate()
 		{
-			GUI.Box(new Rect(
+			if (Event.current.type == EventType.Repaint)
+			{
+				GUI.DrawTextureWithTexCoords(new Rect(
 				this.GetLeft(),
 				this.GetTop(), 
 				this.GetPixelWidth(),
 				this.GetPixelHeight()), 
-				this.GetContent(), 
-				this.GetStyle());
+				this.GetImage(),
+				this.GetSourceRect());
+			}
 		});
 	}    	
 }

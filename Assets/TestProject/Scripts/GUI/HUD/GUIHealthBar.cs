@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System;
 	
-public abstract class GUIHealthBar : GUIHorizontalBar {
+[ExecuteInEditMode()]
+public class GUIHealthBar : GUIHorizontalBar {
 
 	private GameObject player;
 
@@ -14,13 +15,20 @@ public abstract class GUIHealthBar : GUIHorizontalBar {
 	
 	public override float GetPercentageFull()
 	{
-		float maxHealth = HealthUtility.GetMaxHealth (player);
-		float health = HealthUtility.GetHealth (player);
-		
-		if (health > 0) {
-			 return maxHealth / health;
-		} else {
-			 return 0;
+		if (Application.isPlaying)
+		{
+			float maxHealth = HealthUtility.GetMaxHealth (player);
+			float health = HealthUtility.GetHealth (player);
+			
+			if (health > 0) {
+				 return maxHealth / health;
+			} else {
+				 return 0;
+			}
+		}
+		else
+		{
+			return 100.0f;
 		}
 	}	
 	
