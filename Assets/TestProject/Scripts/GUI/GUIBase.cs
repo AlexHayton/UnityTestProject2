@@ -89,7 +89,7 @@ public abstract class GUIBase : MonoBehaviour {
 		this.position.x = left;
 	}
 	
-	protected bool GetIsVisible()
+	protected virtual bool GetIsVisible()
 	{
 		return this.menuVisible && this.visible;
 	}

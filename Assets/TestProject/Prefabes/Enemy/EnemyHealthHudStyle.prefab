@@ -48,7 +48,7 @@ MonoBehaviour:
   fontSize: 0
   fontStyle: 0
   alignment: 0
-  scale: {x: 4, y: 2}
+  scale: {x: 10, y: 2}
   lockScaleRatio: 0
 --- !u!1001 &100100000
 Prefab:

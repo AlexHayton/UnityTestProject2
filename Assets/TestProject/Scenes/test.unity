@@ -242,6 +242,7 @@ MonoBehaviour:
   position: {x: .400000006, y: 1}
   visible: 1
   guiStyleObject: {fileID: 547980454}
+  guiStylePrefab: {fileID: 547980456}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
@@ -649,6 +650,7 @@ MonoBehaviour:
   position: {x: 0, y: 95}
   visible: 1
   guiStyleObject: {fileID: 836028852}
+  guiStylePrefab: {fileID: 836028854}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 2
@@ -1053,6 +1055,7 @@ MonoBehaviour:
   position: {x: .400000006, y: 6.30000019}
   visible: 1
   guiStyleObject: {fileID: 698700107}
+  guiStylePrefab: {fileID: 698700108}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
@@ -2695,11 +2698,11 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
   m_PrefabInternal: {fileID: 1311753789}
   m_GameObject: {fileID: 1259540538}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00999999978, y: 1, z: .0299999993}
+  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: -8.99582577, y: -2.06939411, z: 1.96649432}
+  m_LocalScale: {x: .00999999698, y: 1, z: .0299999919}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2136718498}
 --- !u!1 &1297186517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,19 +2734,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2136718498}
     m_Modifications:
     - target: {fileID: 400000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -8.99582577
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.06939411
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.96649432
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2751,7 +2754,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -.707106829
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
       propertyPath: m_LocalRotation.z
@@ -2759,7 +2762,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
+      propertyPath: m_LocalScale.x
+      value: .00999999698
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
+      propertyPath: m_LocalScale.z
+      value: .0299999919
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
@@ -3726,6 +3737,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   visible: 1
   guiStyleObject: {fileID: 797158637}
+  guiStylePrefab: {fileID: 797158639}
   depth: 120
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
@@ -5327,6 +5339,7 @@ Transform:
   m_LocalPosition: {x: 3.93836904, y: 1.35205317, z: -5.2404089}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1259540545}
   - {fileID: 1812477720}
   m_Father: {fileID: 1580444599}
 --- !u!114 &2136718499
@@ -5344,7 +5357,7 @@ MonoBehaviour:
   muzzlePosition: {fileID: 1188222315}
   muzzlePrefab: {fileID: 1188222314}
   bulletPrefab: {fileID: 100000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
-  frequency: 10
+  frequency: 1.5
   coneAngle: 1.5
   firing: 0
   damagePerSecond: 20

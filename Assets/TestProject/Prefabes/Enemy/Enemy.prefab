@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad9fb709e4a88b4cadf8abbea30e56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 30
+  maxHealth: 50
+  health: 50
   dead: 0
   regenHealth: 0
   regenSpeed: 1
@@ -236,6 +236,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   visible: 1
   guiStyleObject: {fileID: 100000, guid: 207ba4b503aa14d94aa61f7f22c979c5, type: 2}
+  guiStylePrefab: {fileID: 0}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0

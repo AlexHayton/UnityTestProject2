@@ -23,6 +23,14 @@ public class GUIEnemyHealth : GUIHorizontalBar, ISelfTest
 		return fail;
 	}
 	
+	private Vector2 GetScreenPixelDimensions()
+	{
+		Vector2 screenDimensions = new Vector2();
+		screenDimensions.x = Screen.width;
+		screenDimensions.y = Screen.height;
+		return screenDimensions;
+	}
+	
 	private Vector3 WorldToScreenPoint()
 	{
 		// Get the point at the centre of the top of the hitbox.
@@ -47,15 +55,13 @@ public class GUIEnemyHealth : GUIHorizontalBar, ISelfTest
 	public override float GetLeft()
 	{
 		Vector3 screenPosition = this.WorldToScreenPoint();
-		float x = (screenPosition.x / Screen.width) - this.GetPixelWidth()/2.0f;
-		return x;
+		return screenPosition.x - this.GetPixelWidth() / 2.0f;
 	}
 	
 	public override float GetTop()
 	{
 		Vector3 screenPosition = this.WorldToScreenPoint();
-		float y = (screenPosition.y / Screen.height) - this.GetPixelHeight();
-		return y;
+		return screenPosition.y - this.GetPixelHeight();
 	}
 	
 	public override float GetFullScalar()
@@ -77,6 +83,11 @@ public class GUIEnemyHealth : GUIHorizontalBar, ISelfTest
 			return 1.0f;
 		}
 	}	
+	
+	protected override bool GetIsVisible()
+	{
+		return base.GetIsVisible() && GetFullScalar() < 0.9f;
+	}
 	
 	public override string GetText (){
 		return string.Empty;
