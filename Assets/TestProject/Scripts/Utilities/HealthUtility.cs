@@ -3,19 +3,11 @@ using System.Collections;
 
 public class HealthUtility {
 
-	public static void AddHealth(Component entity, int health) {
+	/*public static void AddHealth(Component entity, int health) {
 		HealthHandler handler = entity.GetComponent<HealthHandler>();
 		if (handler) {
 			handler.AddHealth(health);
 		}
-	}
-	
-	public static bool DeductHealth(Component entity, int health){	
-		HealthHandler handler = entity.GetComponent<HealthHandler>();
-		if (handler) {
-			return handler.DeductHealth(health);
-		}
-		return false;
 	}
 	
 	public static float GetHealth(Component entity) {
@@ -33,7 +25,7 @@ public class HealthUtility {
 	public static float GetMaxHealth(GameObject entity){
 			return 	entity.GetComponent<HealthHandler>().maxHealth;		
 	}
-	
+	*/
 	
 }
 	

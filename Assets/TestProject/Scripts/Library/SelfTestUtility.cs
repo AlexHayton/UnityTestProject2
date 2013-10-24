@@ -88,7 +88,7 @@ public static class SelfTestUtility
 		if (component == null)
 		{
 			string varName = gameObject.transform.name;
-			Debug.Log(component.gameObject.name + "." + component.name + "." + varName + ": must have a " + typeof(ComponentType).ToString() + " component");
+			Debug.Log(gameObject.name + "." + component.name + "." + varName + ": must have a " + typeof(ComponentType).ToString() + " component");
 			fail = true;
 		}
 	}

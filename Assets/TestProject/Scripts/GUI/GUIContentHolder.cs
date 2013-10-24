@@ -26,9 +26,9 @@ public class GUIContentHolder : GUIBase {
 		return content;
 	}
 	
-	public override void OnGUI()
+	public virtual void OnGUI()
 	{			
-		base.OnGUI();
+		this.OnBaseGUI();
 		
 		this.RenderGUI(delegate() 
 		{

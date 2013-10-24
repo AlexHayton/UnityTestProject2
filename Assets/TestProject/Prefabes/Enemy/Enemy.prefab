@@ -50,7 +50,7 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 195: {fileID: 19500000}
-  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -222,7 +222,7 @@ MonoBehaviour:
   regenSpeed: 1
   invincible: 0
   destroyPrefab: {fileID: 100000, guid: c994fde8e6848a3771503f184e0c9cb4, type: 2}
---- !u!114 &11400004
+--- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -230,73 +230,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5a22307c12286f49b5bd43f157ca04c, type: 3}
+  m_Script: {fileID: 11500000, guid: 27ec7e5c5d1d24721ac65116a279f170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  top: 0
-  left: 0
-  width: 0
-  texture: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  style:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_Alignment: 0
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
+  position: {x: 0, y: 0}
+  visible: 1
+  guiStyleObject: {fileID: 100000, guid: 207ba4b503aa14d94aa61f7f22c979c5, type: 2}
+  depth: 100
+  color: {r: 1, g: 1, b: 1, a: 1}
+  autoXPosition: 0
+  text: 
+  image: {fileID: 0}
+  showText: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

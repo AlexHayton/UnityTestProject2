@@ -53,7 +53,7 @@ public class XPHandler : MonoBehaviour {
 		float thisLevel = this.GetXpForThisLevel();
 		float nextLevel = this.GetXpForNextLevel();
 		float currentXp = this.GetXp();
-		return (currentXp - thisLevel) / nextLevel;
+		return (currentXp - thisLevel) / (nextLevel - thisLevel);
 	}
 
 }

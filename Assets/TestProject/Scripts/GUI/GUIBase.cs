@@ -8,6 +8,7 @@ public abstract class GUIBase : MonoBehaviour {
 	// Position and scale are in screen percent
 	public Vector2 position;
 	public bool visible = true;
+	public GameObject guiStyleObject;
 	public GUIStylePrefab guiStylePrefab;
 	public int depth = 100;
 	public Color color = new Color(1, 1, 1, 1);
@@ -15,25 +16,27 @@ public abstract class GUIBase : MonoBehaviour {
 	
 	public virtual void Start()
 	{
-		this.SelfTest();
 	}
 	
-	public virtual void Update()
-	{
-		this.SelfTest();
-	}
-	
-	public bool SelfTest()
+	public virtual bool SelfTest()
 	{
 		bool fail = false;
 		
-		SelfTestUtility.NotNull(ref fail, this, "guiStylePrefab");
+		SelfTestUtility.NotNull(ref fail, this, "guiStyleObject");
+		//SelfTestUtility.HasComponent<GUIStylePrefab>(ref fail, this.guiStyleObject);
 		
 		return fail;
 	}
 	
-	public virtual void OnGUI()
+	protected void OnBaseGUI()
 	{
+		// Try and allocate the style prefab on first GUI call.
+		if (this.guiStylePrefab == null)
+		{
+			this.SelfTest();
+			this.guiStylePrefab = this.guiStyleObject.GetComponent<GUIStylePrefab>();
+		}
+		
 		// Set the auto X position.
 		switch (autoXPosition)
 		{
@@ -174,7 +177,12 @@ public abstract class GUIBase : MonoBehaviour {
 	/// </summary>
 	protected virtual void RenderGUI(Action f)
 	{
-		if (this.GetIsVisible())
+		// Only render if we're visible and the current event type is Repaint
+		if (this.guiStylePrefab == null)
+		{
+			Debug.Log (gameObject.name + ": guiStylePrefab is null!");
+		}
+		else if (this.GetIsVisible() /*&& Event.current.type == EventType.Repaint*/)
 		{
 			GUI.color = this.color;
 			GUI.depth = this.depth;

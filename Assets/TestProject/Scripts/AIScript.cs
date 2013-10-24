@@ -22,7 +22,7 @@ public class AIScript : MonoBehaviour {
 			
 			if (healtScript) {
 				if (Vector3.Distance(target.transform.position , transform.position) <= myAgent.stoppingDistance + 0.1 && Time.time > lastAttack + 1) {
-					healtScript.DeductHealth(damagePerSecond);
+					healtScript.DeductHealth(gameObject, damagePerSecond);
 					lastAttack = Time.time;
 				}
 			}

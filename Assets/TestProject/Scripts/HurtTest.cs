@@ -16,7 +16,11 @@ public class HurtTest : MonoBehaviour {
 	}	
 		
 	void OnTriggerEnter(Collider other) {
-		HealthUtility.DeductHealth(other, damage);
+		HealthHandler handler = other.GetComponent<HealthHandler>();
+		if (handler)
+		{
+			handler.DeductHealth(other.gameObject, damage);
+		}
     }
 	
 }

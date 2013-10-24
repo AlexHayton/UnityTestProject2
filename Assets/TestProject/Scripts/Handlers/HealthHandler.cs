@@ -52,7 +52,7 @@ public class HealthHandler : MonoBehaviour {
 		this.health = Mathf.Min (this.health + health, maxHealth);		
 	}
 	
-	public bool DeductHealth(int damage) {	
+	public bool DeductHealth(GameObject doer, int damage) {	
 		if (!invincible) {
 			// no negative health
 			this.health = Mathf.Max (this.health - damage, 0);
@@ -61,6 +61,16 @@ public class HealthHandler : MonoBehaviour {
 		this.dead = this.health <= 0;
 		
 		if (dead & gameObject.tag != "Player") {
+			
+			if (doer != null)
+			{
+				XPHandler xphandler = doer.GetComponent<XPHandler>();
+				if (xphandler != null)
+				{
+					xphandler.AddXp(this.GetMaxHealth());
+				}
+			}	
+			
 			if (destroyPrefab) {
 				GameObject test = (GameObject)Instantiate(destroyPrefab, transform.position, transform.rotation);
 				Destroy (test, 0.5f);				

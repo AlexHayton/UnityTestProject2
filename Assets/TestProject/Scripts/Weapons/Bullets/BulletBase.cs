@@ -40,25 +40,8 @@ public class BulletBase : MonoBehaviour {
 			// aply damage
 			HealthHandler health = (HealthHandler)enterObj.GetComponentInChildren<HealthHandler>();			
 			if (health) {
-				health.DeductHealth(damageOnHit);				
-			}
-			
-			if (owner != null)
-			{
-				XPHandler xphandler = owner.GetComponent<XPHandler>();
-				xphandler.AddXp(100);
-			}
-			
-			if (destroyPrefab) {
-				// show the explosion
-				Vector3 destroyPos = collider.transform.position;
-				destroyPos += transform.forward;
-				GameObject obj = (GameObject)Instantiate(destroyPrefab, destroyPos, Quaternion.identity);
-				//obj.particleSystem.Play();
-				Destroy (obj, 0.5f);
-			}
-			Destroy (this.gameObject);
-			
+				health.DeductHealth(owner, damageOnHit);				
+			}	
 		}
 	}
 	

@@ -34,6 +34,8 @@ public abstract class GUIHorizontalBar : GUIContentHolder {
 	
 	public override void OnGUI()
 	{			
+		this.OnBaseGUI();
+		
 		// Size and offset the texture based on %
 		cachedScalar = this.GetFullScalar();
 	
