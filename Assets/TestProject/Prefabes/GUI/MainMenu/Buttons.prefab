@@ -104,7 +104,7 @@ GameObject:
   - 4: {fileID: 400012}
   - 114: {fileID: 11400008}
   m_Layer: 0
-  m_Name: StartButton
+  m_Name: ShipLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,23 @@ GameObject:
   - 4: {fileID: 400014}
   - 114: {fileID: 11400010}
   m_Layer: 0
-  m_Name: logo01
+  m_Name: logo01Style
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100016
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400016}
+  - 114: {fileID: 11400012}
+  m_Layer: 0
+  m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,6 +200,7 @@ Transform:
   m_Children:
   - {fileID: 400004}
   - {fileID: 400002}
+  - {fileID: 400016}
   - {fileID: 400012}
   m_Father: {fileID: 400010}
 --- !u!4 &400010
@@ -206,7 +223,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.65521336, y: 31.1594429, z: 24.1548996}
+  m_LocalPosition: {x: -1.65521312, y: 31.1594429, z: 24.1548996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -221,6 +238,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
+--- !u!4 &400016
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.65521336, y: 31.1594429, z: 24.1548996}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400008}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 40, y: 70}
   visible: 1
+  guiStyleObject: {fileID: 100006}
   guiStylePrefab: {fileID: 11400004}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: .635294139}
@@ -253,6 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 25, y: -5}
   visible: 1
+  guiStyleObject: {fileID: 100014}
   guiStylePrefab: {fileID: 11400010}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
@@ -305,15 +335,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27ab68b3703747aa8e5978bfad58213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 40, y: 50}
+  position: {x: 40, y: 55}
   visible: 1
+  guiStyleObject: {fileID: 100006}
   guiStylePrefab: {fileID: 11400004}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 1
-  text: Start Game
+  text: Ship Level
   image: {fileID: 0}
-  scene: 1
+  scene: 2
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -337,6 +368,27 @@ MonoBehaviour:
   alignment: 0
   scale: {x: 50, y: 50}
   lockScaleRatio: 1
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27ab68b3703747aa8e5978bfad58213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 40, y: 40}
+  visible: 1
+  guiStyleObject: {fileID: 100006}
+  guiStylePrefab: {fileID: 11400004}
+  depth: 100
+  color: {r: 1, g: 1, b: 1, a: 1}
+  autoXPosition: 1
+  text: Plains Level
+  image: {fileID: 0}
+  scene: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

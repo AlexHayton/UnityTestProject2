@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/TestProject/Scenes/MainMenu.unity
   - enabled: 1
     path: Assets/TestProject/Scenes/test.unity
+  - enabled: 1
+    path: Assets/TestProject/Scenes/Ship.unity
