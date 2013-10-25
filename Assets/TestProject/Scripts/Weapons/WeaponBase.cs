@@ -12,6 +12,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 	public float frequency = 10f;
 	public float coneAngle = 1.5f;
 	public bool firing = false;
+	public int bulletsToCreate = 1;
 	public float damagePerSecond = 20.0f;
 	public float forcePerSecond  = 20.0f;
 	public bool showInMenu = true;
@@ -46,32 +47,36 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 	
 	public void Fire()
 	{
-		if (Time.time > ((lastFireTime + 1) / frequency))
+		if (Time.time > lastFireTime + (1.0f / frequency))
 		{
 			// forward vector
 			Vector3 endPoint = playerScript.GetMouseOnPlane();
 			Vector3 direction = endPoint - muzzlePosition.position;
 			direction.Normalize();	
-			
-			// apply scatter
-			Quaternion tempRot = bulletPrefab.transform.rotation;			
-			tempRot.SetFromToRotation(bulletPrefab.transform.forward, direction);
-			//tempRot.y = playerScript.transform.rotation.y;	
-			//tempRot.y = transform.rotation.y;
-			//tempRot.y = Quaternion.FromToRotation(bulletPrefab.transform.position, direction).y;
-			//Debug.Log (test.eulerAngles.y);
-			
-			//tempRot.y = Quaternion.FromToRotation(transform.position, endPoint).y;
-			//Quaternion coneRandomRotation = Quaternion.Euler (Random.Range (-coneAngle, coneAngle), Random.Range (-coneAngle, coneAngle), 0);
-			//tempRot *= coneRandomRotation;
-			
-			//Debug.Log (tempRot.ToString ());
-			//tempRot.y = transform.rotation.y;
 
-			// Spawn visual bullet	and set values for start					
-			GameObject go = (GameObject)Instantiate (bulletPrefab, muzzlePosition.position, tempRot);
-			BulletBase bullet = go.GetComponent<BulletBase> ();
-			bullet.SetStartValues(playerScript.gameObject, direction);
+			// Spawn visual bullet	and set values for start				
+			for (int i = 0; i < this.bulletsToCreate; i++)
+			{
+				// apply scatter
+				Quaternion tempRot = bulletPrefab.transform.rotation;			
+				tempRot.SetFromToRotation(bulletPrefab.transform.forward, direction);
+				
+				//tempRot.y = playerScript.transform.rotation.y;	
+				//tempRot.y = transform.rotation.y;
+				//tempRot.y = Quaternion.FromToRotation(bulletPrefab.transform.position, direction).y;
+				//Debug.Log (test.eulerAngles.y);
+				
+				//tempRot.y = Quaternion.FromToRotation(transform.position, endPoint).y;
+				//Quaternion coneRandomRotation = Quaternion.Euler (Random.Range (-coneAngle, coneAngle), Random.Range (-coneAngle, coneAngle), 0);
+				//tempRot *= coneRandomRotation;
+				
+				//Debug.Log (tempRot.ToString ());
+				//tempRot.y = transform.rotation.y;
+				
+				GameObject go = (GameObject)Instantiate (bulletPrefab, muzzlePosition.position, tempRot);
+				BulletBase bullet = go.GetComponent<BulletBase> ();
+				bullet.SetStartValues(playerScript.gameObject, direction);
+			}
 			
 			this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(this.energyCost);
 			

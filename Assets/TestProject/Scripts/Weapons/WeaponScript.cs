@@ -11,7 +11,7 @@ public class WeaponScript : MonoBehaviour, ISelfTest {
 
 	public WeaponBase leftWeapon;
 	public WeaponBase rightWeapon;
-	public List<GameObject> allWeapons;
+	public List<WeaponBase> allWeapons;
 	private RigidPlayerScript playerScript;
 
 	// Use this for initialization
@@ -22,10 +22,10 @@ public class WeaponScript : MonoBehaviour, ISelfTest {
 	public bool SelfTest()
 	{
 		bool fail = false;
-		foreach (GameObject weapon in allWeapons)
+		/*foreach (GameObject weapon in allWeapons)
 		{
 			SelfTestUtility.HasComponent<WeaponBase>(ref fail, weapon);
-		}
+		}*/
 		return fail;
 	}
 	

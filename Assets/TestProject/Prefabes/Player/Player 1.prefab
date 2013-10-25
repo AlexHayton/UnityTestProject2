@@ -327,7 +327,7 @@ GameObject:
   - 33: {fileID: 3300006}
   - 23: {fileID: 2300006}
   m_Layer: 0
-  m_Name: Pistol
+  m_Name: Pistol Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1174,8 +1174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyPrefab: {fileID: 100000, guid: c994fde8e6848a3771503f184e0c9cb4, type: 2}
-  damageOnHit: 10
-  speed: 20
+  damageOnHit: 25
+  speed: 40
   forceOnImpact: 20
 --- !u!114 &11400016
 MonoBehaviour:
@@ -1302,7 +1302,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftWeapon: {fileID: 11400036}
   rightWeapon: {fileID: 11400034}
-  allWeapons: []
+  allWeapons:
+  - {fileID: 0}
+  - {fileID: 11400034}
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1340,10 +1342,11 @@ MonoBehaviour:
   frequency: 30
   coneAngle: 1
   firing: 0
+  bulletsToCreate: 1
   damagePerSecond: 35
   forcePerSecond: 20
   showInMenu: 1
-  energyCost: 1
+  energyCost: 2
   cost: 100
   lastFireTime: -1
 --- !u!114 &11400036
@@ -1360,10 +1363,11 @@ MonoBehaviour:
   muzzlePosition: {fileID: 400020}
   muzzlePrefab: {fileID: 100020}
   bulletPrefab: {fileID: 100000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
-  frequency: 1.5
+  frequency: 2
   coneAngle: 1.5
   firing: 0
-  damagePerSecond: 20
+  bulletsToCreate: 1
+  damagePerSecond: 50
   forcePerSecond: 20
   showInMenu: 1
   energyCost: 1
@@ -2471,7 +2475,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: .400000006
+      scalar: .25
       maxCurve:
         serializedVersion: 2
         m_Curve:
