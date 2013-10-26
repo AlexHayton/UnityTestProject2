@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd76133171b424376b898ab56102e499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 95}
+  position: {x: 0, y: 97.5}
   visible: 1
   guiStyleObject: {fileID: 100014}
   guiStylePrefab: {fileID: 11400010}
@@ -1139,7 +1139,7 @@ MonoBehaviour:
   fontSize: 0
   fontStyle: 0
   alignment: 0
-  scale: {x: 100, y: 5}
+  scale: {x: 100, y: 2.5}
   lockScaleRatio: 0
 --- !u!114 &11400012
 MonoBehaviour:
