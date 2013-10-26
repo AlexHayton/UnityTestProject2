@@ -3,6 +3,7 @@ using UnityEngine;
 public class WeaponBase : MonoBehaviour, ISelfTest
 {
 	RigidPlayerScript playerScript;
+	EnergyHandler energyHandler;
 	protected GameObject tempMuzzle;
 	protected ParticleSystem muzzleParticle;
 	
@@ -28,7 +29,8 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 		tempMuzzle.transform.parent = this.transform;
 		this.muzzleParticle = tempMuzzle.GetComponent<ParticleSystem>();
 		
-		this.SelfTest();
+		if(this.SelfTest())
+			energyHandler = transform.root.GetComponentInChildren<EnergyHandler>();
 	}
 	
 	public bool SelfTest()
@@ -47,19 +49,23 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 	
 	public void Fire()
 	{
-		if (Time.time > lastFireTime + (1.0f / frequency))
+		if (Time.time > lastFireTime + (1.0f / frequency) && energyHandler.GetEnergy() > energyCost)
 		{
 			// forward vector
 			Vector3 endPoint = playerScript.GetMouseOnPlane();
 			Vector3 direction = endPoint - muzzlePosition.position;
-			direction.Normalize();	
+			direction.y = 0;
+			direction.Normalize();
 
 			// Spawn visual bullet	and set values for start				
 			for (int i = 0; i < this.bulletsToCreate; i++)
 			{
 				// apply scatter
+				var dirWithConeRandomization = direction + new Vector3(Random.Range (-coneAngle, coneAngle), 0, Random.Range (-coneAngle, coneAngle));
+				
 				Quaternion tempRot = bulletPrefab.transform.rotation;			
-				tempRot.SetFromToRotation(bulletPrefab.transform.forward, direction);
+				tempRot.SetFromToRotation(bulletPrefab.transform.forward, dirWithConeRandomization);
+				
 				
 				//tempRot.y = playerScript.transform.rotation.y;	
 				//tempRot.y = transform.rotation.y;
@@ -75,7 +81,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 				
 				GameObject go = (GameObject)Instantiate (bulletPrefab, muzzlePosition.position, tempRot);
 				BulletBase bullet = go.GetComponent<BulletBase> ();
-				bullet.SetStartValues(playerScript.gameObject, direction);
+				bullet.SetStartValues(playerScript.gameObject, dirWithConeRandomization);
 			}
 			
 			this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(this.energyCost);
