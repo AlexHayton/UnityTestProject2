@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5844686a5bcc63f4ca186f0e432c96b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 2000002}
   cameraHeight: 10
   speed: 5
   gravity: 10
@@ -1340,7 +1340,7 @@ MonoBehaviour:
   muzzlePrefab: {fileID: 100048}
   bulletPrefab: {fileID: 100000, guid: 9b952f156baabeb4586a5cd6fdae111a, type: 2}
   frequency: 30
-  coneAngle: 1
+  coneAngle: 0
   firing: 0
   bulletsToCreate: 1
   damagePerSecond: 35
@@ -1364,7 +1364,7 @@ MonoBehaviour:
   muzzlePrefab: {fileID: 100020}
   bulletPrefab: {fileID: 100000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
   frequency: 2
-  coneAngle: 1.5
+  coneAngle: 0
   firing: 0
   bulletsToCreate: 1
   damagePerSecond: 50
