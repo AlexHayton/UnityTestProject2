@@ -1225,6 +1225,14 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 11400036, guid: 61a4fc72184424a5896e9af8c0563b1c, type: 2}
+      propertyPath: coneAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400034, guid: 61a4fc72184424a5896e9af8c0563b1c, type: 2}
+      propertyPath: coneAngle
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61a4fc72184424a5896e9af8c0563b1c, type: 2}
   m_RootGameObject: {fileID: 1920927628}
@@ -3636,7 +3644,7 @@ MonoBehaviour:
   muzzlePrefab: {fileID: 1932880543}
   bulletPrefab: {fileID: 100000, guid: 9b952f156baabeb4586a5cd6fdae111a, type: 2}
   frequency: 30
-  coneAngle: 1
+  coneAngle: 0
   firing: 0
   bulletsToCreate: 1
   damagePerSecond: 35
@@ -5179,7 +5187,7 @@ MonoBehaviour:
   muzzlePrefab: {fileID: 1188222314}
   bulletPrefab: {fileID: 100000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
   frequency: 2
-  coneAngle: 1.5
+  coneAngle: 0
   firing: 0
   bulletsToCreate: 1
   damagePerSecond: 50
