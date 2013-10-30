@@ -95,10 +95,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214ae26adfb980944a8d2c3162fb92a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyPrefab: {fileID: 100000, guid: c994fde8e6848a3771503f184e0c9cb4, type: 2}
-  damageOnHit: 5
-  speed: 20
-  forceOnImpact: 20
+  DestroyPrefab: {fileID: 0}
+  DamageOnHit: 10
+  Speed: 20
+  ForceOnImpact: 20
+  IsScatter: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
