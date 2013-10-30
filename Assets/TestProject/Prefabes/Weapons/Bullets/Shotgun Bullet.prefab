@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyPrefab: {fileID: 0}
-  DamageOnHit: 10
-  Speed: 20
+  DamageOnHit: 5
+  Speed: 30
   ForceOnImpact: 20
   IsScatter: 1
 --- !u!136 &13600000

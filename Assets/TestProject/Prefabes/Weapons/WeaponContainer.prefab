@@ -508,13 +508,13 @@ MonoBehaviour:
   muzzlePosition: {fileID: 400008}
   muzzlePrefab: {fileID: 100008}
   bulletPrefab: {fileID: 100000, guid: 1449a2ee79be00149b53a56230f62869, type: 2}
-  cooldown: 1
+  cooldown: .5
   coneAngle: .5
   firing: 0
   bulletsToCreate: 50
   forcePerSecond: 20
   showInMenu: 1
-  energyCost: 1
+  energyCost: 25
   cost: 100
   lastFireTime: -1
 --- !u!114 &11400006
@@ -538,7 +538,7 @@ MonoBehaviour:
   bulletsToCreate: 1
   forcePerSecond: 20
   showInMenu: 1
-  energyCost: 1
+  energyCost: 5
   cost: 100
   lastFireTime: -1
 --- !u!198 &19800000
