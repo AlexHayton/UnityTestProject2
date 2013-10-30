@@ -6,6 +6,8 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 	EnergyHandler energyHandler;
 	protected GameObject tempMuzzle;
 	protected ParticleSystem muzzleParticle;
+
+    public bool primary = true;
 	
 	public Transform muzzlePosition;
 	public GameObject muzzlePrefab;
@@ -21,19 +23,21 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 	public int cost = 100;
 	
 	public float lastFireTime = -1f;
-	
-	public virtual void Start()
-	{
-		this.playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>(); 
-		GameObject tempMuzzle = (GameObject)Instantiate(muzzlePrefab, muzzlePosition.position, muzzlePosition.rotation);
-		tempMuzzle.transform.parent = this.transform;
-		this.muzzleParticle = tempMuzzle.GetComponent<ParticleSystem>();
-		
-		if(this.SelfTest())
-			energyHandler = transform.root.GetComponentInChildren<EnergyHandler>();
-	}
-	
-	public bool SelfTest()
+
+    public virtual void Start()
+    {
+        playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>();
+        var thisTempMuzzle = (GameObject) Instantiate(muzzlePrefab, muzzlePosition.position, muzzlePosition.rotation);
+        thisTempMuzzle.transform.parent = this.transform;
+        muzzleParticle = thisTempMuzzle.GetComponent<ParticleSystem>();
+
+        if (SelfTest())
+        {
+            energyHandler = gameObject.transform.root.GetComponentInChildren<EnergyHandler>();
+        }
+    }
+
+    public bool SelfTest()
 	{
 		bool fail = false;
 		// Check that we have a particleSystem and bulletBase in our prefabs
@@ -52,8 +56,8 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 		if (Time.time > lastFireTime + (1.0f / frequency) && energyHandler.GetEnergy() > energyCost)
 		{
 			// forward vector
-			Vector3 endPoint = playerScript.GetMouseOnPlane();
-			Vector3 direction = endPoint - muzzlePosition.position;
+			var endPoint = playerScript.GetMouseOnPlane();
+			var direction = endPoint - muzzlePosition.position;
 			direction.y = 0;
 			direction.Normalize();
 
@@ -62,7 +66,6 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 			{
 				// apply scatter
 				var dirWithConeRandomization = direction + new Vector3(Random.Range (-coneAngle, coneAngle), 0, Random.Range (-coneAngle, coneAngle));
-				
 				Quaternion tempRot = bulletPrefab.transform.rotation;			
 				tempRot.SetFromToRotation(bulletPrefab.transform.forward, dirWithConeRandomization);
 				
