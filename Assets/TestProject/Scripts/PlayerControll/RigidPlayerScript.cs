@@ -34,7 +34,7 @@ public class RigidPlayerScript : MonoBehaviour
 
     void Start()
     {
-        camOffsetFromEnemies = new Vector3(0,0,0);
+        camOffsetFromEnemies = new Vector3(0, 0, 0);
         mainCamera = transform.root.GetComponentInChildren<Camera>();
         mainCamera.transform.parent = null;
         cameraOffset = mainCamera.transform.position - transform.position;
@@ -42,8 +42,6 @@ public class RigidPlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        var calcEnemyPosThread = new Thread(GetDirectionOfenemies);
-        calcEnemyPosThread.Start();
         if (Input.GetKeyDown(KeyCode.F1))
         {
             Application.LoadLevel(Application.loadedLevel);
@@ -76,7 +74,6 @@ public class RigidPlayerScript : MonoBehaviour
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             if (targetVelocity.sqrMagnitude > 1f)
                 targetVelocity.Normalize();
-            print(Input.GetAxis("Horizontal"));
             //targetVelocity = transform.TransformDirection(targetVelocity);
             targetVelocity *= speed;
 
@@ -90,10 +87,9 @@ public class RigidPlayerScript : MonoBehaviour
         }
 
         //MoveCamera
-        mainCamera.transform.position = transform.position + cameraOffset + camOffsetFromEnemies;
-        print(camOffsetFromEnemies);
-
-
+        var enemyDir = GetDirectionOfenemies();
+        var cameraDestination = transform.position + cameraOffset + enemyDir - mainCamera.transform.forward * enemyDir.magnitude;
+        mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.fixedDeltaTime;
         grounded = false;
     }
 
@@ -127,10 +123,12 @@ public class RigidPlayerScript : MonoBehaviour
         return Mathf.Sqrt(2 * jumpHeight * gravity);
     }
 
-    private void GetDirectionOfenemies()
+    private Vector3 GetDirectionOfenemies()
     {
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var dir = new Vector3(0, 0, 0);
+        if (enemies.Length == 0)
+            return dir;
         float avgDist = 0;
         foreach (var enemy in enemies)
         {
@@ -143,8 +141,9 @@ public class RigidPlayerScript : MonoBehaviour
             avgDist += Vector3.Dot(enemy.transform.position - transform.position, dir);
         }
         avgDist /= enemies.Length;
+        dir.y = 0;
         dir *= avgDist;
-        camOffsetFromEnemies = dir.normalized;
+        return dir;
     }
 
 }

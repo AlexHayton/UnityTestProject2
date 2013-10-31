@@ -510,9 +510,9 @@ MonoBehaviour:
   muzzlePrefab: {fileID: 100008}
   bulletPrefab: {fileID: 100000, guid: 1449a2ee79be00149b53a56230f62869, type: 2}
   frequency: 2
-  coneAngle: .5
+  coneAngle: .400000006
   firing: 0
-  bulletsToCreate: 20
+  bulletsToCreate: 30
   damagePerSecond: 20
   forcePerSecond: 20
   showInMenu: 1
@@ -534,14 +534,14 @@ MonoBehaviour:
   muzzlePosition: {fileID: 400020}
   muzzlePrefab: {fileID: 100020}
   bulletPrefab: {fileID: 100000, guid: 9b952f156baabeb4586a5cd6fdae111a, type: 2}
-  frequency: 30
+  frequency: 100
   coneAngle: .0399999991
   firing: 0
   bulletsToCreate: 1
   damagePerSecond: 35
   forcePerSecond: 20
   showInMenu: 1
-  energyCost: 5
+  energyCost: .5
   cost: 100
   lastFireTime: -1
 --- !u!198 &19800000
