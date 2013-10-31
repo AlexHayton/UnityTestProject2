@@ -475,7 +475,7 @@ MonoBehaviour:
   damagePerSecond: 20
   forcePerSecond: 20
   showInMenu: 1
-  energyCost: 1
+  energyCost: 0
   cost: 100
   lastFireTime: -1
 --- !u!114 &11400002
@@ -509,14 +509,14 @@ MonoBehaviour:
   muzzlePosition: {fileID: 400008}
   muzzlePrefab: {fileID: 100008}
   bulletPrefab: {fileID: 100000, guid: 1449a2ee79be00149b53a56230f62869, type: 2}
-  frequency: 1
+  frequency: 2
   coneAngle: .5
   firing: 0
-  bulletsToCreate: 50
+  bulletsToCreate: 20
   damagePerSecond: 20
   forcePerSecond: 20
   showInMenu: 1
-  energyCost: 1
+  energyCost: 25
   cost: 100
   lastFireTime: -1
 --- !u!114 &11400006
@@ -541,7 +541,7 @@ MonoBehaviour:
   damagePerSecond: 35
   forcePerSecond: 20
   showInMenu: 1
-  energyCost: 1
+  energyCost: 5
   cost: 100
   lastFireTime: -1
 --- !u!198 &19800000

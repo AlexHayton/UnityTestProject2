@@ -21,11 +21,14 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 	public bool showInMenu = true;
 	public float energyCost = 1;
 	public int cost = 100;
+
+    private Random rnd;
 	
 	public float lastFireTime = -1f;
 
     public virtual void Start()
     {
+        rnd = new Random();
         playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>();
         var thisTempMuzzle = (GameObject) Instantiate(muzzlePrefab, muzzlePosition.position, muzzlePosition.rotation);
         thisTempMuzzle.transform.parent = this.transform;
@@ -65,7 +68,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 			for (int i = 0; i < this.bulletsToCreate; i++)
 			{
 				// apply scatter
-				var dirWithConeRandomization = direction + new Vector3(Random.Range (-coneAngle, coneAngle), 0, Random.Range (-coneAngle, coneAngle));
+                var dirWithConeRandomization = direction + new Vector3(Random.Range(-coneAngle, coneAngle), 0, Random.Range(-coneAngle, coneAngle));
 				Quaternion tempRot = bulletPrefab.transform.rotation;			
 				tempRot.SetFromToRotation(bulletPrefab.transform.forward, dirWithConeRandomization);
 				
@@ -97,5 +100,14 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 			lastFireTime = Time.time;
 		}				
 	}
+
+    private float GetStdDistNum(float stdDev, float mean = 0)
+    {
+        var u1 = Random.Range(0f, 1f);
+        var u2 = Random.Range(0f, 1f);
+        var randStdNormal = Mathf.Sqrt(-2.0f * Mathf.Log(u1)) * Mathf.Sin(2.0f * Mathf.PI * u2);
+        var randNormal = mean + randStdNormal*stdDev;
+        return randNormal;
+    }
 }
 

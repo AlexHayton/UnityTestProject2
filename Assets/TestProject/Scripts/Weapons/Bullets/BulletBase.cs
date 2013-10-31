@@ -28,7 +28,10 @@ public class BulletBase : MonoBehaviour
     {
         this.owner = owner;
         ignoreTag = owner.tag;
-        rigidbody.velocity = forward.normalized * Speed * (IsScatter ? Random.Range(.9f,1.1f) : 1);
+        var thisBulletSpeed =Speed * (IsScatter ? Random.Range(.9f,1.1f) : 1);
+        rigidbody.velocity = forward.normalized*thisBulletSpeed;
+        //var stretch = thisBulletSpeed*.001f;
+        //transform.localScale = new Vector3(.1f, .1f, stretch);
     }
 
     //void  OnTriggerEnter (Collider collision) {

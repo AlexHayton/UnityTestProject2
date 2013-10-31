@@ -1173,10 +1173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214ae26adfb980944a8d2c3162fb92a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyPrefab: {fileID: 100000, guid: c994fde8e6848a3771503f184e0c9cb4, type: 2}
-  damageOnHit: 25
-  speed: 40
-  forceOnImpact: 20
+  DestroyPrefab: {fileID: 0}
+  DamageOnHit: 10
+  Speed: 20
+  ForceOnImpact: 20
+  IsScatter: 0
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1221,7 +1222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5844686a5bcc63f4ca186f0e432c96b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 2000002}
+  mainCamera: {fileID: 0}
   cameraHeight: 10
   speed: 5
   gravity: 10
@@ -1300,11 +1301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f8bc65d35ed8f4cb48206cd7bf2144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftWeapon: {fileID: 11400036}
-  rightWeapon: {fileID: 11400034}
-  allWeapons:
-  - {fileID: 0}
-  - {fileID: 11400034}
+  PrimaryWeapons: []
+  SecondaryWeapons: []
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1336,6 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d5b7e27abc67f4db2f14da4061bb99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  primary: 1
   muzzlePosition: {fileID: 400048}
   muzzlePrefab: {fileID: 100048}
   bulletPrefab: {fileID: 100000, guid: 9b952f156baabeb4586a5cd6fdae111a, type: 2}
@@ -1360,6 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d5b7e27abc67f4db2f14da4061bb99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  primary: 1
   muzzlePosition: {fileID: 400020}
   muzzlePrefab: {fileID: 100020}
   bulletPrefab: {fileID: 100000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}

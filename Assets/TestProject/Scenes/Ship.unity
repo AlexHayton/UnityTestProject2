@@ -864,8 +864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5844686a5bcc63f4ca186f0e432c96b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 796548098}
-  cameraHeight: 10
   speed: 5
   gravity: 10
   maxVelocityChange: 10
@@ -2821,7 +2819,7 @@ MonoBehaviour:
   damagePerSecond: 20
   forcePerSecond: 20
   showInMenu: 1
-  energyCost: 1
+  energyCost: 0
   cost: 100
   lastFireTime: -1
 --- !u!95 &480087521
@@ -4941,62 +4939,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 738790672}
   m_GameObject: {fileID: 853297542}
   m_Mesh: {fileID: 4300002, guid: bf8da0f312c700a498aab717e48e1621, type: 3}
---- !u!1 &865850372
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100034, guid: 61a4fc72184424a5896e9af8c0563b1c, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 865850373}
-  - 20: {fileID: 865850374}
-  m_Layer: 0
-  m_Name: Map
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &865850373
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400034, guid: 61a4fc72184424a5896e9af8c0563b1c, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 865850372}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -.899999619, y: 11.9939756, z: 2.53215337}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 957540136}
---- !u!20 &865850374
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2000000, guid: 61a4fc72184424a5896e9af8c0563b1c,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 865850372}
-  m_Enabled: 0
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: .800000012
-    y: .699999988
-    width: 1
-    height: 1
-  near clip plane: .00999999978
-  far clip plane: 20
-  field of view: 60
-  orthographic: 0
-  orthographic size: 11.8420525
-  m_Depth: 1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_HDR: 0
 --- !u!1 &879155588
 GameObject:
   m_ObjectHideFlags: 0
@@ -5374,7 +5316,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2109554217}
-  - {fileID: 865850373}
   - {fileID: 1742853960}
   m_Father: {fileID: 1057518643}
 --- !u!114 &957540137
@@ -6480,7 +6421,7 @@ MonoBehaviour:
   damagePerSecond: 35
   forcePerSecond: 20
   showInMenu: 1
-  energyCost: 1
+  energyCost: 5
   cost: 100
   lastFireTime: -1
 --- !u!1 &1243121189
@@ -8565,14 +8506,14 @@ MonoBehaviour:
   muzzlePosition: {fileID: 429953690}
   muzzlePrefab: {fileID: 429953689}
   bulletPrefab: {fileID: 100000, guid: 1449a2ee79be00149b53a56230f62869, type: 2}
-  frequency: 1
+  frequency: 2
   coneAngle: .5
   firing: 0
-  bulletsToCreate: 50
+  bulletsToCreate: 20
   damagePerSecond: 20
   forcePerSecond: 20
   showInMenu: 1
-  energyCost: 1
+  energyCost: 25
   cost: 100
   lastFireTime: -1
 --- !u!95 &1374951770
