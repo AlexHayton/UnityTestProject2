@@ -37,6 +37,25 @@ public class HealthHandler : MonoBehaviour {
 		}
 	}
 	
+	public bool GetCanTakeDamage()
+	{
+		return true;
+	}
+	
+	public bool GetCanTakeDamage(TeamHandler.Team attackerTeam)
+	{
+		bool takeDamage = true;
+		
+		// Check the teams are different
+		TeamHandler teamHandler = this.GetComponent<TeamHandler>();
+		if (teamHandler != null)
+		{
+			takeDamage == takeDamage && teamHandler.GetTeam() != attackerTeam;
+		}
+		
+		return takeDamage;
+	}
+	
 	public float GetHealth()
 	{
 		return this.health;
