@@ -50,7 +50,7 @@ public class HealthHandler : MonoBehaviour {
 		TeamHandler teamHandler = this.GetComponent<TeamHandler>();
 		if (teamHandler != null)
 		{
-			takeDamage == takeDamage && teamHandler.GetTeam() != attackerTeam;
+			takeDamage = (takeDamage && teamHandler.GetTeam() != attackerTeam);
 		}
 		
 		return takeDamage;

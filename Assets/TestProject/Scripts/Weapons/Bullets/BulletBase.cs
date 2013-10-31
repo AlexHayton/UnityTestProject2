@@ -40,14 +40,18 @@ public class BulletBase : MonoBehaviour
 			bool doDamage = true;
         	if (owner != null)
         	{
-        		TeamHandler teamHandler = this.GetComponent<TeamHandler>();
-				if (teamHandler != null)
-				{
-					doDamage = health.GetCanTakeDamage(teamHandler.GetTeam());
-				}
-				else
-				{
-					doDamage = health.GetCanTakeDamage();
+				var health = enterObj.GetComponentInChildren<HealthHandler>();
+            	if (health != null)
+            	{
+	        		TeamHandler teamHandler = this.GetComponent<TeamHandler>();
+					if (teamHandler != null)
+					{
+						doDamage = health.GetCanTakeDamage(teamHandler.GetTeam());
+					}
+					else
+					{
+						doDamage = health.GetCanTakeDamage();
+					}
 				}
         	}
         	
