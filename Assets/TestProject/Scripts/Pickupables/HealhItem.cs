@@ -6,11 +6,16 @@ public class HealhItem : Pickupable {
 	public int addedHealth = 20;
 
 
-	public override void OnPickUp (GameObject player)
+	public override bool OnPickUp (GameObject player)
 	{
-		HealthHandler health = (HealthHandler)player.GetComponent<HealthHandler>();
-		if (health) {
-			health.AddHealth(addedHealth);
+		HealthHandler healthHandler = (HealthHandler)player.GetComponent<HealthHandler>();
+		if (healthHandler) {
+			if (healthHandler.health < healthHandler.maxHealth) {
+				healthHandler.AddHealth(addedHealth);
+				return true;
+			}
 		}
+		
+		return false;
 	}
 }

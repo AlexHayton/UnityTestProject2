@@ -9,14 +9,15 @@ public class Pickupable : MonoBehaviour {
 	
 	void  OnTriggerEnter (Collider collision) {
 		if (collision.tag == "Player") {
-			OnPickUp(collision.gameObject);
-			
-			if (pickUpEffectPrefab) {
-				GameObject test = (GameObject)Instantiate(pickUpEffectPrefab, transform.position, transform.rotation);
-				Destroy (test, 0.5f);	
+			if (OnPickUp(collision.gameObject)) {
+				
+				if (pickUpEffectPrefab) {
+					GameObject test = (GameObject)Instantiate(pickUpEffectPrefab, transform.position, transform.rotation);
+					Destroy (test, 0.5f);	
+				}
+				
+				Destroy (this.gameObject);
 			}
-			
-			Destroy (this.gameObject);
 		}
 	}
 	
@@ -26,6 +27,7 @@ public class Pickupable : MonoBehaviour {
 	}
 	
 	
-	public virtual void OnPickUp(GameObject player) {			
+	public virtual bool OnPickUp(GameObject player) {			
+		return true; 
 	}
 }
