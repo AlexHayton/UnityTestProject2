@@ -39,21 +39,38 @@ public class BulletBase : MonoBehaviour
     {
         if (enterObj.tag != ignoreTag & enterObj.tag != "Bullet")
         {
-
-            // add force to the object
-            if (enterObj.rigidbody)
-            {
-                enterObj.rigidbody.AddForceAtPosition(transform.forward, enterObj.transform.position, ForceMode.Impulse);
-            }
-
-            // TODO
-            // aply damage
-            var health = enterObj.GetComponentInChildren<HealthHandler>();
-            if (health)
-            {
-                health.DeductHealth(owner, DamageOnHit);
-            }
-            Destroy(gameObject);
+			bool doDamage = true;
+			var health = enterObj.GetComponentInChildren<HealthHandler>();
+			if (health != null)
+		    {
+				TeamHandler teamHandler = this.GetComponent<TeamHandler>();
+	
+				if (teamHandler != null)
+				{
+					doDamage = health.GetCanTakeDamage(teamHandler.GetTeam());
+				}
+				else
+				{
+					doDamage = health.GetCanTakeDamage();
+				}
+			}
+			
+			if (doDamage)
+			{
+	            // add force to the object
+	            if (enterObj.rigidbody)
+	            {
+	                enterObj.rigidbody.AddForceAtPosition(transform.forward, enterObj.transform.position, ForceMode.Impulse);
+	            }
+	
+	            // TODO
+	            // aply damage
+	            if (health)
+	            {
+	                health.DeductHealth(owner, DamageOnHit);
+	            }
+	            Destroy(gameObject);
+			}
         }
     }
 

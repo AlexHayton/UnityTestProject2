@@ -51,6 +51,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -222,6 +223,18 @@ MonoBehaviour:
   regenSpeed: 1
   invincible: 0
   destroyPrefab: {fileID: 100000, guid: c994fde8e6848a3771503f184e0c9cb4, type: 2}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cbbbfb4c10845d19bb48745e3b38cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 2
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
