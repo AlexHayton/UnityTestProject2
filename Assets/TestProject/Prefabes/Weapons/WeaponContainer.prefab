@@ -467,7 +467,7 @@ MonoBehaviour:
   primary: 1
   muzzlePosition: {fileID: 400004}
   muzzlePrefab: {fileID: 100004}
-  bulletPrefab: {fileID: 100000, guid: e337bc26b557e0a46b26d9910ae3a7d7, type: 2}
+  bulletPrefab: {fileID: 100000, guid: 1b0976e0914bc461ba53ec3e4076f60c, type: 2}
   frequency: 4
   coneAngle: 0
   firing: 0
@@ -533,7 +533,7 @@ MonoBehaviour:
   primary: 1
   muzzlePosition: {fileID: 400020}
   muzzlePrefab: {fileID: 100020}
-  bulletPrefab: {fileID: 100000, guid: 9b952f156baabeb4586a5cd6fdae111a, type: 2}
+  bulletPrefab: {fileID: 100000, guid: 48ebce495910f4c94921d692b43cfba6, type: 2}
   frequency: 100
   coneAngle: .0399999991
   firing: 0
