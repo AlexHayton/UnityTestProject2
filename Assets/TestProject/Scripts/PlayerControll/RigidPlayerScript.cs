@@ -9,7 +9,7 @@ public class RigidPlayerScript : MonoBehaviour
 {
 
     private Camera mainCamera;
-    private float cameraHeight;
+    public float cameraHeight;
     private Vector3 camOffsetFromEnemies;
     public float speed = 5f;
     public float gravity = 10.0f;
@@ -25,18 +25,18 @@ public class RigidPlayerScript : MonoBehaviour
     void Awake()
     {
         rigidbody.freezeRotation = true;
-        if (mainCamera)
-        {
-            cameraOffset = mainCamera.transform.position - this.transform.position;
-            cameraOffset.y = cameraHeight;
-        }
+
     }
 
     void Start()
     {
         camOffsetFromEnemies = new Vector3(0, 0, 0);
+
+        //sets initial camera position
         mainCamera = transform.root.GetComponentInChildren<Camera>();
         mainCamera.transform.parent = null;
+        mainCamera.transform.position = transform.position - mainCamera.transform.forward * cameraHeight * 10;
+        mainCamera.orthographicSize = 13;
         cameraOffset = mainCamera.transform.position - transform.position;
     }
 
@@ -72,6 +72,10 @@ public class RigidPlayerScript : MonoBehaviour
 
             // Calculate how fast we should be moving
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+            //rotate for isometric
+            targetVelocity = new Vector3(targetVelocity.x + targetVelocity.z, 0, targetVelocity.z - targetVelocity.x) * Mathf.Sqrt(2) / 2;
+
             if (targetVelocity.sqrMagnitude > 1f)
                 targetVelocity.Normalize();
             //targetVelocity = transform.TransformDirection(targetVelocity);
@@ -88,7 +92,9 @@ public class RigidPlayerScript : MonoBehaviour
 
         //MoveCamera
         var enemyDir = GetDirectionOfenemies();
-        var cameraDestination = transform.position + cameraOffset + enemyDir - mainCamera.transform.forward * enemyDir.magnitude;
+        var cameraDestination = transform.position + cameraOffset + enemyDir;
+        var cameraDestinationSize = 13 + enemyDir.magnitude * .2f;
+        mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
         mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.fixedDeltaTime;
         grounded = false;
     }
