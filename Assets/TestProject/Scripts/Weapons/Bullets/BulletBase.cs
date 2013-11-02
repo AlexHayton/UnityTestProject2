@@ -69,8 +69,9 @@ public class BulletBase : MonoBehaviour
 	            {
 	                health.DeductHealth(owner, DamageOnHit);
 	            }
-	            Destroy(gameObject);
 			}
+			
+			Destroy(gameObject);
         }
     }
 
