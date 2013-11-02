@@ -37,6 +37,7 @@ Assembly-CSharp-vs.csproj
 Assembly-UnityScript-firstpass.pidb
 Assembly-UnityScript-firstpass.unityproj
 Assembly-UnityScript-firstpass-vs.unityproj
+*.pidb
  
 # ============ #
 # OS generated #
