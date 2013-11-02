@@ -321,7 +321,7 @@ MonoBehaviour:
   autoXPosition: 1
   text: Ship Level
   image: {fileID: 0}
-  scene: 2
+  scene: 3
 --- !u!4 &653484966
 Transform:
   m_ObjectHideFlags: 0
@@ -593,6 +593,14 @@ Prefab:
     - target: {fileID: 400010, guid: 384f4fbc652e741419ee6dd58ad3f717, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 384f4fbc652e741419ee6dd58ad3f717, type: 2}
+      propertyPath: scene
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 384f4fbc652e741419ee6dd58ad3f717, type: 2}
+      propertyPath: scene
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 384f4fbc652e741419ee6dd58ad3f717, type: 2}
@@ -1013,7 +1021,7 @@ MonoBehaviour:
   autoXPosition: 1
   text: Plains Level
   image: {fileID: 0}
-  scene: 1
+  scene: 2
 --- !u!4 &1839013153
 Transform:
   m_ObjectHideFlags: 0

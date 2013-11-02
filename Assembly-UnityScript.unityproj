@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\TestProject\Scripts\Logo\switchToMenu.js" />
      <Compile Include="Assets\TestProject\Scripts\Weapons\Laser + Scrolling Textures script\scrolling_texture.js" />
      <None Include="Assets\Animator\Files\Resources\AMIrisShape.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />

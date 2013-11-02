@@ -10,6 +10,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/JimWest/Scenes/test.unity
   - enabled: 1
+    path: Assets/TestProject/Scenes/FaultlineLogo.unity
+  - enabled: 1
     path: Assets/TestProject/Scenes/MainMenu.unity
   - enabled: 1
     path: Assets/TestProject/Scenes/test.unity
