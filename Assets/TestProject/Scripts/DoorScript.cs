@@ -26,14 +26,13 @@ public class DoorScript : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter(Collision collision) {
-        Open ();
-		Close ();
     }
 	
 	
 	public virtual void Open() {
 		if (this.state != State.Open) {
 			this.state = State.Open;
+			animation["DoorOpen"].speed = 1.0f;
 			animation.Play ("DoorOpen");
 		}
 	}
@@ -41,7 +40,10 @@ public class DoorScript : MonoBehaviour {
 	public virtual void Close() {
 		if (this.state != State.Closed) {
 			this.state = State.Closed;
-			animation.Play ("DoorClose");
+			// just play the animation backwards		
+			animation["DoorOpen"].speed = -1.0f;
+			animation["DoorOpen"].normalizedTime = animation["DoorOpen"].length;
+			animation.Play ("DoorOpen");
 		}
 	}
 }
