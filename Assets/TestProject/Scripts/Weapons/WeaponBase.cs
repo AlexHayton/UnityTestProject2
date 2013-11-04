@@ -59,7 +59,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 		if (Time.time > lastFireTime + (1.0f / frequency) && energyHandler.GetEnergy() > energyCost)
 		{
 			// forward vector
-			var endPoint = playerScript.GetMouseOnPlane();
+			var endPoint = playerScript.GetMouseOnPlane(new Plane(Vector3.up, transform.position));
 			var direction = endPoint - muzzlePosition.position;
 			direction.y = 0;
 			direction.Normalize();
