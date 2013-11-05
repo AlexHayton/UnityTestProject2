@@ -40,6 +40,7 @@ Assembly-UnityScript-firstpass-vs.unityproj
 Assembly-UnityScript.unityproj
 Assembly-UnityScript-vs.unityproj
 *.pidb
+*.unityproj
  
 # ============ #
 # OS generated #
