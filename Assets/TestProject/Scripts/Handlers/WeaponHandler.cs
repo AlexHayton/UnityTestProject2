@@ -7,25 +7,22 @@ using System.Linq;
 /// Weapon Holder script.
 /// This handles the available weapons and firing them.
 /// </summary>
-public class WeaponScript : MonoBehaviour, ISelfTest
+public class WeaponHandler : MonoBehaviour, ISelfTest
 {
-
-    private WeaponBase primaryWeapon;
-    private WeaponBase secondaryWeapon;
+    [HideInInspector]
+    public WeaponBase PrimaryWeapon;
     private int primaryIndex;
-    private int secondaryIndex;
     public List<WeaponBase> PrimaryWeapons;
-    public List<WeaponBase> SecondaryWeapons;
     private RigidPlayerScript playerScript;
+    private Vector3 gripPoint;
 
     // Use this for initialization
     void Start()
     {
-        playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>();
+        playerScript = gameObject.GetComponent<RigidPlayerScript>();
         primaryIndex = 0;
-        secondaryIndex = 0;
-        primaryWeapon = PrimaryWeapons[0];
-        secondaryWeapon = SecondaryWeapons[0];
+        PrimaryWeapon = (WeaponBase)Instantiate(PrimaryWeapons[primaryIndex], gripPoint, Quaternion.identity);
+        PrimaryWeapon.Start();
     }
 
     public bool SelfTest()
@@ -38,10 +35,8 @@ public class WeaponScript : MonoBehaviour, ISelfTest
         return fail;
     }
 
-    private WeaponType AttachWeaponToGameObject<WeaponType>() where WeaponType : WeaponBase
+    private void Equip<WeaponType>() where WeaponType : WeaponBase
     {
-        WeaponType weapon = (WeaponType)this.gameObject.AddComponent(typeof(WeaponType));
-        return weapon;
     }
 
     //public List<WeaponBase> GetWeaponList()
@@ -52,16 +47,12 @@ public class WeaponScript : MonoBehaviour, ISelfTest
     // Update is called once per frame
     void Update()
     {
-        
+
         if (playerScript)
         {
             if (Input.GetButtonDown("Fire1") || Input.GetButton("Fire1"))
             {
-                primaryWeapon.Fire();
-            }
-            else if (Input.GetButtonDown("Fire2") || Input.GetButton("Fire2"))
-            {
-                secondaryWeapon.Fire();
+                PrimaryWeapon.Fire();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -69,14 +60,7 @@ public class WeaponScript : MonoBehaviour, ISelfTest
                 primaryIndex++;
                 if (primaryIndex == PrimaryWeapons.Count)
                     primaryIndex = 0;
-                primaryWeapon = PrimaryWeapons[primaryIndex];
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                secondaryIndex++;
-                if (secondaryIndex == SecondaryWeapons.Count)
-                    secondaryIndex = 0;
-                secondaryWeapon = SecondaryWeapons[secondaryIndex];
+                PrimaryWeapon = PrimaryWeapons[primaryIndex];
             }
         }
     }

@@ -1,113 +1,110 @@
 using UnityEngine;
+using System.Linq.Expressions;
 
 public class WeaponBase : MonoBehaviour, ISelfTest
 {
-	RigidPlayerScript playerScript;
-	EnergyHandler energyHandler;
-	protected GameObject tempMuzzle;
-	protected ParticleSystem muzzleParticle;
+    RigidPlayerScript playerScript;
+    EnergyHandler energyHandler;
+    public ParticleSystem FiringEffect;
+    public GameObject bulletPrefab;
+
+    private Transform BulletOrigin;
+    private Transform LaserOrigin;
+    private Transform AttachPoint;
 
     public bool primary = true;
-	
-	public Transform muzzlePosition;
-	public GameObject muzzlePrefab;
-	public GameObject bulletPrefab;
-	public float frequency = 10f;
-	public float coneAngle = 1.5f;
-	public bool firing = false;
-	public int bulletsToCreate = 1;
-	public float damagePerSecond = 20.0f;
-	public float forcePerSecond  = 20.0f;
-	public bool showInMenu = true;
-	public float energyCost = 1;
-	public int cost = 100;
+    public float Cooldown = .1f;
+    public float ConeAngle = 1.5f;
+    public int BulletsToCreate = 1;
+    public bool showInMenu = true;
+    public float EnergyCost = 1;
 
     private Random rnd;
-	
-	public float lastFireTime = -1f;
+
+    public float lastFireTime;
 
     public virtual void Start()
     {
+        lastFireTime = 0;
         rnd = new Random();
-        playerScript = transform.root.GetComponentInChildren<RigidPlayerScript>();
-        var thisTempMuzzle = (GameObject) Instantiate(muzzlePrefab, muzzlePosition.position, muzzlePosition.rotation);
-        thisTempMuzzle.transform.parent = this.transform;
-        muzzleParticle = thisTempMuzzle.GetComponent<ParticleSystem>();
+        var playerCapsule = GameObject.FindGameObjectWithTag("Player");
+        playerScript = playerCapsule.GetComponent<RigidPlayerScript>();
+        energyHandler = playerCapsule.GetComponent<EnergyHandler>();
+        AttachPoint = transform.FindChild("GripPoint");
+        BulletOrigin = transform.FindChild("BarrelEnd");
+        LaserOrigin = transform.FindChild("LaserOrigin");
 
-        if (SelfTest())
+        var playerGrip = playerCapsule.transform.FindChild("group1").FindChild("PlayerGrabPoint").position;
+
+        transform.position = transform.position + (playerGrip - AttachPoint.position);
+        transform.parent = playerCapsule.transform;
+
+
+
+        print(playerScript == null);
+        while (!SelfTest())
         {
             energyHandler = gameObject.transform.root.GetComponentInChildren<EnergyHandler>();
         }
     }
 
     public bool SelfTest()
-	{
-		bool fail = false;
-		// Check that we have a particleSystem and bulletBase in our prefabs
-		SelfTestUtility.HasComponent<ParticleSystem>(ref fail, this.muzzlePrefab);
-		SelfTestUtility.HasComponent<BulletBase>(ref fail, this.bulletPrefab);
-		
-		// Check that we have the right components on the player script.
-		SelfTestUtility.NotNull(ref fail, this, "playerScript");
-		SelfTestUtility.HasComponent<XPHandler>(ref fail, this.playerScript.gameObject);
-		SelfTestUtility.HasComponent<EnergyHandler>(ref fail, this.playerScript.gameObject);
-		return fail;
-	}
-	
-	public void Fire()
-	{
-		if (Time.time > lastFireTime + (1.0f / frequency) && energyHandler.GetEnergy() > energyCost)
-		{
-			// forward vector
-			var endPoint = playerScript.GetMouseOnPlane(new Plane(Vector3.up, transform.position));
-			var direction = endPoint - muzzlePosition.position;
-			direction.y = 0;
-			direction.Normalize();
-
-			// Spawn visual bullet	and set values for start				
-			for (int i = 0; i < this.bulletsToCreate; i++)
-			{
-				// apply scatter
-                var dirWithConeRandomization = direction + new Vector3(Random.Range(-coneAngle, coneAngle), 0, Random.Range(-coneAngle, coneAngle));
-				Quaternion tempRot = bulletPrefab.transform.rotation;			
-				tempRot.SetFromToRotation(bulletPrefab.transform.forward, dirWithConeRandomization);
-				
-				
-				//tempRot.y = playerScript.transform.rotation.y;	
-				//tempRot.y = transform.rotation.y;
-				//tempRot.y = Quaternion.FromToRotation(bulletPrefab.transform.position, direction).y;
-				//Debug.Log (test.eulerAngles.y);
-				
-				//tempRot.y = Quaternion.FromToRotation(transform.position, endPoint).y;
-				//Quaternion coneRandomRotation = Quaternion.Euler (Random.Range (-coneAngle, coneAngle), Random.Range (-coneAngle, coneAngle), 0);
-				//tempRot *= coneRandomRotation;
-				
-				//Debug.Log (tempRot.ToString ());
-				//tempRot.y = transform.rotation.y;
-				
-				GameObject go = (GameObject)Instantiate (bulletPrefab, muzzlePosition.position, tempRot);
-				BulletBase bullet = go.GetComponent<BulletBase> ();
-				bullet.SetStartValues(playerScript.gameObject, dirWithConeRandomization);
-			}
-			
-			this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(this.energyCost);
-			
-			// show visul muzzle
-			if (muzzleParticle) {
-				muzzleParticle.Emit(1);									
-			}
-			
-			lastFireTime = Time.time;
-		}				
-	}
-
-    private float GetStdDistNum(float stdDev, float mean = 0)
     {
-        var u1 = Random.Range(0f, 1f);
-        var u2 = Random.Range(0f, 1f);
-        var randStdNormal = Mathf.Sqrt(-2.0f * Mathf.Log(u1)) * Mathf.Sin(2.0f * Mathf.PI * u2);
-        var randNormal = mean + randStdNormal*stdDev;
-        return randNormal;
+        bool fail = false;
+        // Check that we have a particleSystem and bulletBase in our prefabs
+        SelfTestUtility.HasComponent<BulletBase>(ref fail, this.bulletPrefab);
+        // Check that we have the right components on the player script.
+        SelfTestUtility.NotNull(ref fail, this, "playerScript");
+        SelfTestUtility.HasComponent<XPHandler>(ref fail, playerScript.gameObject);
+        SelfTestUtility.HasComponent<EnergyHandler>(ref fail, playerScript.gameObject);
+        return fail;
     }
+
+    public void Fire()
+    {
+        if (Time.time - lastFireTime > Cooldown && energyHandler.GetEnergy() > EnergyCost)
+        {
+            // forward vector
+            var direction = transform.forward.normalized;
+
+            // Spawn visual bullet	and set values for start				
+            for (int i = 0; i < BulletsToCreate; i++)
+            {
+                // apply scatter
+                var dirWithConeRandomization = direction + new Vector3(Random.Range(-ConeAngle, ConeAngle), 0, Random.Range(-ConeAngle, ConeAngle));
+                Quaternion tempRot = bulletPrefab.transform.rotation;
+                tempRot.SetFromToRotation(bulletPrefab.transform.forward, dirWithConeRandomization);
+
+
+                //tempRot.y = playerScript.transform.rotation.y;	
+                //tempRot.y = transform.rotation.y;
+                //tempRot.y = Quaternion.FromToRotation(bulletPrefab.transform.position, direction).y;
+                //Debug.Log (test.eulerAngles.y);
+
+                //tempRot.y = Quaternion.FromToRotation(transform.position, endPoint).y;
+                //Quaternion coneRandomRotation = Quaternion.Euler (Random.Range (-coneAngle, coneAngle), Random.Range (-coneAngle, coneAngle), 0);
+                //tempRot *= coneRandomRotation;
+
+                //Debug.Log (tempRot.ToString ());
+                //tempRot.y = transform.rotation.y;
+
+                GameObject go = (GameObject)Instantiate(bulletPrefab, BulletOrigin.position, tempRot);
+                BulletBase bullet = go.GetComponent<BulletBase>();
+                bullet.SetStartValues(playerScript.gameObject, dirWithConeRandomization);
+            }
+
+            this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
+
+            // show visul muzzle
+            if (FiringEffect)
+            {
+                FiringEffect.Emit(1);
+            }
+
+            lastFireTime = Time.time;
+        }
+    }
+
+
 }
 
