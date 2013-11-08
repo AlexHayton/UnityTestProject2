@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff5107e57941654a8930b0b972dee14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FiringEffect: {fileID: 0}
+  firingEffect: {fileID: 100004, guid: 00eae9a0e0c7a4c03b5c9b156b47fede, type: 2}
   bulletPrefab: {fileID: 100000, guid: aab981ed5ca71f1409fc729fa4070773, type: 2}
   primary: 1
   Cooldown: .0250000004

@@ -5,7 +5,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 {
     RigidPlayerScript playerScript;
     EnergyHandler energyHandler;
-    public ParticleSystem FiringEffect;
+    public GameObject firingEffect;
     public GameObject bulletPrefab;
 
     private Transform BulletOrigin;
@@ -96,9 +96,18 @@ public class WeaponBase : MonoBehaviour, ISelfTest
             this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
 
             // show visul muzzle
-            if (FiringEffect)
+            if (firingEffect != null)
             {
-                FiringEffect.Emit(1);
+				ParticleSystem particleSystem = firingEffect.GetComponent<ParticleSystem>();
+				if (particleSystem != null)
+				{
+                	particleSystem.Emit(1);
+				}
+				
+				if (firingEffect.animation != null)
+				{
+					firingEffect.animation.Play();
+				}
             }
 
             lastFireTime = Time.time;
