@@ -169,6 +169,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1112904589}
   - {fileID: 1813126998}
   - {fileID: 1773459562}
   - {fileID: 533661134}
@@ -4095,7 +4096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1241d6a875acb6c45a50d074d904f06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalBackground: {fileID: 2800000, guid: b46901cac04e4aa4dafa177588040bf1, type: 3}
+  normalBackground: {fileID: 2800000, guid: 31e6c279cbb9b44a2b1f63a9fdadc239, type: 3}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
   hoverBackground: {fileID: 0}
   hoverTextColor: {r: 1, g: 1, b: 1, a: 1}
@@ -7843,6 +7844,54 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300022, guid: fd2b1e4cd6dea4b6aa4ed39a243dbac8, type: 3}
+--- !u!1 &1112904588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100068, guid: 77fd80936ce1b0847aa6e2cead50c7e3, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1112904589}
+  - 114: {fileID: 1112904590}
+  m_Layer: 0
+  m_Name: SelectedFrame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1112904589
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400068, guid: 77fd80936ce1b0847aa6e2cead50c7e3, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1112904588}
+  m_LocalRotation: {x: 3.7252903e-09, y: 2.98023224e-08, z: 1.49011612e-08, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 21046292}
+--- !u!114 &1112904590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400044, guid: 77fd80936ce1b0847aa6e2cead50c7e3,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1112904588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037073738c790ac4797fb0da9c227cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 70, y: 0}
+  visible: 1
+  guiStyleObject: {fileID: 0}
+  guiStylePrefab: {fileID: 707026628}
+  depth: 80
+  color: {r: 1, g: 1, b: 1, a: 1}
+  autoXPosition: 0
+  text: 1
+  image: {fileID: 0}
 --- !u!1 &1121210350
 GameObject:
   m_ObjectHideFlags: 0
