@@ -910,6 +910,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpEffectPrefab: {fileID: 0}
+  floatsToPlayer: 1
+  floatToPlayerRangeSquared: 9
+  floatToPlayerSpeed: 1
   addedHealth: 20
 --- !u!136 &182629536
 CapsuleCollider:
@@ -1915,6 +1918,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpEffectPrefab: {fileID: 0}
+  floatsToPlayer: 1
+  floatToPlayerRangeSquared: 9
+  floatToPlayerSpeed: 1
   addedHealth: 20
 --- !u!136 &312814395
 CapsuleCollider:
@@ -3970,6 +3976,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpEffectPrefab: {fileID: 0}
+  floatsToPlayer: 1
+  floatToPlayerRangeSquared: 9
+  floatToPlayerSpeed: 1
   addedHealth: 20
 --- !u!136 &622709560
 CapsuleCollider:
@@ -5122,6 +5131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpEffectPrefab: {fileID: 0}
+  floatsToPlayer: 1
+  floatToPlayerRangeSquared: 9
+  floatToPlayerSpeed: 1
   addedHealth: 20
 --- !u!136 &791937975
 CapsuleCollider:
@@ -9263,6 +9275,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpEffectPrefab: {fileID: 0}
+  floatsToPlayer: 1
+  floatToPlayerRangeSquared: 9
+  floatToPlayerSpeed: 1
   addedHealth: 20
 --- !u!136 &1167634777
 CapsuleCollider:
@@ -11742,6 +11757,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpEffectPrefab: {fileID: 0}
+  floatsToPlayer: 1
+  floatToPlayerRangeSquared: 9
+  floatToPlayerSpeed: 2
   addedHealth: 20
 --- !u!136 &1393697001
 CapsuleCollider:
@@ -13611,6 +13629,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpEffectPrefab: {fileID: 0}
+  floatsToPlayer: 1
+  floatToPlayerRangeSquared: 9
+  floatToPlayerSpeed: 1
   addedHealth: 20
 --- !u!136 &1511772562
 CapsuleCollider:
