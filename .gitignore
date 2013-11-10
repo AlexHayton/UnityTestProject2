@@ -37,7 +37,10 @@ Assembly-CSharp-vs.csproj
 Assembly-UnityScript-firstpass.pidb
 Assembly-UnityScript-firstpass.unityproj
 Assembly-UnityScript-firstpass-vs.unityproj
+Assembly-UnityScript.unityproj
+Assembly-UnityScript-vs.unityproj
 *.pidb
+*.unityproj
  
 # ============ #
 # OS generated #
@@ -50,7 +53,7 @@ Icon?
 ehthumbs.db
 Thumbs.db
 /test_build_Data
-
+/test_build.app
 /test_build.exe
 
 *.unityproj
