@@ -37,7 +37,10 @@ public class BulletBase : MonoBehaviour
     //void  OnTriggerEnter (Collider collision) {
     void OnTriggerEnter(Collider enterObj)
     {
-        if (enterObj.tag != ignoreTag & enterObj.tag != "Bullet")
+        if (enterObj.tag != ignoreTag && 
+			enterObj.tag != "Bullet" && 
+			enterObj.tag != "Player" &&
+			enterObj.tag != "NoCollide")
         {
 			bool doDamage = true;
 			var health = enterObj.GetComponentInChildren<HealthHandler>();
