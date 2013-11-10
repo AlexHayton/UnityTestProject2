@@ -54,16 +54,21 @@ public class RigidPlayerScript : MonoBehaviour
             // Rotation
             //************************************
 
-            // rotate towards target		
-            Vector3 lookDelta = (GetMouseOnPlane() - transform.position);
-            Quaternion targetRot = Quaternion.LookRotation(lookDelta);
+            // rotate towards target
+            //Vector3 muzzleToMouse = (GetMouseOnPlane(new Plane(Vector3.up, GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position)) - GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position);
+            //muzzleToMouse.y = 0;
+            //Vector3 playerToMuzzle = GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position - transform.position;
+            //playerToMuzzle.y = 0;
+
+            var lookDir = GetMouseOnPlane(new Plane(Vector3.up, transform.position)) - transform.position;
+            Quaternion targetRot = Quaternion.LookRotation(lookDir);
 
             // only rotate around y axis
             targetRot.x = 0;
             targetRot.z = 0;
 
             float rotSpeed = turnSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotSpeed);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, 1000);
 
 
             //************************************
@@ -104,14 +109,14 @@ public class RigidPlayerScript : MonoBehaviour
         grounded = true;
     }
 
-    public Vector3 GetMouseOnPlane()
+    public Vector3 GetMouseOnPlane(Plane plane)
     {
         // search point from the mouse on the plane too look at it
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        float hit;
+        if (plane.Raycast(ray, out hit))
         {
-            return hit.point;
+            return ray.GetPoint(hit);
         }
         else
         {
@@ -119,8 +124,8 @@ public class RigidPlayerScript : MonoBehaviour
             position.y = transform.position.y;
             return position;
         }
-
     }
+
 
     float CalculateJumpVerticalSpeed()
     {
