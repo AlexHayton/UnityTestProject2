@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class HealhItem : Pickupable {
+public class HealthItem : Pickupable {
 		
 	public int addedHealth = 10;
 

@@ -158,7 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 257db9bfafce5a74489815a68ca2abc9, type: 3}
+  m_Script: {fileID: 11500000, guid: 007850b51b921449f86f6acb6e2d06f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpEffectPrefab: {fileID: 0}
