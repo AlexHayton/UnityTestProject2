@@ -134,7 +134,7 @@ MonoBehaviour:
   DestroyPrefab: {fileID: 0}
   DamageOnHit: 10
   Speed: 75
-  ForceOnImpact: 20
+  ForceOnImpact: 10
   IsScatter: 0
 --- !u!136 &13600000
 CapsuleCollider:
