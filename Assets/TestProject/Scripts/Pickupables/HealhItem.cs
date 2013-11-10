@@ -4,14 +4,16 @@ using System.Collections;
 public class HealhItem : Pickupable {
 		
 	public int addedHealth = 10;
+	
+	HealthHandler _healthHandler;
 
 	public override bool CanBePickedUpBy(GameObject player)
 	{
 		bool canBePickedUp = false;
 		
-		HealthHandler healthHandler = (HealthHandler)player.GetComponent<HealthHandler>();
-		if (healthHandler) {
-			if (healthHandler.health < healthHandler.maxHealth) {
+		_healthHandler =(HealthHandler)player.GetComponent<HealthHandler>();
+		if (_healthHandler) {
+			if (_healthHandler.health < _healthHandler.maxHealth) {
 				canBePickedUp = true;
 			}
 		}
@@ -22,13 +24,10 @@ public class HealhItem : Pickupable {
 	public override bool OnPickUp (GameObject player)
 	{
 		bool success = true;
-		
-		HealthHandler healthHandler = (HealthHandler)player.GetComponent<HealthHandler>();
-		if (healthHandler) {
-			if (healthHandler.health < healthHandler.maxHealth) {
-				healthHandler.AddHealth(addedHealth);
-				success = true;
-			}
+
+		if (_healthHandler) {
+			_healthHandler.AddHealth(addedHealth);
+			success = true;
 		}
 		
 		return success;

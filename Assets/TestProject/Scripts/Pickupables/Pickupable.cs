@@ -13,6 +13,8 @@ public abstract class Pickupable : MonoBehaviour {
 	void Start()
 	{
 		player = PlayerUtility.GetPlayer ();
+		CapsuleCollider _capsule = GetComponent<CapsuleCollider>();
+		_capsule.isTrigger = true;
 	}
 	
 	void  OnTriggerEnter (Collider collision) {
