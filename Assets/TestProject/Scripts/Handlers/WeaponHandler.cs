@@ -21,8 +21,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     {
         playerScript = gameObject.GetComponent<RigidPlayerScript>();
         primaryIndex = 0;
-        PrimaryWeapon = (WeaponBase)Instantiate(PrimaryWeapons[primaryIndex], gripPoint, Quaternion.identity);
-        PrimaryWeapon.Start();
+        Equip(primaryIndex);
     }
 
     public bool SelfTest()
@@ -35,10 +34,10 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         return fail;
     }
 
-    private void Equip<WeaponType>() where WeaponType : WeaponBase
+    private void Equip(int index)
     {
+        PrimaryWeapon = (WeaponBase)Instantiate(PrimaryWeapons[primaryIndex], gripPoint, Quaternion.identity);
     }
-
     //public List<WeaponBase> GetWeaponList()
     //{
     //    return this.PrimaryWeapons.Select(w => w.GetComponent<WeaponBase>()).Where(w => w != null).ToList();
