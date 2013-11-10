@@ -90,6 +90,13 @@ public class HealthHandler : MonoBehaviour {
 				}
 			}	
 			
+			// Spawn a pickup if the manager wants to.
+			PickupDropManager pickupDropper = gameObject.GetComponent<PickupDropManager>();
+			if (pickupDropper)
+			{
+				pickupDropper.SpawnAPickup();
+			}
+			
 			if (destroyPrefab) {
 				GameObject test = (GameObject)Instantiate(destroyPrefab, transform.position, transform.rotation);
 				Destroy (test, 0.5f);				
