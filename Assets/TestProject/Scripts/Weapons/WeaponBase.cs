@@ -9,7 +9,6 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public GameObject FiringEffect;
     public GameObject BulletPrefab;
     public GameObject LaserPointer;
-    public GameObject pointerCylinder;
 
     private GameObject actualLaser;
     private RigidPlayerScript playerScript;
