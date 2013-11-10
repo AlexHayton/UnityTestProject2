@@ -176,7 +176,7 @@ ModelImporter:
     6400000: Left_Elbow
     6400002: pasted__Mesh04
     6400004: Right_Elbow
-    7400000: Take 001
+    7400000: Idle
     9500000: //RootNode
     13700000: pasted__pasted__pasted__pasted__Roundout_Male1
   materials:
@@ -191,12 +191,33 @@ ModelImporter:
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
-    clipAnimations: []
+    clipAnimations:
+    - name: Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
-    meshCompression: 0
+    globalScale: .0599999987
+    meshCompression: 1
     addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
