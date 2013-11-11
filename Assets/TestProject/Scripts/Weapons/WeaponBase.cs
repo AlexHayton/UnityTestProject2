@@ -32,9 +32,9 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         var playerCapsule = GameObject.FindGameObjectWithTag("Player");
         playerScript = playerCapsule.GetComponent<RigidPlayerScript>();
         energyHandler = playerCapsule.GetComponent<EnergyHandler>();
-        attachPoint = gameObject.FindChild("GripPoint");
-        bulletOrigin = gameObject.FindChild("BarrelEnd");
-        laserOrigin = gameObject.FindChild("LaserOrigin");
+        attachPoint = transform.FindChild("GripPoint");
+        bulletOrigin = transform.FindChild("BarrelEnd");
+        laserOrigin = transform.FindChild("LaserOrigin");
         GameObject laserObject = Instantiate(LaserPointer, laserOrigin.position, Quaternion.identity) as GameObject;		
 		actualLaser = laserObject.GetComponent<LaserBase>();
         actualLaser.SetOrigin(laserOrigin.transform);
