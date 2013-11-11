@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.4637451, y: -.661001325, z: -4.22094154}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .440762907, y: .391025603, z: .585154593}
   m_Children:
   - {fileID: 400002}
@@ -215,11 +215,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19adbe303d09264193406261a8059ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myState: 5
+  myState: 0
   walkAroundDistance: 40
+  targetSearchRange: 50
   activation:
     value: 0
-    mask: 0
+    mask: -1
+  targetSearchLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,14 +250,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dd5a1d5bb93c44c4ad31170515dc6fa, type: 3}
+  m_Script: {fileID: 11500000, guid: fd15bf7d312523a419cfcab1c85ce3ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chances: 3200000032000000
-  pickups:
-  - {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
-  - {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}
-  PickupDropChance: 30
+  damagePerSecond: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
