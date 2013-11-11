@@ -42,7 +42,7 @@ public class PickupDropManager : MonoBehaviour, ISelfTest {
 			IEnumerable<WeightedRandomItem<GameObject>> weightedItems = this.GetAsWeightedRandomItems();
 			WeightedRandom<GameObject> picker = new WeightedRandom<GameObject>(weightedItems.ToArray());
 			GameObject pickupToSpawn = picker.Next();
-			Instantiate(pickupToSpawn, gameObject.transform.position, Vector3.up);
+			Instantiate(pickupToSpawn, gameObject.transform.position, pickupToSpawn.transform.rotation);
 		}
 	}
 }

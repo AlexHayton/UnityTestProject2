@@ -1,17 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class EnergyItem : Pickupable {
 		
 	public int addedEnergy = 10;
+	
+	private EnergyHandler _energyHandler;
 
 	public override bool CanBePickedUpBy(GameObject player)
 	{
 		bool canBePickedUp = false;
 		
-		EnergyHandler energyHandler = (EnergyHandler)player.GetComponent<EnergyHandler>();
-		if (energyHandler) {
-			if (energyHandler.GetEnergy() < energyHandler.GetMaxEnergy()) {
+		_energyHandler = (EnergyHandler)player.GetComponent<EnergyHandler>();
+		if (_energyHandler) {
+			if (_energyHandler.energy < _energyHandler.maxEnergy) {
 				canBePickedUp = true;
 			}
 		}
@@ -22,13 +24,10 @@ public class EnergyItem : Pickupable {
 	public override bool OnPickUp (GameObject player)
 	{
 		bool success = true;
-		
-		EnergyHandler energyHandler = (EnergyHandler)player.GetComponent<EnergyHandler>();
-		if (energyHandler) {
-			if (energyHandler.GetEnergy() < energyHandler.GetMaxEnergy()) {
-				energyHandler.AddEnergy(addedEnergy);
-				success = true;
-			}
+
+		if (_energyHandler) {
+			_energyHandler.AddEnergy(this.addedEnergy);
+			success = true;
 		}
 		
 		return success;
