@@ -70,13 +70,12 @@ public class LaserBase : MonoBehaviour
             laserSpot.transform.rotation = Quaternion.LookRotation(cross2, closestHit.normal);
             var stretchAmount = 1 / Mathf.Abs(Vector3.Dot(ray.direction, closestHit.normal));
             laserSpot.transform.localScale = new Vector3(LaserSpotSize, LaserSpotSize, LaserSpotSize * stretchAmount);
-            laserSpot.renderer.material.SetFloat("_Overbright", (originalSpotBrightness - transform.localScale.z / originalLaserScale));
-            laserSpot.transform.position = origin.position + origin.forward * closestHit.distance + .001f * laserSpot.transform.up;
+            laserSpot.renderer.material.SetFloat("_Overbright", (originalSpotBrightness - .1f * transform.localScale.z / originalLaserScale));
+            laserSpot.transform.position = origin.position + origin.forward * closestHit.distance + .01f * laserSpot.transform.up;
         }
 
         else
         {
-            laserSpot.renderer.material.SetFloat("_Overbright", 0);
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, originalLaserScale);
             transform.position = origin.position + transform.forward * originaLaserlLength / 2;
         }
