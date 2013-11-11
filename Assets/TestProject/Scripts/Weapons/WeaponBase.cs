@@ -40,8 +40,10 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         actualLaser.transform.parent = laserOrigin;
 
         var playerGrip = playerCapsule.transform.FindChild("group1").FindChild("PlayerGrabPoint").position;
-        transform.position = transform.position + (playerGrip - attachPoint.position);
         transform.parent = playerCapsule.transform;
+        transform.rotation = playerCapsule.transform.rotation;
+        transform.position = transform.position + (playerGrip - attachPoint.position);
+        
 
 
 
