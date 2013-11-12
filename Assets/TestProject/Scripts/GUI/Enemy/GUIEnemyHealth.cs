@@ -55,7 +55,7 @@ public class GUIEnemyHealth : GUIHorizontalBar, ISelfTest
 	public override float GetLeft()
 	{
 		Vector3 screenPosition = this.WorldToScreenPoint();
-		return screenPosition.x - this.GetPixelWidth() / 2.0f;
+		return screenPosition.x - this.GetBasePixelWidth() / 2.0f;
 	}
 	
 	public override float GetTop()

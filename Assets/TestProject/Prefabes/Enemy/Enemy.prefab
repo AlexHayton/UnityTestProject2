@@ -50,6 +50,7 @@ GameObject:
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400006}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -212,6 +213,22 @@ MonoBehaviour:
   regenSpeed: 1
   invincible: 0
   destroyPrefab: {fileID: 100000, guid: c994fde8e6848a3771503f184e0c9cb4, type: 2}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd5a1d5bb93c44c4ad31170515dc6fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chances: 3200000032000000
+  pickups:
+  - {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
+  - {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}
+  PickupDropChance: 30
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,9 +260,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1
-  m_Height: 4
+  m_Height: 8
   m_Direction: 1
-  m_Center: {x: 0, y: .75, z: 0}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1

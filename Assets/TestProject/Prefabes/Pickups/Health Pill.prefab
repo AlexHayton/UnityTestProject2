@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 108: {fileID: 10800000}
   - 111: {fileID: 11100000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,9 +30,9 @@ GameObject:
   - 95: {fileID: 9500000}
   - 136: {fileID: 13600000}
   - 114: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Health Pill
-  m_TagString: Bullet
+  m_TagString: NoCollide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 257db9bfafce5a74489815a68ca2abc9, type: 3}
+  m_Script: {fileID: 11500000, guid: 007850b51b921449f86f6acb6e2d06f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpEffectPrefab: {fileID: 0}

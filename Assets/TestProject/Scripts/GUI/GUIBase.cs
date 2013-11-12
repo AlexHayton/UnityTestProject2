@@ -115,14 +115,24 @@ public abstract class GUIBase : MonoBehaviour {
 		return this.guiStylePrefab.GetStyle();
 	}
 	
-	public virtual float GetPixelWidth()
+	public float GetBasePixelWidth()
 	{
 		return Screen.width * this.guiStylePrefab.scale.x / 100.0f;
 	}
 	
-	public virtual float GetPixelHeight()
+	public virtual float GetPixelWidth()
+	{
+		return this.GetBasePixelWidth();
+	}
+	
+	public float GetBasePixelHeight()
 	{
 		return Screen.height * this.guiStylePrefab.scale.y / 100.0f;
+	}
+	
+	public virtual float GetPixelHeight()
+	{
+		return this.GetBasePixelHeight();
 	}
 	
 	public virtual Texture2D GetBackground()
