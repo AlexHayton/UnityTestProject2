@@ -29,10 +29,16 @@ public class LaserBase : MonoBehaviour
         laserSpot.transform.parent = null;
         LaserSpotSize *= .01f;
         laserSpot.transform.localScale = new Vector3(1, 1, 1) * LaserSpotSize;
+        laserSpot.renderer.material.color = renderer.material.color;
         originalSpotBrightness = laserSpot.renderer.material.GetFloat("_Overbright");
         originalLaserScale = transform.localScale.z;
         originaLaserlLength = originalLaserScale * 10;
         transform.position += transform.forward * originaLaserlLength / 2;
+    }
+
+    public void OnDestroy()
+    {
+        GameObject.Destroy(laserSpot);
     }
 
     public void SetOrigin(Transform orig)
@@ -46,20 +52,18 @@ public class LaserBase : MonoBehaviour
         if (origin == null)
             return;
         Ray ray = new Ray(origin.position, transform.forward);
-        var hits = new List<RaycastHit>(Physics.RaycastAll(ray));
-        var nonColliderHits = hits.ToList();
+        var nonBulletHits = Physics.RaycastAll(ray).Where(a => a.transform.gameObject.GetComponent<BulletBase>() == null).ToList();
 
-        if (nonColliderHits.Any())
+        if (nonBulletHits.Any())
         {
-            RaycastHit closestHit = nonColliderHits[0];
-            foreach (var ncHit in nonColliderHits)
+            RaycastHit closestHit = nonBulletHits[0];
+            foreach (var ncHit in nonBulletHits)
             {
                 if (ncHit.distance < closestHit.distance)
                 {
                     closestHit = ncHit;
                 }
             }
-            print(closestHit.collider);
             if (closestHit.distance < originaLaserlLength)
             {
                 var newLength = closestHit.distance;

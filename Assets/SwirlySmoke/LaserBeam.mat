@@ -41,11 +41,11 @@ Material:
       data:
         first:
           name: _DarkSpots
-        second: .400000006
+        second: .610000014
       data:
         first:
           name: _Overbright
-        second: .800000012
+        second: 1.5
       data:
         first:
           name: _BrightSpots
@@ -54,7 +54,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 0, b: 0, a: 1}
+        second: {r: 0, g: 1, b: 0, a: 0}
       data:
         first:
           name: _ScrollSpeed
