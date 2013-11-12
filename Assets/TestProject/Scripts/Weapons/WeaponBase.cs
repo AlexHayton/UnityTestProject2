@@ -38,7 +38,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         GameObject laserObject = Instantiate(LaserPointer, laserOrigin.position, Quaternion.identity) as GameObject;		
 		actualLaser = laserObject.GetComponent<LaserBase>();
         actualLaser.SetOrigin(laserOrigin.transform);
-        actualLaser.transform.parent = laserOrigin;
+        laserObject.transform.parent = laserOrigin;
 
         var playerGrip = playerCapsule.transform.FindChild("group1").FindChild("PlayerGrabPoint").position;
         transform.parent = playerCapsule.transform;
