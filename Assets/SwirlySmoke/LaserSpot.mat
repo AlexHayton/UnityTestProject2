@@ -30,15 +30,15 @@ Material:
       data:
         first:
           name: _DistortSpeed
-        second: .00999999978
+        second: .00100000005
       data:
         first:
           name: _DarkSpots
-        second: .100000001
+        second: .300000012
       data:
         first:
           name: _Overbright
-        second: 1
+        second: 2
     m_Colors:
       data:
         first:

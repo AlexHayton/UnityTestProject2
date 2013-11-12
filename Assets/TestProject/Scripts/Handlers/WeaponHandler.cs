@@ -9,10 +9,11 @@ using System.Linq;
 /// </summary>
 public class WeaponHandler : MonoBehaviour, ISelfTest
 {
+    private WeaponBase SelectedWeapon;
+
     [HideInInspector]
-    public WeaponBase PrimaryWeapon;
-    private int primaryIndex;
-    public List<WeaponBase> PrimaryWeapons;
+    public int selectedIndex;
+    public List<WeaponBase> Weapons;
     private RigidPlayerScript playerScript;
     private Vector3 gripPoint;
 
@@ -20,8 +21,8 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     void Start()
     {
         playerScript = gameObject.GetComponent<RigidPlayerScript>();
-        primaryIndex = 0;
-        Equip(primaryIndex);
+        if(Weapons.Count > 0)
+            Equip(0);
     }
 
     public bool SelfTest()
@@ -36,7 +37,12 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 
     private void Equip(int index)
     {
-        PrimaryWeapon = (WeaponBase)Instantiate(PrimaryWeapons[primaryIndex], gripPoint, Quaternion.identity);
+        selectedIndex = index;
+        if (SelectedWeapon != null)
+        {
+            GameObject.Destroy(SelectedWeapon.gameObject);
+        }
+        SelectedWeapon = (WeaponBase)Instantiate(Weapons[selectedIndex], gripPoint, Quaternion.identity);
     }
     //public List<WeaponBase> GetWeaponList()
     //{
@@ -44,6 +50,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     //}
 
     // Update is called once per frame
+    
     void Update()
     {
 
@@ -51,17 +58,38 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         {
             if (Input.GetButtonDown("Fire1") || Input.GetButton("Fire1"))
             {
-                PrimaryWeapon.Fire();
+                SelectedWeapon.Fire();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                primaryIndex++;
-                if (primaryIndex == PrimaryWeapons.Count)
-                    primaryIndex = 0;
-                PrimaryWeapon = PrimaryWeapons[primaryIndex];
+                if (Weapons.Count > 0)
+                {
+                    Equip(0);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (Weapons.Count > 1)
+                {
+                    Equip(1);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (Weapons.Count > 2)
+                {
+                    Equip(2);
+                }
             }
         }
+    }
+
+    public void PickUpWeapon(ref WeaponBase weapon)
+    {
+        //in theory this should add the "reference (not as in ref, just used that so I had access to the weapon to destroy it)" to the weapon, then destroy the actual object
+        Weapons.Add(weapon);
+        GameObject.Destroy(weapon);
     }
 
 }
