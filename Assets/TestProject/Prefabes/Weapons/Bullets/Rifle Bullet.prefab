@@ -29,8 +29,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.70402527, y: -1.19493937, z: -7.83006334}
-  m_LocalScale: {x: .100000001, y: .100000001, z: .100000001}
+  m_LocalPosition: {x: 7.09532404, y: -1.09356117, z: -4.75275326}
+  m_LocalScale: {x: .177926198, y: .150000006, z: .189875439}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
@@ -145,10 +145,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2
-  m_Height: 10
+  m_Radius: 1
+  m_Height: 12
   m_Direction: 2
-  m_Center: {x: 0, y: -3.46944695e-17, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

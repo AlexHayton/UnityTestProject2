@@ -27,6 +27,7 @@ GameObject:
   - 23: {fileID: 2300002}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: healing sphere
   m_TagString: Untagged
@@ -60,7 +61,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.69422626, y: -.665274858, z: -13.705409}
+  m_LocalPosition: {x: 9.40205669, y: -.827304304, z: -7.07746267}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -193,7 +194,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   scrollSpeed: -.0500000007
+  scrollSpeed2: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbce5a73f3184d5681bdc52e9c07e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: -.100000001
   scrollSpeed2: 0
 --- !u!1001 &100100000
 Prefab:
