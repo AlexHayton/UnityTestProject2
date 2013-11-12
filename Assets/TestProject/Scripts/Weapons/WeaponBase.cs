@@ -6,6 +6,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public GameObject FiringEffect;
     public GameObject BulletPrefab;
     public GameObject LaserPointer;
+    public Color LaserColor;
 
     private LaserBase actualLaser;
     private RigidPlayerScript playerScript;
@@ -35,23 +36,16 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         attachPoint = transform.FindChild("GripPoint");
         bulletOrigin = transform.FindChild("BarrelEnd");
         laserOrigin = transform.FindChild("LaserOrigin");
-        GameObject laserObject = Instantiate(LaserPointer, laserOrigin.position, Quaternion.identity) as GameObject;		
+        GameObject laserObject = Instantiate(LaserPointer, laserOrigin.position, Quaternion.identity) as GameObject;
 		actualLaser = laserObject.GetComponent<LaserBase>();
         actualLaser.SetOrigin(laserOrigin.transform);
         laserObject.transform.parent = laserOrigin;
-
         var playerGrip = playerCapsule.transform.FindChild("group1").FindChild("PlayerGrabPoint").position;
         transform.parent = playerCapsule.transform;
         transform.rotation = playerCapsule.transform.rotation;
         transform.position = transform.position + (playerGrip - attachPoint.position);
-        
-
-
-
-        while (!SelfTest())
-        {
-            energyHandler = gameObject.transform.root.GetComponentInChildren<EnergyHandler>();
-        }
+        energyHandler = gameObject.transform.root.GetComponentInChildren<EnergyHandler>();
+        laserObject.renderer.sharedMaterial.color = LaserColor;
     }
 
     public bool SelfTest()
@@ -65,8 +59,6 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         SelfTestUtility.HasComponent<EnergyHandler>(ref fail, playerScript.gameObject);
         return fail;
     }
-
-    
 
     public void Fire()
     {
