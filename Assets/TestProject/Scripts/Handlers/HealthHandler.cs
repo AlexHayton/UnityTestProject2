@@ -77,6 +77,9 @@ public class HealthHandler : MonoBehaviour {
 			this.health = Mathf.Max (this.health - damage, 0);
 		}
 		
+		// send OnAttackMessage to every script so we can use it for AI etc. to every component on the gameobject
+		SendMessage("OnTakeDamage", doer, SendMessageOptions.DontRequireReceiver);
+		
 		this.dead = this.health <= 0;
 		
 		if (dead & gameObject.tag != "Player") {
@@ -89,6 +92,13 @@ public class HealthHandler : MonoBehaviour {
 					xphandler.AddXp(this.GetMaxHealth());
 				}
 			}	
+			
+			// Spawn a pickup if the manager wants to.
+			PickupDropManager pickupDropper = gameObject.GetComponent<PickupDropManager>();
+			if (pickupDropper)
+			{
+				pickupDropper.SpawnAPickup();
+			}
 			
 			if (destroyPrefab) {
 				GameObject test = (GameObject)Instantiate(destroyPrefab, transform.position, transform.rotation);

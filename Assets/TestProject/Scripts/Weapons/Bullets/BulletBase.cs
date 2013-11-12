@@ -63,7 +63,9 @@ public class BulletBase : MonoBehaviour
 	            // add force to the object
 	            if (enterObj.rigidbody)
 	            {
-	                enterObj.rigidbody.AddForceAtPosition(transform.forward, enterObj.transform.position, ForceMode.Impulse);
+					Vector3 force = transform.forward;
+					force.Normalize();
+	                enterObj.rigidbody.AddForceAtPosition(force * this.ForceOnImpact, enterObj.transform.position, ForceMode.Impulse);
 	            }
 	
 	            // TODO
