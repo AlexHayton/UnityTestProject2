@@ -9,7 +9,7 @@ public class Hud: MonoBehaviour {
 	
 	// Use this for initialization
 	public virtual void Start () {
-		player =  PlayerUtility.GetPlayer ();	
+		player = PlayerUtility.GetLocalPlayer ();	
 	}
 	
 	public virtual float GetTop()

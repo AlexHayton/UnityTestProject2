@@ -16,6 +16,12 @@ public abstract class GUIBase : MonoBehaviour {
 	
 	public virtual void Start()
 	{
+		// Register ourselves
+		GUIHandler handler = PlayerUtility.GetLocalPlayer().GetComponent<GUIHandler>();
+		if (handler)
+		{
+			handler.RegisterGUI(this);
+		}
 	}
 	
 	public virtual bool SelfTest()

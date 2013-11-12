@@ -3,7 +3,15 @@ using System.Collections;
 
 public class PlayerUtility {
 	
-	public static GameObject GetPlayer() {
-		return GameObject.FindWithTag("Player");
+	private static GameObject _localPlayer = null;
+	
+	public static GameObject GetLocalPlayer()
+	{
+		if (_localPlayer == null)
+		{
+			_localPlayer = GameObject.FindWithTag("Player");
+		}
+		return _localPlayer;
 	}
+	
 }

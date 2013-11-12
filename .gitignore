@@ -57,3 +57,5 @@ Thumbs.db
 /test_build.exe
 
 *.unityproj
+
+/*.suo
