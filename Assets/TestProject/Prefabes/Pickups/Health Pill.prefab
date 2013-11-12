@@ -107,7 +107,7 @@ Light:
   serializedVersion: 3
   m_Type: 2
   m_Color: {r: .470588207, g: 1, b: .496146053, a: 1}
-  m_Intensity: 3.6099999
+  m_Intensity: 2
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -122,7 +122,7 @@ Light:
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -163,8 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpEffectPrefab: {fileID: 0}
   floatsToPlayer: 1
-  floatToPlayerRangeSquared: 16
-  floatToPlayerSpeed: 3
+  floatToPlayerRangeSquared: 4
+  floatToPlayerSpeed: 10
   addedHealth: 20
 --- !u!136 &13600000
 CapsuleCollider:
