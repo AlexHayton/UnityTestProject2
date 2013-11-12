@@ -1,21 +1,26 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class PlayerUtility
+namespace TestProject
 {
-	private static GameObject _localPlayer = null;
-
-	public static GameObject GetLocalPlayer()
+	public class PlayerUtility
 	{
-		if (_localPlayer == null)
+		private static GameObject _localPlayer = null;
+	
+		public static GameObject GetLocalPlayer()
 		{
-			_localPlayer = GameObject.FindWithTag("Player");
+			if (_localPlayer == null)
+			{
+				_localPlayer = GameObject.FindWithTag("Player");
+			}
+			return _localPlayer;
+		}
+		
+		public static IList<GameObject> GetAllPlayers()
+		{
+			return new List<GameObject>();
 		}
 	}
-	
-	public static IList<GameObject> GetAllPlayers()
-		return new List<GameObject>();
-	}
 }
-
 

@@ -20,7 +20,7 @@ public abstract class GUIBase : MonoBehaviour {
 		GUIHandler handler = PlayerUtility.GetLocalPlayer().GetComponent<GUIHandler>();
 		if (handler)
 		{
-			handler.RegisterGui(this);
+			handler.RegisterGUI(this);
 		}
 	}
 	

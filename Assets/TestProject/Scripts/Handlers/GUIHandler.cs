@@ -1,21 +1,23 @@
 using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System;
+using System.Collections.Generic;
 
 // This class parents GameObjects with their GUIs.
 public class GUIHandler : MonoBehaviour
 {
     public List<GUIBase> allGuis = new List<GUIBase>();
-    Dictionary<Type, Set<GUIBase>> guisByType = new Dictionary<Type, List<GUIBase>>();
+    Dictionary<Type, HashSet<GUIBase>> guisByType = new Dictionary<Type, HashSet<GUIBase>>();
     
     public void RegisterGUI<T>(T gui) where T : GUIBase
     {
     	Type GuiType = typeof(T);
-    	if (!guisByType.ContainsKey(typeof<T>))
+    	if (!guisByType.ContainsKey(typeof(T)))
     	{
-    		guisByType[GuiType] = new Set<GUIBase>();
+    		guisByType[GuiType] = new HashSet<GUIBase>();
     	}
-    	Set<GUIBase> guiSet = guisByType[GuiType];
+    	HashSet<GUIBase> guiSet = guisByType[GuiType];
     	
     	guiSet.Add(gui);
     }
@@ -25,12 +27,13 @@ public class GUIHandler : MonoBehaviour
     	return GetGUIs<T>().FirstOrDefault();
     }
     
-    public IEnumerable<T> GetGUIs<T>()
+    public IList<T> GetGUIs<T>()
+	{
     	Type GuiType = typeof(T);
     	IEnumerable<T> guis = null;
-    	if (guisByType.ContainsKey(typeof<T>))
+    	if (guisByType.ContainsKey(typeof(T)))
     	{
-    		return guisByType[GuiType];
+    		return guisByType[GuiType].Cast<T>().ToList();
     	}
     	else
     	{

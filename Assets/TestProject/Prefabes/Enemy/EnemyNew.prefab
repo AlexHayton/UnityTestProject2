@@ -51,6 +51,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: EnemyNew
   m_TagString: Enemy
@@ -254,6 +255,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerSecond: 1
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd5a1d5bb93c44c4ad31170515dc6fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chances: 3200000032000000
+  pickups:
+  - {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
+  - {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}
+  PickupDropChance: 30
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

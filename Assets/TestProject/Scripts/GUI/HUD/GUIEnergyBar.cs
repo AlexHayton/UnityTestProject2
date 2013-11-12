@@ -10,7 +10,7 @@ public class GUIEnergyBar : GUIHorizontalBar {
 	public override void Start()
 	{
 		base.Start();
-		player = PlayerUtility.GetPlayer ();
+		player = PlayerUtility.GetLocalPlayer ();
 	}
 	
 	public override float GetFullScalar()
