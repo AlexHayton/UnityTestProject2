@@ -319,6 +319,18 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 21dba9c37496e494c926e0207804c17b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: .261315882
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 21dba9c37496e494c926e0207804c17b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: .261315882
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 21dba9c37496e494c926e0207804c17b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: .261315882
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6400000, guid: 21dba9c37496e494c926e0207804c17b, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 21dba9c37496e494c926e0207804c17b, type: 3}
@@ -2277,8 +2289,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.34633994, y: 5.04213572, z: 3.08327723}
-  m_Center: {x: 0, y: 2.52106786, z: 0}
+  m_Size: {x: 2.34633994, y: 8, z: 3.08327723}
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!23 &347035728
 Renderer:
   m_ObjectHideFlags: 0
@@ -2314,7 +2326,7 @@ Transform:
   m_GameObject: {fileID: 347035725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.74075127, y: -1.52578306, z: 5.5100441}
-  m_LocalScale: {x: .393700778, y: .393700778, z: .393700778}
+  m_LocalScale: {x: .261315882, y: .261315882, z: .261315882}
   m_Children: []
   m_Father: {fileID: 1727410030}
 --- !u!54 &347035731
@@ -5314,6 +5326,7 @@ GameObject:
   - 92: {fileID: 1848509911}
   - 124: {fileID: 1848509910}
   - 81: {fileID: 1848509909}
+  - 45: {fileID: 734995223}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5345,6 +5358,14 @@ MonoBehaviour:
   alignment: 0
   scale: {x: 100, y: 1.5}
   lockScaleRatio: 0
+--- !u!45 &734995223
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734995221}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 5aab239cac7fe8a4c931693a7535da5c, type: 2}
 --- !u!4 &734995226
 Transform:
   m_ObjectHideFlags: 0
@@ -6127,6 +6148,22 @@ Prefab:
     - target: {fileID: 11400002, guid: 77fd80936ce1b0847aa6e2cead50c7e3, type: 2}
       propertyPath: position.x
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 77fd80936ce1b0847aa6e2cead50c7e3, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 77fd80936ce1b0847aa6e2cead50c7e3, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 77fd80936ce1b0847aa6e2cead50c7e3, type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 77fd80936ce1b0847aa6e2cead50c7e3, type: 2}
+      propertyPath: m_BackGroundColor.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77fd80936ce1b0847aa6e2cead50c7e3, type: 2}
@@ -7156,7 +7193,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 761a217262df27f4b96c920b8a1e6133, type: 3}
       propertyPath: m_LocalScale.y
-      value: .5
+      value: .686820567
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 761a217262df27f4b96c920b8a1e6133, type: 3}
       propertyPath: m_LocalScale.z
@@ -10971,8 +11008,8 @@ GameObject:
   - 33: {fileID: 1563499907}
   - 23: {fileID: 1563499906}
   - 95: {fileID: 1563499904}
-  - 65: {fileID: 1563499905}
   - 54: {fileID: 1563499908}
+  - 65: {fileID: 1563499905}
   m_Layer: 0
   m_Name: Obj_HoloAd_2
   m_TagString: Untagged
@@ -10988,7 +11025,7 @@ Transform:
   m_GameObject: {fileID: 1563499902}
   m_LocalRotation: {x: 0, y: .729723155, z: 0, w: .683742821}
   m_LocalPosition: {x: -3.75924873, y: -1.77578306, z: 9.2600441}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalScale: {x: .5, y: .686820567, z: .5}
   m_Children: []
   m_Father: {fileID: 1727410030}
 --- !u!95 &1563499904
@@ -11014,8 +11051,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.29651046, y: 6.52558994, z: 6.38340664}
-  m_Center: {x: 0, y: 3.26279497, z: -2.38418636e-07}
+  m_Size: {x: 1.5, y: 5, z: 2.5}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!23 &1563499906
 Renderer:
   m_ObjectHideFlags: 0
@@ -12677,7 +12714,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

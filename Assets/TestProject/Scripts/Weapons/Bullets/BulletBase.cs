@@ -60,12 +60,18 @@ public class BulletBase : MonoBehaviour
 			
 			if (doDamage)
 			{
-	            // add force to the object
-	            if (enterObj.rigidbody)
+	            // add force to the object or the collider's parent.
+				Transform affectedTransform = enterObj.transform;
+				if (affectedTransform == null)
+				{
+					affectedTransform = enterObj.transform.parent;
+				}
+				
+	            if (affectedTransform.rigidbody)
 	            {
 					Vector3 force = transform.forward;
 					force.Normalize();
-	                enterObj.rigidbody.AddForceAtPosition(force * this.ForceOnImpact, enterObj.transform.position, ForceMode.Impulse);
+	                affectedTransform.rigidbody.AddForceAtPosition(force * this.ForceOnImpact, enterObj.transform.position, ForceMode.Impulse);
 	            }
 	
 	            // TODO
