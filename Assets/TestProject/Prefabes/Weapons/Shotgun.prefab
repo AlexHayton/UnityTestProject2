@@ -156,6 +156,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!33 &3300000
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -191,12 +194,13 @@ MonoBehaviour:
   BulletPrefab: {fileID: 100000, guid: 948809e7ad000fe49b1ef901f4d1db52, type: 2}
   LaserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
   LaserColor: {r: 0, g: 1, b: 0, a: 0}
+  Icon: {fileID: 0}
   primary: 1
-  Cooldown: .5
+  Cooldown: .699999988
   ConeAngle: .200000003
-  BulletsToCreate: 100
+  BulletsToCreate: 15
   showInMenu: 1
-  EnergyCost: 20
+  EnergyCost: 25
   lastFireTime: 0
 --- !u!1001 &100100000
 Prefab:
