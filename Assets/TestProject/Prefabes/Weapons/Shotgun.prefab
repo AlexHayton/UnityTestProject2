@@ -201,7 +201,9 @@ MonoBehaviour:
   BulletsToCreate: 15
   showInMenu: 1
   EnergyCost: 25
-  lastFireTime: 0
+  DamageOnHit: 4
+  BulletSpeed: 35
+  ForceOnImpact: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

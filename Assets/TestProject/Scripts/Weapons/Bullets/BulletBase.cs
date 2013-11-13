@@ -21,11 +21,11 @@ public class BulletBase : MonoBehaviour
 	
 	public struct StartValues
 	{
-		GameObject owner;
-		Vector3 forward;
-		int DamageOnHit;
-		float Speed;
-		float ForceOnImpact;
+		public GameObject owner;
+		public Vector3 forward;
+		public int DamageOnHit;
+		public float Speed;
+		public float ForceOnImpact;
 	}
 
     // set the start values for the bullet
@@ -34,7 +34,7 @@ public class BulletBase : MonoBehaviour
         this.owner = values.owner;
 		this.values = values;
         ignoreTag = values.owner.tag;
-        float thisBulletSpeed = values.Speed * Random.RandomRange(.9f,1.1f);
+        float thisBulletSpeed = values.Speed * Random.Range(.9f,1.1f);
         rigidbody.velocity = values.forward.normalized * thisBulletSpeed;
         //var stretch = thisBulletSpeed*.001f;
         //transform.localScale = new Vector3(.1f, .1f, stretch);

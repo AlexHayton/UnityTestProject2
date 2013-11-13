@@ -30,10 +30,10 @@ public class GUIHandler : MonoBehaviour
     public IList<T> GetGUIs<T>()
 	{
     	Type GuiType = typeof(T);
-    	IEnumerable<T> guis = null;
     	if (guisByType.ContainsKey(typeof(T)))
     	{
-    		return guisByType[GuiType].Cast<T>().ToList();
+			IEnumerable<T> guis = guisByType[GuiType].Cast<T>();
+    		return guis.ToList();
     	}
     	else
     	{

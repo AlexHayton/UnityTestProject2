@@ -102,11 +102,11 @@ public class WeaponBase : MonoBehaviour, ISelfTest
                 GameObject go = (GameObject)Instantiate(BulletPrefab, bulletOrigin.position, tempRot);
                 BulletBase bullet = go.GetComponent<BulletBase>();
 				float actualBulletSpeed = this.BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
-				StartValues values = new StartValues(){ owner = playerScript.gameObject,
-														forward = dirWithConeRandomization,
-														DamageOnHit = this.DamageOnHit,
-														Speed = actualBulletSpeed,
-														ForceOnImpact = this.ForceOnImpact };
+				BulletBase.StartValues values = new BulletBase.StartValues(){ 	owner = playerScript.gameObject,
+																			  	forward = dirWithConeRandomization,
+																				DamageOnHit = this.DamageOnHit,
+																				Speed = actualBulletSpeed,
+																				ForceOnImpact = this.ForceOnImpact };
                 bullet.SetStartValues(values);
             }
 
