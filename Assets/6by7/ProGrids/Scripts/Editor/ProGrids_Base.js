@@ -2,15 +2,15 @@ class ProGrids_Base extends EditorWindow
 {
 	
 	//external variables
-	var snapSizeGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/spcl_GridSize.tga", typeof(Object)));
-	var snapOnGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_OnLight.tga", typeof(Object)));
-	var snapOffGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_OffLight.tga", typeof(Object)));
-	var snapSelectedGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/btn_snapToGrid.tga", typeof(Object)));
-	var visOnGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_VisOn.tga", typeof(Object)));
-	var visOffGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_VisOff.tga", typeof(Object)));
-	var anglesOnGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_AnglesOn.tga", typeof(Object)));
-	var anglesOffGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_AnglesOff.tga", typeof(Object)));
-	var mySkin = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/CustomSkin_Unity4.guiskin", typeof(Object)));
+	var snapSizeGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/spcl_GridSize.tga", typeof(Texture2D)));
+	var snapOnGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_OnLight.tga", typeof(Texture2D)));
+	var snapOffGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_OffLight.tga", typeof(Texture2D)));
+	var snapSelectedGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/btn_snapToGrid.tga", typeof(Texture2D)));
+	var visOnGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_VisOn.tga", typeof(Texture2D)));
+	var visOffGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_VisOff.tga", typeof(Texture2D)));
+	var anglesOnGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_AnglesOn.tga", typeof(Texture2D)));
+	var anglesOffGraphic = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/ind_AnglesOff.tga", typeof(Texture2D)));
+	var mySkin = (Resources.LoadAssetAtPath("Assets/6by7/Shared/GUI/CustomSkin_Unity4.guiskin", typeof(GUISkin)));
 	//
 	
 	var proGrids : ProGrids;
@@ -52,7 +52,7 @@ class ProGrids_Base extends EditorWindow
 		var go : GameObject = GameObject.Find("_grid");
 		
 		if(go == null) {
-			go = Instantiate((Resources.LoadAssetAtPath("Assets/6by7/ProGrids/_grid.prefab", typeof(Texture2D))), Vector3(-1,0,0), Quaternion.identity);
+			go = Instantiate((Resources.LoadAssetAtPath("Assets/6by7/ProGrids/_grid.prefab", typeof(GameObject))), Vector3(-1,0,0), Quaternion.identity);
 			go.name = "_grid";
 		}
 		
