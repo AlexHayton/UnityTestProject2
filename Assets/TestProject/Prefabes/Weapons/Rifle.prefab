@@ -156,6 +156,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!33 &3300000
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -194,10 +197,10 @@ MonoBehaviour:
   Icon: {fileID: 2800000, guid: 3e0a49a7425cc451fac4bb818f7b1509, type: 3}
   primary: 1
   Cooldown: .100000001
-  ConeAngle: .0500000007
+  ConeAngle: .0399999991
   BulletsToCreate: 1
   showInMenu: 1
-  EnergyCost: 4
+  EnergyCost: 3.79999995
   lastFireTime: 0
 --- !u!1001 &100100000
 Prefab:
