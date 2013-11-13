@@ -6,11 +6,7 @@ public class BulletBase : MonoBehaviour
 {
 
     public GameObject DestroyPrefab;
-    public int DamageOnHit = 10;
-    public float Speed = 20f;
-    public float ForceOnImpact = 20.0f;
-    public bool IsScatter = false;
-
+    private StartValues values;
 
     private float dist = 50f;
     private GameObject owner;
@@ -22,14 +18,24 @@ public class BulletBase : MonoBehaviour
     {
         Destroy(gameObject);
     }
+	
+	public struct StartValues
+	{
+		GameObject owner;
+		Vector3 forward;
+		int DamageOnHit;
+		float Speed;
+		float ForceOnImpact;
+	}
 
     // set the start values for the bullet
-    public virtual void SetStartValues(GameObject owner, Vector3 forward, float speedMult)
+    public virtual void SetStartValues(StartValues values)
     {
-        this.owner = owner;
-        ignoreTag = owner.tag;
-        var thisBulletSpeed = Speed * speedMult * Random.RandomRange(.9f,1.1f);
-        rigidbody.velocity = forward.normalized * thisBulletSpeed;
+        this.owner = values.owner;
+		this.values = values;
+        ignoreTag = values.owner.tag;
+        float thisBulletSpeed = values.Speed * Random.RandomRange(.9f,1.1f);
+        rigidbody.velocity = values.forward.normalized * thisBulletSpeed;
         //var stretch = thisBulletSpeed*.001f;
         //transform.localScale = new Vector3(.1f, .1f, stretch);
     }
@@ -71,14 +77,14 @@ public class BulletBase : MonoBehaviour
                 {
                     Vector3 force = transform.forward;
                     force.Normalize();
-                    affectedTransform.rigidbody.AddForceAtPosition(force * this.ForceOnImpact, enterObj.transform.position, ForceMode.Impulse);
+                    affectedTransform.rigidbody.AddForceAtPosition(force * values.ForceOnImpact, enterObj.transform.position, ForceMode.Impulse);
                 }
 
                 // TODO
                 // aply damage
                 if (health)
                 {
-                    health.DeductHealth(owner, DamageOnHit);
+                    health.DeductHealth(owner, values.DamageOnHit);
                 }
             }
             if (health == null || doDamage)

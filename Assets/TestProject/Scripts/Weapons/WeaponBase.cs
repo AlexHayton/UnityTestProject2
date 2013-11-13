@@ -22,14 +22,18 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public int BulletsToCreate = 1;
     public bool showInMenu = true;
     public float EnergyCost = 1;
+	public int DamageOnHit = 10;
+    public float BulletSpeed = 20.0f;
+    public float ForceOnImpact = 20.0f;
+	private bool IsScatter = false;
 
     private Random rnd;
 
-    public float lastFireTime;
+    private float lastFireTime = 0.0f;
 
     public virtual void Start()
     {
-        lastFireTime = 0;
+        lastFireTime = 0.0f;
         rnd = new Random();
         var playerCapsule = GameObject.FindGameObjectWithTag("Player");
         playerScript = playerCapsule.GetComponent<RigidPlayerScript>();
@@ -97,7 +101,13 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
                 GameObject go = (GameObject)Instantiate(BulletPrefab, bulletOrigin.position, tempRot);
                 BulletBase bullet = go.GetComponent<BulletBase>();
-                bullet.SetStartValues(playerScript.gameObject, dirWithConeRandomization, Mathf.Cos(Mathf.Deg2Rad * spreadAngle));
+				float actualBulletSpeed = this.BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
+				StartValues values = new StartValues(){ owner = playerScript.gameObject,
+														forward = dirWithConeRandomization,
+														DamageOnHit = this.DamageOnHit,
+														Speed = actualBulletSpeed,
+														ForceOnImpact = this.ForceOnImpact };
+                bullet.SetStartValues(values);
             }
 
             this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
