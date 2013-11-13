@@ -45,7 +45,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         transform.rotation = playerCapsule.transform.rotation;
         transform.position = transform.position + (playerGrip - attachPoint.position);
         energyHandler = gameObject.transform.root.GetComponentInChildren<EnergyHandler>();
-        laserObject.renderer.sharedMaterial.color = LaserColor;
+        laserObject.renderer.material.color = LaserColor;
     }
 
     public bool SelfTest()
