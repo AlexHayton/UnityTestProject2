@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TestProject;
 
 /// <summary>
 /// Weapon Holder script.
@@ -84,6 +85,18 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
             }
         }
     }
+	
+	public WeaponBase GetWeaponInSlot(int slot)
+	{
+		WeaponBase weapon = null;
+		
+		if (Weapons.Count > slot)
+		{
+			weapon = Weapons[slot];
+		}
+		
+		return weapon;
+	}
 
     public void PickUpWeapon(ref WeaponBase weapon)
     {

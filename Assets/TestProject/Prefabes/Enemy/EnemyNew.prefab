@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd5a1d5bb93c44c4ad31170515dc6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chances: 3200000046000000
+  chances: 1e00000046000000
   pickups:
   - {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
   - {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}

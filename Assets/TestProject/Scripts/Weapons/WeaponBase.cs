@@ -7,6 +7,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public GameObject BulletPrefab;
     public GameObject LaserPointer;
     public Color LaserColor;
+	public Texture2D Icon;
 
     private LaserBase actualLaser;
     private RigidPlayerScript playerScript;
@@ -59,6 +60,11 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         SelfTestUtility.HasComponent<EnergyHandler>(ref fail, playerScript.gameObject);
         return fail;
     }
+	
+	public Texture2D GetIcon()
+	{
+		return this.Icon;
+	}
 
     public void Fire()
     {

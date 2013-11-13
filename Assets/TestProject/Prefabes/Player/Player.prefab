@@ -460,6 +460,7 @@ GameObject:
   - 92: {fileID: 9200000}
   - 124: {fileID: 12400000}
   - 81: {fileID: 8100000}
+  - 45: {fileID: 4500000}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1914,8 +1915,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100040}
-  m_LocalRotation: {x: .144607872, y: -.377966672, z: -.0598985553, w: .912492156}
-  m_LocalPosition: {x: 4.24149704, y: 1.13217616, z: -5.62989855}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .5, y: -1.75, z: -5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400212}
@@ -2909,8 +2910,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100210}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -2.98023224e-07, y: 3.59490514e-07, z: 4.24683094e-07, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400212}
@@ -2935,8 +2936,8 @@ Transform:
   m_LocalPosition: {x: .5, y: -1.75, z: -5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400210}
   - {fileID: 400208}
+  - {fileID: 400210}
   - {fileID: 400070}
   - {fileID: 400072}
   m_Father: {fileID: 400042}
@@ -3032,6 +3033,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100130}
   m_Mesh: {fileID: 4300000, guid: b045db3a2cfbe4961a6f86839f93cd30, type: 3}
+--- !u!45 &4500000
+Skybox:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100058}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 5aab239cac7fe8a4c931693a7535da5c, type: 2}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -3145,9 +3154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca7de6749a7db742b4fe0468758eca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrimaryWeapon: {fileID: 0}
-  PrimaryWeapons:
+  selectedIndex: 0
+  Weapons:
   - {fileID: 11400000, guid: 563c8bb51e8cece4e82385d1903555d9, type: 2}
+  - {fileID: 11400000, guid: 78118bef679375e4c9d6b4e527d437e5, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3562,18 +3572,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 100210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 037073738c790ac4797fb0da9c227cc7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d1e84e493c6c419abf2f5756e797055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 77, y: 0}
   visible: 1
-  guiStyleObject: {fileID: 0}
-  guiStylePrefab: {fileID: 11400002}
+  guiStyleObject: {fileID: 100070}
+  guiStylePrefab: {fileID: 11400004}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
-  text: 1
+  text: 
   image: {fileID: 0}
+  weaponSlot: 1
 --- !u!114 &11400046
 MonoBehaviour:
   m_ObjectHideFlags: 1
