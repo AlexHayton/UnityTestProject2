@@ -76,12 +76,14 @@ public class LaserBase : MonoBehaviour
             laserSpot.transform.localScale = new Vector3(LaserSpotSize, LaserSpotSize, LaserSpotSize * stretchAmount);
             laserSpot.renderer.material.SetFloat("_Overbright", (originalSpotBrightness - .1f * transform.localScale.z / originalLaserScale));
             laserSpot.transform.position = origin.position + origin.forward * closestHit.distance + .01f * laserSpot.transform.up;
+			laserSpot.renderer.enabled = true;
         }
 
         else
         {
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, originalLaserScale);
             transform.position = origin.position + transform.forward * originaLaserlLength / 2;
+			laserSpot.renderer.enabled = false;
         }
         var tilt = Mathf.Cos(transform.eulerAngles.y * radsPerDeg + 45);
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, tilt * 45);
