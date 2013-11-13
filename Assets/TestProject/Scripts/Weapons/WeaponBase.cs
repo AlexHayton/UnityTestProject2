@@ -72,6 +72,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
             {
                 // apply scatter
                 var dirWithConeRandomization = direction + new Vector3(Random.Range(-ConeAngle, ConeAngle), 0, Random.Range(-ConeAngle, ConeAngle));
+                float spreadAngle = Vector3.Angle(direction, dirWithConeRandomization);
                 Quaternion tempRot = BulletPrefab.transform.rotation;
                 tempRot.SetFromToRotation(BulletPrefab.transform.forward, dirWithConeRandomization);
 
@@ -90,7 +91,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
                 GameObject go = (GameObject)Instantiate(BulletPrefab, bulletOrigin.position, tempRot);
                 BulletBase bullet = go.GetComponent<BulletBase>();
-                bullet.SetStartValues(playerScript.gameObject, dirWithConeRandomization);
+                bullet.SetStartValues(playerScript.gameObject, dirWithConeRandomization, Mathf.Cos(Mathf.Deg2Rad * spreadAngle));
             }
 
             this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);

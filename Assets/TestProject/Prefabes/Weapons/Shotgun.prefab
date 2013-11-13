@@ -194,7 +194,7 @@ MonoBehaviour:
   primary: 1
   Cooldown: .5
   ConeAngle: .200000003
-  BulletsToCreate: 20
+  BulletsToCreate: 100
   showInMenu: 1
   EnergyCost: 20
   lastFireTime: 0
