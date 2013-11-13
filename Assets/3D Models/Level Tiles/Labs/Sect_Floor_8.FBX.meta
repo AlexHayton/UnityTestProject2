@@ -7,16 +7,24 @@ ModelImporter:
     100002: Floor_8
     100004: Sect_Floor_3B_004
     100006: //RootNode
+    100008: Floor_8_Tube
     400000: ContainerTube_A_004
     400002: Floor_8
     400004: Sect_Floor_3B_004
     400006: //RootNode
+    400008: Floor_8_Tube
     2300000: ContainerTube_A_004
     2300002: Sect_Floor_3B_004
+    2300004: Floor_8_Tube
+    2300006: //RootNode
     3300000: ContainerTube_A_004
     3300002: Sect_Floor_3B_004
+    3300004: Floor_8_Tube
+    3300006: //RootNode
     4300000: Sect_Floor_3B_004
     4300002: ContainerTube_A_004
+    4300004: Floor_8
+    4300006: Floor_8_Tube
     9500000: //RootNode
   materials:
     importMaterials: 1
