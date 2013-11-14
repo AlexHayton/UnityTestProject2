@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class BulletBase : MonoBehaviour
 {
@@ -39,11 +39,6 @@ public class BulletBase : MonoBehaviour
         //var stretch = thisBulletSpeed*.001f;
         //transform.localScale = new Vector3(.1f, .1f, stretch);
     }
-
-	void OnColliderEnter()
-	{
-		Destroy(gameObject);
-	}
 
     //void  OnTriggerEnter (Collider collision) {
     void OnTriggerEnter(Collider enterObj)
