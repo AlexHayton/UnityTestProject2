@@ -198,11 +198,11 @@ MonoBehaviour:
   primary: 1
   Cooldown: .699999988
   ConeAngle: .200000003
-  BulletsToCreate: 15
+  BulletsToCreate: 20
   showInMenu: 1
   EnergyCost: 25
   DamageOnHit: 4
-  BulletSpeed: 35
+  BulletSpeed: 70
   ForceOnImpact: 4
 --- !u!1001 &100100000
 Prefab:
