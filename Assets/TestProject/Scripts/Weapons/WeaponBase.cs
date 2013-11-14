@@ -99,7 +99,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
                 //Debug.Log (tempRot.ToString ());
                 //tempRot.y = transform.rotation.y;
 
-                GameObject go = (GameObject)Instantiate(BulletPrefab, bulletOrigin.position, tempRot);
+                GameObject go = Instantiate(BulletPrefab, bulletOrigin.position, tempRot) as GameObject;
                 BulletBase bullet = go.GetComponent<BulletBase>();
 				float actualBulletSpeed = this.BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
 				BulletBase.StartValues values = new BulletBase.StartValues(){ 	owner = playerScript.gameObject,

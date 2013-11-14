@@ -44,6 +44,25 @@ public class HealthHandler : MonoBehaviour
             }
         }
     }
+    
+    public bool GetCanBeHealed()
+    {
+        return !dead;
+    }
+    
+    public bool GetCanBeHealed(TeamHandler.Team healerTeam)
+    {
+        bool canBeHealed = this.GetCanBeHealed();
+
+        // Check the teams are different
+        TeamHandler teamHandler = this.GetComponent<TeamHandler>();
+        if (teamHandler != null)
+        {
+            canBeHealed = (canBeHealed && teamHandler.GetTeam() != healerTeam);
+        }
+
+        return canBeHealed;
+    }
 
     public bool GetCanTakeDamage()
     {
@@ -52,7 +71,7 @@ public class HealthHandler : MonoBehaviour
 
     public bool GetCanTakeDamage(TeamHandler.Team attackerTeam)
     {
-        bool takeDamage = !dead;
+        bool takeDamage = this.GetCanTakeDamage();
 
         // Check the teams are different
         TeamHandler teamHandler = this.GetComponent<TeamHandler>();

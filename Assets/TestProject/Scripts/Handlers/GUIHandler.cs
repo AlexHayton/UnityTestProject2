@@ -13,7 +13,12 @@ public class GUIHandler : MonoBehaviour
     public void RegisterGUI<T>(T gui) where T : GUIBase
     {
     	Type GuiType = typeof(T);
-    	if (!guisByType.ContainsKey(typeof(T)))
+    	this.RegisterGUI(GuiType, gui);
+    }
+    
+    public void RegisterGUI(Type GuiType, GuiBase gui)
+    {
+    	if (!guisByType.ContainsKey(GuiType))
     	{
     		guisByType[GuiType] = new HashSet<GUIBase>();
     	}
