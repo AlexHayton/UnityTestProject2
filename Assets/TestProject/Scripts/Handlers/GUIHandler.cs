@@ -16,7 +16,7 @@ public class GUIHandler : MonoBehaviour
     	this.RegisterGUI(GuiType, gui);
     }
     
-    public void RegisterGUI(Type GuiType, GuiBase gui)
+    public void RegisterGUI(Type GuiType, GUIBase gui)
     {
     	if (!guisByType.ContainsKey(GuiType))
     	{

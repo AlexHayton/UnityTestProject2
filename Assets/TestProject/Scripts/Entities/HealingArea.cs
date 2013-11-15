@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent(SphereCollider)]
-[RequireComponent(TeamHandler)]
+[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(TeamHandler))]
 public class HealingArea : MonoBehaviour {
 	
 	public float healRate;
-	private teamHandler;
+	private TeamHandler teamHandler;
 	
 	void Start()
 	{
@@ -15,6 +15,7 @@ public class HealingArea : MonoBehaviour {
 	
 	// Slowly heal any objects in the area.
 	void OnTriggerStay(Collider other) {
+
 		GameObject target = other.gameObject;
         if (target)
         {
@@ -22,11 +23,12 @@ public class HealingArea : MonoBehaviour {
         	
         	if (handler)
         	{
-        		if (handler.GetCanBeHealed(teamHandler.GetTeam())
+        		if (handler.GetCanBeHealed(teamHandler.GetTeam()))
         		{
-        			handler.AddHealth(healRate * Time.delta);
+        			handler.AddHealth(healRate * Time.deltaTime);
         		}
         	}
         }
+
     }
 }

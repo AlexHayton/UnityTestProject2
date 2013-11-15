@@ -95,9 +95,14 @@ public class HealthHandler : MonoBehaviour
 
     public void AddHealth(int health)
     {
-        // not greater than maxHealth
-        this.health = Mathf.Min(this.health + health, maxHealth);
+		this.AddHealth((float)health);
     }
+
+	public void AddHealth(float health)
+	{
+		// not greater than maxHealth
+		this.health = Mathf.Min(this.health + health, maxHealth);
+	}
 
     public bool DeductHealth(GameObject doer, int damage)
     {

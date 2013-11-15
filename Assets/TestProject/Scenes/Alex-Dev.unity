@@ -856,6 +856,7 @@ GameObject:
   - 95: {fileID: 126274393}
   - 136: {fileID: 126274392}
   - 114: {fileID: 126274391}
+  - 96: {fileID: 126274396}
   m_Layer: 10
   m_Name: Energy Pill
   m_TagString: NoCollide
@@ -871,7 +872,7 @@ Transform:
   m_GameObject: {fileID: 126274389}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 14.9666891, y: -1.7018441, z: -2.20122671}
-  m_LocalScale: {x: .450643301, y: .450643301, z: .43804583}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 1941301625}
   m_Father: {fileID: 0}
@@ -951,6 +952,49 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2045029834}
   m_GameObject: {fileID: 126274389}
   m_Mesh: {fileID: 4300000, guid: 366815f548f0fc04a9fc6caf00b66f54, type: 3}
+--- !u!96 &126274396
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: aa26b9f10b9e94ee9aed4542bb3c704c,
+    type: 2}
+  m_PrefabInternal: {fileID: 2045029834}
+  m_GameObject: {fileID: 126274389}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: c3077ee3345bb554cab0b8e2674c8751, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1 &137251615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1304,7 @@ GameObject:
   - 95: {fileID: 175913680}
   - 136: {fileID: 175913679}
   - 114: {fileID: 175913678}
+  - 96: {fileID: 175913684}
   m_Layer: 10
   m_Name: Health Pill
   m_TagString: NoCollide
@@ -1351,10 +1396,53 @@ Transform:
   m_GameObject: {fileID: 175913677}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 6.75, y: -1.5, z: -9}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 1912459844}
   m_Father: {fileID: 0}
+--- !u!96 &175913684
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: c058639dbcd0a4b6097c848f81a55a7d,
+    type: 2}
+  m_PrefabInternal: {fileID: 196373433}
+  m_GameObject: {fileID: 175913677}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 598af52f81946944d9e5105611b6b0e2, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1001 &196373433
 Prefab:
   m_ObjectHideFlags: 0
@@ -2455,6 +2543,7 @@ GameObject:
   - 95: {fileID: 318857459}
   - 136: {fileID: 318857458}
   - 114: {fileID: 318857457}
+  - 96: {fileID: 318857462}
   m_Layer: 10
   m_Name: Energy Pill
   m_TagString: NoCollide
@@ -2470,7 +2559,7 @@ Transform:
   m_GameObject: {fileID: 318857455}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 9.87093449, y: -1.7018441, z: -2.20122671}
-  m_LocalScale: {x: .450643301, y: .450643301, z: .43804583}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 163591763}
   m_Father: {fileID: 0}
@@ -2550,6 +2639,49 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1851139799}
   m_GameObject: {fileID: 318857455}
   m_Mesh: {fileID: 4300000, guid: 366815f548f0fc04a9fc6caf00b66f54, type: 3}
+--- !u!96 &318857462
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: aa26b9f10b9e94ee9aed4542bb3c704c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1851139799}
+  m_GameObject: {fileID: 318857455}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: c3077ee3345bb554cab0b8e2674c8751, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1 &321280228
 GameObject:
   m_ObjectHideFlags: 0
@@ -5009,6 +5141,7 @@ GameObject:
   - 95: {fileID: 666983583}
   - 136: {fileID: 666983582}
   - 114: {fileID: 666983581}
+  - 96: {fileID: 666983587}
   m_Layer: 10
   m_Name: Health Pill
   m_TagString: NoCollide
@@ -5100,10 +5233,53 @@ Transform:
   m_GameObject: {fileID: 666983580}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 11.3751812, y: -1.5, z: -9}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 1523472432}
   m_Father: {fileID: 0}
+--- !u!96 &666983587
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: c058639dbcd0a4b6097c848f81a55a7d,
+    type: 2}
+  m_PrefabInternal: {fileID: 771341884}
+  m_GameObject: {fileID: 666983580}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 598af52f81946944d9e5105611b6b0e2, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1 &668611388
 GameObject:
   m_ObjectHideFlags: 0
@@ -5315,6 +5491,7 @@ GameObject:
   - 95: {fileID: 699843696}
   - 136: {fileID: 699843695}
   - 114: {fileID: 699843694}
+  - 96: {fileID: 699843700}
   m_Layer: 10
   m_Name: Energy Pill
   m_TagString: NoCollide
@@ -5406,10 +5583,53 @@ Transform:
   m_GameObject: {fileID: 699843693}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 13.0150423, y: -1.7018441, z: -2.20122671}
-  m_LocalScale: {x: .450643301, y: .450643301, z: .43804583}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 1540402323}
   m_Father: {fileID: 0}
+--- !u!96 &699843700
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: aa26b9f10b9e94ee9aed4542bb3c704c,
+    type: 2}
+  m_PrefabInternal: {fileID: 69077806}
+  m_GameObject: {fileID: 699843693}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: c3077ee3345bb554cab0b8e2674c8751, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1 &709011554
 GameObject:
   m_ObjectHideFlags: 0
@@ -5423,6 +5643,7 @@ GameObject:
   - 95: {fileID: 709011558}
   - 136: {fileID: 709011557}
   - 114: {fileID: 709011556}
+  - 96: {fileID: 709011561}
   m_Layer: 10
   m_Name: Energy Pill
   m_TagString: NoCollide
@@ -5438,7 +5659,7 @@ Transform:
   m_GameObject: {fileID: 709011554}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 7.91928768, y: -1.7018441, z: -2.20122671}
-  m_LocalScale: {x: .450643301, y: .450643301, z: .43804583}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 1124818248}
   m_Father: {fileID: 0}
@@ -5518,6 +5739,49 @@ MeshFilter:
   m_PrefabInternal: {fileID: 341560150}
   m_GameObject: {fileID: 709011554}
   m_Mesh: {fileID: 4300000, guid: 366815f548f0fc04a9fc6caf00b66f54, type: 3}
+--- !u!96 &709011561
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: aa26b9f10b9e94ee9aed4542bb3c704c,
+    type: 2}
+  m_PrefabInternal: {fileID: 341560150}
+  m_GameObject: {fileID: 709011554}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: c3077ee3345bb554cab0b8e2674c8751, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1 &709999245
 GameObject:
   m_ObjectHideFlags: 0
@@ -5782,6 +6046,7 @@ GameObject:
   - 95: {fileID: 728310694}
   - 136: {fileID: 728310693}
   - 114: {fileID: 728310692}
+  - 96: {fileID: 728310698}
   m_Layer: 10
   m_Name: Health Pill
   m_TagString: NoCollide
@@ -5873,10 +6138,53 @@ Transform:
   m_GameObject: {fileID: 728310691}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 14.3383675, y: -1.5, z: -9}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 1283501460}
   m_Father: {fileID: 0}
+--- !u!96 &728310698
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: c058639dbcd0a4b6097c848f81a55a7d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1073868942}
+  m_GameObject: {fileID: 728310691}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 598af52f81946944d9e5105611b6b0e2, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1 &729862654
 GameObject:
   m_ObjectHideFlags: 0
@@ -6981,6 +7289,7 @@ GameObject:
   - 95: {fileID: 867838505}
   - 136: {fileID: 867838504}
   - 114: {fileID: 867838503}
+  - 96: {fileID: 867838508}
   m_Layer: 10
   m_Name: Energy Pill
   m_TagString: NoCollide
@@ -6996,7 +7305,7 @@ Transform:
   m_GameObject: {fileID: 867838501}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 11.3542833, y: -1.7018441, z: -2.20122671}
-  m_LocalScale: {x: .450643301, y: .450643301, z: .43804583}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 994109870}
   m_Father: {fileID: 0}
@@ -7076,6 +7385,49 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1459606214}
   m_GameObject: {fileID: 867838501}
   m_Mesh: {fileID: 4300000, guid: 366815f548f0fc04a9fc6caf00b66f54, type: 3}
+--- !u!96 &867838508
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: aa26b9f10b9e94ee9aed4542bb3c704c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1459606214}
+  m_GameObject: {fileID: 867838501}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: c3077ee3345bb554cab0b8e2674c8751, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1 &869963409
 GameObject:
   m_ObjectHideFlags: 0
@@ -7545,6 +7897,7 @@ GameObject:
   - 95: {fileID: 945294578}
   - 136: {fileID: 945294577}
   - 114: {fileID: 945294576}
+  - 96: {fileID: 945294581}
   m_Layer: 10
   m_Name: Health Pill
   m_TagString: NoCollide
@@ -7560,7 +7913,7 @@ Transform:
   m_GameObject: {fileID: 945294574}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 9.0971508, y: -1.5, z: -9}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 1680026156}
   m_Father: {fileID: 0}
@@ -7640,6 +7993,49 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1750101237}
   m_GameObject: {fileID: 945294574}
   m_Mesh: {fileID: 4300000, guid: 12d5b6f300b63644ab01fb20f45c10d5, type: 3}
+--- !u!96 &945294581
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: c058639dbcd0a4b6097c848f81a55a7d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1750101237}
+  m_GameObject: {fileID: 945294574}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 598af52f81946944d9e5105611b6b0e2, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1 &971828098
 GameObject:
   m_ObjectHideFlags: 0
@@ -11158,6 +11554,7 @@ GameObject:
   - 95: {fileID: 1511772563}
   - 136: {fileID: 1511772562}
   - 114: {fileID: 1511772561}
+  - 96: {fileID: 1511772566}
   m_Layer: 10
   m_Name: Health Pill
   m_TagString: NoCollide
@@ -11173,7 +11570,7 @@ Transform:
   m_GameObject: {fileID: 1511772559}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 17.7012997, y: -1.5, z: -9}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 623003064}
   m_Father: {fileID: 0}
@@ -11253,6 +11650,49 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1173715083}
   m_GameObject: {fileID: 1511772559}
   m_Mesh: {fileID: 4300000, guid: 12d5b6f300b63644ab01fb20f45c10d5, type: 3}
+--- !u!96 &1511772566
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: c058639dbcd0a4b6097c848f81a55a7d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1173715083}
+  m_GameObject: {fileID: 1511772559}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 598af52f81946944d9e5105611b6b0e2, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1 &1523472431
 GameObject:
   m_ObjectHideFlags: 0
@@ -11844,6 +12284,7 @@ GameObject:
   - 95: {fileID: 1578998271}
   - 136: {fileID: 1578998270}
   - 114: {fileID: 1578998269}
+  - 96: {fileID: 1578998275}
   m_Layer: 10
   m_Name: Energy Pill
   m_TagString: NoCollide
@@ -11935,10 +12376,53 @@ Transform:
   m_GameObject: {fileID: 1578998268}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
   m_LocalPosition: {x: 6.25, y: -1.48550415, z: -2.5}
-  m_LocalScale: {x: .450643301, y: .450643301, z: .43804583}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 1547576502}
   m_Father: {fileID: 0}
+--- !u!96 &1578998275
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: aa26b9f10b9e94ee9aed4542bb3c704c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1780961188}
+  m_GameObject: {fileID: 1578998268}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: c3077ee3345bb554cab0b8e2674c8751, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Time: .100000001
+  m_StartWidth: .300000012
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!1 &1634557166
 GameObject:
   m_ObjectHideFlags: 0

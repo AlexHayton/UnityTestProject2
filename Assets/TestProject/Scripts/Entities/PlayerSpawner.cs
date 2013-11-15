@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerSpawner : MonoBehaviour {
 	
@@ -13,16 +14,16 @@ public class PlayerSpawner : MonoBehaviour {
 		GameObject newPlayer = Instantiate(playerPrefab, spawnPos, initialRotation) as GameObject;
 		
 		// Create and register GUIs
-		GameObject guiAttachPoint = newPlayer.FindChild("GUI");
-		this.CreateAndRegisterGUI(guiAttachPoint.transform, guiPrefabs);
+		Transform guiAttachPoint = newPlayer.transform.FindChild("GUI");
+		GUIHandler handler = newPlayer.GetComponent<GUIHandler>();
+		this.CreateAndRegisterGUI(handler, guiAttachPoint, guiPrefabs);
 	}
 	
-	private CreateAndRegisterGUI(Transform guiAttachPoint, List<GameObject> guiPrefabList)
+	private void CreateAndRegisterGUI(GUIHandler handler, Transform guiAttachPoint, List<GameObject> guiPrefabList)
 	{
-		GUIHandler handler = newPlayer.GetComponent<GUIHandler>();
 		foreach (GameObject guiPrefab in guiPrefabs)
 		{
-			GameObject guiInstance = Instantiate(guiPrefab, spawnPos, initialRotation) as GameObject;
+			GameObject guiInstance = Instantiate(guiPrefab, this.transform.position, initialRotation) as GameObject;
 			
 			// Attach the GUI GameObject here.
 			if (guiAttachPoint)
