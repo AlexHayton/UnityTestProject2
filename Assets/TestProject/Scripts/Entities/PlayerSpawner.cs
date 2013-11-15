@@ -6,13 +6,14 @@ using TestProject;
 public class PlayerSpawner : MonoBehaviour {
 	
 	public GameObject playerPrefab;
+	public Vector3 spawnOffset;
 	public Quaternion initialRotation;
 	public List<GameObject> guiPrefabs = new List<GameObject>();
 	
 	void Start() {
 		// Spawn the player
 		Vector3 spawnPos = this.GetSpawnPosition();
-		GameObject newPlayer = Instantiate(playerPrefab, spawnPos, initialRotation) as GameObject;
+		GameObject newPlayer = Instantiate(playerPrefab, spawnPos + spawnOffset, initialRotation) as GameObject;
 		
 		// Create and register GUIs
 		Transform guiAttachPoint = newPlayer.transform.FindChild("HUD");
