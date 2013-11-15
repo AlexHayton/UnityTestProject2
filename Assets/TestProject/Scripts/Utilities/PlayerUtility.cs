@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TestProject
 {
@@ -16,10 +17,20 @@ namespace TestProject
 			}
 			return _localPlayer;
 		}
-		
-		public static IList<GameObject> GetAllPlayers()
+
+		public static GameObject GetNearestPlayer(Vector3 position)
 		{
-			return new List<GameObject>();
+			return GetAllPlayersInClosestOrder(position).FirstOrDefault();
+		}
+
+		public static IEnumerable<GameObject> GetAllPlayersInClosestOrder(Vector3 position)
+		{
+			return GetAllPlayers().OrderBy(player => (position - player.transform.position).sqrMagnitude);
+		}
+		
+		public static GameObject[] GetAllPlayers()
+		{
+			return GameObject.FindGameObjectsWithTag("Player");
 		}
 	}
 }

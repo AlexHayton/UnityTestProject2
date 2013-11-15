@@ -1,17 +1,20 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerUtility {
-	
-	private static GameObject _localPlayer = null;
-	
-	public static GameObject GetLocalPlayer()
-	{
-		if (_localPlayer == null)
+namespace ExtraEntities
+{
+	public class PlayerUtility {
+		
+		private static GameObject _localPlayer = null;
+		
+		public static GameObject GetLocalPlayer()
 		{
-			_localPlayer = GameObject.FindWithTag("Player");
+			if (_localPlayer == null)
+			{
+				_localPlayer = GameObject.FindWithTag("Player");
+			}
+			return _localPlayer;
 		}
-		return _localPlayer;
+		
 	}
-	
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TestProject;
 
 public class PlayerSpawner : MonoBehaviour {
 	
@@ -14,7 +15,7 @@ public class PlayerSpawner : MonoBehaviour {
 		GameObject newPlayer = Instantiate(playerPrefab, spawnPos, initialRotation) as GameObject;
 		
 		// Create and register GUIs
-		Transform guiAttachPoint = newPlayer.transform.FindChild("GUI");
+		Transform guiAttachPoint = newPlayer.transform.FindChild("HUD");
 		GUIHandler handler = newPlayer.GetComponent<GUIHandler>();
 		this.CreateAndRegisterGUI(handler, guiAttachPoint, guiPrefabs);
 	}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TestProject;
 	
 public class Hud: MonoBehaviour {
 

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TestProject;
+using System.Collections.Generic;
 
 [RequireComponent (typeof (CapsuleCollider))]
 public abstract class Pickupable : MonoBehaviour {
@@ -12,7 +14,6 @@ public abstract class Pickupable : MonoBehaviour {
 	
 	void Start()
 	{
-		player = PlayerUtility.GetLocalPlayer ();
 		CapsuleCollider _capsule = GetComponent<CapsuleCollider>();
 		_capsule.isTrigger = true;
 	}
@@ -39,19 +40,29 @@ public abstract class Pickupable : MonoBehaviour {
 	
 	void Update()
 	{
-		// Float towards the player if the player is near enough.
-		if (this.floatsToPlayer && this.CanBePickedUpBy(this.player) && this.IsNearEnoughToPickup())
+		IEnumerable<GameObject> players = PlayerUtility.GetAllPlayersInClosestOrder(this.transform.position);
+		IEnumerator<GameObject> enumerator = players.GetEnumerator();
+
+		bool foundPlayer = false;
+		while (!foundPlayer && enumerator.MoveNext())
 		{
-			this.FloatTowardsPlayer();
+			GameObject player = enumerator.Current;
+
+			// Float towards the player if the player is near enough.
+			if (this.floatsToPlayer && this.CanBePickedUpBy(player) && this.IsNearEnoughToPickup(player))
+			{
+				this.FloatTowardsPlayer(player);
+				foundPlayer = true;
+			}
 		}
 	}
 	
-	private bool IsNearEnoughToPickup()
+	private bool IsNearEnoughToPickup(GameObject player)
 	{
 		return (transform.position - player.transform.position).sqrMagnitude < floatToPlayerRangeSquared;
 	}
 	
-	private void FloatTowardsPlayer()
+	private void FloatTowardsPlayer(GameObject player)
 	{
     	transform.position = Vector3.MoveTowards(transform.position, player.transform.position, floatToPlayerSpeed*Time.deltaTime);
 	}

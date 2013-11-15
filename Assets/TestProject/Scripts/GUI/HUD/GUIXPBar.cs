@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using TestProject;
 	
 [ExecuteInEditMode()]
 public class GUIXPBar : GUIHorizontalBar {
