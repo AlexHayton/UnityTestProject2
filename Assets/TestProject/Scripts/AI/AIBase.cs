@@ -18,6 +18,7 @@ public class AIBase : MonoBehaviour {
 	public int targetSearchRange = 50;
 	public ActivationMask activation;
 	public LayerMask targetSearchLayer;
+	public bool movementAllowed = true;
 		
 	internal GameObject target;	
 	internal HealthHandler targetHealthHandler;
@@ -79,7 +80,7 @@ public class AIBase : MonoBehaviour {
 		if (m_Agent.remainingDistance <= m_Agent.stoppingDistance) {	
 			FindNewTarget();
 			if (!target) {
-				m_Agent.SetDestination(NavMeshUtility.GetRandomPoint(this.transform.position, walkAroundDistance));
+				MoveTo (NavMeshUtility.GetRandomPoint(this.transform.position, walkAroundDistance));				
 			}
 		}
 		
@@ -90,7 +91,7 @@ public class AIBase : MonoBehaviour {
 			if (Vector3.Distance(target.transform.position , transform.position) <= m_Agent.stoppingDistance + 0.1) {
 				Attack ();
 			} else {
-				m_Agent.destination =  target.transform.position;
+				MoveTo(target.transform.position);
 			}
 		} else {
 			myState = State.Idle;	
@@ -131,8 +132,7 @@ public class AIBase : MonoBehaviour {
 			if (targetHealthHandler) {
 				target = newTarget;
 				myState = State.Attack;
-				//m_Agent.SetDestination(newTarget.transform.position);
-				m_Agent.destination = newTarget.transform.position;
+				MoveTo(newTarget.transform.position);
 			}
 		}
 	}
@@ -143,6 +143,12 @@ public class AIBase : MonoBehaviour {
 					Vector3.Distance(transform.position, newTarget.transform.position);			
 		} else {
 			return true;	
+		}
+	}
+
+	internal virtual void MoveTo(Vector3 position) {
+		if (movementAllowed) {
+			m_Agent.destination = position;
 		}
 	}
 	

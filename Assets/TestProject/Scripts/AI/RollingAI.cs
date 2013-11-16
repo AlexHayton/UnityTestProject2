@@ -3,7 +3,6 @@ using System.Collections;
 
 public class RollingAI : AIBase {
 
-
 	public override void Start() {
 		base.Start ();
 		m_Agent.updateRotation = false;
@@ -18,6 +17,8 @@ public class RollingAI : AIBase {
 
 
 	internal void CheckRotation() {
-		this.rigidbody.AddForce (m_Agent.velocity );
+		if (movementAllowed) {
+			this.rigidbody.AddForce (m_Agent.velocity );
+		}
 	}
 }

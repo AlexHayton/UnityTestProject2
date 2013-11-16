@@ -5,12 +5,17 @@ public class ExplodeWeapon : AIWeaponBase {
 
 	public float explodeTime = 1.0f;
 	public float explosionRadius = 5f;
-	public float explosionForce = 10f;
+	public float explosionForce = 50f;
 	public GameObject glowPrefab;
 	public GameObject explodePrefab;
 
 	private bool ignited = false;
 	private GameObject explodeParticle;
+	private AIBase myAi;
+
+	void Start() {
+		myAi = GetComponent<AIBase>();
+	}
 
 	void Update() {
 		if (ignited && Time.time >= lastAttack + explodeTime) {
@@ -52,6 +57,10 @@ public class ExplodeWeapon : AIWeaponBase {
 			if (glowPrefab) {
 				explodeParticle = (GameObject)Instantiate(glowPrefab, transform.position, transform.rotation);	
 				explodeParticle.transform.parent = this.transform;
+			}
+
+			if (myAi) {
+				myAi.movementAllowed = false;
 			}
 
 		}
