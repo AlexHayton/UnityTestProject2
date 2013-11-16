@@ -16,6 +16,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     public int selectedIndex;
     public List<WeaponBase> Weapons;
     private RigidPlayerScript playerScript;
+
     private Vector3 gripPoint;
 
     // Use this for initialization
@@ -41,7 +42,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         selectedIndex = index;
         if (SelectedWeapon != null)
         {
-            GameObject.Destroy(SelectedWeapon.gameObject);
+            Destroy(SelectedWeapon.gameObject);
         }
         SelectedWeapon = (WeaponBase)Instantiate(Weapons[selectedIndex], gripPoint, Quaternion.identity);
     }
@@ -102,7 +103,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     {
         //in theory this should add the "reference (not as in ref, just used that so I had access to the weapon to destroy it)" to the weapon, then destroy the actual object
         Weapons.Add(weapon);
-        GameObject.Destroy(weapon);
+        Destroy(weapon);
     }
 
 }

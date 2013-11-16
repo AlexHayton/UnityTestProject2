@@ -45,10 +45,10 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 		actualLaser = laserObject.GetComponent<LaserBase>();
         actualLaser.SetOrigin(laserOrigin.transform);
         laserObject.transform.parent = laserOrigin;
-        var playerGrip = playerCapsule.transform.FindChild("group1").FindChild("PlayerGrabPoint").position;
-        transform.parent = playerCapsule.transform;
+        var playerGrip = playerCapsule.transform.FindChild("group1").FindChild("PlayerGrabPoint");
+        transform.parent = playerGrip.transform;
         transform.rotation = playerCapsule.transform.rotation;
-        transform.position = transform.position + (playerGrip - attachPoint.position);
+        transform.position = transform.position + (playerGrip.position - attachPoint.position);
         energyHandler = gameObject.transform.root.GetComponentInChildren<EnergyHandler>();
         laserObject.renderer.material.color = LaserColor;
     }
