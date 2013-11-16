@@ -29,7 +29,7 @@ public class ExplodeWeapon : AIWeaponBase {
 				}
 
 				if (collider.rigidbody) {
-					collider.rigidbody.AddExplosionForce(explosionForce, this.transform.position, explosionRadius, 3.0F);
+					collider.rigidbody.AddExplosionForce(explosionForce, this.transform.position, explosionRadius, 3.0F, ForceMode.Impulse);
 				}
 				
 			}

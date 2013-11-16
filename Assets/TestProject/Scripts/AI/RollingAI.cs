@@ -18,7 +18,8 @@ public class RollingAI : AIBase {
 
 	internal void CheckRotation() {
 		if (movementAllowed) {
-			this.rigidbody.AddForce (m_Agent.velocity );
+			//this.transform.rotation.SetLookRotation(m_Agent.nextPosition);
+			this.rigidbody.AddForce (m_Agent.velocity);
 		}
 	}
 }

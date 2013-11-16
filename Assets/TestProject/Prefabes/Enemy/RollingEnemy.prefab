@@ -72,8 +72,8 @@ Rigidbody:
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_Drag: 2
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -104,8 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePerSecond: 50
   explodeTime: 1
-  explosionRadius: 5
-  explosionForce: 10
+  explosionRadius: 20
+  explosionForce: 20
   glowPrefab: {fileID: 100000, guid: 08b65335e7b8f384290bb1fce2097ea0, type: 2}
   explodePrefab: {fileID: 100000, guid: f1401b8976ab04e4bb41a9fe0814c1e1, type: 2}
 --- !u!114 &11400004
@@ -188,10 +188,10 @@ NavMeshAgent:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Radius: .500000119
-  m_Speed: 1
-  m_Acceleration: 120
+  m_Speed: 3
+  m_Acceleration: 200
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 200
   m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
