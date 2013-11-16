@@ -106,6 +106,7 @@ public class LaserBase : MonoBehaviour
 
         else
         {
+            print("pointing at nothing!");
             gun.transform.rotation = Quaternion.LookRotation(gun.transform.parent.forward, gun.transform.parent.up);
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, originalLaserScale);
             transform.position = origin.position + transform.forward * originaLaserlLength / 2;
