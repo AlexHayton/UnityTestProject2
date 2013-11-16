@@ -55,7 +55,8 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     
     void Update()
     {
-
+        if (playerScript.LaserTransform == null)
+            playerScript.LaserTransform = SelectedWeapon.LaserOrigin;
         if (playerScript)
         {
             if (Input.GetButtonDown("Fire1") || Input.GetButton("Fire1"))

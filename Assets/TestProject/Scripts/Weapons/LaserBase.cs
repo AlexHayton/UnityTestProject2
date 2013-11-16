@@ -27,7 +27,7 @@ public class LaserBase : MonoBehaviour
         transform.position += transform.forward * originalLength / 2;
         laserSpot = transform.GetChild(0).gameObject;
         laserSpot.transform.parent = null;
-        LaserSpotSize *= .01f;
+        LaserSpotSize *= .007f;
         laserSpot.transform.localScale = new Vector3(1, 1, 1) * LaserSpotSize;
         laserSpot.renderer.material.color = renderer.material.color;
         originalSpotBrightness = laserSpot.renderer.material.GetFloat("_Overbright");
@@ -106,7 +106,6 @@ public class LaserBase : MonoBehaviour
 
         else
         {
-            print("pointing at nothing!");
             gun.transform.rotation = Quaternion.LookRotation(gun.transform.parent.forward, gun.transform.parent.up);
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, originalLaserScale);
             transform.position = origin.position + transform.forward * originaLaserlLength / 2;
