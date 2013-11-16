@@ -13,7 +13,8 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     private RigidPlayerScript playerScript;
     private EnergyHandler energyHandler;
     private Transform bulletOrigin;
-    private Transform laserOrigin;
+    [HideInInspector]
+    public Transform LaserOrigin;
     private Transform attachPoint;
 
     public bool primary = true;
@@ -40,11 +41,11 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         energyHandler = playerCapsule.GetComponent<EnergyHandler>();
         attachPoint = transform.FindChild("GripPoint");
         bulletOrigin = transform.FindChild("BarrelEnd");
-        laserOrigin = transform.FindChild("LaserOrigin");
-        GameObject laserObject = Instantiate(LaserPointer, laserOrigin.position, Quaternion.identity) as GameObject;
+        LaserOrigin = transform.FindChild("LaserOrigin");
+        GameObject laserObject = Instantiate(LaserPointer, LaserOrigin.position, Quaternion.identity) as GameObject;
 		actualLaser = laserObject.GetComponent<LaserBase>();
-        actualLaser.SetOrigin(laserOrigin.transform);
-        laserObject.transform.parent = laserOrigin;
+        actualLaser.SetOrigin(LaserOrigin.transform);
+        laserObject.transform.parent = LaserOrigin;
         var playerGrip = playerCapsule.transform.FindChild("group1").FindChild("PlayerGrabPoint");
         transform.parent = playerGrip.transform;
         transform.rotation = playerCapsule.transform.rotation;
