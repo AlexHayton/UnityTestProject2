@@ -88,19 +88,20 @@ public class LaserBase : MonoBehaviour
         //if we hit anything at all
         if (!datHit.Equals(default(RaycastHit)))
         {
-            gun.transform.rotation = Quaternion.LookRotation(chosenRay.direction, gun.transform.parent.up);
+            var lookDir = new Vector3(gun.transform.parent.forward.x, gun.transform.parent.forward.y, chosenRay.direction.z);
+            gun.transform.rotation = Quaternion.LookRotation(lookDir, gun.transform.parent.up);
             if (datHit.distance < originaLaserlLength)
             {
                 var newLength = datHit.distance;
                 transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, newLength / originaLaserlLength * originalLaserScale);
                 transform.position = origin.position + transform.forward * newLength / 2;
             }
-            var cross2 = chosenRay.direction - datHit.normal * Vector3.Dot(datHit.normal, chosenRay.direction);
+            var cross2 = lookDir - datHit.normal * Vector3.Dot(datHit.normal, lookDir);
             laserSpot.transform.rotation = Quaternion.LookRotation(cross2, datHit.normal);
-            var stretchAmount = 1 / Mathf.Abs(Vector3.Dot(chosenRay.direction, datHit.normal));
+            var stretchAmount = 1 / Mathf.Abs(Vector3.Dot(lookDir, datHit.normal));
             laserSpot.transform.localScale = new Vector3(LaserSpotSize, LaserSpotSize, LaserSpotSize * stretchAmount);
             laserSpot.renderer.material.SetFloat("_Overbright", (originalSpotBrightness - .1f * transform.localScale.z / originalLaserScale));
-            laserSpot.transform.position = chosenRay.origin + chosenRay.direction * datHit.distance + .01f * laserSpot.transform.up;
+            laserSpot.transform.position = chosenRay.origin + lookDir * datHit.distance + .01f * laserSpot.transform.up;
             laserSpot.renderer.enabled = true;
         }
 
