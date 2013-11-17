@@ -57,7 +57,7 @@ public class LaserBase : MonoBehaviour
 
         var chosenRay = new Ray();
         var closestEnemyHit = new RaycastHit();
-        for (var i = -20; i <= 20; i += 5)
+        for (var i = -10; i <= 10; i += 5)
         {
             var thisRay = new Ray(origin.position, Quaternion.AngleAxis(i, gun.transform.parent.right) * gun.transform.parent.forward);
             arrayOfRays.Add(thisRay);
