@@ -2010,8 +2010,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100120}
-  m_LocalRotation: {x: .0498834029, y: 0, z: 0, w: .998755097}
-  m_LocalPosition: {x: -.82389462, y: 1.14421964, z: -.231279373}
+  m_LocalRotation: {x: .0899859518, y: 0, z: 0, w: .995943069}
+  m_LocalPosition: {x: .0119022131, y: 1.34976697, z: .148993015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -2130,7 +2130,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .561442614, y: -1.4574672, z: -4.74486876}
+  m_LocalPosition: {x: 8.38433838, y: -1.75000036, z: -9.87652206}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -2460,10 +2460,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 0
-  m_Color: {r: .996551752, g: 1, b: .75, a: 1}
-  m_Intensity: 2.58999991
+  m_Color: {r: .632352948, g: 1, b: 1, a: 1}
+  m_Intensity: 2
   m_Range: 15
-  m_SpotAngle: 77
+  m_SpotAngle: 100
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -2472,7 +2472,7 @@ Light:
     m_Bias: .0500000007
     m_Softness: 4
     m_SoftnessFade: 1
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: ca8dcd0bb8b619243827ad6a130c6b09, type: 3}
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
   m_Flare: {fileID: 0}
@@ -2572,6 +2572,7 @@ MonoBehaviour:
   canJump: 1
   jumpHeight: 1
   turnSpeed: 400
+  LaserTransform: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
