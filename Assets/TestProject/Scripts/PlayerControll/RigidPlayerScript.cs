@@ -65,7 +65,6 @@ public class RigidPlayerScript : MonoBehaviour
 
             if(LaserTransform != null)
             {
-                print("not null");
                 var lookDir = GetMouseOnPlane(new Plane(Vector3.up, LaserTransform.position)) - transform.position;
                 Quaternion targetRot = Quaternion.LookRotation(lookDir);
 
@@ -75,10 +74,6 @@ public class RigidPlayerScript : MonoBehaviour
 
                 float rotSpeed = turnSpeed * Time.deltaTime;
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, 1000);
-            }
-            else
-            {
-                print("null");
             }
 
             //************************************
