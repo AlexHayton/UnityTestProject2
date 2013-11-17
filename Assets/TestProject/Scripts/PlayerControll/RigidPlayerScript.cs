@@ -17,6 +17,7 @@ public class RigidPlayerScript : MonoBehaviour
     public bool canJump = true;
     public float jumpHeight = 1.0f;
     public float turnSpeed = 400.0f;
+    private Transform gripPoint;
 
     [HideInInspector]
     public Transform LaserTransform;
@@ -34,7 +35,7 @@ public class RigidPlayerScript : MonoBehaviour
     void Start()
     {
         camOffsetFromEnemies = new Vector3(0, 0, 0);
-
+        gripPoint = transform.FindChild("group1").FindChild("PlayerGrabPoint");
         //sets initial camera position
         mainCamera = transform.root.GetComponentInChildren<Camera>();
         mainCamera.transform.parent = null;
@@ -65,7 +66,7 @@ public class RigidPlayerScript : MonoBehaviour
 
             if(LaserTransform != null)
             {
-                var lookDir = GetMouseOnPlane(new Plane(Vector3.up, LaserTransform.position)) - transform.position;
+                var lookDir = GetMouseOnPlane(new Plane(Vector3.up, gripPoint.position)) - transform.position;
                 Quaternion targetRot = Quaternion.LookRotation(lookDir);
 
                 // only rotate around y axis

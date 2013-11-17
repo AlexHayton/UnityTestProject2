@@ -52,56 +52,26 @@ public class LaserBase : MonoBehaviour
         //laser stuff
         if (origin == null)
             return;
-        var arrayOfRays = new List<Ray>();
-        var arrayOfManyRayHits = new List<List<RaycastHit>>();
 
-        var chosenRay = new Ray();
-        var closestEnemyHit = new RaycastHit();
-        for (var i = -10; i <= 10; i += 5)
-        {
-            var thisRay = new Ray(origin.position, Quaternion.AngleAxis(i, gun.transform.parent.right) * gun.transform.parent.forward);
-            arrayOfRays.Add(thisRay);
-
-            var hitsOnThisRay = Physics.RaycastAll(thisRay).Where(a => !a.transform.gameObject.CompareTag("Bullet")).ToList();
-            if (!hitsOnThisRay.Any())
-                continue;
-
-            arrayOfManyRayHits.Add(hitsOnThisRay);
-            var closestHitOnThisRay = hitsOnThisRay.First(a => a.distance == hitsOnThisRay.Min(b => b.distance));
-            if (closestHitOnThisRay.transform.gameObject.GetComponent<AIBase>() != null &&
-                (closestHitOnThisRay.distance < closestEnemyHit.distance || closestEnemyHit.Equals(default(RaycastHit))))
-            {
-                closestEnemyHit = closestHitOnThisRay;
-                chosenRay = new Ray(origin.position, closestEnemyHit.transform.position - origin.position);
-            }
-        }
-
-        //no enemies found
-        if (closestEnemyHit.Equals(default(RaycastHit)))
-        {
-            chosenRay = arrayOfRays[arrayOfRays.Count / 2];
-        }
-
-        var allHits = Physics.RaycastAll(chosenRay).ToList();
-        var datHit = allHits.FirstOrDefault(a => !a.transform.gameObject.CompareTag("Bullet") && a.distance == allHits.Min(b => b.distance));
+        var castedRay = new Ray(origin.position, origin.forward);
+        var allHits = Physics.RaycastAll(castedRay);
+        var datHit = allHits.Where(a => !a.transform.gameObject.CompareTag("Bullet")).FirstOrDefault(a => a.distance == allHits.Min(b => b.distance));
 
         //if we hit anything at all
         if (!datHit.Equals(default(RaycastHit)))
         {
-            var lookDir = new Vector3(gun.transform.parent.forward.x, gun.transform.parent.forward.y, chosenRay.direction.z);
-            gun.transform.rotation = Quaternion.LookRotation(lookDir, gun.transform.parent.up);
             if (datHit.distance < originaLaserlLength)
             {
                 var newLength = datHit.distance;
                 transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, newLength / originaLaserlLength * originalLaserScale);
                 transform.position = origin.position + transform.forward * newLength / 2;
             }
-            var cross2 = lookDir - datHit.normal * Vector3.Dot(datHit.normal, lookDir);
+            var cross2 = castedRay.direction - datHit.normal * Vector3.Dot(datHit.normal, castedRay.direction);
             laserSpot.transform.rotation = Quaternion.LookRotation(cross2, datHit.normal);
-            var stretchAmount = 1 / Mathf.Abs(Vector3.Dot(lookDir, datHit.normal));
+            var stretchAmount = 1 / Mathf.Abs(Vector3.Dot(castedRay.direction, datHit.normal));
             laserSpot.transform.localScale = new Vector3(LaserSpotSize, LaserSpotSize, LaserSpotSize * stretchAmount);
             laserSpot.renderer.material.SetFloat("_Overbright", (originalSpotBrightness - .1f * transform.localScale.z / originalLaserScale));
-            laserSpot.transform.position = chosenRay.origin + lookDir * datHit.distance + .01f * laserSpot.transform.up;
+            laserSpot.transform.position = castedRay.origin + castedRay.direction * datHit.distance + .01f * laserSpot.transform.up;
             laserSpot.renderer.enabled = true;
         }
 
