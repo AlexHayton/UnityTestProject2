@@ -107,7 +107,6 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         else
         {
             var targetRotation = Quaternion.LookRotation(closestEnemyHit.transform.position - transform.position, transform.parent.up);
-            print(targetRotation.eulerAngles - transform.eulerAngles);
             transform.rotation = Quaternion.Euler(targetRotation.eulerAngles.x, transform.parent.eulerAngles.y, transform.parent.eulerAngles.z);
 
         }
