@@ -234,6 +234,7 @@ MonoBehaviour:
   targetSearchLayer:
     serializedVersion: 2
     m_Bits: 1
+  movementAllowed: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -279,7 +280,9 @@ MonoBehaviour:
   pickups:
   - {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
   - {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}
-  PickupDropChance: 20
+  killValue: 1
+  DropEvery: 5
+  PlusOrMinus: 2
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

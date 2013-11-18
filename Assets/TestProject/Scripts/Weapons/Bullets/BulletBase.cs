@@ -5,86 +5,101 @@
 public class BulletBase : MonoBehaviour
 {
 
-		public GameObject DestroyPrefab;
-		private StartValues values;
-		private float dist = 50f;
-		private GameObject owner;
-		private Transform tr;
-		private bool valuesSet = false;
-		private string ignoreTag;
+    public GameObject DestroyPrefab;
+    private StartValues values;
+    private float dist = 50f;
+    private GameObject owner;
+    private Transform tr;
+    private bool valuesSet = false;
+    private string ignoreTag;
+    private bool alreadyHit = false;
 
-		void OnBecameInvisible ()
-		{
-				Destroy (gameObject);
-		}
-	
-		public struct StartValues
-		{
-				public GameObject owner;
-				public Vector3 forward;
-				public int DamageOnHit;
-				public float Speed;
-				public float ForceOnImpact;
-		}
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 
-		// set the start values for the bullet
-		public virtual void SetStartValues (StartValues values)
-		{
-				this.owner = values.owner;
-				this.values = values;
-				ignoreTag = values.owner.tag;
-				float thisBulletSpeed = values.Speed * Random.Range (.9f, 1.1f);
-				rigidbody.velocity = values.forward.normalized * thisBulletSpeed;
-				//var stretch = thisBulletSpeed*.001f;
-				//transform.localScale = new Vector3(.1f, .1f, stretch);
-		}
+    public struct StartValues
+    {
+        public GameObject owner;
+        public Vector3 forward;
+        public int DamageOnHit;
+        public float Speed;
+        public float ForceOnImpact;
+    }
 
-		//void  OnTriggerEnter (Collider collision) {
-		void OnTriggerEnter (Collider enterObj)
-		{
-				if (enterObj.tag != ignoreTag &&
-						enterObj.tag != "Bullet" &&
-						enterObj.tag != "Player" &&
-						enterObj.tag != "NoCollide") {
-						bool doDamage = true;
-						var health = enterObj.GetComponentInChildren<HealthHandler> ();
-						if (health != null) {
-								TeamHandler teamHandler = this.GetComponent<TeamHandler> ();
+    // set the start values for the bullet
+    public virtual void SetStartValues(StartValues values)
+    {
+        this.owner = values.owner;
+        this.values = values;
+        ignoreTag = values.owner.tag;
+        float thisBulletSpeed = values.Speed * Random.Range(.9f, 1.1f);
+        rigidbody.velocity = values.forward.normalized * thisBulletSpeed;
+        //var stretch = thisBulletSpeed*.001f;
+        //transform.localScale = new Vector3(.1f, .1f, stretch);
+    }
 
-								if (teamHandler != null) {
-										doDamage = health.GetCanTakeDamage (teamHandler.GetTeam ());
-								} else {
-										doDamage = health.GetCanTakeDamage ();
-								}
-						}
+    //void  OnTriggerEnter (Collider collision) {
+    void OnTriggerEnter(Collider enterObj)
+    {
+        if (enterObj.tag != ignoreTag &&
+                enterObj.tag != "Bullet" &&
+                enterObj.tag != "Player" &&
+                enterObj.tag != "NoCollide" && !alreadyHit)
+        {
+            bool doDamage = true;
+            var health = enterObj.GetComponentInChildren<HealthHandler>();
+            if (health != null)
+            {
+                TeamHandler teamHandler = this.GetComponent<TeamHandler>();
 
-						if (doDamage) {
-								// add force to the object or the collider's parent.
-								Transform affectedTransform = enterObj.transform;
-								HitHandler affectedHitHandler = enterObj.GetComponent<HitHandler> ();
-								Vector3 force = transform.forward;
-								force.Normalize ();
-								force = force * values.ForceOnImpact;
+                if (teamHandler != null)
+                {
+                    doDamage = health.GetCanTakeDamage(teamHandler.GetTeam());
+                }
+                else
+                {
+                    doDamage = health.GetCanTakeDamage();
+                }
+            }
 
-								if (affectedTransform == null) {
-										affectedTransform = enterObj.transform.parent;
-								}
+            if (doDamage)
+            {
+                // add force to the object or the collider's parent.
+                Transform affectedTransform = enterObj.transform;
+                HitHandler affectedHitHandler = enterObj.GetComponent<HitHandler>();
+                Vector3 force = transform.forward;
+                force.Normalize();
+                force = force * values.ForceOnImpact;
 
-								if (affectedHitHandler) {
-					affectedHitHandler.OnHit (this.gameObject, enterObj.transform.position, force, ForceMode.Impulse);
-								} else if (affectedTransform.rigidbody) {
-									affectedTransform.rigidbody.AddForceAtPosition (force, enterObj.transform.position, ForceMode.Impulse);
-								}
+                if (affectedTransform == null)
+                {
+                    affectedTransform = enterObj.transform.parent;
+                }
 
-								// TODO
-								// aply damage
-								if (health) {
-										health.DeductHealth (owner, values.DamageOnHit);
-								}
-						}
-						if (health == null || doDamage)
-								Destroy (gameObject);
-				}
-		}
+                if (affectedHitHandler)
+                {
+                    affectedHitHandler.OnHit(this.gameObject, enterObj.transform.position, force, ForceMode.Impulse);
+                }
+                else if (affectedTransform.rigidbody)
+                {
+                    affectedTransform.rigidbody.AddForceAtPosition(force, enterObj.transform.position, ForceMode.Impulse);
+                }
+
+                // TODO
+                // aply damage
+                if (health)
+                {
+                    health.DeductHealth(owner, values.DamageOnHit);
+                }
+            }
+            if (health == null || doDamage)
+            {
+                Destroy(gameObject);
+                alreadyHit = true;
+            }
+        }
+    }
 
 }

@@ -184,13 +184,13 @@ MonoBehaviour:
   Icon: {fileID: 0}
   LaserOrigin: {fileID: 0}
   primary: 1
-  Cooldown: .699999988
-  ConeAngle: .200000003
-  BulletsToCreate: 20
+  Cooldown: .5
+  ConeAngle: .300000012
+  BulletsToCreate: 25
   showInMenu: 1
-  EnergyCost: 25
-  DamageOnHit: 4
-  BulletSpeed: 70
+  EnergyCost: 20
+  DamageOnHit: 7
+  BulletSpeed: 50
   ForceOnImpact: 4
 --- !u!136 &13600000
 CapsuleCollider:
