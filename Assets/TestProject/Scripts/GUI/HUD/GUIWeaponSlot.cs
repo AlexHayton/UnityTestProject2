@@ -20,7 +20,7 @@ public class GUIWeaponSlot : GUIContentHolder {
 		
 		return currentWeapon;
 	}
-	
+
 	public override string GetText()
 	{
 		return this.weaponSlot.ToString();
