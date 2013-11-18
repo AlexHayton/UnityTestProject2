@@ -29,7 +29,14 @@ public class GUIWeaponSlot : GUIContentHolder {
 	public override Texture2D GetImage()
 	{
 		WeaponBase weapon = this.GetWeapon();
-		return weapon.GetIcon();
+		if (weapon)
+		{
+			return weapon.GetIcon();
+		}
+		else
+		{
+			return null;
+		}
 	}
 }
 

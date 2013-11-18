@@ -7,6 +7,7 @@ namespace TestProject
 	public class GUISelectedWeapon : GUIContentHolder
 	{
 		GUIHandler guiHandler = null;
+		WeaponHandler weaponHandler = null;
 		IList<GUIWeaponSlot> weaponSlots = null;
 		int selectedSlot = 1;
 		GUIWeaponSlot selectedSlotGUI = null;
@@ -17,17 +18,13 @@ namespace TestProject
 
 			this.guiHandler = GUIUtility.GetLocalGUIHandler();
 			this.weaponSlots = this.guiHandler.GetGUIs<GUIWeaponSlot>();
+			GameObject playerObject = PlayerUtility.GetLocalPlayer();
+			this.weaponHandler = playerObject.GetComponent<WeaponHandler>();
 		}
 
-		public int GetNumSlots()
+		public void SetSelectedWeaponIndex(int index)
 		{
-			return this.weaponSlots.Count;
-		}
-
-		public void SetSelectedWeaponSlot(int newSlot)
-		{
-			this.selectedSlot = newSlot;
-			selectedSlotGUI = weaponSlots[newSlot - 1];
+			this.selectedSlotGUI = weaponSlots[index];
 		}
 
 		public override void OnGUI()
