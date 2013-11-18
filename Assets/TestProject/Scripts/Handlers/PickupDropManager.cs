@@ -6,9 +6,14 @@ using System.Linq;
 
 public class PickupDropManager : MonoBehaviour, ISelfTest
 {
+    [Serializable]
+    public class DroppableItem
+    {
+        public GameObject Item;
+        public int DropChance;
+    }
 
-    public List<int> chances;
-    public List<GameObject> pickups;
+    public List<DroppableItem> Items; 
     public int killValue = 1;
     public int DropEvery = 5;
     public int PlusOrMinus = 2;
@@ -28,19 +33,13 @@ public class PickupDropManager : MonoBehaviour, ISelfTest
     public bool SelfTest()
     {
         bool fail = false;
-
-        if (this.chances.Count != this.pickups.Count)
-        {
-            fail = true;
-            Debug.Log("There must be as many entries in the pickups list as the chances list.");
-        }
-
+        
         return fail;
     }
 
     private IEnumerable<WeightedRandomItem<GameObject>> GetAsWeightedRandomItems()
     {
-        return pickups.Select(pickup => new WeightedRandomItem<GameObject>(pickup, chances[pickups.IndexOf(pickup)]));
+        return Items.Select(item => new WeightedRandomItem<GameObject>(item.Item, item.DropChance));
     }
 
     public void SpawnAPickup()
