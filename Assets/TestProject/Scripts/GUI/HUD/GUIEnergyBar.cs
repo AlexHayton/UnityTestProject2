@@ -6,19 +6,19 @@ using TestProject;
 [ExecuteInEditMode()]
 public class GUIEnergyBar : GUIHorizontalBar {
 
-	private GameObject player;
+	EnergyHandler handler = null;
 
 	public override void Start()
 	{
 		base.Start();
-		player = PlayerUtility.GetLocalPlayer ();
+		owner = PlayerUtility.GetLocalPlayer ();
+		handler = owner.GetComponent<EnergyHandler>();
 	}
 	
 	public override float GetFullScalar()
 	{
 		if (Application.isPlaying)
 		{
-			EnergyHandler handler = player.GetComponent<EnergyHandler>();
 			float maxEnergy = handler.GetMaxEnergy();
 			float energy = handler.GetEnergy();
 			
@@ -36,13 +36,12 @@ public class GUIEnergyBar : GUIHorizontalBar {
 	
 	public override string GetText()
 	{
-		EnergyHandler handler = player.GetComponent<EnergyHandler>();
 		float maxEnergy = handler.GetMaxEnergy();
 		float energy = handler.GetEnergy();
 		
 		maxEnergy = Mathf.Ceil (maxEnergy);
 		energy = Mathf.Ceil (energy);
-		return ( energy + "/" + maxEnergy);
+		return (energy + "/" + maxEnergy);
 	}
 }
 

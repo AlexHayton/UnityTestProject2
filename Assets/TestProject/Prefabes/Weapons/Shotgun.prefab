@@ -181,7 +181,7 @@ MonoBehaviour:
   BulletPrefab: {fileID: 100000, guid: 948809e7ad000fe49b1ef901f4d1db52, type: 2}
   LaserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
   LaserColor: {r: 0, g: 1, b: 0, a: 0}
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: ead5850be28024153a41e615f90b18f5, type: 3}
   LaserOrigin: {fileID: 0}
   primary: 1
   Cooldown: .5

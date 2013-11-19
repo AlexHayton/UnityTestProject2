@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace TestProject
 {
-	public class GUIUtility
+	public static class GUIUtility
 	{
 		private static GUIHandler _handler = null;
 		private static GameObject _cachedPlayer = null;
@@ -19,6 +19,21 @@ namespace TestProject
 			}
 
 			return _handler;
+		}
+
+		public static GUIHandler GetParentGUIHandler(GameObject obj)
+		{
+			return GetParentGUIHandler(obj.transform);
+		}
+
+		public static GUIHandler GetParentGUIHandler(Component obj)
+		{
+			return GetParentGUIHandler(obj.transform);
+		}
+		
+		public static GUIHandler GetParentGUIHandler(Transform trans)
+		{
+			return trans.root.GetComponentInChildren<GUIHandler>();
 		}
 	}
 }

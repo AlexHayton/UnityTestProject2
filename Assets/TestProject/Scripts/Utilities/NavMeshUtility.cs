@@ -1,10 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class NavMeshUtility
+public static class NavMeshUtility
 {
-	
-		
 	public static Vector3 GetRandomPoint(Vector3 position, int walkDistance) {
 	    Vector3 randomDirection = Random.insideUnitSphere * walkDistance;
 	    randomDirection += position;

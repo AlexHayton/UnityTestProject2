@@ -25,7 +25,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		{
 			if (_selectedWeaponGUI == null)
 			{
-				_selectedWeaponGUI = gameObject.GetComponentInChildren<GUISelectedWeapon>();
+				_selectedWeaponGUI = transform.root.GetComponentInChildren<GUISelectedWeapon>();
 			}
 			return _selectedWeaponGUI;
 		}

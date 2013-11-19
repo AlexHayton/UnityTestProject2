@@ -11,8 +11,8 @@ public class GUIWeaponSlot : GUIContentHolder {
 	private WeaponBase GetWeapon()
 	{
 		WeaponBase currentWeapon = null;
-		GameObject player = PlayerUtility.GetLocalPlayer();
-		WeaponHandler handler = player.GetComponent<WeaponHandler>();
+		owner = PlayerUtility.GetParentPlayer(this.gameObject);
+		WeaponHandler handler = owner.GetComponent<WeaponHandler>();
 		if (handler)
 		{
 			return handler.GetWeaponInSlot(weaponSlot);

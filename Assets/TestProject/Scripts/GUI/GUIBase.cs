@@ -14,14 +14,21 @@ public abstract class GUIBase : MonoBehaviour {
 	public int depth = 100;
 	public Color color = new Color(1, 1, 1, 1);
 	public AutoXPosition autoXPosition;
+	protected GameObject owner;
+	protected GUIHandler guiHandler;
 	
 	public virtual void Start()
 	{
 		// Register ourselves
-		GUIHandler handler = PlayerUtility.GetLocalPlayer().GetComponent<GUIHandler>();
-		if (handler)
+		owner = PlayerUtility.GetParentPlayer(this);
+		if (owner)
 		{
-			handler.RegisterGUI(this);
+			guiHandler = TestProject.GUIUtility.GetParentGUIHandler(this);
+		}
+
+		if (guiHandler)
+		{
+			guiHandler.RegisterGUI(this);
 		}
 	}
 	

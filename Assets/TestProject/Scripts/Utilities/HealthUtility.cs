@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class HealthUtility {
+public static class HealthUtility {
 
 	/*public static void AddHealth(Component entity, int health) {
 		HealthHandler handler = entity.GetComponent<HealthHandler>();
