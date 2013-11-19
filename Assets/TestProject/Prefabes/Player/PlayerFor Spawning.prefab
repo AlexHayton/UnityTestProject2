@@ -2573,6 +2573,7 @@ MonoBehaviour:
   canJump: 1
   jumpHeight: 1
   turnSpeed: 400
+  onHitGui: {fileID: 100000, guid: e6a26bf6543127244931d87c4d03b361, type: 2}
   LaserTransform: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
