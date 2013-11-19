@@ -155,7 +155,7 @@ public class AIBase : MonoBehaviour {
 	
 #region Signals
 	
-	internal virtual void OnTakeDamage(GameObject attacker) {
+	public virtual void OnTakeDamage(GameObject attacker) {
 		if ((activation.mask &ActivationMask.ActivationType.GettingAttacked) != 0) {
 			CheckTarget(attacker);
 		}

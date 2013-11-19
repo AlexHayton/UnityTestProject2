@@ -17,6 +17,8 @@ public class RigidPlayerScript : MonoBehaviour
     public bool canJump = true;
     public float jumpHeight = 1.0f;
     public float turnSpeed = 400.0f;
+	public GameObject onHitGui;
+
     private Transform gripPoint;
 
     [HideInInspector]
@@ -114,6 +116,12 @@ public class RigidPlayerScript : MonoBehaviour
     {
         grounded = true;
     }
+
+	public void OnTakeDamage(GameObject attacker) {
+		if (onHitGui){
+			Instantiate(onHitGui, onHitGui.transform.position, onHitGui.transform.rotation);
+		}	
+	}
 
     public Vector3 GetMouseOnPlane(Plane plane)
     {
