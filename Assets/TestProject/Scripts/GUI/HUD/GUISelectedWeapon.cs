@@ -6,8 +6,7 @@ namespace TestProject
 {
 	public class GUISelectedWeapon : GUIContentHolder
 	{
-		int selectedSlot = 1;
-		GUIWeaponSlot selectedSlotGUI = null;
+		int selectedSlotIndex = 1;
 
 		IList<GUIWeaponSlot> _weaponSlots = null;
 		private IList<GUIWeaponSlot> WeaponSlots
@@ -16,7 +15,10 @@ namespace TestProject
 			{
 				if (_weaponSlots == null)
 				{
-					_weaponSlots = guiHandler.GetGUIs<GUIWeaponSlot>();
+					if (guiHandler)
+					{
+						_weaponSlots = guiHandler.GetGUIs<GUIWeaponSlot>();
+					}
 				}
 				return _weaponSlots;
 			}
@@ -24,15 +26,17 @@ namespace TestProject
 
 		public void SetSelectedWeaponIndex(int index)
 		{
-			this.selectedSlotGUI = WeaponSlots[index];
+			selectedSlotIndex = index;
 		}
 
 		public override void OnGUI()
 		{
-			if (this.selectedSlotGUI != null)
+			GUIWeaponSlot selectedSlotGUI = WeaponSlots[selectedSlotIndex];
+
+			if (selectedSlotGUI != null)
 			{
-				Vector3 selectedSlotPosition = this.selectedSlotGUI.GetScreenPosition();
-				Vector3 selectedSlotDimensions = this.selectedSlotGUI.GetScale();
+				Vector3 selectedSlotPosition = selectedSlotGUI.GetScreenPosition();
+				Vector3 selectedSlotDimensions = selectedSlotGUI.GetScale();
 				Vector3 thisSlotPosition = this.GetScreenPosition();
 				Vector3 thisSlotDimensions = this.GetScale();
 				Vector3 slerpedPosition = Vector3.Slerp(thisSlotPosition, selectedSlotPosition, Time.deltaTime);

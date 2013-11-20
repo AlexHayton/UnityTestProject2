@@ -49,8 +49,8 @@ public class GUIStylePrefab : MonoBehaviour, ISelfTest {
 	private GUIStyle m_ComputedGUIStyle = null;
 	public GUIStyle GetStyle()
 	{
-		if (m_ComputedGUIStyle == null)
-		{
+		//if (m_ComputedGUIStyle == null)
+		//{
 			m_ComputedGUIStyle = new GUIStyle();
 		
 			m_ComputedGUIStyle.normal.background = this.normalBackground;
@@ -64,7 +64,7 @@ public class GUIStylePrefab : MonoBehaviour, ISelfTest {
 			m_ComputedGUIStyle.fontStyle = this.fontStyle;
 			m_ComputedGUIStyle.alignment = this.alignment;
 			m_ComputedGUIStyle.imagePosition = this.imagePosition;
-		}
+		//}
 		
 		return m_ComputedGUIStyle;
 	}
