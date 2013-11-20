@@ -9,6 +9,7 @@ Material:
   m_Name: LaserBeam
   m_Shader: {fileID: 4800000, guid: 2be6375ad8e4146da9bde2796e6735a0, type: 3}
   m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -37,15 +38,15 @@ Material:
       data:
         first:
           name: _DistortSpeed
-        second: .0299999993
+        second: .0500000007
       data:
         first:
           name: _DarkSpots
-        second: .610000014
+        second: .449999988
       data:
         first:
           name: _Overbright
-        second: 1.5
+        second: 1.20000005
       data:
         first:
           name: _BrightSpots

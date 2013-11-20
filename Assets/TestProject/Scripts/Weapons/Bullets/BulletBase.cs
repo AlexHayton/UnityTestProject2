@@ -7,34 +7,34 @@ public class BulletBase : MonoBehaviour
 
     public GameObject DestroyPrefab;
     private StartValues values;
-
     private float dist = 50f;
     private GameObject owner;
     private Transform tr;
     private bool valuesSet = false;
     private string ignoreTag;
+    private bool alreadyHit = false;
 
     void OnBecameInvisible()
     {
         Destroy(gameObject);
     }
-	
-	public struct StartValues
-	{
-		public GameObject owner;
-		public Vector3 forward;
-		public int DamageOnHit;
-		public float Speed;
-		public float ForceOnImpact;
-	}
+
+    public struct StartValues
+    {
+        public GameObject owner;
+        public Vector3 forward;
+        public int DamageOnHit;
+        public float Speed;
+        public float ForceOnImpact;
+    }
 
     // set the start values for the bullet
     public virtual void SetStartValues(StartValues values)
     {
         this.owner = values.owner;
-		this.values = values;
+        this.values = values;
         ignoreTag = values.owner.tag;
-        float thisBulletSpeed = values.Speed * Random.Range(.9f,1.1f);
+        float thisBulletSpeed = values.Speed * Random.Range(.9f, 1.1f);
         rigidbody.velocity = values.forward.normalized * thisBulletSpeed;
         //var stretch = thisBulletSpeed*.001f;
         //transform.localScale = new Vector3(.1f, .1f, stretch);
@@ -44,9 +44,9 @@ public class BulletBase : MonoBehaviour
     void OnTriggerEnter(Collider enterObj)
     {
         if (enterObj.tag != ignoreTag &&
-            enterObj.tag != "Bullet" &&
-            enterObj.tag != "Player" &&
-            enterObj.tag != "NoCollide")
+                enterObj.tag != "Bullet" &&
+                enterObj.tag != "Player" &&
+                enterObj.tag != "NoCollide" && !alreadyHit)
         {
             bool doDamage = true;
             var health = enterObj.GetComponentInChildren<HealthHandler>();
@@ -68,16 +68,23 @@ public class BulletBase : MonoBehaviour
             {
                 // add force to the object or the collider's parent.
                 Transform affectedTransform = enterObj.transform;
+                HitHandler affectedHitHandler = enterObj.GetComponent<HitHandler>();
+                Vector3 force = transform.forward;
+                force.Normalize();
+                force = force * values.ForceOnImpact;
+
                 if (affectedTransform == null)
                 {
                     affectedTransform = enterObj.transform.parent;
                 }
 
-                if (affectedTransform.rigidbody)
+                if (affectedHitHandler)
                 {
-                    Vector3 force = transform.forward;
-                    force.Normalize();
-                    affectedTransform.rigidbody.AddForceAtPosition(force * values.ForceOnImpact, enterObj.transform.position, ForceMode.Impulse);
+                    affectedHitHandler.OnHit(this.gameObject, enterObj.transform.position, force, ForceMode.Impulse);
+                }
+                else if (affectedTransform.rigidbody)
+                {
+                    affectedTransform.rigidbody.AddForceAtPosition(force, enterObj.transform.position, ForceMode.Impulse);
                 }
 
                 // TODO
@@ -88,7 +95,10 @@ public class BulletBase : MonoBehaviour
                 }
             }
             if (health == null || doDamage)
+            {
                 Destroy(gameObject);
+                alreadyHit = true;
+            }
         }
     }
 

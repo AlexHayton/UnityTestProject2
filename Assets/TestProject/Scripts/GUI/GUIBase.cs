@@ -105,6 +105,11 @@ public abstract class GUIBase : MonoBehaviour {
 	{
 		this.visible = visible;
 	}
+
+	public Vector3 GetScreenPosition()
+	{
+		return this.position;
+	}
 	
 	public Vector3 GetScale()
 	{

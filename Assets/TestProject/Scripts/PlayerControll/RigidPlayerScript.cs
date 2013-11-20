@@ -17,6 +17,12 @@ public class RigidPlayerScript : MonoBehaviour
     public bool canJump = true;
     public float jumpHeight = 1.0f;
     public float turnSpeed = 400.0f;
+	public GameObject onHitGui;
+
+    private Transform gripPoint;
+
+    [HideInInspector]
+    public Transform LaserTransform;
 
     private bool grounded = false;
     private Vector3 lookTarget;
@@ -31,7 +37,7 @@ public class RigidPlayerScript : MonoBehaviour
     void Start()
     {
         camOffsetFromEnemies = new Vector3(0, 0, 0);
-
+        gripPoint = transform.FindChild("group1").FindChild("PlayerGrabPoint");
         //sets initial camera position
         mainCamera = transform.root.GetComponentInChildren<Camera>();
         mainCamera.transform.parent = null;
@@ -60,16 +66,18 @@ public class RigidPlayerScript : MonoBehaviour
             //Vector3 playerToMuzzle = GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position - transform.position;
             //playerToMuzzle.y = 0;
 
-            var lookDir = GetMouseOnPlane(new Plane(Vector3.up, transform.position)) - transform.position;
-            Quaternion targetRot = Quaternion.LookRotation(lookDir);
+            if(LaserTransform != null)
+            {
+                var lookDir = GetMouseOnPlane(new Plane(Vector3.up, gripPoint.position)) - transform.position;
+                Quaternion targetRot = Quaternion.LookRotation(lookDir);
 
-            // only rotate around y axis
-            targetRot.x = 0;
-            targetRot.z = 0;
+                // only rotate around y axis
+                targetRot.x = 0;
+                targetRot.z = 0;
 
-            float rotSpeed = turnSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, 1000);
-
+                float rotSpeed = turnSpeed * Time.deltaTime;
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, 1000);
+            }
 
             //************************************
             // Movement
@@ -108,6 +116,12 @@ public class RigidPlayerScript : MonoBehaviour
     {
         grounded = true;
     }
+
+	public void OnTakeDamage(GameObject attacker) {
+		if (onHitGui){
+			Instantiate(onHitGui, onHitGui.transform.position, onHitGui.transform.rotation);
+		}	
+	}
 
     public Vector3 GetMouseOnPlane(Plane plane)
     {

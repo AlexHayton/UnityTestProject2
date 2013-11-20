@@ -361,7 +361,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 037073738c790ac4797fb0da9c227cc7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d1e84e493c6c419abf2f5756e797055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 85, y: 0}
@@ -371,8 +371,9 @@ MonoBehaviour:
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
-  text: 2
+  text: 
   image: {fileID: 0}
+  weaponSlot: 2
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,7 +428,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 037073738c790ac4797fb0da9c227cc7, type: 3}
+  m_Script: {fileID: 11500000, guid: 675faa5e6f5a54dac8ee830558441a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 76.5, y: 0}
