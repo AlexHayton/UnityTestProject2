@@ -38,5 +38,39 @@ public class GUIWeaponSlot : GUIContentHolder {
 			return null;
 		}
 	}
+	
+	public override void OnGUI()
+	{			
+		this.OnBaseGUI();
+		
+		GUIContent imageContent = new GUIContent();
+		imageContent.image = this.GetImage();
+		
+		GUIContent textContent = new GUIContent(); 
+		textContent.text = this.GetText();
+		
+		GUIStyle textStyle = this.GetStyle();
+		textStyle.normal.background = null;
+		
+		this.RenderGUI(delegate() 
+		{
+			// Render bg + image, then text overlaid
+			GUI.Box(new Rect(
+				this.GetLeft(),
+				this.GetTop(), 
+				this.GetPixelWidth(),
+				this.GetPixelHeight()), 
+				imageContent,
+				this.GetStyle());
+				
+			GUI.Box(new Rect(
+				this.GetLeft(),
+				this.GetTop()+5, 
+				this.GetPixelWidth(),
+				this.GetPixelHeight()), 
+				textContent
+				textStyle);
+		});
+	}
 }
 
