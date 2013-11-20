@@ -8,6 +8,7 @@ namespace TestProject
 	{
 		int selectedSlotIndex = 1;
 
+		private GUIWeaponSlot selectedSlotGUI;
 		IList<GUIWeaponSlot> _weaponSlots = null;
 		private IList<GUIWeaponSlot> WeaponSlots
 		{
@@ -31,7 +32,7 @@ namespace TestProject
 
 		public override void OnGUI()
 		{
-			GUIWeaponSlot selectedSlotGUI = WeaponSlots[selectedSlotIndex];
+			// = WeaponSlots[selectedSlotIndex];
 
 			if (selectedSlotGUI != null)
 			{
