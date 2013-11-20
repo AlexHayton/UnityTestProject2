@@ -11,6 +11,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public Color LaserColor;
     public Texture2D Icon;
 
+	private GameObject muzzleFlash;
     private LaserBase actualLaser;
     private RigidPlayerScript playerScript;
     private EnergyHandler energyHandler;
@@ -54,6 +55,10 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         transform.position = transform.position + (playerGrip.position - attachPoint.position);
         energyHandler = gameObject.transform.root.GetComponentInChildren<EnergyHandler>();
         laserObject.renderer.material.color = LaserColor;
+        muzzleFlash = Instantiate(FiringEffect, bulletOrigin.position, Quaternion.identity) as GameObject;
+        muzzleFlash.renderer.enabled = false;
+        muzzleFlash.SetOrigin(bulletOrigin.transform);
+        muzzleFlash.transform.parent = bulletOrigin;
     }
 
     public bool SelfTest()
@@ -159,17 +164,17 @@ public class WeaponBase : MonoBehaviour, ISelfTest
             this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
 
             // show visul muzzle
-            if (FiringEffect != null)
+            if (muzzleFlash != null)
             {
-                ParticleSystem particleSystem = FiringEffect.GetComponent<ParticleSystem>();
+                ParticleSystem particleSystem = muzzleFlash.GetComponent<ParticleSystem>();
                 if (particleSystem != null)
                 {
                     particleSystem.Emit(1);
                 }
 
-                if (FiringEffect.animation != null)
+                if (muzzleFlash.animation != null)
                 {
-                    FiringEffect.animation.Play();
+                    muzzleFlash.animation.Play();
                 }
             }
 
