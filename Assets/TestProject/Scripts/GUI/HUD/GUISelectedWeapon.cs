@@ -8,6 +8,7 @@ namespace TestProject
 	{
 		int selectedSlotIndex = 1;
 
+		private GUIWeaponSlot selectedSlotGUI;
 		IList<GUIWeaponSlot> _weaponSlots = null;
 		private IList<GUIWeaponSlot> WeaponSlots
 		{
@@ -38,7 +39,8 @@ namespace TestProject
 		{
 			if (Event.current.type == EventType.Repaint)
 			{
-			GUIWeaponSlot selectedSlotGUI = WeaponSlots[selectedSlotIndex];
+				//GUIWeaponSlot selectedSlotGUI = WeaponSlots[selectedSlotIndex];
+				GUIWeaponSlot selectedSlotGUI = null;
 
 				if (selectedSlotGUI != null)
 				{

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TestProject;
 
 public class WeaponBase : MonoBehaviour, ISelfTest
 {
@@ -11,7 +12,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public Color LaserColor;
     public Texture2D Icon;
 
-	private GameObject muzzleFlash;
+	private MuzzleFlashBase muzzleFlash;
     private LaserBase actualLaser;
     private RigidPlayerScript playerScript;
     private EnergyHandler energyHandler;
@@ -29,6 +30,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public int DamageOnHit = 10;
     public float BulletSpeed = 20.0f;
     public float ForceOnImpact = 20.0f;
+	public float muzzleFlashTime = 0.1f;
     private bool IsScatter = false;
 
     private Random rnd;
@@ -55,10 +57,11 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         transform.position = transform.position + (playerGrip.position - attachPoint.position);
         energyHandler = gameObject.transform.root.GetComponentInChildren<EnergyHandler>();
         laserObject.renderer.material.color = LaserColor;
-        muzzleFlash = Instantiate(FiringEffect, bulletOrigin.position, Quaternion.identity) as GameObject;
-        muzzleFlash.renderer.enabled = false;
-        muzzleFlash.SetOrigin(bulletOrigin.transform);
-        muzzleFlash.transform.parent = bulletOrigin;
+		GameObject muzzleFlashObject = Instantiate(FiringEffect) as GameObject;
+        muzzleFlashObject.transform.parent = bulletOrigin;
+		muzzleFlashObject.transform.localRotation = FiringEffect.transform.rotation;
+		muzzleFlashObject.transform.localPosition = FiringEffect.transform.position;
+		muzzleFlash = muzzleFlashObject.GetComponent<MuzzleFlashBase>();
     }
 
     public bool SelfTest()
@@ -172,9 +175,9 @@ public class WeaponBase : MonoBehaviour, ISelfTest
                     particleSystem.Emit(1);
                 }
 
-                if (muzzleFlash.animation != null)
+                if (muzzleFlash != null)
                 {
-                    muzzleFlash.animation.Play();
+                    muzzleFlash.Fire(this.muzzleFlashTime);
                 }
             }
 

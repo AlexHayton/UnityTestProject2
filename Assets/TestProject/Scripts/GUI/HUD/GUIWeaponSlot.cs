@@ -68,8 +68,7 @@ public class GUIWeaponSlot : GUIContentHolder {
 				this.GetTop()+5, 
 				this.GetPixelWidth(),
 				this.GetPixelHeight()), 
-				textContent
-				textStyle);
+				textContent);
 		});
 	}
 }

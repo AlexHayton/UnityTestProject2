@@ -17,6 +17,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400012}
+  - 114: {fileID: 11400014}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -2602,6 +2603,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allGuis: []
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1694944e14875854d943ccc27e860e0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
