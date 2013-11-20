@@ -8,6 +8,7 @@ namespace TestProject
 	{
 		int selectedSlotIndex = 1;
 
+		private GUIWeaponSlot selectedSlotGUI;
 		IList<GUIWeaponSlot> _weaponSlots = null;
 		private IList<GUIWeaponSlot> WeaponSlots
 		{
@@ -17,7 +18,12 @@ namespace TestProject
 				{
 					if (guiHandler)
 					{
-						_weaponSlots = guiHandler.GetGUIs<GUIWeaponSlot>();
+						// for some reason the slots ain't working!
+						IList<GUIWeaponSlot> slots = guiHandler.GetGUIs<GUIWeaponSlot>();
+						if (slots.Count > 0)
+						{
+							_weaponSlots = slots;
+						}
 					}
 				}
 				return _weaponSlots;
@@ -31,21 +37,27 @@ namespace TestProject
 
 		public override void OnGUI()
 		{
-			GUIWeaponSlot selectedSlotGUI = WeaponSlots[selectedSlotIndex];
-
-			if (selectedSlotGUI != null)
+			if (Event.current.type == EventType.Repaint)
 			{
-				Vector3 selectedSlotPosition = selectedSlotGUI.GetScreenPosition();
-				Vector3 selectedSlotDimensions = selectedSlotGUI.GetScale();
-				Vector3 thisSlotPosition = this.GetScreenPosition();
-				Vector3 thisSlotDimensions = this.GetScale();
-				Vector3 slerpedPosition = Vector3.Slerp(thisSlotPosition, selectedSlotPosition, Time.deltaTime);
-				Vector3 slerpedScale = Vector3.Slerp(thisSlotDimensions, selectedSlotDimensions, Time.deltaTime);
+				//GUIWeaponSlot selectedSlotGUI = WeaponSlots[selectedSlotIndex];
+				GUIWeaponSlot selectedSlotGUI = null;
 
-				this.SetLeft(slerpedPosition.x);
-				this.SetTop(slerpedPosition.y);
-				this.SetScale(slerpedScale);
+				if (selectedSlotGUI != null)
+				{
+					Vector3 selectedSlotPosition = selectedSlotGUI.GetScreenPosition();
+					Vector3 selectedSlotDimensions = selectedSlotGUI.GetScale();
+					Vector3 thisSlotPosition = this.GetScreenPosition();
+					Vector3 thisSlotDimensions = this.GetScale();
+					Vector3 slerpedPosition = Vector3.Slerp(thisSlotPosition, selectedSlotPosition, Time.deltaTime);
+					Vector3 slerpedScale = Vector3.Slerp(thisSlotDimensions, selectedSlotDimensions, Time.deltaTime);
+
+					this.SetLeft(slerpedPosition.x);
+					this.SetTop(slerpedPosition.y);
+					this.SetScale(slerpedScale);
+				}
 			}
+			
+			base.OnGUI();
 		}
 
 	}
