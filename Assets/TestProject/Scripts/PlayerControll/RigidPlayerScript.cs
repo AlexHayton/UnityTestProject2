@@ -171,4 +171,8 @@ public class RigidPlayerScript : MonoBehaviour
         return dir;
     }
 
+	public Camera GetPlayerCamera() {
+		return this.mainCamera;
+	}
+
 }
