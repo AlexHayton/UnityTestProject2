@@ -36,9 +36,9 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 663569527f0a76d4bb491877b8b5e63f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5bda95c53792166478c06fe56402321e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -47,7 +47,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -56,13 +56,13 @@ AudioSource:
     m_Curve:
     - time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -.494057804
+      outSlope: -.494057804
       tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+    - time: .975944996
+      value: .0230414271
+      inSlope: -.508218706
+      outSlope: -.508218706
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
