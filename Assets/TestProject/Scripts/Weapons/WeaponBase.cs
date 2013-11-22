@@ -8,6 +8,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
     public GameObject FiringEffect;
     public GameObject BulletPrefab;
+	public GameObject bulletShootPrefab;
     public GameObject LaserPointer;
     public Color LaserColor;
     public Texture2D Icon;
@@ -163,6 +164,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
                 };
                 bullet.SetStartValues(values);
             }
+			PlayShootSound();
 
             this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
 
@@ -184,6 +186,15 @@ public class WeaponBase : MonoBehaviour, ISelfTest
             lastFireTime = Time.time;
         }
     }
+
+
+	private void PlayShootSound() {
+		
+		if (bulletShootPrefab) {
+			GameObject bulletShootSound = (GameObject)Instantiate(bulletShootPrefab, bulletOrigin.position,  Quaternion.identity);
+			bulletShootSound.transform.parent = this.gameObject.transform;
+		}
+	}
 
 
 }
