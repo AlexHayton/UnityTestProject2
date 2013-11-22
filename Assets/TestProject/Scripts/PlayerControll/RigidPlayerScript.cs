@@ -53,6 +53,11 @@ public class RigidPlayerScript : MonoBehaviour
             Application.LoadLevel(Application.loadedLevel);
         }
 
+		if (Input.GetKeyDown (KeyCode.Escape)) 
+		{
+			Application.LoadLevel (1);
+		}
+
         if (grounded)
         {
 
