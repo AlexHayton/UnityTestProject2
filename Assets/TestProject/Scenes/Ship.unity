@@ -3492,7 +3492,7 @@ MonoBehaviour:
   isEnabled: 1
   enemyPrefab: {fileID: 100004, guid: 2ca33c122fc9a7d45a271695262ca696, type: 2}
   spawnAmount: 4
-  spawnTime: 4
+  spawnTime: 2
 --- !u!114 &573745908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3519,7 +3519,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 573745906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: -1.25, z: -26.5}
+  m_LocalPosition: {x: -7, y: -.991102219, z: -26.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

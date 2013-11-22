@@ -112,6 +112,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!23 &2300002
 Renderer:
   m_ObjectHideFlags: 1
@@ -130,6 +133,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!23 &2300004
 Renderer:
   m_ObjectHideFlags: 1
@@ -148,6 +154,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!33 &3300000
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -204,7 +213,7 @@ MonoBehaviour:
   autoXPosition: 0
   text: 
   image: {fileID: 0}
-  showText: 1
+  showText: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,6 +234,7 @@ MonoBehaviour:
   targetSearchLayer:
     serializedVersion: 2
     m_Bits: 1
+  movementAllowed: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,7 +261,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd15bf7d312523a419cfcab1c85ce3ad, type: 3}
+  m_Script: {fileID: 11500000, guid: d03009a7866d91d41ba06f3a11407392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerSecond: 1
@@ -266,11 +276,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd5a1d5bb93c44c4ad31170515dc6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chances: 1e00000046000000
-  pickups:
-  - {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
-  - {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}
-  PickupDropChance: 20
+  Items:
+  - Item: {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}
+    DropChance: 70
+  - Item: {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
+    DropChance: 30
+  killValue: 1
+  DropEvery: 5
+  PlusOrMinus: 2
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

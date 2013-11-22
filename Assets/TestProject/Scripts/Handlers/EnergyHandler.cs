@@ -11,14 +11,25 @@ public class EnergyHandler : MonoBehaviour
     private float nextRegen = 0.0f;
 
     public bool infiniteEnergy = false;
+    
+    public EnergyHandler[] childEnergyHandlers = new EnergyHandler[] {};
 
     void Start()
     {
+    	this.RefreshChildEnergyHandlers();
     }
 
     void Update()
     {
-        energy = Mathf.Clamp(energy + regenEnergyRate * Time.deltaTime, 0, maxEnergy);
+    	if (energy != maxEnergy)
+    	{
+        	energy = Mathf.Clamp(energy + regenEnergyRate * Time.deltaTime, 0, maxEnergy);
+        }
+    }
+    
+    void RefreshChildEnergyHandlers()
+    {
+    	childEnergyHandlers = transform.GetComponentsInChildren<EnergyHandler>();
     }
 
     public float GetEnergy()
@@ -39,7 +50,6 @@ public class EnergyHandler : MonoBehaviour
 
     public bool DeductEnergy(float energy)
     {
-
         float newEnergy = Mathf.Max(this.energy - energy, 0);
 
         if (infiniteEnergy)

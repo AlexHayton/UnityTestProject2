@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using TestProject;
 
 public class WeaponBase : MonoBehaviour, ISelfTest
 {
@@ -7,13 +10,15 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public GameObject BulletPrefab;
     public GameObject LaserPointer;
     public Color LaserColor;
-	public Texture2D Icon;
+    public Texture2D Icon;
 
+	private MuzzleFlashBase muzzleFlash;
     private LaserBase actualLaser;
     private RigidPlayerScript playerScript;
     private EnergyHandler energyHandler;
     private Transform bulletOrigin;
-    private Transform laserOrigin;
+    [HideInInspector]
+    public Transform LaserOrigin;
     private Transform attachPoint;
 
     public bool primary = true;
@@ -22,10 +27,11 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public int BulletsToCreate = 1;
     public bool showInMenu = true;
     public float EnergyCost = 1;
-	public int DamageOnHit = 10;
+    public int DamageOnHit = 10;
     public float BulletSpeed = 20.0f;
     public float ForceOnImpact = 20.0f;
-	private bool IsScatter = false;
+	public float muzzleFlashTime = 0.1f;
+    private bool IsScatter = false;
 
     private Random rnd;
 
@@ -40,17 +46,22 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         energyHandler = playerCapsule.GetComponent<EnergyHandler>();
         attachPoint = transform.FindChild("GripPoint");
         bulletOrigin = transform.FindChild("BarrelEnd");
-        laserOrigin = transform.FindChild("LaserOrigin");
-        GameObject laserObject = Instantiate(LaserPointer, laserOrigin.position, Quaternion.identity) as GameObject;
-		actualLaser = laserObject.GetComponent<LaserBase>();
-        actualLaser.SetOrigin(laserOrigin.transform);
-        laserObject.transform.parent = laserOrigin;
-        var playerGrip = playerCapsule.transform.FindChild("group1").FindChild("PlayerGrabPoint").position;
-        transform.parent = playerCapsule.transform;
+        LaserOrigin = transform.FindChild("LaserOrigin");
+        GameObject laserObject = Instantiate(LaserPointer, LaserOrigin.position, Quaternion.identity) as GameObject;
+        actualLaser = laserObject.GetComponent<LaserBase>();
+        actualLaser.SetOrigin(LaserOrigin.transform);
+        laserObject.transform.parent = LaserOrigin;
+        var playerGrip = playerCapsule.transform.FindChild("group1").FindChild("PlayerGrabPoint");
+        transform.parent = playerGrip.transform;
         transform.rotation = playerCapsule.transform.rotation;
-        transform.position = transform.position + (playerGrip - attachPoint.position);
+        transform.position = transform.position + (playerGrip.position - attachPoint.position);
         energyHandler = gameObject.transform.root.GetComponentInChildren<EnergyHandler>();
         laserObject.renderer.material.color = LaserColor;
+		GameObject muzzleFlashObject = Instantiate(FiringEffect) as GameObject;
+        muzzleFlashObject.transform.parent = bulletOrigin;
+		muzzleFlashObject.transform.localRotation = FiringEffect.transform.rotation;
+		muzzleFlashObject.transform.localPosition = FiringEffect.transform.position;
+		muzzleFlash = muzzleFlashObject.GetComponent<MuzzleFlashBase>();
     }
 
     public bool SelfTest()
@@ -64,11 +75,51 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         SelfTestUtility.HasComponent<EnergyHandler>(ref fail, playerScript.gameObject);
         return fail;
     }
-	
-	public Texture2D GetIcon()
-	{
-		return this.Icon;
-	}
+
+    public Texture2D GetIcon()
+    {
+        return this.Icon;
+    }
+
+    public void Update()
+    {
+        var arrayOfRays = new List<Ray>();
+        var arrayOfManyRayHits = new List<List<RaycastHit>>();
+        var chosenRay = new Ray();
+        var closestEnemyHit = new RaycastHit();
+
+        for (var i = -20; i <= 20; i += 5)
+        {
+            var thisRay = new Ray(bulletOrigin.position, Quaternion.AngleAxis(i, -transform.parent.right) * transform.parent.forward);
+            arrayOfRays.Add(thisRay);
+
+            var hitsOnThisRay = Physics.RaycastAll(thisRay).Where(a => !a.transform.gameObject.CompareTag("Bullet")).ToList();
+            if (!hitsOnThisRay.Any())
+                continue;
+            arrayOfManyRayHits.Add(hitsOnThisRay);
+            var closestHitOnThisRay = hitsOnThisRay.First(a => a.distance == hitsOnThisRay.Min(b => b.distance));
+            if (closestHitOnThisRay.transform.gameObject.GetComponent<AIBase>() != null &&
+                (closestHitOnThisRay.distance < closestEnemyHit.distance || closestEnemyHit.Equals(default(RaycastHit))))
+            {
+                closestEnemyHit = closestHitOnThisRay;
+                chosenRay = new Ray(bulletOrigin.position, closestEnemyHit.transform.position - bulletOrigin.position);
+                Debug.DrawRay(chosenRay.origin, chosenRay.direction, Color.red);
+            }
+        }
+
+        //no enemies found
+        if (closestEnemyHit.Equals(default(RaycastHit)))
+        {
+            transform.rotation = Quaternion.LookRotation(transform.parent.forward, transform.parent.up);
+        }
+        else
+        {
+            var targetRotation = Quaternion.LookRotation(closestEnemyHit.transform.position - transform.position, transform.parent.up);
+            transform.rotation = Quaternion.Euler(targetRotation.eulerAngles.x, transform.parent.eulerAngles.y, transform.parent.eulerAngles.z);
+
+        }
+
+    }
 
     public void Fire()
     {
@@ -101,29 +152,32 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
                 GameObject go = Instantiate(BulletPrefab, bulletOrigin.position, tempRot) as GameObject;
                 BulletBase bullet = go.GetComponent<BulletBase>();
-				float actualBulletSpeed = this.BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
-				BulletBase.StartValues values = new BulletBase.StartValues(){ 	owner = playerScript.gameObject,
-																			  	forward = dirWithConeRandomization,
-																				DamageOnHit = this.DamageOnHit,
-																				Speed = actualBulletSpeed,
-																				ForceOnImpact = this.ForceOnImpact };
+                float actualBulletSpeed = this.BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
+                BulletBase.StartValues values = new BulletBase.StartValues()
+                {
+                    owner = playerScript.gameObject,
+                    forward = dirWithConeRandomization,
+                    DamageOnHit = this.DamageOnHit,
+                    Speed = actualBulletSpeed,
+                    ForceOnImpact = this.ForceOnImpact
+                };
                 bullet.SetStartValues(values);
             }
 
             this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
 
             // show visul muzzle
-            if (FiringEffect != null)
+            if (muzzleFlash != null)
             {
-                ParticleSystem particleSystem = FiringEffect.GetComponent<ParticleSystem>();
+                ParticleSystem particleSystem = muzzleFlash.GetComponent<ParticleSystem>();
                 if (particleSystem != null)
                 {
                     particleSystem.Emit(1);
                 }
 
-                if (FiringEffect.animation != null)
+                if (muzzleFlash != null)
                 {
-                    FiringEffect.animation.Play();
+                    muzzleFlash.Fire(this.muzzleFlashTime);
                 }
             }
 

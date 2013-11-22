@@ -20,6 +20,7 @@ public class GUIStylePrefabEditor : Editor
 	SerializedProperty fontSizeProp;
 	SerializedProperty fontStyleProp;
 	SerializedProperty alignmentProp;
+	SerializedProperty imagePosProp;
 	
     public void OnEnable () {
     	scaleProp = serializedObject.FindProperty("scale");
@@ -34,6 +35,7 @@ public class GUIStylePrefabEditor : Editor
 		fontSizeProp = serializedObject.FindProperty("fontSize");
 		fontStyleProp = serializedObject.FindProperty("fontStyle");
 		alignmentProp = serializedObject.FindProperty("alignment");
+		imagePosProp = serializedObject.FindProperty("imagePosition");
 	}
 	
 	public override void OnInspectorGUI() {
@@ -51,6 +53,7 @@ public class GUIStylePrefabEditor : Editor
 		fontSizeProp.intValue = EditorGUILayout.IntField("Font Size", fontSizeProp.intValue); 
 		EditorGUILayout.PropertyField(fontStyleProp);
 		EditorGUILayout.PropertyField(alignmentProp);
+		EditorGUILayout.PropertyField(imagePosProp);
 		
 		Vector2 scale = scaleProp.vector2Value;
 		scale.x = EditorGUILayout.Slider("X", scale.x, 0, 100);

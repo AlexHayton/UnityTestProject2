@@ -13,15 +13,30 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     private WeaponBase SelectedWeapon;
 
     [HideInInspector]
+	// SelectedIndex starts at 0;
+	// SelectedSlot starts at 1;
     public int selectedIndex;
     public List<WeaponBase> Weapons;
     private RigidPlayerScript playerScript;
+	private GUISelectedWeapon _selectedWeaponGUI = null;
+	private GUISelectedWeapon SelectedWeaponGUI
+	{
+		get
+		{
+			if (_selectedWeaponGUI == null)
+			{
+				_selectedWeaponGUI = transform.root.GetComponentInChildren<GUISelectedWeapon>();
+			}
+			return _selectedWeaponGUI;
+		}
+	}
+
     private Vector3 gripPoint;
 
     // Use this for initialization
     void Start()
     {
-        playerScript = gameObject.GetComponent<RigidPlayerScript>();
+        this.playerScript = gameObject.GetComponent<RigidPlayerScript>();
         if(Weapons.Count > 0)
             Equip(0);
     }
@@ -41,9 +56,14 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         selectedIndex = index;
         if (SelectedWeapon != null)
         {
-            GameObject.Destroy(SelectedWeapon.gameObject);
+            Destroy(SelectedWeapon.gameObject);
         }
         SelectedWeapon = (WeaponBase)Instantiate(Weapons[selectedIndex], gripPoint, Quaternion.identity);
+
+		if (this.SelectedWeaponGUI)
+		{
+			SelectedWeaponGUI.SetSelectedWeaponIndex(index);
+		}
     }
     //public List<WeaponBase> GetWeaponList()
     //{
@@ -54,7 +74,8 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     
     void Update()
     {
-
+        if (playerScript.LaserTransform == null)
+            playerScript.LaserTransform = SelectedWeapon.LaserOrigin;
         if (playerScript)
         {
             if (Input.GetButtonDown("Fire1") || Input.GetButton("Fire1"))
@@ -90,19 +111,29 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 	{
 		WeaponBase weapon = null;
 		
-		if (Weapons.Count > slot)
+		if (Weapons.Count >= slot)
 		{
-			weapon = Weapons[slot];
+			weapon = this.Weapons[slot-1];
 		}
 		
 		return weapon;
+	}
+
+	public WeaponBase GetSelectedWeapon(WeaponBase weapon)
+	{
+		return SelectedWeapon;
+	}
+
+	public int GetSelectedSlot()
+	{
+		return selectedIndex + 1;
 	}
 
     public void PickUpWeapon(ref WeaponBase weapon)
     {
         //in theory this should add the "reference (not as in ref, just used that so I had access to the weapon to destroy it)" to the weapon, then destroy the actual object
         Weapons.Add(weapon);
-        GameObject.Destroy(weapon);
+        Destroy(weapon);
     }
 
 }

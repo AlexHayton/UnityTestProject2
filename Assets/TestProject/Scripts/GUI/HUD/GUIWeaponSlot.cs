@@ -11,8 +11,8 @@ public class GUIWeaponSlot : GUIContentHolder {
 	private WeaponBase GetWeapon()
 	{
 		WeaponBase currentWeapon = null;
-		GameObject player = PlayerUtility.GetLocalPlayer();
-		WeaponHandler handler = player.GetComponent<WeaponHandler>();
+		owner = PlayerUtility.GetParentPlayer(this.gameObject);
+		WeaponHandler handler = owner.GetComponent<WeaponHandler>();
 		if (handler)
 		{
 			return handler.GetWeaponInSlot(weaponSlot);
@@ -20,7 +20,7 @@ public class GUIWeaponSlot : GUIContentHolder {
 		
 		return currentWeapon;
 	}
-	
+
 	public override string GetText()
 	{
 		return this.weaponSlot.ToString();
@@ -29,7 +29,47 @@ public class GUIWeaponSlot : GUIContentHolder {
 	public override Texture2D GetImage()
 	{
 		WeaponBase weapon = this.GetWeapon();
-		return weapon.GetIcon();
+		if (weapon)
+		{
+			return weapon.GetIcon();
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	public override void OnGUI()
+	{			
+		this.OnBaseGUI();
+		
+		GUIContent imageContent = new GUIContent();
+		imageContent.image = this.GetImage();
+		
+		GUIContent textContent = new GUIContent(); 
+		textContent.text = this.GetText();
+		
+		GUIStyle textStyle = this.GetStyle();
+		textStyle.normal.background = null;
+		
+		this.RenderGUI(delegate() 
+		{
+			// Render bg + image, then text overlaid
+			GUI.Box(new Rect(
+				this.GetLeft(),
+				this.GetTop(), 
+				this.GetPixelWidth(),
+				this.GetPixelHeight()), 
+				imageContent,
+				this.GetStyle());
+				
+			GUI.Box(new Rect(
+				this.GetLeft(),
+				this.GetTop()+5, 
+				this.GetPixelWidth(),
+				this.GetPixelHeight()), 
+				textContent);
+		});
 	}
 }
 

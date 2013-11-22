@@ -6,19 +6,19 @@ using TestProject;
 [ExecuteInEditMode()]
 public class GUIHealthBar : GUIHorizontalBar {
 
-	private GameObject player;
+	private HealthHandler handler;
 
 	public override void Start()
 	{
 		base.Start();
-		player = PlayerUtility.GetLocalPlayer ();
+		owner = PlayerUtility.GetLocalPlayer ();
+		handler = owner.GetComponent<HealthHandler>();
 	}
 	
 	public override float GetFullScalar()
 	{
 		if (Application.isPlaying)
 		{
-			HealthHandler handler = player.GetComponent<HealthHandler>();
 			float maxHealth = handler.GetMaxHealth();
 			float health = handler.GetHealth();
 			
@@ -35,7 +35,6 @@ public class GUIHealthBar : GUIHorizontalBar {
 	}	
 	
 	public override string GetText (){
-		HealthHandler handler = player.GetComponent<HealthHandler>();
 		float maxHealth = handler.GetMaxHealth();
 		float health = handler.GetHealth();
 		

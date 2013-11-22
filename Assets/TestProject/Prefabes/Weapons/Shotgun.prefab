@@ -71,7 +71,7 @@ GameObject:
   - 4: {fileID: 400006}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 64: {fileID: 6400000}
+  - 136: {fileID: 13600000}
   m_Layer: 8
   m_Name: GunMesh
   m_TagString: NoCollide
@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.79319215, y: -1.56497443, z: 6.29411983}
+  m_LocalPosition: {x: 11.8069897, y: -1.56497431, z: -3.06139541}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -166,19 +166,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_Mesh: {fileID: 4300004, guid: b045db3a2cfbe4961a6f86839f93cd30, type: 3}
---- !u!64 &6400000
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 4300004, guid: b045db3a2cfbe4961a6f86839f93cd30, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,16 +181,30 @@ MonoBehaviour:
   BulletPrefab: {fileID: 100000, guid: 948809e7ad000fe49b1ef901f4d1db52, type: 2}
   LaserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
   LaserColor: {r: 0, g: 1, b: 0, a: 0}
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: ead5850be28024153a41e615f90b18f5, type: 3}
+  LaserOrigin: {fileID: 0}
   primary: 1
-  Cooldown: .699999988
-  ConeAngle: .200000003
-  BulletsToCreate: 20
+  Cooldown: .5
+  ConeAngle: .300000012
+  BulletsToCreate: 25
   showInMenu: 1
-  EnergyCost: 25
-  DamageOnHit: 4
-  BulletSpeed: 70
+  EnergyCost: 20
+  DamageOnHit: 7
+  BulletSpeed: 50
   ForceOnImpact: 4
+--- !u!136 &13600000
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 3.4000001
+  m_Direction: 0
+  m_Center: {x: .00216209982, y: -.00479461299, z: -.00374522968}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
