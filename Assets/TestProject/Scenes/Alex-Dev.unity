@@ -3826,7 +3826,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   visible: 1
   guiStyleObject: {fileID: 100000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
-  guiStylePrefab: {fileID: 11400000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
+  guiStylePrefab: {fileID: 0}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
@@ -5729,7 +5729,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   visible: 1
   guiStyleObject: {fileID: 100000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
-  guiStylePrefab: {fileID: 11400000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
+  guiStylePrefab: {fileID: 0}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
@@ -7295,7 +7295,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   visible: 1
   guiStyleObject: {fileID: 100000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
-  guiStylePrefab: {fileID: 11400000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
+  guiStylePrefab: {fileID: 0}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
@@ -9331,7 +9331,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   visible: 1
   guiStyleObject: {fileID: 100000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
-  guiStylePrefab: {fileID: 11400000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
+  guiStylePrefab: {fileID: 0}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
@@ -12090,7 +12090,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   visible: 1
   guiStyleObject: {fileID: 100000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
-  guiStylePrefab: {fileID: 11400000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
+  guiStylePrefab: {fileID: 0}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
@@ -12254,7 +12254,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   visible: 1
   guiStyleObject: {fileID: 100000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
-  guiStylePrefab: {fileID: 11400000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
+  guiStylePrefab: {fileID: 0}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0

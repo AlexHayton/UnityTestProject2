@@ -163,8 +163,8 @@ public class WeaponBase : MonoBehaviour, ISelfTest
                     ForceOnImpact = this.ForceOnImpact
                 };
                 bullet.SetStartValues(values);
-				PlayShootSound();
             }
+			PlayShootSound();
 
             this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
 
