@@ -8,6 +8,8 @@ namespace TestProject
 	{
 		IList<Renderer> childRenderers = null;
 		IList<Light> childLights = null;
+		private float defaultScale;
+		public float VaryScaleByPercent = 0.0f;
 		float hideTime = Time.time;
 		bool visible = false;
 
@@ -15,6 +17,7 @@ namespace TestProject
 		{
 			childRenderers = gameObject.GetComponentsInChildren<Renderer>();
 			childLights = gameObject.GetComponentsInChildren<Light>();
+			defaultScale = transform.localScale.x;
 			this.Hide();
 		}
 
@@ -45,6 +48,11 @@ namespace TestProject
 		{
 			hideTime = Time.time + duration;
 			visible = true;
+
+			float varyScale = defaultScale * VaryScaleByPercent / 100.0f;
+			Vector3 localScale = transform.localScale;
+			localScale.x = UnityEngine.Random.Range (defaultScale - varyScale, defaultScale + varyScale);
+			transform.localScale = localScale;
 
 			foreach(Renderer renderer in childRenderers)
 			{
