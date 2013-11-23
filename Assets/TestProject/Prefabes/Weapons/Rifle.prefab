@@ -179,7 +179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FiringEffect: {fileID: 100004, guid: 00eae9a0e0c7a4c03b5c9b156b47fede, type: 2}
   BulletPrefab: {fileID: 100000, guid: aab981ed5ca71f1409fc729fa4070773, type: 2}
-  bulletShootPrefab: {fileID: 100000, guid: acd864f3fdf574a48aaa18182f7b6557, type: 2}
+  bulletSounds:
+  - {fileID: 100000, guid: acd864f3fdf574a48aaa18182f7b6557, type: 2}
   LaserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
   LaserColor: {r: 1, g: 0, b: 0, a: 0}
   Icon: {fileID: 2800000, guid: 3e0a49a7425cc451fac4bb818f7b1509, type: 3}
