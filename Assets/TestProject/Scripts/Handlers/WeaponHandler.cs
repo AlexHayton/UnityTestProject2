@@ -65,6 +65,34 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 			SelectedWeaponGUI.SetSelectedWeaponIndex(index);
 		}
     }
+
+	public bool HasWeapon(GameObject weapon)
+	{
+		return Weapons.Where (w => w.name == weapon.name).Count() > 0;
+	}
+
+	public bool HasWeapon(WeaponBase weapon)
+	{
+		return this.HasWeapon(weapon.gameObject);
+	}
+
+	public void AddWeapon(GameObject weapon)
+	{
+		if (!this.HasWeapon (weapon)) {
+			WeaponBase weaponScript = weapon.GetComponent<WeaponBase>();
+			if (weaponScript)
+			{
+				this.AddWeapon(weaponScript);
+			}
+		}
+	}
+
+	public void AddWeapon(WeaponBase weapon)
+	{
+		if (!this.HasWeapon (weapon)) {
+			Weapons.Add(weapon);
+		}
+	}
     //public List<WeaponBase> GetWeaponList()
     //{
     //    return this.PrimaryWeapons.Select(w => w.GetComponent<WeaponBase>()).Where(w => w != null).ToList();

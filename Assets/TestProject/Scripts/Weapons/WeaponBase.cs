@@ -195,6 +195,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 			GameObject bulletSoundInstance = Instantiate(bulletSound) as GameObject;
 			bulletSoundInstance.transform.parent = playerScript.transform;
 			bulletSoundInstance.transform.localPosition = new Vector3(0, 0, 1);
+			EffectUtility.DestroyWhenFinished(bulletSoundInstance);
 		}
 	}
 

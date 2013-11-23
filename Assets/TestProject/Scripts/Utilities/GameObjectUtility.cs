@@ -1,6 +1,9 @@
 using UnityEngine;
 
 // You can use these functions to instantiate and manage effects.
+using System;
+
+
 public static class EffectUtility
 {
 	// This version of the function gets angry if it is passed invalid parameters
@@ -17,7 +20,7 @@ public static class EffectUtility
 	{
 		if (effectPrefab != null)
 		{
-			GameObject gameObject = Instantiate(effectPrefab, transform, rotation);
+			GameObject gameObject = GameObject.Instantiate(effectPrefab, position, rotation) as GameObject;
 			PlayEffects(gameObject);
 			DestroyWhenFinished(gameObject);
 			return gameObject;
@@ -37,17 +40,17 @@ public static class EffectUtility
 		if (parent == null)
 			throw new ArgumentException("Tried to instantiate an effect prefab but its parent was null");
 			
-		return TryInstantiateEffectPrefab(effectPrefab, parent);
+		return TryInstantiateEffectPrefab(effectPrefab, parent.transform);
 	}
 		
 	// Create an effect at relative to an existing object
 	// If the parent object is destroyed, this one will be too!
 	// This version of the function is tolerant of invalid parameters
-	public static GameObject TryInstantiateEffectPrefab(GameObject effectPrefab, GameObject parent)
+	public static GameObject TryInstantiateEffectPrefab(GameObject effectPrefab, Transform parent)
 	{
 		if (effectPrefab != null && parent != null)
 		{
-			GameObject gameObject = Instantiate(effectPrefab);
+			GameObject gameObject = GameObject.Instantiate(effectPrefab) as GameObject;
 			gameObject.transform.parent = parent;
 			PlayEffects(gameObject);
 			DestroyWhenFinished(gameObject);
@@ -66,9 +69,9 @@ public static class EffectUtility
 			gameObject.animation.Play();
 		}
 			
-		if (gameObject.soundSource)
+		if (gameObject.audio)
 		{
-			gameObject.soundSource.Play();
+			gameObject.audio.Play();
 		}
 	}
 
@@ -77,15 +80,15 @@ public static class EffectUtility
 	    float lifetime = 0.1f;
 	    if (gameObject.animation)
 	    {
-	    	lifetime = Math.max(lifetime, gameObject.animation.length);
+	    	lifetime = Mathf.Max(lifetime, gameObject.animation.clip.length);
 	    }
 	    
-	    if (gameObject.soundSource)
+		if (gameObject.audio)
 	    {
-	    	lifetime = Math.max(lifetime, gameObject.soundSource.length);
+			lifetime = Mathf.Max(lifetime, gameObject.audio.clip.length);
 	    }
 	    
-	    Destroy(gameObject, lifetime);
+	    GameObject.Destroy(gameObject, lifetime);
 	}
 
 }

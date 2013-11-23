@@ -45,23 +45,20 @@ public abstract class Pickupable : MonoBehaviour {
 			IEnumerable<GameObject> players = PlayerUtility.GetAllPlayersInClosestOrder(this.transform.position);
 			IEnumerator<GameObject> enumerator = players.GetEnumerator();
 
-			bool foundPlayer = false;
 			targetPlayer = null;
-			while (!foundPlayer && enumerator.MoveNext())
+			while (targetPlayer == null && enumerator.MoveNext())
 			{
 				GameObject thisPlayer = enumerator.Current;
 				
 				// if we fail a distance check we'll never find a close enough player
 				if (!this.IsNearEnoughToPickup(thisPlayer))
 				{
-					player = null;
 					break;
 				}
 
 				if (this.CanBePickedUpBy(thisPlayer))
 				{
 					targetPlayer = thisPlayer;
-					foundPlayer = true;
 				}
 			}
 			
