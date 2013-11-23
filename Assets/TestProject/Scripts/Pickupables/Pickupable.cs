@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using TestProject;
 using System.Collections.Generic;
@@ -7,10 +7,12 @@ using System.Collections.Generic;
 public abstract class Pickupable : MonoBehaviour {
 
 	public GameObject pickUpEffectPrefab;
-	protected GameObject player;
+	protected GameObject targetPlayer;
 	public bool floatsToPlayer = false;
 	public float floatToPlayerRangeSquared = 9.0f;
 	public float floatToPlayerSpeed = 2.0f;
+	private const float PLAYER_CHECK_INTERVAL = 1.0f;
+	private float nextValidityCheckTime;
 	
 	void Start()
 	{
@@ -25,10 +27,8 @@ public abstract class Pickupable : MonoBehaviour {
 				
 				if (this.OnPickUp(collision.gameObject))
 				{					
-					if (pickUpEffectPrefab) {
-						GameObject test = (GameObject)Instantiate(pickUpEffectPrefab, transform.position, transform.rotation);
-						Destroy (test, 0.5f);	
-					}
+					// EffectUtility sanity checks for us!
+					EffectUtility.TryInstantiateEffectPrefab(pickUpEffectPrefab, transform.position, transform.rotation);
 					
 					Destroy (this.gameObject);
 				}
@@ -40,20 +40,35 @@ public abstract class Pickupable : MonoBehaviour {
 	
 	void Update()
 	{
-		IEnumerable<GameObject> players = PlayerUtility.GetAllPlayersInClosestOrder(this.transform.position);
-		IEnumerator<GameObject> enumerator = players.GetEnumerator();
-
-		bool foundPlayer = false;
-		while (!foundPlayer && enumerator.MoveNext())
+		if (Time.time > this.nextValidityCheckTime)
 		{
-			GameObject player = enumerator.Current;
+			IEnumerable<GameObject> players = PlayerUtility.GetAllPlayersInClosestOrder(this.transform.position);
+			IEnumerator<GameObject> enumerator = players.GetEnumerator();
 
-			// Float towards the player if the player is near enough.
-			if (this.floatsToPlayer && this.CanBePickedUpBy(player) && this.IsNearEnoughToPickup(player))
+			targetPlayer = null;
+			while (targetPlayer == null && enumerator.MoveNext())
 			{
-				this.FloatTowardsPlayer(player);
-				foundPlayer = true;
+				GameObject thisPlayer = enumerator.Current;
+				
+				// if we fail a distance check we'll never find a close enough player
+				if (!this.IsNearEnoughToPickup(thisPlayer))
+				{
+					break;
+				}
+
+				if (this.CanBePickedUpBy(thisPlayer))
+				{
+					targetPlayer = thisPlayer;
+				}
 			}
+			
+			this.nextValidityCheckTime = Time.time + PLAYER_CHECK_INTERVAL;
+		}
+		
+		// Float towards the player if the player is near enough.
+		if (targetPlayer != null && this.floatsToPlayer)
+		{
+			this.FloatTowardsPlayer(targetPlayer);
 		}
 	}
 	
@@ -67,13 +82,11 @@ public abstract class Pickupable : MonoBehaviour {
     	transform.position = Vector3.MoveTowards(transform.position, player.transform.position, floatToPlayerSpeed*Time.deltaTime);
 	}
 	
-	
 	void OnBecameInvisible (){
 		Destroy (this.gameObject);
 	}
 	
-	
-	public virtual bool OnPickUp(GameObject player) {			
+	public virtual bool OnPickUp(GameObject player) {
 		return true; 
 	}
 }

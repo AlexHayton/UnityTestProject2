@@ -4,13 +4,12 @@
 SceneSettings:
   m_ObjectHideFlags: 0
   m_PVSData: 
-  m_QueryMode: 1
   m_PVSObjectsArray: []
   m_PVSPortalsArray: []
   m_OcclusionBakeSettings:
-    viewCellSize: 1
-    bakeMode: 2
-    memoryUsage: 10485760
+    smallestOccluder: 5
+    smallestHole: .25
+    backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
   m_Fog: 0
@@ -23,6 +22,7 @@ RenderSettings:
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: .5
   m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 0}
   m_ObjectHideFlags: 0
@@ -156,6 +156,55 @@ Transform:
   m_Children:
   - {fileID: 1635210833}
   m_Father: {fileID: 830490553}
+--- !u!1 &394713513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100016, guid: 384f4fbc652e741419ee6dd58ad3f717, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 394713514}
+  - 114: {fileID: 394713515}
+  m_Layer: 0
+  m_Name: AlexButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &394713514
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400016, guid: 384f4fbc652e741419ee6dd58ad3f717, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 394713513}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.65521312, y: 31.1594429, z: 24.1548996}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1768341645}
+--- !u!114 &394713515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: 384f4fbc652e741419ee6dd58ad3f717,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 394713513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27ab68b3703747aa8e5978bfad58213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 60, y: 55}
+  visible: 1
+  guiStyleObject: {fileID: 1660099385}
+  guiStylePrefab: {fileID: 1660099387}
+  depth: 100
+  color: {r: 1, g: 1, b: 1, a: 1}
+  autoXPosition: 0
+  text: Alex Level
+  image: {fileID: 0}
+  scene: 4
 --- !u!1 &398479471
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,6 +884,7 @@ MonoBehaviour:
   fontSize: 1
   fontStyle: 0
   alignment: 0
+  imagePosition: 1
   scale: {x: 100, y: 100}
   lockScaleRatio: 0
 --- !u!1 &1660099385
@@ -886,6 +936,7 @@ MonoBehaviour:
   fontSize: 20
   fontStyle: 1
   alignment: 4
+  imagePosition: 1
   scale: {x: 20, y: 9.21600151}
   lockScaleRatio: 1
 --- !u!1 &1735163031
@@ -956,6 +1007,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_HDR: 0
+  m_OcclusionCulling: 1
 --- !u!4 &1735163036
 Transform:
   m_ObjectHideFlags: 0
@@ -996,6 +1048,7 @@ Transform:
   - {fileID: 767640412}
   - {fileID: 1839013153}
   - {fileID: 653484966}
+  - {fileID: 394713514}
   m_Father: {fileID: 1781187168}
 --- !u!1 &1781187167
 GameObject:
@@ -1137,5 +1190,6 @@ MonoBehaviour:
   fontSize: 0
   fontStyle: 0
   alignment: 0
+  imagePosition: 1
   scale: {x: 50, y: 50}
   lockScaleRatio: 1

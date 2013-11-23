@@ -8,7 +8,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
     public GameObject FiringEffect;
     public GameObject BulletPrefab;
-	public GameObject bulletShootPrefab;
+	public List<GameObject> bulletSounds = new List<GameObject>();
     public GameObject LaserPointer;
     public Color LaserColor;
     public Texture2D Icon;
@@ -163,8 +163,8 @@ public class WeaponBase : MonoBehaviour, ISelfTest
                     ForceOnImpact = this.ForceOnImpact
                 };
                 bullet.SetStartValues(values);
-				PlayShootSound();
             }
+			PlayShootSound();
 
             this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
 
@@ -190,9 +190,12 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
 	private void PlayShootSound() {
 		
-		if (bulletShootPrefab) {
-			GameObject bulletShootSound = (GameObject)Instantiate(bulletShootPrefab, bulletOrigin.position,  Quaternion.identity);
-			bulletShootSound.transform.parent = this.gameObject.transform;
+		if (bulletSounds.Count > 0) {
+			GameObject bulletSound = bulletSounds[UnityEngine.Random.Range(0, bulletSounds.Count - 1)];
+			GameObject bulletSoundInstance = Instantiate(bulletSound) as GameObject;
+			bulletSoundInstance.transform.parent = playerScript.transform;
+			bulletSoundInstance.transform.localPosition = new Vector3(0, 0, 1);
+			EffectUtility.DestroyWhenFinished(bulletSoundInstance);
 		}
 	}
 
