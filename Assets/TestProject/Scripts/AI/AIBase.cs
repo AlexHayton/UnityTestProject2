@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -11,6 +11,7 @@ public class AIBase : MonoBehaviour {
 		Retreat,
 		Dead,
 		WalkAround,
+		Follow
 	}
 	
 	public State myState = State.Idle;
@@ -50,6 +51,10 @@ public class AIBase : MonoBehaviour {
 				
 			case State.Attack:
 				OnAttackState();
+				break;
+				
+			case State.Follow:
+				OnFollowState();
 				break;
 				
 			case State.Dead:
@@ -92,6 +97,16 @@ public class AIBase : MonoBehaviour {
 				Attack ();
 			} else {
 				MoveTo(target.transform.position);
+			}
+		} else {
+			myState = State.Idle;	
+		}
+	}
+	
+	internal virtual void OnFollowState() {
+		if (target) {
+			Vector3 dest = target.transform.position + target.transform.rotation * new Vector3(1.0, 0, 0);
+			MoveTo(dest);
 			}
 		} else {
 			myState = State.Idle;	
