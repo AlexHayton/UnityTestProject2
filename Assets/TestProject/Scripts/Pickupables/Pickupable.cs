@@ -11,7 +11,7 @@ public abstract class Pickupable : MonoBehaviour {
 	public bool floatsToPlayer = false;
 	public float floatToPlayerRangeSquared = 9.0f;
 	public float floatToPlayerSpeed = 2.0f;
-	private const float PLAYER_CHECK_INTERVAL = 1.0f;
+	private const float PLAYER_CHECK_INTERVAL = 0.5f;
 	private float nextValidityCheckTime;
 	
 	void Start()
