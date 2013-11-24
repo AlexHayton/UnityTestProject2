@@ -134,7 +134,7 @@ public class HealthHandler : MonoBehaviour
             Destroy(gameObject);
             if (pickupDropper)
             {
-                pickupDropper.SpawnAPickup();
+                pickupDropper.SpawnPickups();
             }
 
             if (destroyPrefab)
