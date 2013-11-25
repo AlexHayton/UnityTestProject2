@@ -1,19 +1,22 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TestProject;
+using Random = UnityEngine.Random;
 
 public class WeaponBase : MonoBehaviour, ISelfTest
 {
 
     public GameObject FiringEffect;
     public GameObject BulletPrefab;
-	public List<GameObject> bulletSounds = new List<GameObject>();
+    public List<AudioClip> BulletSounds;
     public GameObject LaserPointer;
     public Color LaserColor;
     public Texture2D Icon;
-
-	private MuzzleFlashBase muzzleFlash;
+	
+	private AudioSource SoundSource;
+    private MuzzleFlashBase muzzleFlash;
     private LaserBase actualLaser;
     private RigidPlayerScript playerScript;
     private EnergyHandler energyHandler;
@@ -31,38 +34,36 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public int DamageOnHit = 10;
     public float BulletSpeed = 20.0f;
     public float ForceOnImpact = 20.0f;
-	public float muzzleFlashTime = 0.1f;
+    public float muzzleFlashTime = 0.1f;
     private bool IsScatter = false;
-
-    private Random rnd;
-
-    private float lastFireTime = 0.0f;
+    private float lastFireTime;
 
     public virtual void Start()
     {
-        lastFireTime = 0.0f;
-        rnd = new Random();
         var playerCapsule = GameObject.FindGameObjectWithTag("Player");
         playerScript = playerCapsule.GetComponent<RigidPlayerScript>();
         energyHandler = playerCapsule.GetComponent<EnergyHandler>();
+
         attachPoint = transform.FindChild("GripPoint");
         bulletOrigin = transform.FindChild("BarrelEnd");
         LaserOrigin = transform.FindChild("LaserOrigin");
-        GameObject laserObject = Instantiate(LaserPointer, LaserOrigin.position, Quaternion.identity) as GameObject;
+
+        var laserObject = Instantiate(LaserPointer, LaserOrigin.position, Quaternion.identity) as GameObject;
         actualLaser = laserObject.GetComponent<LaserBase>();
         actualLaser.SetOrigin(LaserOrigin.transform);
         laserObject.transform.parent = LaserOrigin;
+        laserObject.renderer.material.color = LaserColor;
+
         var playerGrip = playerCapsule.transform.FindChild("group1").FindChild("PlayerGrabPoint");
         transform.parent = playerGrip.transform;
         transform.rotation = playerCapsule.transform.rotation;
         transform.position = transform.position + (playerGrip.position - attachPoint.position);
-        energyHandler = gameObject.transform.root.GetComponentInChildren<EnergyHandler>();
-        laserObject.renderer.material.color = LaserColor;
-		GameObject muzzleFlashObject = Instantiate(FiringEffect) as GameObject;
+
+        var muzzleFlashObject = Instantiate(FiringEffect) as GameObject;
         muzzleFlashObject.transform.parent = bulletOrigin;
-		muzzleFlashObject.transform.localRotation = FiringEffect.transform.rotation;
-		muzzleFlashObject.transform.localPosition = FiringEffect.transform.position;
-		muzzleFlash = muzzleFlashObject.GetComponent<MuzzleFlashBase>();
+        muzzleFlashObject.transform.localRotation = FiringEffect.transform.rotation;
+        muzzleFlashObject.transform.localPosition = FiringEffect.transform.position;
+        muzzleFlash = muzzleFlashObject.GetComponent<MuzzleFlashBase>();
     }
 
     public bool SelfTest()
@@ -89,7 +90,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         var chosenRay = new Ray();
         var closestEnemyHit = new RaycastHit();
 
-        for (var i = -20; i <= 20; i += 5)
+        for (var i = -30; i <= 30; i += 5)
         {
             var thisRay = new Ray(bulletOrigin.position, Quaternion.AngleAxis(i, -transform.parent.right) * transform.parent.forward);
             arrayOfRays.Add(thisRay);
@@ -98,7 +99,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
             if (!hitsOnThisRay.Any())
                 continue;
             arrayOfManyRayHits.Add(hitsOnThisRay);
-            var closestHitOnThisRay = hitsOnThisRay.First(a => a.distance == hitsOnThisRay.Min(b => b.distance));
+            var closestHitOnThisRay = hitsOnThisRay.First(a => Math.Abs(a.distance - hitsOnThisRay.Min(b => b.distance)) <= Mathf.Epsilon);
             if (closestHitOnThisRay.transform.gameObject.GetComponent<AIBase>() != null &&
                 (closestHitOnThisRay.distance < closestEnemyHit.distance || closestEnemyHit.Equals(default(RaycastHit))))
             {
@@ -126,35 +127,25 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     {
         if (Time.time - lastFireTime > Cooldown && energyHandler.GetEnergy() > EnergyCost)
         {
+            PlayShootSound();
+
             // forward vector
             var direction = transform.forward.normalized;
 
             // Spawn visual bullet	and set values for start				
             for (int i = 0; i < BulletsToCreate; i++)
             {
+
                 // apply scatter
                 var dirWithConeRandomization = direction + new Vector3(Random.Range(-ConeAngle, ConeAngle), 0, Random.Range(-ConeAngle, ConeAngle));
-                float spreadAngle = Vector3.Angle(direction, dirWithConeRandomization);
-                Quaternion tempRot = BulletPrefab.transform.rotation;
+                var spreadAngle = Vector3.Angle(direction, dirWithConeRandomization);
+                var tempRot = BulletPrefab.transform.rotation;
                 tempRot.SetFromToRotation(BulletPrefab.transform.forward, dirWithConeRandomization);
 
-
-                //tempRot.y = playerScript.transform.rotation.y;	
-                //tempRot.y = transform.rotation.y;
-                //tempRot.y = Quaternion.FromToRotation(bulletPrefab.transform.position, direction).y;
-                //Debug.Log (test.eulerAngles.y);
-
-                //tempRot.y = Quaternion.FromToRotation(transform.position, endPoint).y;
-                //Quaternion coneRandomRotation = Quaternion.Euler (Random.Range (-coneAngle, coneAngle), Random.Range (-coneAngle, coneAngle), 0);
-                //tempRot *= coneRandomRotation;
-
-                //Debug.Log (tempRot.ToString ());
-                //tempRot.y = transform.rotation.y;
-
-                GameObject go = Instantiate(BulletPrefab, bulletOrigin.position, tempRot) as GameObject;
-                BulletBase bullet = go.GetComponent<BulletBase>();
-                float actualBulletSpeed = this.BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
-                BulletBase.StartValues values = new BulletBase.StartValues()
+                var go = Instantiate(BulletPrefab, bulletOrigin.position, tempRot) as GameObject;
+                var bullet = go.GetComponent<BulletBase>();
+                var actualBulletSpeed = BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
+                var values = new BulletBase.StartValues()
                 {
                     owner = playerScript.gameObject,
                     forward = dirWithConeRandomization,
@@ -164,17 +155,16 @@ public class WeaponBase : MonoBehaviour, ISelfTest
                 };
                 bullet.SetStartValues(values);
             }
-			PlayShootSound();
 
             this.playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
 
             // show visul muzzle
             if (muzzleFlash != null)
             {
-                ParticleSystem particleSystem = muzzleFlash.GetComponent<ParticleSystem>();
-                if (particleSystem != null)
+                var particleSys = muzzleFlash.GetComponent<ParticleSystem>();
+                if (particleSys != null)
                 {
-                    particleSystem.Emit(1);
+                    particleSys.Emit(1);
                 }
 
                 if (muzzleFlash != null)
@@ -188,16 +178,13 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     }
 
 
-	private void PlayShootSound() {
-		
-		if (bulletSounds.Count > 0) {
-			GameObject bulletSound = bulletSounds[UnityEngine.Random.Range(0, bulletSounds.Count - 1)];
-			GameObject bulletSoundInstance = Instantiate(bulletSound) as GameObject;
-			bulletSoundInstance.transform.parent = playerScript.transform;
-			bulletSoundInstance.transform.localPosition = new Vector3(0, 0, 1);
-			EffectUtility.DestroyWhenFinished(bulletSoundInstance);
-		}
-	}
+    private void PlayShootSound()
+    {
+        if (BulletSounds.Any())
+        {
+            AudioSource.PlayClipAtPoint(BulletSounds[Random.Range(0, BulletSounds.Count - 1)], bulletOrigin.position);
+        }
+    }
 
 
 }
