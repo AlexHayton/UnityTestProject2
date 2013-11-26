@@ -20,7 +20,9 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     private Transform bulletOrigin;
     [HideInInspector]
     public Transform LaserOrigin;
-    private Transform attachPoint;
+    protected Transform attachPoint;
+    protected GameObject autoAimTarget = null;
+    public FilterMask enemyFilterMask;
 
     public bool primary = true;
     public float Cooldown = .1f;
@@ -33,6 +35,25 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public float ForceOnImpact = 20.0f;
 	public float muzzleFlashTime = 0.1f;
     private bool IsScatter = false;
+    
+    // Lazy-Cache the bullet start values
+    private BulletBase.StartValues m_BulletStartValues = null;
+    private BulletBase.StartValues BulletStartValues
+    {
+    	get
+    	{
+    		if (m_BulletStartValues == null)
+    		{
+    			m_BulletStartValues = new BulletBase.StartValues()
+        		{
+          		 owner = playerScript.gameObject, 
+       		    DamageOnHit = this.DamageOnHit,
+        		   ForceOnImpact = this.ForceOnImpact
+      		  };
+      	  }
+      	  return m_BulletStartValues;
+    	}
+    }
 
     private Random rnd;
 
@@ -84,39 +105,22 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
     public void Update()
     {
-        var arrayOfRays = new List<Ray>();
-        var arrayOfManyRayHits = new List<List<RaycastHit>>();
-        var chosenRay = new Ray();
-        var closestEnemyHit = new RaycastHit();
-
-        for (var i = -20; i <= 20; i += 5)
-        {
-            var thisRay = new Ray(bulletOrigin.position, Quaternion.AngleAxis(i, -transform.parent.right) * transform.parent.forward);
-            arrayOfRays.Add(thisRay);
-
-            var hitsOnThisRay = Physics.RaycastAll(thisRay).Where(a => !a.transform.gameObject.CompareTag("Bullet")).ToList();
-            if (!hitsOnThisRay.Any())
-                continue;
-            arrayOfManyRayHits.Add(hitsOnThisRay);
-            var closestHitOnThisRay = hitsOnThisRay.First(a => a.distance == hitsOnThisRay.Min(b => b.distance));
-            if (closestHitOnThisRay.transform.gameObject.GetComponent<AIBase>() != null &&
-                (closestHitOnThisRay.distance < closestEnemyHit.distance || closestEnemyHit.Equals(default(RaycastHit))))
-            {
-                closestEnemyHit = closestHitOnThisRay;
-                chosenRay = new Ray(bulletOrigin.position, closestEnemyHit.transform.position - bulletOrigin.position);
-                Debug.DrawRay(chosenRay.origin, chosenRay.direction, Color.red);
-            }
-        }
-
+    	this.ChooseTarget();
+   }
+   
+   protected void ChooseTarget()
+   {
+   	autoAimTarget = TeamUtility.GetClosestEnemyEntity(this.gameObject, enemyFilterMask);
+   
         //no enemies found
-        if (closestEnemyHit.Equals(default(RaycastHit)))
+        if (autoAimTarget == null)
         {
             transform.rotation = Quaternion.LookRotation(transform.parent.forward, transform.parent.up);
         }
         else
         {
-            var targetRotation = Quaternion.LookRotation(closestEnemyHit.transform.position - transform.position, transform.parent.up);
-            transform.rotation = Quaternion.Euler(targetRotation.eulerAngles.x, transform.parent.eulerAngles.y, transform.parent.eulerAngles.z);
+            var targetRotation = Quaternion.LookRotation(autoAimTarget.transform.position - transform.position, transform.parent.up);
+            transform.rotation = Quaternion.Euler(autoAimTarget.eulerAngles.x, transform.parent.eulerAngles.y, transform.parent.eulerAngles.z);
 
         }
 
@@ -132,37 +136,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
             // Spawn visual bullet	and set values for start				
             for (int i = 0; i < BulletsToCreate; i++)
             {
-                // apply scatter
-                var dirWithConeRandomization = direction + new Vector3(Random.Range(-ConeAngle, ConeAngle), 0, Random.Range(-ConeAngle, ConeAngle));
-                float spreadAngle = Vector3.Angle(direction, dirWithConeRandomization);
-                Quaternion tempRot = BulletPrefab.transform.rotation;
-                tempRot.SetFromToRotation(BulletPrefab.transform.forward, dirWithConeRandomization);
-
-
-                //tempRot.y = playerScript.transform.rotation.y;	
-                //tempRot.y = transform.rotation.y;
-                //tempRot.y = Quaternion.FromToRotation(bulletPrefab.transform.position, direction).y;
-                //Debug.Log (test.eulerAngles.y);
-
-                //tempRot.y = Quaternion.FromToRotation(transform.position, endPoint).y;
-                //Quaternion coneRandomRotation = Quaternion.Euler (Random.Range (-coneAngle, coneAngle), Random.Range (-coneAngle, coneAngle), 0);
-                //tempRot *= coneRandomRotation;
-
-                //Debug.Log (tempRot.ToString ());
-                //tempRot.y = transform.rotation.y;
-
-                GameObject go = Instantiate(BulletPrefab, bulletOrigin.position, tempRot) as GameObject;
-                BulletBase bullet = go.GetComponent<BulletBase>();
-                float actualBulletSpeed = this.BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
-                BulletBase.StartValues values = new BulletBase.StartValues()
-                {
-                    owner = playerScript.gameObject,
-                    forward = dirWithConeRandomization,
-                    DamageOnHit = this.DamageOnHit,
-                    Speed = actualBulletSpeed,
-                    ForceOnImpact = this.ForceOnImpact
-                };
-                bullet.SetStartValues(values);
+                this.SpawnBullet();
             }
 			PlayShootSound();
 
@@ -185,6 +159,25 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
             lastFireTime = Time.time;
         }
+    }
+    
+    private void SpawnBullet()
+    {
+    	// apply scatter
+    	var dirWithConeRandomization = direction + new Vector3(Random.Range(-ConeAngle, ConeAngle), 0, Random.Range(-ConeAngle, ConeAngle));
+        float spreadAngle = Vector3.Angle(direction, dirWithConeRandomization);
+        Quaternion tempRot = BulletPrefab.transform.rotation;
+        tempRot.SetFromToRotation(BulletPrefab.transform.forward, dirWithConeRandomization);
+
+		// Set up the new bullet as efficiently as possible
+        GameObject go = Instantiate(BulletPrefab, bulletOrigin.position, tempRot) as GameObject;
+        BulletBase bullet = go.GetComponent<BulletBase>();
+        float actualBulletSpeed = this.BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
+        // Use cached bullet startValues when possible
+        BulletBase.StartValues values = this.BulletStartValues;
+        values.forward = dirWithConeRandomization;
+        values.Speed = actualBulletSpeed;
+        bullet.SetStartValues(values);
     }
 
 
