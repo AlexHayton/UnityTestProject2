@@ -22,7 +22,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public Transform LaserOrigin;
     protected Transform attachPoint;
     protected GameObject autoAimTarget = null;
-    public FilterMask enemyFilterMask;
+	public LayerMask enemyFilterMask;
 
     public bool primary = true;
     public float Cooldown = .1f;
@@ -37,22 +37,24 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     private bool IsScatter = false;
     
     // Lazy-Cache the bullet start values
-    private BulletBase.StartValues m_BulletStartValues = null;
+	private bool initialisedStartValues = false;
+    private BulletBase.StartValues m_BulletStartValues;
     private BulletBase.StartValues BulletStartValues
     {
     	get
     	{
-    		if (m_BulletStartValues == null)
+			if (!initialisedStartValues)
     		{
-    			m_BulletStartValues = new BulletBase.StartValues()
-        		{
-          		 owner = playerScript.gameObject, 
-       		    DamageOnHit = this.DamageOnHit,
-        		   ForceOnImpact = this.ForceOnImpact
-      		  };
-      	  }
-      	  return m_BulletStartValues;
-    	}
+				m_BulletStartValues = new BulletBase.StartValues()
+				{
+					owner = playerScript.gameObject, 
+					DamageOnHit = this.DamageOnHit,
+					ForceOnImpact = this.ForceOnImpact
+				};
+				initialisedStartValues = true;
+			}
+			return m_BulletStartValues;
+		}
     }
 
     private Random rnd;
@@ -106,11 +108,11 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public void Update()
     {
     	this.ChooseTarget();
-   }
+	}
    
-   protected void ChooseTarget()
-   {
-   	autoAimTarget = TeamUtility.GetClosestEnemyEntity(this.gameObject, enemyFilterMask);
+	protected void ChooseTarget()
+	{
+		autoAimTarget = TeamUtility.GetClosestEnemyEntity(this.gameObject, enemyFilterMask);
    
         //no enemies found
         if (autoAimTarget == null)
@@ -119,8 +121,8 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         }
         else
         {
-            var targetRotation = Quaternion.LookRotation(autoAimTarget.transform.position - transform.position, transform.parent.up);
-            transform.rotation = Quaternion.Euler(autoAimTarget.eulerAngles.x, transform.parent.eulerAngles.y, transform.parent.eulerAngles.z);
+            Quaternion targetRotation = Quaternion.LookRotation(autoAimTarget.transform.position - transform.position, transform.parent.up);
+			transform.rotation = Quaternion.Euler(autoAimTarget.transform.rotation.eulerAngles.x, transform.parent.eulerAngles.y, transform.parent.eulerAngles.z);
 
         }
 
@@ -130,9 +132,6 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     {
         if (Time.time - lastFireTime > Cooldown && energyHandler.GetEnergy() > EnergyCost)
         {
-            // forward vector
-            var direction = transform.forward.normalized;
-
             // Spawn visual bullet	and set values for start				
             for (int i = 0; i < BulletsToCreate; i++)
             {
@@ -163,8 +162,11 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     
     private void SpawnBullet()
     {
+		// forward vector
+		Vector3 direction = transform.forward.normalized;
+
     	// apply scatter
-    	var dirWithConeRandomization = direction + new Vector3(Random.Range(-ConeAngle, ConeAngle), 0, Random.Range(-ConeAngle, ConeAngle));
+    	Vector3 dirWithConeRandomization = direction + new Vector3(Random.Range(-ConeAngle, ConeAngle), 0, Random.Range(-ConeAngle, ConeAngle));
         float spreadAngle = Vector3.Angle(direction, dirWithConeRandomization);
         Quaternion tempRot = BulletPrefab.transform.rotation;
         tempRot.SetFromToRotation(BulletPrefab.transform.forward, dirWithConeRandomization);

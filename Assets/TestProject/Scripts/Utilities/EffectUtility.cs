@@ -1,9 +1,7 @@
 using UnityEngine;
-
-// You can use these functions to instantiate and manage effects.
 using System;
 
-
+// You can use these functions to instantiate and manage effects.
 public static class EffectUtility
 {
 	// This version of the function gets angry if it is passed invalid parameters

@@ -105,9 +105,8 @@ public class AIBase : MonoBehaviour {
 	
 	internal virtual void OnFollowState() {
 		if (target) {
-			Vector3 dest = target.transform.position + target.transform.rotation * new Vector3(1.0, 0, 0);
+			Vector3 dest = target.transform.position + target.transform.rotation * new Vector3(1, 0, 0);
 			MoveTo(dest);
-			}
 		} else {
 			myState = State.Idle;	
 		}
