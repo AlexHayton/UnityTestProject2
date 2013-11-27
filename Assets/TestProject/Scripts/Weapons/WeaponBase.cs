@@ -19,6 +19,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     private MuzzleFlashBase muzzleFlash;
     private LaserBase actualLaser;
     private RigidPlayerScript playerScript;
+    private TeamHandler teamHandler;
     private EnergyHandler energyHandler;
     private Transform bulletOrigin;
     [HideInInspector]
@@ -42,6 +43,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     {
         var playerCapsule = GameObject.FindGameObjectWithTag("Player");
         playerScript = playerCapsule.GetComponent<RigidPlayerScript>();
+        teamHandler = playerCapsule.GetComponent<TeamHandler>();
         energyHandler = playerCapsule.GetComponent<EnergyHandler>();
 
         attachPoint = transform.FindChild("GripPoint");
@@ -85,41 +87,62 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
     public void Update()
     {
-        var arrayOfRays = new List<Ray>();
-        var arrayOfManyRayHits = new List<List<RaycastHit>>();
-        var chosenRay = new Ray();
-        var closestEnemyHit = new RaycastHit();
+        var inFrontNoY = transform.parent.forward;
+        inFrontNoY.y = 0;
+        inFrontNoY.Normalize();
 
-        for (var i = -30; i <= 30; i += 5)
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 50, LayerMask.NameToLayer("Targetable"));
+        var enemies = (from hitCollider in hitColliders let colliderTeam = hitCollider.gameObject.GetComponent<TeamHandler>() where colliderTeam != null select hitCollider.gameObject).ToList();
+
+        var enemiesInFront = (from enemy in enemies
+                              let vectorToEnemy = enemy.transform.position - transform.parent.position
+                              let dirToEnemyWithNoY = new Vector3(vectorToEnemy.x, 0, vectorToEnemy.z).normalized
+                              where Vector3.Dot(inFrontNoY, dirToEnemyWithNoY) > .99f
+		                      select enemy).OrderBy(a => (a.transform.position - transform.parent.position).sqrMagnitude).ToList();
+
+        GameObject chosenEnemy = null;
+		List<RaycastHit> allHits;
+        foreach (var enemy in enemiesInFront)
         {
-            var thisRay = new Ray(bulletOrigin.position, Quaternion.AngleAxis(i, -transform.parent.right) * transform.parent.forward);
-            arrayOfRays.Add(thisRay);
+            var dirToEnemy = (enemy.transform.position - bulletOrigin.position).normalized;
+            var forwardDir = transform.parent.forward.normalized;
+            var castDir = new Vector3(forwardDir.x, dirToEnemy.y, forwardDir.z);
+            allHits = Physics.RaycastAll(bulletOrigin.position, castDir)
+                .Where(a => !a.collider.gameObject.CompareTag("Bullet") && !a.collider.gameObject.CompareTag("NoCollide")).OrderBy(a => a.distance).ToList();
 
-            var hitsOnThisRay = Physics.RaycastAll(thisRay).Where(a => !a.transform.gameObject.CompareTag("Bullet")).ToList();
-            if (!hitsOnThisRay.Any())
-                continue;
-            arrayOfManyRayHits.Add(hitsOnThisRay);
-            var closestHitOnThisRay = hitsOnThisRay.First(a => Math.Abs(a.distance - hitsOnThisRay.Min(b => b.distance)) <= Mathf.Epsilon);
-            if (closestHitOnThisRay.transform.gameObject.GetComponent<AIBase>() != null &&
-                (closestHitOnThisRay.distance < closestEnemyHit.distance || closestEnemyHit.Equals(default(RaycastHit))))
+			if (!allHits.Any())
+					continue;
+            var closestHit = allHits.First();
+            if (closestHit.collider.gameObject.Equals(enemy))
             {
-                closestEnemyHit = closestHitOnThisRay;
-                chosenRay = new Ray(bulletOrigin.position, closestEnemyHit.transform.position - bulletOrigin.position);
-                Debug.DrawRay(chosenRay.origin, chosenRay.direction, Color.red);
+                chosenEnemy = enemy;
+                break;
             }
+			//else
+				//print (closestHit.collider.gameObject);
         }
-
         //no enemies found
-        if (closestEnemyHit.Equals(default(RaycastHit)))
+		var oldRotation = transform.rotation;
+        if (chosenEnemy == null)
         {
             transform.rotation = Quaternion.LookRotation(transform.parent.forward, transform.parent.up);
-        }
+			if(Quaternion.Angle(oldRotation,transform.rotation) > 1.0f && Time.time - lastFireTime < .1f)
+			{
+				var x = 0;
+			}
+		}
+
         else
         {
-            var targetRotation = Quaternion.LookRotation(closestEnemyHit.transform.position - transform.position, transform.parent.up);
+            var targetRotation = Quaternion.LookRotation(chosenEnemy.transform.position - transform.position, transform.parent.up);
             transform.rotation = Quaternion.Euler(targetRotation.eulerAngles.x, transform.parent.eulerAngles.y, transform.parent.eulerAngles.z);
-
         }
+
+		print(Vector3.Angle(transform.forward,transform.parent.forward));
+		if(Vector3.Angle(transform.forward,transform.parent.forward) < 1 && Time.time - lastFireTime < .1f)
+		{
+			int x = 0;
+		}
 
     }
 

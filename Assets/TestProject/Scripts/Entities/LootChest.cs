@@ -10,10 +10,6 @@ public class LootChest : MonoBehaviour
     [Serializable]
     public class Loot
     {
-        public Loot()
-        {
-            print("Loot constructor");
-        }
         public GameObject Item;
         public int PercentageWithinTier;
     }
