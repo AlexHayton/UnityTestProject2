@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +10,8 @@ namespace TestProject
 		{
 			// Function isn't exactly fast so warn when we use it.
 			Debug.Log ("Called GetTeamHandlersInScene!");
-			return Object.FindObjectsOfType(TeamHandler); 
+			Object[] handlers = UnityEngine.Object.FindObjectsOfType(typeof(TeamHandler));
+			return handlers as TeamHandler[];
 		}
 	}
 }
