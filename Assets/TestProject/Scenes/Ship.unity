@@ -6899,6 +6899,46 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 273040442}
+--- !u!1001 &1123127706
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3.06925154
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.29962301
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -6.69937658
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+  m_RootGameObject: {fileID: 1143015826}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1124818245
 GameObject:
   m_ObjectHideFlags: 0
@@ -7093,6 +7133,66 @@ Prefab:
   m_RootGameObject: {fileID: 1199063276}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1143015826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+  m_PrefabInternal: {fileID: 1123127706}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1143015829}
+  - 114: {fileID: 1143015828}
+  - 114: {fileID: 1143015827}
+  m_Layer: 0
+  m_Name: Ship Loot Chest
+  m_TagString: LootChest
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1143015827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 8eebcdb974b065d468457362005a0892,
+    type: 2}
+  m_PrefabInternal: {fileID: 1123127706}
+  m_GameObject: {fileID: 1143015826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dbad43c20ff3fc4b9b7b9b092e5dd29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tiers:
+  - Tier: 1
+    Objects:
+    - Item: {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}
+      PercentageWithinTier: 70
+    - Item: {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
+      PercentageWithinTier: 30
+--- !u!114 &1143015828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 8eebcdb974b065d468457362005a0892,
+    type: 2}
+  m_PrefabInternal: {fileID: 1123127706}
+  m_GameObject: {fileID: 1143015826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c4bcd9ea506ed4bbb929605d5cfbce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gizmoColor: {r: 0, g: 1, b: .131034374, a: .501960814}
+--- !u!4 &1143015829
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+  m_PrefabInternal: {fileID: 1123127706}
+  m_GameObject: {fileID: 1143015826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.06925154, y: 3.29962301, z: -6.69937658}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1169226336
 GameObject:
   m_ObjectHideFlags: 0

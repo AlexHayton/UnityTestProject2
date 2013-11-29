@@ -180,21 +180,25 @@ MonoBehaviour:
   FiringEffect: {fileID: 100004, guid: 00eae9a0e0c7a4c03b5c9b156b47fede, type: 2}
   BulletPrefab: {fileID: 100000, guid: 948809e7ad000fe49b1ef901f4d1db52, type: 2}
   BulletSounds:
+<<<<<<< HEAD
   - {fileID: 8300000, guid: ed165c9a99761bb489b6eac92fe9a331, type: 3}
+=======
+  - {fileID: 8300000, guid: 8c17e56111979a14e9e0339e803a76f7, type: 3}
+>>>>>>> 8c2efe51d008a988c5e93df89d35c14df1de78e1
   LaserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
   LaserColor: {r: 0, g: 1, b: 0, a: 0}
   Icon: {fileID: 2800000, guid: ead5850be28024153a41e615f90b18f5, type: 3}
   LaserOrigin: {fileID: 0}
   primary: 1
   Cooldown: .5
-  ConeAngle: .300000012
-  BulletsToCreate: 25
+  ConeAngle: .400000006
+  BulletsToCreate: 50
   showInMenu: 1
-  EnergyCost: 20
+  EnergyCost: 25
   DamageOnHit: 7
   BulletSpeed: 50
   ForceOnImpact: 4
-  muzzleFlashTime: .300000012
+  muzzleFlashTime: .100000001
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

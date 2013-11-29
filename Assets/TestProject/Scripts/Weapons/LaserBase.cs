@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Linq.Expressions;
 using System.Linq;
@@ -55,7 +56,7 @@ public class LaserBase : MonoBehaviour
 
         var castedRay = new Ray(origin.position, origin.forward);
         var allHits = Physics.RaycastAll(castedRay);
-        var datHit = allHits.Where(a => !a.transform.gameObject.CompareTag("Bullet")).FirstOrDefault(a => a.distance == allHits.Min(b => b.distance));
+        var datHit = allHits.Where(a => !a.transform.gameObject.CompareTag("Bullet")).FirstOrDefault(a => Math.Abs(a.distance - allHits.Min(b => b.distance)) <= Mathf.Epsilon);
 
         //if we hit anything at all
         if (!datHit.Equals(default(RaycastHit)))
@@ -77,7 +78,6 @@ public class LaserBase : MonoBehaviour
 
         else
         {
-            gun.transform.rotation = Quaternion.LookRotation(gun.transform.parent.forward, gun.transform.parent.up);
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, originalLaserScale);
             transform.position = origin.position + transform.forward * originaLaserlLength / 2;
             laserSpot.renderer.enabled = false;

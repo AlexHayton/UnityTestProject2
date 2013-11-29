@@ -16,5 +16,10 @@ public class TeamHandler : MonoBehaviour {
 	public Team GetTeam() {	
 		return this.team;
 	}
+
+    public bool IsFriendly(Team team)
+    {
+        return team == this.team;
+    }
 	
 }
