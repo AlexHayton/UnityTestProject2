@@ -36,6 +36,7 @@ public class LaserBase : MonoBehaviour
         originaLaserlLength = originalLaserScale * 10;
         transform.position += transform.forward * originaLaserlLength / 2;
         gun = transform.parent.parent.gameObject;
+        Update();
     }
 
     public void OnDestroy()

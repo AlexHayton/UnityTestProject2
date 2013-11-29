@@ -20,13 +20,12 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     private MuzzleFlashBase muzzleFlash;
     private LaserBase actualLaser;
     private RigidPlayerScript playerScript;
-    private TeamHandler teamHandler;
     private EnergyHandler energyHandler;
     private Transform bulletOrigin;
     [HideInInspector]
     public Transform LaserOrigin;
     private Transform attachPoint;
-    private List<Collider> enemiesInView;
+    private EnemyDetector enemyDetector;
 
     public bool primary = true;
     public float Cooldown = .1f;
@@ -42,19 +41,11 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     private float lastFireTime;
 
 
-	public List<Collider> GetEnemiesInView()
-	{
-		return enemiesInView;
-	}
-
 
     public virtual void Start()
     {
-        enemiesInView = new List<Collider>();
-
         var playerCapsule = GameObject.FindGameObjectWithTag("Player");
         playerScript = playerCapsule.GetComponent<RigidPlayerScript>();
-        teamHandler = playerCapsule.GetComponent<TeamHandler>();
         energyHandler = playerCapsule.GetComponent<EnergyHandler>();
 
         attachPoint = transform.FindChild("GripPoint");
@@ -71,24 +62,16 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         transform.parent = playerGrip.transform;
         transform.rotation = playerCapsule.transform.rotation;
         transform.position = transform.position + (playerGrip.position - attachPoint.position);
+        enemyDetector = playerGrip.GetComponentInChildren<EnemyDetector>();
 
         var muzzleFlashObject = Instantiate(FiringEffect) as GameObject;
         muzzleFlashObject.transform.parent = bulletOrigin;
         muzzleFlashObject.transform.localRotation = FiringEffect.transform.rotation;
         muzzleFlashObject.transform.localPosition = FiringEffect.transform.position;
         muzzleFlash = muzzleFlashObject.GetComponent<MuzzleFlashBase>();
+        Update();
     }
 
-    public void AddEnemyToView(Collider enemyCollider)
-    {
-        enemiesInView.Add(enemyCollider);
-    }
-
-    public void RemoveEnemyFromView(Collider enemyCollider)
-    {
-        if (enemiesInView.IndexOf(enemyCollider.collider) != -1)
-            enemiesInView.Remove(enemyCollider);
-    }
 
     public bool SelfTest()
     {
@@ -128,7 +111,6 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         //        distToClostest = closestHit.distance;
         //    }
         //}
-        enemiesInView.RemoveAll(a => a == null);
 
         var enemy = GetClosestEnemyInLOS();
         if (enemy == null)
@@ -183,7 +165,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         //               where Vector3.Dot(inFrontNoY, dirToEnemyWithNoY) > .999f
         //               select enemy.gameObject.collider);
 
-        var enemiesInFront = enemiesInView;
+        var enemiesInFront = enemyDetector.GetEnemiesInView();
 
         Collider closestEnemy = null;
         var closestEnemyDist = 0.0f;

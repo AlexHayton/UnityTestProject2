@@ -54,14 +54,15 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 
     private void Equip(int index)
     {
+        if(selectedIndex == index && SelectedWeapon != null)
+            return;
         selectedIndex = index;
         if (SelectedWeapon != null)
         {
             Destroy(SelectedWeapon.gameObject);
         }
         SelectedWeapon = (WeaponBase)Instantiate(Weapons[selectedIndex], gripPoint, Quaternion.identity);
-
-		if (SelectedWeaponGUI)
+        if (SelectedWeaponGUI)
 		{
 			SelectedWeaponGUI.SetSelectedWeaponIndex(index);
 		}
