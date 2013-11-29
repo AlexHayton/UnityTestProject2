@@ -25,10 +25,6 @@ public class LootChest : MonoBehaviour
         
         private IEnumerable<WeightedRandomItem<GameObject>> GetAsWeightedRandomItems()
         {
-            foreach (var loot in Objects)
-            {
-                print(loot.PercentageWithinTier + ", " + loot.Item);
-            }
             return Objects.Select(item => new WeightedRandomItem<GameObject>(item.Item, item.PercentageWithinTier));
         }
 

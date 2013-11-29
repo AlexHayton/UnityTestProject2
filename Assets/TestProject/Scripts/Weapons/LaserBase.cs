@@ -55,9 +55,13 @@ public class LaserBase : MonoBehaviour
             return;
 
         var castedRay = new Ray(origin.position, origin.forward);
-        var allHits = Physics.RaycastAll(castedRay);
-        var datHit = allHits.Where(a => !a.transform.gameObject.CompareTag("Bullet")).FirstOrDefault(a => Math.Abs(a.distance - allHits.Min(b => b.distance)) <= Mathf.Epsilon);
-
+        var allHits = Physics.RaycastAll(castedRay).Where(a => !(a.collider.CompareTag("Bullet") || a.collider.CompareTag("NoCollide")));
+        var datHit = new RaycastHit();
+        foreach (var raycastHit in allHits)
+        {
+            if (raycastHit.distance < datHit.distance || datHit.Equals(default(RaycastHit)))
+                datHit = raycastHit;
+        }
         //if we hit anything at all
         if (!datHit.Equals(default(RaycastHit)))
         {
@@ -74,16 +78,18 @@ public class LaserBase : MonoBehaviour
             laserSpot.renderer.material.SetFloat("_Overbright", (originalSpotBrightness - .1f * transform.localScale.z / originalLaserScale));
             laserSpot.transform.position = castedRay.origin + castedRay.direction * datHit.distance + .01f * laserSpot.transform.up;
             laserSpot.renderer.enabled = true;
+
         }
 
         else
         {
+            var soup = 0;
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, originalLaserScale);
             transform.position = origin.position + transform.forward * originaLaserlLength / 2;
             laserSpot.renderer.enabled = false;
         }
         var tilt = Mathf.Cos(transform.parent.eulerAngles.y * radsPerDeg + 45);
-        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, tilt*45);
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, tilt * 45);
         renderer.material.SetTextureScale("_Noise", new Vector2(transform.localScale.x, transform.localScale.z));
         renderer.material.mainTextureOffset = new Vector2(.5018f, 1 - transform.localScale.z / originalLaserScale);
         renderer.material.mainTextureScale = new Vector2(1, transform.localScale.z / originalLaserScale);

@@ -19,19 +19,18 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     public List<WeaponBase> Weapons;
     private RigidPlayerScript playerScript;
 	private GUISelectedWeapon _selectedWeaponGUI = null;
-	private GUISelectedWeapon SelectedWeaponGUI
-	{
-		get
-		{
-			if (_selectedWeaponGUI == null)
-			{
-				_selectedWeaponGUI = transform.root.GetComponentInChildren<GUISelectedWeapon>();
-			}
-			return _selectedWeaponGUI;
-		}
-	}
 
-    private Vector3 gripPoint;
+    private GUISelectedWeapon SelectedWeaponGUI
+    {
+        get
+        {
+            if (_selectedWeaponGUI == null)
+            {
+                _selectedWeaponGUI = transform.root.GetComponentInChildren<GUISelectedWeapon>();
+            }
+            return _selectedWeaponGUI;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -51,6 +50,8 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         return fail;
     }
 
+    private Vector3 gripPoint;
+
     private void Equip(int index)
     {
         selectedIndex = index;
@@ -60,7 +61,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         }
         SelectedWeapon = (WeaponBase)Instantiate(Weapons[selectedIndex], gripPoint, Quaternion.identity);
 
-		if (this.SelectedWeaponGUI)
+		if (SelectedWeaponGUI)
 		{
 			SelectedWeaponGUI.SetSelectedWeaponIndex(index);
 		}
@@ -68,28 +69,28 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 
 	public bool HasWeapon(GameObject weapon)
 	{
-		return Weapons.Where (w => w.name == weapon.name).Count() > 0;
+		return Weapons.Any(w => w.name == weapon.name);
 	}
 
 	public bool HasWeapon(WeaponBase weapon)
 	{
-		return this.HasWeapon(weapon.gameObject);
+		return HasWeapon(weapon.gameObject);
 	}
 
 	public void AddWeapon(GameObject weapon)
 	{
-		if (!this.HasWeapon (weapon)) {
-			WeaponBase weaponScript = weapon.GetComponent<WeaponBase>();
+		if (!HasWeapon (weapon)) {
+			var weaponScript = weapon.GetComponent<WeaponBase>();
 			if (weaponScript)
 			{
-				this.AddWeapon(weaponScript);
+				AddWeapon(weaponScript);
 			}
 		}
 	}
 
 	public void AddWeapon(WeaponBase weapon)
 	{
-		if (!this.HasWeapon (weapon)) {
+		if (!HasWeapon (weapon)) {
 			Weapons.Add(weapon);
 		}
 	}
@@ -141,13 +142,13 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		
 		if (Weapons.Count >= slot)
 		{
-			weapon = this.Weapons[slot-1];
+			weapon = Weapons[slot-1];
 		}
 		
 		return weapon;
 	}
 
-	public WeaponBase GetSelectedWeapon(WeaponBase weapon)
+	public WeaponBase GetSelectedWeapon()
 	{
 		return SelectedWeapon;
 	}
