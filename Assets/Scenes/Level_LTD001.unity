@@ -2072,60 +2072,10 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-<<<<<<< HEAD
-  m_Size: {x: 1.57480371, y: 1.57480371, z: 1.57480371}
-  m_Center: {x: 1.2604283e-08, y: 9.52863445e-07, z: .787401855}
---- !u!1 &237672252
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 675475e4c525eeb44a7e8e93ee81cfbe, type: 3}
-  m_PrefabInternal: {fileID: 1025823305}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 237672253}
-  - 33: {fileID: 237672256}
-  - 23: {fileID: 237672255}
-  - 95: {fileID: 237672254}
-  m_Layer: 0
-  m_Name: Obj_TubeContents_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &237672253
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 675475e4c525eeb44a7e8e93ee81cfbe, type: 3}
-  m_PrefabInternal: {fileID: 1025823305}
-  m_GameObject: {fileID: 237672252}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -8, y: -.481244087, z: 12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1967450410}
---- !u!95 &237672254
-Animator:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 675475e4c525eeb44a7e8e93ee81cfbe,
-    type: 3}
-  m_PrefabInternal: {fileID: 1025823305}
-  m_GameObject: {fileID: 237672252}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 675475e4c525eeb44a7e8e93ee81cfbe, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_ApplyRootMotion: 1
-  m_AnimatePhysics: 0
-  m_HasTransformHierarchy: 1
---- !u!23 &237672255
-=======
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300002, guid: 89c2188758dafcc408eb0f0a59e7028d, type: 3}
 --- !u!23 &72082737
->>>>>>> bf5f8c3a15a149ff844998e4c12a3a89c4efccf8
 Renderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 2300002, guid: 89c2188758dafcc408eb0f0a59e7028d,
