@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using UnityEngine;
 using System.Collections;
+using TestProject;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
@@ -37,7 +38,7 @@ public class RigidPlayerScript : MonoBehaviour
     void Start()
     {
         camOffsetFromEnemies = new Vector3(0, 0, 0);
-        gripPoint = transform.FindChild("group1").FindChild("PlayerGrabPoint");
+        gripPoint = transform.FindChildRecursive("PlayerGrabPoint");
         //sets initial camera position
         mainCamera = transform.root.GetComponentInChildren<Camera>();
         mainCamera.transform.parent = null;

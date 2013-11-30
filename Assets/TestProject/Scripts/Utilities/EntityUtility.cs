@@ -50,5 +50,30 @@ namespace TestProject
 		{
 			return objects.GetClosestEntitiesTo(point).FirstOrDefault();
 		}
+
+		public static Transform FindChildRecursive(this Transform transformForSearch, string childName)
+		{
+			Transform foundChild = null;
+
+			for (int i = 0 ; i < transformForSearch.childCount; i++)
+			{
+				Transform child = transformForSearch.GetChild(i);
+				if (child.name == childName)
+				{
+					foundChild = child;
+				}
+				else if (child.childCount > 0)
+				{
+					foundChild = child.FindChildRecursive(childName);
+				}
+
+				if (foundChild != null)
+				{
+					break;
+				}
+			}
+
+			return foundChild;
+		}
 	}
 }

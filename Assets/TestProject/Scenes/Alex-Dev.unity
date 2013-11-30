@@ -3474,8 +3474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4778c6fe6e079488c9435f2f05737ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 100018, guid: 27d26e83805864dba996aa4892b03d9d, type: 2}
-  spawnOffset: {x: -1.79999995, y: -1.35000002, z: 5.55000019}
+  playerPrefab: {fileID: 100224, guid: 6c96ec11760b54aaf95af1a72a904e6a, type: 2}
+  spawnOffset: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   guiPrefabs:
   - {fileID: 100006, guid: a3ede8f312f4747e0bdc58df9f2f94ee, type: 2}
