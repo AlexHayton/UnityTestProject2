@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Reflection;
 using System.Linq;
 using System.Collections.Generic;
+using TestProject;
 
 /// <summary>
 /// SelfTestUtility
@@ -84,11 +85,10 @@ public static class SelfTestUtility
 	
 	public static void HasComponent<ComponentType>(ref bool fail, GameObject gameObject) where ComponentType : Component
 	{
-		ComponentType component = gameObject.GetComponent<ComponentType>();
-		if (component == null)
+		if (gameObject.HasComponent<ComponentType>())
 		{
 			string varName = gameObject.transform.name;
-			Debug.Log(gameObject.name + "." + component.name + "." + varName + ": must have a " + typeof(ComponentType).ToString() + " component");
+			Debug.Log(gameObject.name + "." + typeof(ComponentType).ToString() + "." + varName + ": must have a " + typeof(ComponentType).ToString() + " component");
 			fail = true;
 		}
 	}
