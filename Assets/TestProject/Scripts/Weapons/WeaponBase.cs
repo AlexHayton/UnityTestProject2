@@ -149,7 +149,6 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         }
     }
 
-
     public T FindClosestByBinary<T>(Vector3 pos, ref IEnumerable<T> objects) where T : Collider
     {
         var splits = 0;
@@ -289,4 +288,3 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
 
 }
-
