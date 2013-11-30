@@ -38,6 +38,30 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public float ForceOnImpact = 20.0f;
     public float muzzleFlashTime = 0.1f;
     private bool IsScatter = false;
+    
+    // Lazy-Cache the bullet start values
+	private bool initialisedStartValues = false;
+    private BulletBase.StartValues m_BulletStartValues;
+    private BulletBase.StartValues BulletStartValues
+    {
+    	get
+    	{
+			if (!initialisedStartValues)
+    		{
+				m_BulletStartValues = new BulletBase.StartValues()
+				{
+					owner = playerScript.gameObject, 
+					DamageOnHit = this.DamageOnHit,
+					ForceOnImpact = this.ForceOnImpact
+				};
+				initialisedStartValues = true;
+			}
+			return m_BulletStartValues;
+		}
+    }
+
+    private Random rnd;
+
     private float lastFireTime;
 
 
@@ -204,34 +228,12 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     {
         if (Time.time - lastFireTime > Cooldown && energyHandler.GetEnergy() > EnergyCost)
         {
-            PlayShootSound();
-
-            // forward vector
-            var direction = transform.forward.normalized;
-
             // Spawn visual bullet	and set values for start				
             for (int i = 0; i < BulletsToCreate; i++)
             {
-
-                // apply scatter
-                var dirWithConeRandomization = direction + new Vector3(Random.Range(-ConeAngle, ConeAngle), 0, Random.Range(-ConeAngle, ConeAngle));
-                var spreadAngle = Vector3.Angle(direction, dirWithConeRandomization);
-                var tempRot = BulletPrefab.transform.rotation;
-                tempRot.SetFromToRotation(BulletPrefab.transform.forward, dirWithConeRandomization);
-
-                var go = Instantiate(BulletPrefab, bulletOrigin.position, tempRot) as GameObject;
-                var bullet = go.GetComponent<BulletBase>();
-                var actualBulletSpeed = BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
-                var values = new BulletBase.StartValues()
-                {
-                    owner = playerScript.gameObject,
-                    forward = dirWithConeRandomization,
-                    DamageOnHit = this.DamageOnHit,
-                    Speed = actualBulletSpeed,
-                    ForceOnImpact = this.ForceOnImpact
-                };
-                bullet.SetStartValues(values);
+                this.SpawnBullet();
             }
+            this.PlayShootSound();
 
             playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
 
@@ -252,6 +254,28 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
             lastFireTime = Time.time;
         }
+    }
+    
+    private void SpawnBullet()
+    {
+		// forward vector
+		Vector3 direction = transform.forward.normalized;
+
+    	// apply scatter
+        var dirWithConeRandomization = direction + new Vector3(Random.Range(-ConeAngle, ConeAngle), 0, Random.Range(-ConeAngle, ConeAngle));
+        var spreadAngle = Vector3.Angle(direction, dirWithConeRandomization);
+        var tempRot = BulletPrefab.transform.rotation;
+        tempRot.SetFromToRotation(BulletPrefab.transform.forward, dirWithConeRandomization);
+
+		// Set up the new bullet as efficiently as possible
+        GameObject go = Instantiate(BulletPrefab, bulletOrigin.position, tempRot) as GameObject;
+        BulletBase bullet = go.GetComponent<BulletBase>();
+        float actualBulletSpeed = this.BulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
+        // Use cached bullet startValues when possible
+        BulletBase.StartValues values = this.BulletStartValues;
+        values.forward = dirWithConeRandomization;
+        values.Speed = actualBulletSpeed;
+        bullet.SetStartValues(values);
     }
 
 

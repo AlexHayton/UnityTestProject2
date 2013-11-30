@@ -3492,7 +3492,7 @@ MonoBehaviour:
   isEnabled: 1
   enemyPrefab: {fileID: 100004, guid: 2ca33c122fc9a7d45a271695262ca696, type: 2}
   spawnAmount: 4
-  spawnTime: 2
+  spawnTime: 4
 --- !u!114 &573745908
 MonoBehaviour:
   m_ObjectHideFlags: 0
