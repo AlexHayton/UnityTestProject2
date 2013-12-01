@@ -6,8 +6,7 @@ public class BulletBase : MonoBehaviour
 {
 
     public GameObject DestroyPrefab;
-    private StartValues values;
-    private float dist = 50f;
+    protected StartValues values;
     private GameObject owner;
     private Transform tr;
     private bool valuesSet = false;
@@ -17,6 +16,11 @@ public class BulletBase : MonoBehaviour
     void OnBecameInvisible()
     {
         Destroy(gameObject);
+    }
+
+    protected virtual void Start()
+    {
+        
     }
 
     public struct StartValues
@@ -31,7 +35,6 @@ public class BulletBase : MonoBehaviour
     // set the start values for the bullet
     public virtual void SetStartValues(StartValues values)
     {
-        this.owner = values.owner;
         this.values = values;
         ignoreTag = values.owner.tag;
         float thisBulletSpeed = values.Speed * Random.Range(.9f, 1.1f);
@@ -91,7 +94,7 @@ public class BulletBase : MonoBehaviour
                 // aply damage
                 if (health)
                 {
-                    health.DeductHealth(owner, values.DamageOnHit);
+                    health.DeductHealth(values.owner, values.DamageOnHit);
                 }
             }
             if (health == null || doDamage)

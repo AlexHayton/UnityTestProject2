@@ -62,7 +62,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
     private Random rnd;
 
-    private float lastFireTime;
+    private float lastFireTime = -1000;
 
 
 
@@ -148,7 +148,6 @@ public class WeaponBase : MonoBehaviour, ISelfTest
             transform.rotation = Quaternion.Euler(targetRotation.eulerAngles);
         }
     }
-
 
     public T FindClosestByBinary<T>(Vector3 pos, ref IEnumerable<T> objects) where T : Collider
     {
@@ -289,4 +288,3 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
 
 }
-
