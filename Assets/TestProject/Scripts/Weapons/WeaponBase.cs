@@ -62,7 +62,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
     private Random rnd;
 
-    private float lastFireTime;
+    private float lastFireTime = -1000;
 
 
 
