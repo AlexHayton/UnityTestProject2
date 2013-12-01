@@ -739,6 +739,66 @@ Prefab:
   m_RootGameObject: {fileID: 904671077}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &110886262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+  m_PrefabInternal: {fileID: 1702700766}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 110886265}
+  - 114: {fileID: 110886264}
+  - 114: {fileID: 110886263}
+  m_Layer: 0
+  m_Name: Ship Loot Chest
+  m_TagString: LootChest
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &110886263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 8eebcdb974b065d468457362005a0892,
+    type: 2}
+  m_PrefabInternal: {fileID: 1702700766}
+  m_GameObject: {fileID: 110886262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dbad43c20ff3fc4b9b7b9b092e5dd29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tiers:
+  - Tier: 1
+    Objects:
+    - Item: {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}
+      PercentageWithinTier: 70
+    - Item: {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
+      PercentageWithinTier: 30
+--- !u!114 &110886264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 8eebcdb974b065d468457362005a0892,
+    type: 2}
+  m_PrefabInternal: {fileID: 1702700766}
+  m_GameObject: {fileID: 110886262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c4bcd9ea506ed4bbb929605d5cfbce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gizmoColor: {r: 1, g: .931034446, b: 0, a: .501960814}
+--- !u!4 &110886265
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+  m_PrefabInternal: {fileID: 1702700766}
+  m_GameObject: {fileID: 110886262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.20858717, y: .349317908, z: -4.60986996}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &118506222
 GameObject:
   m_ObjectHideFlags: 0
@@ -4112,51 +4172,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2087585574}
   m_GameObject: {fileID: 632768069}
   m_Mesh: {fileID: 4300038, guid: fd2b1e4cd6dea4b6aa4ed39a243dbac8, type: 3}
---- !u!1 &653873841
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 653873843}
-  - 114: {fileID: 653873842}
-  m_Layer: 0
-  m_Name: LootChest
-  m_TagString: LootChest
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &653873842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 653873841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dbad43c20ff3fc4b9b7b9b092e5dd29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tiers:
-  - Tier: 1
-    Objects:
-    - Item: {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}
-      PercentageWithinTier: 50
-    - Item: {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
-      PercentageWithinTier: 50
---- !u!4 &653873843
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 653873841}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.35053611, y: -8.92806053, z: -13.0384817}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &668611388
 GameObject:
   m_ObjectHideFlags: 0
@@ -9457,6 +9472,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1993486732}
   m_GameObject: {fileID: 1688432992}
   m_Mesh: {fileID: 4300022, guid: 70c1dc667c26041f68eac54e5ce3bb7e, type: 3}
+--- !u!1001 &1702700766
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.20858717
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .349317908
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -4.60986996
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8eebcdb974b065d468457362005a0892, type: 2}
+  m_RootGameObject: {fileID: 110886262}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1001 &1703751833
 Prefab:
   m_ObjectHideFlags: 0

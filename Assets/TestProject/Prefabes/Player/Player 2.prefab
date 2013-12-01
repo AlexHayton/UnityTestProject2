@@ -1253,22 +1253,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &100166
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400166}
-  - 95: {fileID: 9500000}
-  m_Layer: 0
-  m_Name: Dude
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100168
 GameObject:
   m_ObjectHideFlags: 1
@@ -1700,7 +1684,6 @@ Transform:
   - {fileID: 400024}
   - {fileID: 400030}
   - {fileID: 400048}
-  - {fileID: 400176}
   m_Father: {fileID: 400052}
 --- !u!4 &400052
 Transform:
@@ -2217,6 +2200,7 @@ Transform:
   - {fileID: 400110}
   - {fileID: 400122}
   - {fileID: 400120}
+  - {fileID: 400176}
   - {fileID: 400100}
   - {fileID: 400134}
   - {fileID: 400102}
@@ -2368,19 +2352,19 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100162}
-  m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400146}
-  m_Father: {fileID: 400166}
+  m_Father: {fileID: 400178}
 --- !u!4 &400164
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100164}
-  m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2388,19 +2372,6 @@ Transform:
   - {fileID: 400158}
   - {fileID: 400156}
   - {fileID: 400154}
-  m_Father: {fileID: 400166}
---- !u!4 &400166
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100166}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 400164}
-  - {fileID: 400162}
   m_Father: {fileID: 400178}
 --- !u!4 &400168
 Transform:
@@ -2452,12 +2423,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100176}
-  m_LocalRotation: {x: .00176572893, y: -.00556593807, z: .0315731056, w: .99948442}
+  m_LocalRotation: {x: -1.86264515e-09, y: 7.68341124e-09, z: 1.48429535e-08, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400174}
-  m_Father: {fileID: 400050}
+  m_Father: {fileID: 400138}
 --- !u!4 &400178
 Transform:
   m_ObjectHideFlags: 1
@@ -2468,8 +2439,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400166}
+  - {fileID: 400164}
   - {fileID: 400168}
+  - {fileID: 400162}
   m_Father: {fileID: 400220}
 --- !u!4 &400220
 Transform:
@@ -2619,20 +2591,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100172}
   m_Enabled: 1
---- !u!95 &9500000
-Animator:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100166}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 68f3bca7394434fb78262337a0163137, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_ApplyRootMotion: 1
-  m_AnimatePhysics: 0
-  m_HasTransformHierarchy: 1
 --- !u!95 &9500002
 Animator:
   serializedVersion: 2
@@ -2641,11 +2599,11 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100178}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b045db3a2cfbe4961a6f86839f93cd30, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 68f3bca7394434fb78262337a0163137, type: 3}
   m_Controller: {fileID: 9100000, guid: 179dfa5ebf80646ea83c88313a75d775, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_ApplyRootMotion: 0
-  m_AnimatePhysics: 1
+  m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
 --- !u!108 &10800000
 Light:

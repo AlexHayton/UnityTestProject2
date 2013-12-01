@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c4bcd9ea506ed4bbb929605d5cfbce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gizmoColor: {r: 0, g: 1, b: .131034374, a: .501960814}
+  gizmoColor: {r: 1, g: .931034446, b: 0, a: .501960814}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
