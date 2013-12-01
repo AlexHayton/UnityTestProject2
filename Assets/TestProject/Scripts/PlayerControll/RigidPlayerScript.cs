@@ -31,6 +31,7 @@ public class RigidPlayerScript : MonoBehaviour
     private Vector3 cameraOffset = Vector3.zero;
 
 	private const string ANIM_PARAMS_SPEED = "Speed";
+	private const string ANIM_PARAMS_RELOADING = "Reloading";
 
     void Awake()
     {
@@ -142,7 +143,10 @@ public class RigidPlayerScript : MonoBehaviour
 
 	void UpdateAnimationParameters()
 	{
-		this.animator.SetFloat(ANIM_PARAMS_SPEED, this.rigidbody.velocity.magnitude);
+		Vector3 velocity = this.rigidbody.velocity;
+		Vector3 walkSpeed = new Vector3(velocity.x, 0, velocity.z);
+		this.animator.SetFloat(ANIM_PARAMS_SPEED, walkSpeed.magnitude);
+		this.animator.SetBool(ANIM_PARAMS_RELOADING, false);
 	}
 
 	void UpdateCamera()
