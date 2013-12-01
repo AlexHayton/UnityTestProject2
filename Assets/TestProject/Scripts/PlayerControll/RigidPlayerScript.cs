@@ -72,19 +72,6 @@ public class RigidPlayerScript : MonoBehaviour
             //Vector3 playerToMuzzle = GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position - transform.position;
             //playerToMuzzle.y = 0;
 
-            if(LaserTransform != null)
-            {
-                var lookDir = GetMouseOnPlane(new Plane(Vector3.up, gripPoint.position)) - transform.position;
-                Quaternion targetRot = Quaternion.LookRotation(lookDir);
-
-                // only rotate around y axis
-                targetRot.x = 0;
-                targetRot.z = 0;
-
-                float rotSpeed = turnSpeed * Time.deltaTime;
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, 1000);
-            }
-
             //************************************
             // Movement
             //************************************
@@ -109,14 +96,43 @@ public class RigidPlayerScript : MonoBehaviour
 
         }
 
-        //MoveCamera
-        var enemyDir = GetDirectionOfenemies();
-        var cameraDestination = transform.position + cameraOffset + enemyDir.normalized;
-        var cameraDestinationSize = 8 + enemyDir.magnitude * .2f;
-        mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
-        mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.fixedDeltaTime;
         grounded = false;
     }
+
+	void Update()
+	{
+		if (gripPoint == null)
+		{
+			Debug.LogError("Grip Point is null!");
+		}
+
+		if(LaserTransform != null)
+		{
+			var lookDir = GetMouseOnPlane(new Plane(Vector3.up, gripPoint.position)) - transform.position;
+			Quaternion targetRot = Quaternion.LookRotation(lookDir);
+			
+			// only rotate around y axis
+			targetRot.x = 0;
+			targetRot.z = 0;
+			
+			float rotSpeed = turnSpeed * Time.deltaTime;
+			transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, 1000);
+		}
+		else
+		{
+			Debug.Log ("Player isn't grounded");
+		}
+	}
+
+	void LateUpdate()
+	{
+		//MoveCamera
+		var enemyDir = GetDirectionOfenemies();
+		var cameraDestination = transform.position + cameraOffset + enemyDir.normalized;
+		var cameraDestinationSize = 8 + enemyDir.magnitude * .2f;
+		mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
+		mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.fixedDeltaTime;
+	}
 
     void OnCollisionStay()
     {
