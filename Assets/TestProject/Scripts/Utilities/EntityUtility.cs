@@ -8,6 +8,11 @@ namespace TestProject
 {
 	public static class EntityUtility
 	{
+		public static bool HasComponent<ComponentType>(this Collider collider) where ComponentType : Component
+		{
+			return collider.gameObject.HasComponent<ComponentType>();
+		}
+
 		public static bool HasComponent<ComponentType>(this GameObject gameObject) where ComponentType : Component
 		{
 			ComponentType component = gameObject.GetComponent<ComponentType>();
