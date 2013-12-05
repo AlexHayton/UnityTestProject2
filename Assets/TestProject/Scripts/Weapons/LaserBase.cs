@@ -84,7 +84,6 @@ public class LaserBase : MonoBehaviour
 
         else
         {
-            var soup = 0;
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, originalLaserScale);
             transform.position = origin.position + transform.forward * originaLaserlLength / 2;
             laserSpot.renderer.enabled = false;

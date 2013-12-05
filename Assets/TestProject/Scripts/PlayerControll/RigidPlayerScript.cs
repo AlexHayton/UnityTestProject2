@@ -135,8 +135,7 @@ public class RigidPlayerScript : MonoBehaviour
 			// only rotate around y axis
 			targetRot.x = 0;
 			targetRot.z = 0;
-			
-			float rotSpeed = turnSpeed * Time.deltaTime;
+
 			rigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, 1000));
 		}
 	}

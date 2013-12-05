@@ -11,20 +11,20 @@ public abstract class UsablePickup : Pickupable, IUsable {
 	{
 		base.Start();
 		
-		UseTarget localTarget this.GetComponent<UseTarget>();
+		UseTarget localTarget = this.GetComponent<UseTarget>();
 		localTarget.RegisterUsable(this);
 	}
 	
-	public virtual bool CanBeUsed()
+	public virtual bool CanBeUsedBy(GameObject user)
 	{
 		return true;
 	}
 	
-	public void OnUse()
+	public void OnUse(GameObject user)
 	{
-		if (this.CanBePickedUpBy(collision.gameObject)) {
+		if (this.CanBePickedUpBy(user)) {
 				
-			if (this.OnPickUp(collision.gameObject))
+			if (this.OnPickUp(user))
 			{					
 				// EffectUtility sanity checks for us!
 				EffectUtility.TryInstantiateEffectPrefab(pickUpEffectPrefab, transform.position, transform.rotation);

@@ -15,7 +15,7 @@ namespace TestProject
 			useHandler = owner.GetComponent<UseHandler>();
 			if (useHandler == null)
 			{
-				Debug.Error("Error: Can't use GUIUse if player doesn't have UseHandler");
+				Debug.LogError("Error: Can't use GUIUse if player doesn't have UseHandler");
 			}
 		}
 		

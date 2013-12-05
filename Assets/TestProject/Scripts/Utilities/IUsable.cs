@@ -1,11 +1,15 @@
+using UnityEngine;
+
 namespace TestProject
 {
-
+	/// <summary>
+	/// Use this interface for all 
+	/// </summary>
 	public interface IUsable
 	{
 	
-		public bool CanBeUsed();
-		public void OnUse();
+		bool CanBeUsedBy(GameObject user);
+		void OnUse(GameObject user);
 	
 	}
 

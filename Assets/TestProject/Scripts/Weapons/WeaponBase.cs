@@ -206,8 +206,6 @@ public class WeaponBase : MonoBehaviour, ISelfTest
             return null;
 
         var dirToEnemy = (closestEnemy.transform.position - bulletOrigin.position).normalized;
-        var forwardDir = transform.parent.forward.normalized;
-        var castDir = new Vector3(forwardDir.x, dirToEnemy.y, forwardDir.z);
 
         var allHits = Physics.RaycastAll(bulletOrigin.position, dirToEnemy).Where(a => !a.collider.gameObject.CompareTag("Bullet") && !a.collider.gameObject.CompareTag("NoCollide"));
 

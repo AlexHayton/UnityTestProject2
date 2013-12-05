@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace TestProject
 {
-	public class UseTarget : MonoBehaviour {
+	public class UseTarget : MonoBehaviour, IUsable {
 
 		public List<IUsable> UseComponents = new List<IUsable>();
 		public Texture2D useIconTexture;
@@ -14,12 +15,12 @@ namespace TestProject
 			UseComponents.Add(component);
 		}
 		
-		public bool CanUse()
+		public bool CanBeUsedBy(GameObject user)
     	{
         	bool canUse = false;
         	foreach (IUsable usable in UseComponents)
         	{
-        		canUse = usable.GetCanBeUsed();
+				canUse = usable.CanBeUsedBy(user);
         		if (canUse)
         		{
         			break;
@@ -29,13 +30,13 @@ namespace TestProject
         	return canUse;
     	}
     	
-    	public void OnUse()
+    	public void OnUse(GameObject user)
     	{
     		foreach (IUsable usable in UseComponents)
         	{
-        		if (usable.GetCanBeUsed())
+				if (usable.CanBeUsedBy(user))
         		{
-        			usable.OnUse();
+        			usable.OnUse(user);
         		}
         	}
     	}

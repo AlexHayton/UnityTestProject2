@@ -50,8 +50,6 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         return fail;
     }
 
-    private Vector3 gripPoint;
-
     private void Equip(int index)
     {
         if(selectedIndex == index && SelectedWeapon != null)
@@ -61,7 +59,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         {
             Destroy(SelectedWeapon.gameObject);
         }
-        SelectedWeapon = (WeaponBase)Instantiate(Weapons[selectedIndex], gripPoint, Quaternion.identity);
+        SelectedWeapon = (WeaponBase)Instantiate(Weapons[selectedIndex]);
         if (SelectedWeaponGUI)
 		{
 			SelectedWeaponGUI.SetSelectedWeaponIndex(index);

@@ -8,7 +8,6 @@ public class EnergyHandler : MonoBehaviour
     public float energy = 100;
 
     public float regenEnergyRate = 10.0f;
-    private float nextRegen = 0.0f;
 
     public bool infiniteEnergy = false;
     
