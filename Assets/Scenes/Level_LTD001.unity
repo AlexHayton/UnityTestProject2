@@ -6909,7 +6909,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     z:
-      scalar: .100000001
+      scalar: .119999997
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6945,12 +6945,12 @@ ParticleSystem:
   ForceModule:
     enabled: 1
     x:
-      scalar: .100000001
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: -1
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -6960,7 +6960,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
+          value: -1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -6968,12 +6968,12 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 3
     y:
-      scalar: .100000001
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: -1
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -6983,7 +6983,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
+          value: -1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -6991,18 +6991,8 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 3
     z:
-      scalar: .100000001
+      scalar: 1
       maxCurve:
-        serializedVersion: 2
-        m_Curve:
-        - time: 0
-          value: -1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-      minCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
@@ -7012,9 +7002,19 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - time: 0
+          value: -1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
       minMaxState: 3
-    inWorldSpace: 0
-    randomizePerFrame: 0
+    inWorldSpace: 1
+    randomizePerFrame: 1
   ExternalForcesModule:
     enabled: 0
     multiplier: 1
@@ -27335,23 +27335,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.y.scalar
-      value: .100000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.z.scalar
-      value: .100000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: VelocityModule.z.scalar
-      value: .100000001
+      value: .119999997
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.x.scalar
-      value: .100000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.x.maxCurve.m_Curve.Array.data[0].value
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.x.minMaxState
@@ -27359,7 +27359,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.y.maxCurve.m_Curve.Array.data[0].value
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.y.minMaxState
@@ -27367,7 +27367,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.z.maxCurve.m_Curve.Array.data[0].value
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.z.minMaxState
@@ -27375,19 +27375,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.x.minCurve.m_Curve.Array.data[0].value
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.y.minCurve.m_Curve.Array.data[0].value
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: ForceModule.z.minCurve.m_Curve.Array.data[0].value
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
       propertyPath: InitialModule.startSpeed.scalar
       value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
+      propertyPath: ForceModule.randomizePerFrame
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: c845a798dafba1b41b0892831e524868, type: 2}
+      propertyPath: ForceModule.inWorldSpace
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c845a798dafba1b41b0892831e524868, type: 2}
