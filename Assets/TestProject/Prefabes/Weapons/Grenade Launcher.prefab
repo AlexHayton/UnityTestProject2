@@ -183,7 +183,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ea993112c95c83e4db916e00ad0ccb27, type: 3}
   LaserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
   LaserColor: {r: .737930775, g: 0, b: 1, a: 0}
-  Icon: {fileID: 2800000, guid: 3e0a49a7425cc451fac4bb818f7b1509, type: 3}
+  Icon: {fileID: 2800000, guid: 6823791e142d1457fab4894e81d3f3be, type: 3}
   LaserOrigin: {fileID: 0}
   primary: 1
   Cooldown: 1

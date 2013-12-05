@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TestProject;
 
 public class DoorScript : MonoBehaviour {
 	
@@ -39,7 +40,10 @@ public class DoorScript : MonoBehaviour {
 	
 	
 	public virtual void OnEnter(Collider other) {
-		if (this.opensOnEnter & this.state != State.Locked & other.tag != "Bullet") {
+		if (this.opensOnEnter && 
+		    this.state != State.Locked && 
+		    other.tag != "Bullet" &&
+		    !other.HasComponent<EnemyDetector>()) {
 			this.Open ();	
 		}		
 	}

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TestProject;
 
 public class DoorTrigger : MonoBehaviour {
 	
@@ -11,10 +12,10 @@ public class DoorTrigger : MonoBehaviour {
 		
 	
 	void OnTriggerEnter(Collider other) {
-        myDoorScript.OnEnter(other);
+		myDoorScript.OnEnter(other);
     }
 	
 	void OnTriggerStay(Collider other) {
-        myDoorScript.OnEnter(other);
+		myDoorScript.OnEnter(other);
     }
 }
