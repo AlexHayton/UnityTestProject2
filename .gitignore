@@ -59,3 +59,8 @@ Thumbs.db
 *.unityproj
 
 /*.suo
+/Assets/Assembly-CSharp-Editor.pidb.meta
+/Assets/Assembly-CSharp-firstpass.pidb.meta
+/Assets/Assembly-UnityScript-Editor.pidb.meta
+/Assets/Assembly-UnityScript-firstpass.pidb.meta
+/Assets/Assembly-UnityScript.pidb.meta
