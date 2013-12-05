@@ -44,10 +44,8 @@ public class RigidPlayerScript : MonoBehaviour
         camOffsetFromEnemies = new Vector3(0, 0, 0);
         gripPoint = transform.FindChildRecursive("PlayerGrabPoint");
         //sets initial camera position
-        mainCamera = transform.root.GetComponentInChildren<Camera>();
-        mainCamera.transform.parent = null;
-        mainCamera.transform.position = transform.position - mainCamera.transform.forward * cameraHeight * 10;
-        mainCamera.orthographicSize = 13;
+		mainCamera = Camera.main;
+        mainCamera.transform.position = transform.position - mainCamera.transform.forward * 10;
         cameraOffset = mainCamera.transform.position - transform.position;
 
 		animator = this.GetComponent<Animator>();
@@ -155,7 +153,7 @@ public class RigidPlayerScript : MonoBehaviour
 		Vector3 enemyDir = GetDirectionOfenemies();
 		Vector3 cameraDestination = transform.position + cameraOffset + enemyDir.normalized;
 		float cameraDestinationSize = 8 + enemyDir.magnitude * .2f;
-		mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
+		//mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
 		mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.fixedDeltaTime;
 	}
 
