@@ -1253,22 +1253,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &100168
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400168}
-  - 108: {fileID: 10800000}
-  m_Layer: 0
-  m_Name: Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100170
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,17 +2337,6 @@ Transform:
   - {fileID: 400156}
   - {fileID: 400154}
   m_Father: {fileID: 400178}
---- !u!4 &400168
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100168}
-  m_LocalRotation: {x: .0899860039, y: 0, z: 0, w: .995943069}
-  m_LocalPosition: {x: 0, y: 1.23950386, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400178}
 --- !u!4 &400170
 Transform:
   m_ObjectHideFlags: 1
@@ -2409,7 +2382,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400164}
-  - {fileID: 400168}
   - {fileID: 400162}
   m_Father: {fileID: 400220}
 --- !u!4 &400220
@@ -2419,8 +2391,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.4258337, y: -.102532521, z: 3.64779854}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -27.2325459, y: .000383377075, z: 4.86258316}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400178}
   - {fileID: 400170}
@@ -2522,41 +2494,6 @@ Animator:
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
---- !u!108 &10800000
-Light:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100168}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Type: 0
-  m_Color: {r: .632352948, g: 1, b: 1, a: 1}
-  m_Intensity: 2
-  m_Range: 15
-  m_SpotAngle: 100
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 1
-    m_Resolution: 1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_Softness: 4
-    m_SoftnessFade: 1
-  m_Cookie: {fileID: 2800000, guid: ca8dcd0bb8b619243827ad6a130c6b09, type: 3}
-  m_DrawHalo: 0
-  m_ActuallyLightmapped: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 1
-  m_ShadowSamples: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_IndirectIntensity: 1
-  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2718,10 +2655,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1
-  m_Height: 2.3499999
+  m_Radius: .0900000036
+  m_Height: 1.5
   m_Direction: 1
-  m_Center: {x: 0, y: 1.05999994, z: .119999997}
+  m_Center: {x: 0, y: .730000019, z: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
