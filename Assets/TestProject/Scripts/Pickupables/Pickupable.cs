@@ -14,13 +14,13 @@ public abstract class Pickupable : MonoBehaviour {
 	private const float PLAYER_CHECK_INTERVAL = 0.5f;
 	private float nextValidityCheckTime;
 	
-	void Start()
+	public virtual void Start()
 	{
 		CapsuleCollider _capsule = GetComponent<CapsuleCollider>();
 		_capsule.isTrigger = true;
 	}
 	
-	void  OnTriggerEnter (Collider collision) {
+	public virtual void  OnTriggerEnter (Collider collision) {
 		if (collision.tag == "Player") {
 			
 			if (this.CanBePickedUpBy(collision.gameObject)) {

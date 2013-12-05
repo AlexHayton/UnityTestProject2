@@ -76,30 +76,26 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		return HasWeapon(weapon.gameObject);
 	}
 
-	public void AddWeapon(GameObject weapon)
+	public bool AddWeapon(WeaponBase weapon)
 	{
-		if (!HasWeapon (weapon)) {
-			var weaponScript = weapon.GetComponent<WeaponBase>();
-			if (weaponScript)
-			{
-				AddWeapon(weaponScript);
-			}
-		}
-	}
+		bool success = false;
+		if (weapon != null && !HasWeapon (weapon)) {
+			// Store the old weapon
+			WeaponBase oldWeapon = SelectedWeapon;
 
-	public void AddWeapon(WeaponBase weapon)
-	{
-		if (!HasWeapon (weapon)) {
-			Weapons.Add(weapon);
+			// Equip the new one.
+			Weapons[selectedIndex] = weapon;
+			SelectedWeapon = null;
+			Equip(selectedIndex);
+
+			// Destroy the old weapon
+			oldWeapon.Drop();
+			success = true;
 		}
+		return success;
 	}
-    //public List<WeaponBase> GetWeaponList()
-    //{
-    //    return this.PrimaryWeapons.Select(w => w.GetComponent<WeaponBase>()).Where(w => w != null).ToList();
-    //}
 
     // Update is called once per frame
-    
     void Update()
     {
         if (playerScript.LaserTransform == null)

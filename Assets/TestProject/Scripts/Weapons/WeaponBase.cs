@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class WeaponBase : MonoBehaviour, ISelfTest
 {
-
+	public GameObject PickupPrefab;
     public GameObject FiringEffect;
     public GameObject BulletPrefab;
     public List<AudioClip> BulletSounds;
@@ -20,6 +20,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     private MuzzleFlashBase muzzleFlash;
     private LaserBase actualLaser;
     private RigidPlayerScript playerScript;
+	private Transform playerGrip;
     private EnergyHandler energyHandler;
     private Transform bulletOrigin;
     [HideInInspector]
@@ -37,7 +38,6 @@ public class WeaponBase : MonoBehaviour, ISelfTest
     public float BulletSpeed = 20.0f;
     public float ForceOnImpact = 20.0f;
     public float muzzleFlashTime = 0.1f;
-    private bool IsScatter = false;
     
     // Lazy-Cache the bullet start values
 	private bool initialisedStartValues = false;
@@ -82,7 +82,7 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         laserObject.transform.parent = LaserOrigin;
         laserObject.renderer.material.color = LaserColor;
 
-		var playerGrip = playerCapsule.transform.FindChildRecursive("PlayerGrabPoint");
+		playerGrip = playerCapsule.transform.FindChildRecursive("PlayerGrabPoint");
         transform.parent = playerGrip.transform;
         transform.rotation = playerCapsule.transform.rotation;
         transform.position = transform.position + (playerGrip.position - attachPoint.position);
@@ -284,5 +284,13 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         }
     }
 
+	public void Drop()
+	{
+		if (this.PickupPrefab)
+		{
+			Instantiate(PickupPrefab, transform.position, transform.rotation);
+		}
 
+		Destroy(this.gameObject);
+	}
 }

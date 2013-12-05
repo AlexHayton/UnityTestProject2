@@ -7,12 +7,23 @@ using System.Collections.Generic;
 [RequireComponent (typeof (UseTarget))]
 public abstract class UsablePickup : Pickupable, IUsable {
 	
-	void Start()
-	{
+	public override void Start()
+	{	
 		base.Start();
-		
+
 		UseTarget localTarget = this.GetComponent<UseTarget>();
-		localTarget.RegisterUsable(this);
+		if (localTarget)
+		{
+			localTarget.RegisterUsable(this);
+		}
+		else
+		{
+			Debug.LogError("UsablePickup has no UseTarget!");
+		}
+	}
+
+	public override void OnTriggerEnter(Collider collision)
+	{
 	}
 	
 	public virtual bool CanBeUsedBy(GameObject user)

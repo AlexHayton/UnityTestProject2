@@ -9,7 +9,6 @@ public class BulletBase : MonoBehaviour
     protected StartValues values;
     private GameObject owner;
     private Transform tr;
-    private bool valuesSet = false;
     private string ignoreTag;
     private bool alreadyHit = false;
 

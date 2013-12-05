@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff5107e57941654a8930b0b972dee14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickupPrefab: {fileID: 100000, guid: fb9ff54b07b03487690fa3da4d7b0fb5, type: 2}
   FiringEffect: {fileID: 100004, guid: 00eae9a0e0c7a4c03b5c9b156b47fede, type: 2}
   BulletPrefab: {fileID: 100000, guid: 948809e7ad000fe49b1ef901f4d1db52, type: 2}
   BulletSounds:

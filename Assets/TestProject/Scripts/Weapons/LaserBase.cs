@@ -12,7 +12,6 @@ public class LaserBase : MonoBehaviour
     private GameObject laserSpot;
     private float originalSpotBrightness;
     public float LaserSpotSize;
-    private GameObject gun;
     private float originaLaserlLength;
     private float originalLaserScale;
 
@@ -35,7 +34,6 @@ public class LaserBase : MonoBehaviour
         originalLaserScale = transform.localScale.z;
         originaLaserlLength = originalLaserScale * 10;
         transform.position += transform.forward * originaLaserlLength / 2;
-        gun = transform.parent.parent.gameObject;
         Update();
     }
 

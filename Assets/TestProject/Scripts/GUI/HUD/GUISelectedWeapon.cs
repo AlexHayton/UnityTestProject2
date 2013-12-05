@@ -6,8 +6,6 @@ namespace TestProject
 {
 	public class GUISelectedWeapon : GUIContentHolder
 	{
-		int selectedSlotIndex = 1;
-
 		private GUIWeaponSlot selectedSlotGUI;
 		IList<GUIWeaponSlot> _weaponSlots = null;
 		private IList<GUIWeaponSlot> WeaponSlots
@@ -30,9 +28,9 @@ namespace TestProject
 			}
 		}
 
-		public void SetSelectedWeaponIndex(int index)
+		public void SetSelectedWeaponIndex(int selectedIndex)
 		{
-			selectedSlotIndex = index;
+			// Updated the SelectedSlotGUI.
 		}
 
 		public override void OnGUI()
@@ -40,7 +38,6 @@ namespace TestProject
 			if (Event.current.type == EventType.Repaint)
 			{
 				//GUIWeaponSlot selectedSlotGUI = WeaponSlots[selectedSlotIndex];
-				GUIWeaponSlot selectedSlotGUI = null;
 
 				if (selectedSlotGUI != null)
 				{
