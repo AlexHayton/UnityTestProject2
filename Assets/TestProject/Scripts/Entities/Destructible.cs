@@ -21,10 +21,57 @@ public class Destructible : MonoBehaviour {
 	
 	public void HealthChanged(float newHealthPercent)
 	{
+		// Just get the triggers that we need to trigger.
 		IEnumerable<DestructibleTrigger> triggers = destructibleTriggers.Where(t => t.triggerHealthPercentage > newHealthPercentage && t.triggerHealthPercentage <= lastHealthPercentage).OrderBy(t => t.triggerHealthPercentage);
 		
 		foreach(DestructibleEffect effect in triggers)
 		{
+			PlaySoundEffects(effect);
+			SpawnDamagePrefab(effect);
+			SwapRenderModel(effect);
+			PlayParticleEffects(effect);
+		}
+	}
+	
+	private void PlaySoundEffects(DestructibleEffect effect)
+	{
+		if (soundEffectToPlay)
+		{
+			PlaySoundAtPoint(soundEffectToPlay, transform.position);
+		}
+		
+		if (soundEffectToLoop)
+		{
+			PlaySoundAtPoint(soundEffectToLoop, transform.position);
+		}
+	}
+	
+	private void SpawnDamagePrefab(DestructibleEffect effect)
+	{
+		if (spawnPrefab)
+		{
+			Instantiate(spawnPrefab, transform.position, transform.rotation);
+		}
+	}
+	
+	private void SwapRenderModel(DestructibleEffect effect)
+	{
+		if (swapToModel)
+		{
+			Instantiate(swapToModel, transform.position, transform.rotation);
+		}
+	}
+	
+	private void PlayParticleEffects(DestructibleEffect effect)
+	{
+		if (effectToPlay)
+		{
+			effectToPlay.Emit(1);
+		}
+		
+		if (effectToLoop)
+		{
+			effectToLoop.enabled = true;
 		}
 	}
 }
