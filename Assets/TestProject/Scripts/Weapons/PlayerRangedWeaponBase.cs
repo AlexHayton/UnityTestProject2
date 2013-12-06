@@ -6,81 +6,21 @@ using TestProject;
 using Debug = System.Diagnostics.Debug;
 using Random = UnityEngine.Random;
 
-public class WeaponBase : MonoBehaviour, ISelfTest
+public class PlayerRangedWeaponBase : RangedWeaponBase, ISelfTest
 {
 
-    public GameObject FiringEffect;
-    public GameObject BulletPrefab;
-    public List<AudioClip> BulletSounds;
-    public GameObject LaserPointer;
-    public Color LaserColor;
-    public Texture2D Icon;
+	public Texture2D Icon;
+	private RigidPlayerScript playerScript;
+	private EnergyHandler energyHandler;
+	private EnemyDetector enemyDetector;
 
-    private AudioSource SoundSource;
-    private MuzzleFlashBase muzzleFlash;
-    private LaserBase actualLaser;
-    private RigidPlayerScript playerScript;
-    private EnergyHandler energyHandler;
-    private Transform bulletOrigin;
-    [HideInInspector]
-    public Transform LaserOrigin;
-    private Transform attachPoint;
-    private EnemyDetector enemyDetector;
 
-    public bool primary = true;
-    public float Cooldown = .1f;
-    public float ConeAngle = 1.5f;
-    public int BulletsToCreate = 1;
-    public bool showInMenu = true;
-    public float EnergyCost = 1;
-    public int DamageOnHit = 10;
-    public float BulletSpeed = 20.0f;
-    public float ForceOnImpact = 20.0f;
-    public float muzzleFlashTime = 0.1f;
-    private bool IsScatter = false;
-    
-    // Lazy-Cache the bullet start values
-	private bool initialisedStartValues = false;
-    private BulletBase.StartValues m_BulletStartValues;
-    private BulletBase.StartValues BulletStartValues
+    void Start()
     {
-    	get
-    	{
-			if (!initialisedStartValues)
-    		{
-				m_BulletStartValues = new BulletBase.StartValues()
-				{
-					owner = playerScript.gameObject, 
-					DamageOnHit = this.DamageOnHit,
-					ForceOnImpact = this.ForceOnImpact
-				};
-				initialisedStartValues = true;
-			}
-			return m_BulletStartValues;
-		}
-    }
-
-    private Random rnd;
-
-    private float lastFireTime = -1000;
-
-
-
-    public virtual void Start()
-    {
-        var playerCapsule = GameObject.FindGameObjectWithTag("Player");
+		base.Start();
+		var playerCapsule = this.transform.parent;
         playerScript = playerCapsule.GetComponent<RigidPlayerScript>();
         energyHandler = playerCapsule.GetComponent<EnergyHandler>();
-
-        attachPoint = transform.FindChild("GripPoint");
-        bulletOrigin = transform.FindChild("BarrelEnd");
-        LaserOrigin = transform.FindChild("LaserOrigin");
-
-        var laserObject = Instantiate(LaserPointer, LaserOrigin.position, Quaternion.identity) as GameObject;
-        actualLaser = laserObject.GetComponent<LaserBase>();
-        actualLaser.SetOrigin(LaserOrigin.transform);
-        laserObject.transform.parent = LaserOrigin;
-        laserObject.renderer.material.color = LaserColor;
 
 		var playerGrip = playerCapsule.transform.FindChildRecursive("PlayerGrabPoint");
         transform.parent = playerGrip.transform;
@@ -188,19 +128,21 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         //               where Vector3.Dot(inFrontNoY, dirToEnemyWithNoY) > .999f
         //               select enemy.gameObject.collider);
 
-        var enemiesInFront = enemyDetector.GetEnemiesInView();
+		Collider closestEnemy = null;
+		if (enemyDetector) {
+	        var enemiesInFront = enemyDetector.GetEnemiesInView();
 
-        Collider closestEnemy = null;
-        var closestEnemyDist = 0.0f;
-        foreach (var enemyCol in enemiesInFront.Where(a=> a != null))
-        {
-            var thisDist = (enemyCol.transform.position - transform.position).sqrMagnitude;
-            if (thisDist < closestEnemyDist || closestEnemy == null)
-            {
-                closestEnemy = enemyCol;
-                closestEnemyDist = thisDist;
-            }
-        }
+	        var closestEnemyDist = 0.0f;
+	        foreach (var enemyCol in enemiesInFront.Where(a=> a != null))
+	        {
+	            var thisDist = (enemyCol.transform.position - transform.position).sqrMagnitude;
+	            if (thisDist < closestEnemyDist || closestEnemy == null)
+	            {
+	                closestEnemy = enemyCol;
+	                closestEnemyDist = thisDist;
+	            }
+	        }
+		}
 
         if (closestEnemy == null)
             return null;
@@ -223,36 +165,18 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         return closestHit.collider.GetComponent<TeamHandler>() != null ? closestHit.collider : null;
     }
 
-    public void Fire()
+    public override bool Fire()
     {
-        if (Time.time - lastFireTime > Cooldown && energyHandler.GetEnergy() > EnergyCost)
+        if (energyHandler.GetEnergy() > EnergyCost)
         {
-            // Spawn visual bullet	and set values for start				
-            for (int i = 0; i < BulletsToCreate; i++)
-            {
-                this.SpawnBullet();
-            }
-            this.PlayShootSound();
+			if (base.Fire ()) {
+            	playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
+				return true;
+			}
 
-            playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
-
-            // show visul muzzle
-            if (muzzleFlash != null)
-            {
-                var particleSys = muzzleFlash.GetComponent<ParticleSystem>();
-                if (particleSys != null)
-                {
-                    particleSys.Emit(1);
-                }
-
-                if (muzzleFlash != null)
-                {
-                    muzzleFlash.Fire(this.muzzleFlashTime);
-                }
-            }
-
-            lastFireTime = Time.time;
         }
+		return false;
+
     }
     
     private void SpawnBullet()

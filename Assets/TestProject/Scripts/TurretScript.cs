@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class TurretScript : MonoBehaviour {
 	
 	public Transform rotateTransform;
-	public WeaponBase weapon;
+	public PlayerRangedWeaponBase weapon;
 
 	// Use this for initialization
 	void Start () {
-		this.weapon = (WeaponBase)GetComponentInChildren<WeaponBase>();
+		this.weapon = (PlayerRangedWeaponBase)GetComponentInChildren<PlayerRangedWeaponBase>();
 	}
 	
 	// Update is called once per frame

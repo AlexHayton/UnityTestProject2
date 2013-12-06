@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
 {
-    private WeaponBase equippedWeapon;
+    private PlayerRangedWeaponBase equippedWeapon;
     private List<Collider> enemiesInView;
 
     // Use this for initialization
