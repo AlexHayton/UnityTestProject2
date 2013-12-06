@@ -2398,35 +2398,6 @@ Transform:
   - {fileID: 400178}
   - {fileID: 400170}
   m_Father: {fileID: 0}
---- !u!20 &2000000
-Camera:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100172}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 200
-  field of view: 37
-  orthographic: 1
-  orthographic size: 12
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_HDR: 0
-  m_OcclusionCulling: 1
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -2686,15 +2657,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9379271d236f43c7a48ae244eebba12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentUseTarget: {fileID: 0}
   useRange: 2
   checkInterval: .200000003
---- !u!124 &12400000
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100172}
-  m_Enabled: 1
+  useInterval: .5
+  nextUse: 0
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
