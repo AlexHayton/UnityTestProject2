@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e6649dba8a3dd4b499b51eb0bd03bed4
+guid: c666667d6b10ba14b9c5d15e7fd18078
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -7,9 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cylinder001
-    4300002: Obj_Pipes_Large
-    6400000: //RootNode
+    4300000: Sect_Floor_BaseC_
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -29,9 +27,9 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: .00999999978
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
