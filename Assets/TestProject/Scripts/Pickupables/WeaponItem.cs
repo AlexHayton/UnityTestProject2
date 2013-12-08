@@ -30,7 +30,7 @@ public class WeaponItem : UsablePickup {
 		if (_weaponHandler && this.weaponPrefab) {
 
 			// Create a short-lived weapon...
-			WeaponBase newWeaponScript = this.weaponPrefab.GetComponent<WeaponBase>();
+			PlayerRangedWeaponBase newWeaponScript = this.weaponPrefab.GetComponent<PlayerRangedWeaponBase>();
 			success = _weaponHandler.AddWeapon(newWeaponScript);
 		}
 		

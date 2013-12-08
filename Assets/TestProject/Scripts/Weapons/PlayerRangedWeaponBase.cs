@@ -8,59 +8,10 @@ using Random = UnityEngine.Random;
 
 public class PlayerRangedWeaponBase : RangedWeaponBase, ISelfTest
 {
-	public GameObject PickupPrefab;
-    public GameObject FiringEffect;
-    public GameObject BulletPrefab;
-    public List<AudioClip> BulletSounds;
-    public GameObject LaserPointer;
-    public Color LaserColor;
-    public Texture2D Icon;
-
-    private AudioSource SoundSource;
-    private MuzzleFlashBase muzzleFlash;
-    private LaserBase actualLaser;
-    private RigidPlayerScript playerScript;
-	private Transform playerGrip;
-    private EnergyHandler energyHandler;
-    private Transform bulletOrigin;
-    [HideInInspector]
-    public Transform LaserOrigin;
-    private Transform attachPoint;
-    private EnemyDetector enemyDetector;
-
-    public bool primary = true;
-    public float Cooldown = .1f;
-    public float ConeAngle = 1.5f;
-    public int BulletsToCreate = 1;
-    public bool showInMenu = true;
-    public float EnergyCost = 1;
-    public int DamageOnHit = 10;
-    public float BulletSpeed = 20.0f;
-    public float ForceOnImpact = 20.0f;
-    public float muzzleFlashTime = 0.1f;
-    
-    // Lazy-Cache the bullet start values
-	private bool initialisedStartValues = false;
-    private BulletBase.StartValues m_BulletStartValues;
-    private BulletBase.StartValues BulletStartValues
-    {
-    	get
-    	{
-			if (!initialisedStartValues)
-    		{
-				m_BulletStartValues = new BulletBase.StartValues()
-				{
-					owner = playerScript.gameObject, 
-					DamageOnHit = this.DamageOnHit,
-					ForceOnImpact = this.ForceOnImpact
-				};
-				initialisedStartValues = true;
-			}
-			return m_BulletStartValues;
-		}
-    }
-
-    private Random rnd;
+	public Texture2D Icon;
+	private RigidPlayerScript playerScript;
+	private EnergyHandler energyHandler;
+	private EnemyDetector enemyDetector;
 
     void Start()
     {

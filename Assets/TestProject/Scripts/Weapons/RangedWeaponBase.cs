@@ -8,7 +8,7 @@ using Debug = System.Diagnostics.Debug;
 using Random = UnityEngine.Random;
 
 public class RangedWeaponBase : MonoBehaviour {
-
+	public GameObject PickupPrefab;
 	public GameObject FiringEffect;
 	public GameObject BulletPrefab;
 	public List<AudioClip> BulletSounds;
@@ -143,12 +143,20 @@ public class RangedWeaponBase : MonoBehaviour {
 		bullet.SetStartValues(values);
 	}
 	
-	
 	internal void PlayShootSound()
 	{
 		if (BulletSounds.Any())
 		{
 			AudioSource.PlayClipAtPoint(BulletSounds[Random.Range(0, BulletSounds.Count - 1)], bulletOrigin.position);
+		}
+	}
+
+	public void Drop()
+	{
+		if (this.PickupPrefab)
+		{
+			Instantiate(this.PickupPrefab, transform.position, transform.rotation);
+			Destroy (this);
 		}
 	}
 }

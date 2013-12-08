@@ -1,15 +1,17 @@
 using UnityEngine;
 using TestProject;
+using System.Linq;
+using System.Collections.Generic;
 
 public struct DestructibleEffect
 {
-	int triggerHealthPercentage = 99;
-	SoundEffect soundEffectToPlay = null;
-	SoundEffect soundEffectToLoop = null;
-	GameObject spawnPrefab = null;
-	GameObject swapToModel = null;
-	ParticleEffect effectToPlay = null;
-	ParticleEffect effectToLoop = null;
+	public int triggerHealthPercentage;
+	public AudioClip soundEffectToPlay;
+	public AudioClip soundEffectToLoop;
+	public GameObject spawnPrefab;
+	public GameObject swapToModel;
+	public ParticleSystem particleToEmit;
+	public ParticleSystem particleToLoop;
 }
 
 // Use this to auto-play any animations and auto-destroy when done
@@ -19,10 +21,10 @@ public class Destructible : MonoBehaviour {
 	List<DestructibleEffect> destructibleTriggers = new List<DestructibleEffect>();
 	float lastHealthPercentage = 100;
 	
-	public void HealthChanged(float newHealthPercent)
+	public void HealthChanged(float newHealthPercentage)
 	{
 		// Just get the triggers that we need to trigger.
-		IEnumerable<DestructibleTrigger> triggers = destructibleTriggers.Where(t => t.triggerHealthPercentage > newHealthPercentage && t.triggerHealthPercentage <= lastHealthPercentage).OrderBy(t => t.triggerHealthPercentage);
+		IEnumerable<DestructibleEffect> triggers = destructibleTriggers.Where(t => t.triggerHealthPercentage > newHealthPercentage && t.triggerHealthPercentage <= lastHealthPercentage).OrderBy(t => t.triggerHealthPercentage);
 		
 		foreach(DestructibleEffect effect in triggers)
 		{
@@ -35,43 +37,43 @@ public class Destructible : MonoBehaviour {
 	
 	private void PlaySoundEffects(DestructibleEffect effect)
 	{
-		if (soundEffectToPlay)
+		if (effect.soundEffectToPlay)
 		{
-			PlaySoundAtPoint(soundEffectToPlay, transform.position);
+			AudioSource.PlayClipAtPoint(effect.soundEffectToPlay, transform.position);
 		}
 		
-		if (soundEffectToLoop)
+		if (effect.soundEffectToLoop)
 		{
-			PlaySoundAtPoint(soundEffectToLoop, transform.position);
+			AudioSource.PlayClipAtPoint(effect.soundEffectToLoop, transform.position);
 		}
 	}
 	
 	private void SpawnDamagePrefab(DestructibleEffect effect)
 	{
-		if (spawnPrefab)
+		if (effect.spawnPrefab)
 		{
-			Instantiate(spawnPrefab, transform.position, transform.rotation);
+			Instantiate(effect.spawnPrefab, transform.position, transform.rotation);
 		}
 	}
 	
 	private void SwapRenderModel(DestructibleEffect effect)
 	{
-		if (swapToModel)
+		if (effect.swapToModel)
 		{
-			Instantiate(swapToModel, transform.position, transform.rotation);
+			//Instantiate(effect.swapToModel, transform.position, transform.rotation);
 		}
 	}
 	
 	private void PlayParticleEffects(DestructibleEffect effect)
 	{
-		if (effectToPlay)
+		if (effect.particleToEmit)
 		{
-			effectToPlay.Emit(1);
+			effect.particleToEmit.Emit(1);
 		}
 		
-		if (effectToLoop)
+		if (effect.particleToLoop)
 		{
-			effectToLoop.enabled = true;
+			effect.particleToLoop.Play();
 		}
 	}
 }

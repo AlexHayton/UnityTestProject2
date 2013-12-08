@@ -60,8 +60,17 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
             Destroy(SelectedWeapon.gameObject);
         }
 
-        SelectedWeapon = (PlayerRangedWeaponBase)Instantiate(Weapons[selectedIndex], gripPoint, Quaternion.identity);
-		SelectedWeapon.transform.parent = this.gameObject.transform;
+		Transform gripLocation = transform.FindChildRecursive("PlayerGrabPoint");
+		if (gripLocation)
+		{
+			Vector3 gripPoint = gripLocation.position;
+			SelectedWeapon = (PlayerRangedWeaponBase)Instantiate(Weapons[selectedIndex], gripPoint, Quaternion.identity);
+			SelectedWeapon.transform.parent = this.gameObject.transform;
+		}
+		else
+		{
+			Debug.LogError("This entity (" + name + ") doesn't have a PlayerGrabPoint. Cannot attach weapons!");
+		}
 
         if (SelectedWeaponGUI)
 		{
@@ -79,23 +88,26 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		return HasWeapon(weapon.gameObject);
 	}
 
-	public void AddWeapon(GameObject weapon)
+	public bool AddWeapon(GameObject weapon)
 	{
-		if (!HasWeapon (weapon)) {
+		bool success = false;
+		if (!HasWeapon (weapon)) 
+		{
 			var weaponScript = weapon.GetComponent<PlayerRangedWeaponBase>();
 			if (weaponScript)
 			{
-				AddWeapon(weaponScript);
+				success = AddWeapon(weaponScript);
 			}
 		}
+		return success;
 	}
 
-	public void AddWeapon(PlayerRangedWeaponBase weapon)
+	public bool AddWeapon(PlayerRangedWeaponBase weapon)
 	{
 		bool success = false;
 		if (weapon != null && !HasWeapon (weapon)) {
 			// Store the old weapon
-			WeaponBase oldWeapon = SelectedWeapon;
+			RangedWeaponBase oldWeapon = SelectedWeapon;
 
 			// Equip the new one.
 			Weapons[selectedIndex] = weapon;
@@ -107,6 +119,16 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 			success = true;
 		}
 		return success;
+	}
+
+	void DropWeapon()
+	{
+
+		if (this.PickupPrefab)
+		{
+			Instantiate(this.PickupPrefab, transform.position, transform.rotation);
+			Destroy (this);
+		}
 	}
 
     // Update is called once per frame
