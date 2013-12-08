@@ -661,6 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerSecond: 50
+  range: 1
   explodeTime: 1
   explosionRadius: 20
   explosionForce: 20
@@ -928,6 +929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerSecond: 1
+  range: 1
 --- !u!114 &790210957
 MonoBehaviour:
   m_ObjectHideFlags: 0

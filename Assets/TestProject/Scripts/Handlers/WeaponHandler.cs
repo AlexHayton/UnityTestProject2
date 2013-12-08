@@ -10,13 +10,13 @@ using TestProject;
 /// </summary>
 public class WeaponHandler : MonoBehaviour, ISelfTest
 {
-    private WeaponBase SelectedWeapon;
+    private PlayerRangedWeaponBase SelectedWeapon;
 
     [HideInInspector]
 	// SelectedIndex starts at 0;
 	// SelectedSlot starts at 1;
     public int selectedIndex;
-    public List<WeaponBase> Weapons;
+    public List<PlayerRangedWeaponBase> Weapons;
     private RigidPlayerScript playerScript;
 	private GUISelectedWeapon _selectedWeaponGUI = null;
 
@@ -59,7 +59,10 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         {
             Destroy(SelectedWeapon.gameObject);
         }
-        SelectedWeapon = (WeaponBase)Instantiate(Weapons[selectedIndex]);
+
+        SelectedWeapon = (PlayerRangedWeaponBase)Instantiate(Weapons[selectedIndex], gripPoint, Quaternion.identity);
+		SelectedWeapon.transform.parent = this.gameObject.transform;
+
         if (SelectedWeaponGUI)
 		{
 			SelectedWeaponGUI.SetSelectedWeaponIndex(index);
@@ -71,12 +74,23 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		return Weapons.Any(w => w.name == weapon.name);
 	}
 
-	public bool HasWeapon(WeaponBase weapon)
+	public bool HasWeapon(PlayerRangedWeaponBase weapon)
 	{
 		return HasWeapon(weapon.gameObject);
 	}
 
-	public bool AddWeapon(WeaponBase weapon)
+	public void AddWeapon(GameObject weapon)
+	{
+		if (!HasWeapon (weapon)) {
+			var weaponScript = weapon.GetComponent<PlayerRangedWeaponBase>();
+			if (weaponScript)
+			{
+				AddWeapon(weaponScript);
+			}
+		}
+	}
+
+	public void AddWeapon(PlayerRangedWeaponBase weapon)
 	{
 		bool success = false;
 		if (weapon != null && !HasWeapon (weapon)) {
@@ -131,9 +145,9 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         }
     }
 	
-	public WeaponBase GetWeaponInSlot(int slot)
+	public PlayerRangedWeaponBase GetWeaponInSlot(int slot)
 	{
-		WeaponBase weapon = null;
+		PlayerRangedWeaponBase weapon = null;
 		
 		if (Weapons.Count >= slot)
 		{
@@ -143,7 +157,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		return weapon;
 	}
 
-	public WeaponBase GetSelectedWeapon()
+	public PlayerRangedWeaponBase GetSelectedWeapon()
 	{
 		return SelectedWeapon;
 	}
@@ -153,7 +167,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		return selectedIndex + 1;
 	}
 
-    public void PickUpWeapon(ref WeaponBase weapon)
+    public void PickUpWeapon(ref PlayerRangedWeaponBase weapon)
     {
         //in theory this should add the "reference (not as in ref, just used that so I had access to the weapon to destroy it)" to the weapon, then destroy the actual object
         Weapons.Add(weapon);

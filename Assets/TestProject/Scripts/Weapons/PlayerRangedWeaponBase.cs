@@ -6,7 +6,7 @@ using TestProject;
 using Debug = System.Diagnostics.Debug;
 using Random = UnityEngine.Random;
 
-public class WeaponBase : MonoBehaviour, ISelfTest
+public class PlayerRangedWeaponBase : RangedWeaponBase, ISelfTest
 {
 	public GameObject PickupPrefab;
     public GameObject FiringEffect;
@@ -62,13 +62,10 @@ public class WeaponBase : MonoBehaviour, ISelfTest
 
     private Random rnd;
 
-    private float lastFireTime = -1000;
-
-
-
-    public virtual void Start()
+    void Start()
     {
-        var playerCapsule = GameObject.FindGameObjectWithTag("Player");
+		base.Start();
+		var playerCapsule = this.transform.parent;
         playerScript = playerCapsule.GetComponent<RigidPlayerScript>();
         energyHandler = playerCapsule.GetComponent<EnergyHandler>();
 
@@ -188,19 +185,21 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         //               where Vector3.Dot(inFrontNoY, dirToEnemyWithNoY) > .999f
         //               select enemy.gameObject.collider);
 
-        var enemiesInFront = enemyDetector.GetEnemiesInView();
+		Collider closestEnemy = null;
+		if (enemyDetector) {
+	        var enemiesInFront = enemyDetector.GetEnemiesInView();
 
-        Collider closestEnemy = null;
-        var closestEnemyDist = 0.0f;
-        foreach (var enemyCol in enemiesInFront.Where(a=> a != null))
-        {
-            var thisDist = (enemyCol.transform.position - transform.position).sqrMagnitude;
-            if (thisDist < closestEnemyDist || closestEnemy == null)
-            {
-                closestEnemy = enemyCol;
-                closestEnemyDist = thisDist;
-            }
-        }
+	        var closestEnemyDist = 0.0f;
+	        foreach (var enemyCol in enemiesInFront.Where(a=> a != null))
+	        {
+	            var thisDist = (enemyCol.transform.position - transform.position).sqrMagnitude;
+	            if (thisDist < closestEnemyDist || closestEnemy == null)
+	            {
+	                closestEnemy = enemyCol;
+	                closestEnemyDist = thisDist;
+	            }
+	        }
+		}
 
         if (closestEnemy == null)
             return null;
@@ -221,36 +220,18 @@ public class WeaponBase : MonoBehaviour, ISelfTest
         return closestHit.collider.GetComponent<TeamHandler>() != null ? closestHit.collider : null;
     }
 
-    public void Fire()
+    public override bool Fire()
     {
-        if (Time.time - lastFireTime > Cooldown && energyHandler.GetEnergy() > EnergyCost)
+        if (energyHandler.GetEnergy() > EnergyCost)
         {
-            // Spawn visual bullet	and set values for start				
-            for (int i = 0; i < BulletsToCreate; i++)
-            {
-                this.SpawnBullet();
-            }
-            this.PlayShootSound();
+			if (base.Fire ()) {
+            	playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
+				return true;
+			}
 
-            playerScript.gameObject.GetComponent<EnergyHandler>().DeductEnergy(EnergyCost);
-
-            // show visul muzzle
-            if (muzzleFlash != null)
-            {
-                var particleSys = muzzleFlash.GetComponent<ParticleSystem>();
-                if (particleSys != null)
-                {
-                    particleSys.Emit(1);
-                }
-
-                if (muzzleFlash != null)
-                {
-                    muzzleFlash.Fire(this.muzzleFlashTime);
-                }
-            }
-
-            lastFireTime = Time.time;
         }
+		return false;
+
     }
     
     private void SpawnBullet()
