@@ -3,7 +3,7 @@ using System.Collections;
 using TestProject;
 using System.Collections.Generic;
 
-[RequireComponent (typeof (CapsuleCollider))]
+[RequireComponent (typeof (Collider))]
 public abstract class Pickupable : MonoBehaviour {
 
 	public GameObject pickUpEffectPrefab;
@@ -16,8 +16,18 @@ public abstract class Pickupable : MonoBehaviour {
 	
 	public virtual void Start()
 	{
-		CapsuleCollider _capsule = GetComponent<CapsuleCollider>();
-		_capsule.isTrigger = true;
+		Collider collider = GetCollider();
+		collider.isTrigger = true;
+	}
+
+	public Collider GetCollider()
+	{
+		Collider collider = GetComponent<CapsuleCollider>();
+		if (collider == null)
+		{
+			collider = GetComponent<BoxCollider>();
+		}
+		return collider;
 	}
 	
 	public virtual void  OnTriggerEnter (Collider collision) {

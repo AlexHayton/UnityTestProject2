@@ -15,7 +15,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     [HideInInspector]
 	// SelectedIndex starts at 0;
 	// SelectedSlot starts at 1;
-    public int selectedIndex;
+    public int SelectedIndex;
     public List<PlayerRangedWeaponBase> Weapons;
     private RigidPlayerScript playerScript;
 	private GUISelectedWeapon _selectedWeaponGUI = null;
@@ -52,9 +52,9 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 
     private void Equip(int index)
     {
-        if(selectedIndex == index && SelectedWeapon != null)
+        if(SelectedIndex == index && SelectedWeapon != null)
             return;
-        selectedIndex = index;
+        SelectedIndex = index;
         if (SelectedWeapon != null)
         {
             Destroy(SelectedWeapon.gameObject);
@@ -64,7 +64,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		if (gripLocation)
 		{
 			Vector3 gripPoint = gripLocation.position;
-			SelectedWeapon = (PlayerRangedWeaponBase)Instantiate(Weapons[selectedIndex], gripPoint, Quaternion.identity);
+			SelectedWeapon = (PlayerRangedWeaponBase)Instantiate(Weapons[SelectedIndex], gripPoint, Quaternion.identity);
 			SelectedWeapon.transform.parent = this.gameObject.transform;
 		}
 		else
@@ -105,29 +105,52 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 	public bool AddWeapon(PlayerRangedWeaponBase weapon)
 	{
 		bool success = false;
-		if (weapon != null && !HasWeapon (weapon)) {
-			// Store the old weapon
+		if (weapon != null && !HasWeapon (weapon)) 
+		{
+			// Destroy the old weapon
 			RangedWeaponBase oldWeapon = SelectedWeapon;
+			this.DropWeapon(SelectedIndex, false);
 
 			// Equip the new one.
-			Weapons[selectedIndex] = weapon;
+			Weapons[SelectedIndex] = weapon;
+			SelectedIndex = 0;
 			SelectedWeapon = null;
-			Equip(selectedIndex);
+			Equip(SelectedIndex);
 
 			// Destroy the old weapon
-			oldWeapon.Drop();
 			success = true;
 		}
 		return success;
 	}
 
-	void DropWeapon()
+	public void DropWeapon()
 	{
+		this.DropWeapon(SelectedIndex, true);
+	}
 
-		if (this.PickupPrefab)
+	private void DropWeapon(int index, bool equipNext)
+	{
+		if (SelectedWeapon)
 		{
-			Instantiate(this.PickupPrefab, transform.position, transform.rotation);
-			Destroy (this);
+			GameObject pickupPrefab = SelectedWeapon.GetPickupPrefab();
+			if (pickupPrefab)
+			{
+				Instantiate(pickupPrefab, transform.position, transform.rotation);
+			}
+			Weapons[SelectedIndex] = null;
+			SelectedIndex = 0;
+			Destroy (SelectedWeapon);
+			SelectedWeapon = null;
+
+			if (equipNext)
+			{
+				PlayerRangedWeaponBase nextWeapon = this.Weapons.FirstOrDefault();
+				if (nextWeapon)
+				{
+					int newIndex = this.Weapons.IndexOf(nextWeapon);
+					Equip(newIndex);
+				}
+			}
 		}
 	}
 
@@ -186,7 +209,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 
 	public int GetSelectedSlot()
 	{
-		return selectedIndex + 1;
+		return SelectedIndex + 1;
 	}
 
     public void PickUpWeapon(ref PlayerRangedWeaponBase weapon)

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using TestProject;
 
-[RequireComponent (typeof (CapsuleCollider))]
+[RequireComponent (typeof (BoxCollider))]
 [RequireComponent (typeof (UseTarget))]
 public class WeaponItem : UsablePickup {
 		

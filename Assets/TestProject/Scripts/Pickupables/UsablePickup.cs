@@ -3,7 +3,7 @@ using System.Collections;
 using TestProject;
 using System.Collections.Generic;
 
-[RequireComponent (typeof (CapsuleCollider))]
+[RequireComponent (typeof (Collider))]
 [RequireComponent (typeof (UseTarget))]
 public abstract class UsablePickup : Pickupable, IUsable {
 	

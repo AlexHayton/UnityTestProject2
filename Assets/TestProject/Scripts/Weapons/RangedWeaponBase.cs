@@ -28,17 +28,18 @@ public class RangedWeaponBase : MonoBehaviour {
 	
 	[HideInInspector]
 	public Transform LaserOrigin;
-	internal Transform attachPoint;
-	internal Transform bulletOrigin;
+	protected Transform attachPoint;
+	protected Transform gripPoint;
+	protected Transform bulletOrigin;
 	
-	internal AudioSource SoundSource;
-	internal MuzzleFlashBase muzzleFlash;
-	internal LaserBase actualLaser;
+	protected AudioSource SoundSource;
+	protected MuzzleFlashBase muzzleFlash;
+	protected LaserBase actualLaser;
 	
 	// Lazy-Cache the bullet start values
-	internal bool initialisedStartValues = false;
-	internal BulletBase.StartValues m_BulletStartValues;
-	internal BulletBase.StartValues BulletStartValues
+	protected bool initialisedStartValues = false;
+	protected BulletBase.StartValues m_BulletStartValues;
+	protected BulletBase.StartValues BulletStartValues
 	{
 		get
 		{
@@ -56,11 +57,10 @@ public class RangedWeaponBase : MonoBehaviour {
 		}
 	}
 	
-	internal Random rnd;	
-	internal float lastFireTime = -1000;
+	protected Random rnd;	
+	protected float lastFireTime = -1000;
 
-
-	internal virtual void Start() {
+	protected virtual void Start() {
 
 		attachPoint = transform.FindChild("GripPoint");
 		bulletOrigin = transform.FindChild("BarrelEnd");
@@ -143,12 +143,17 @@ public class RangedWeaponBase : MonoBehaviour {
 		bullet.SetStartValues(values);
 	}
 	
-	internal void PlayShootSound()
+	protected void PlayShootSound()
 	{
 		if (BulletSounds.Any())
 		{
 			AudioSource.PlayClipAtPoint(BulletSounds[Random.Range(0, BulletSounds.Count - 1)], bulletOrigin.position);
 		}
+	}
+
+	public GameObject GetPickupPrefab()
+	{
+		return this.PickupPrefab;
 	}
 
 	public void Drop()
