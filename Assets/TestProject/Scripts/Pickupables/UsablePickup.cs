@@ -11,6 +11,9 @@ public abstract class UsablePickup : Pickupable, IUsable {
 	{	
 		base.Start();
 
+		Collider collider = this.GetCollider();
+		collider.isTrigger = false;
+
 		UseTarget localTarget = this.GetComponent<UseTarget>();
 		if (localTarget)
 		{
