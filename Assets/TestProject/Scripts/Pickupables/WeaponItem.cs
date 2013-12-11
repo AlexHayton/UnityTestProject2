@@ -1,7 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using TestProject;
 
-public class WeaponItem : Pickupable {
+[RequireComponent (typeof (BoxCollider))]
+[RequireComponent (typeof (UseTarget))]
+public class WeaponItem : UsablePickup {
 		
 	public GameObject weaponPrefab;
 	private WeaponHandler _weaponHandler = null;
@@ -12,7 +15,7 @@ public class WeaponItem : Pickupable {
 		
 		_weaponHandler = (WeaponHandler)player.GetComponent<WeaponHandler>();
 		if (_weaponHandler && this.weaponPrefab) {
-			if (_weaponHandler.HasWeapon(this.weaponPrefab)) {
+			if (!(_weaponHandler.HasWeapon(this.weaponPrefab))) {
 				canBePickedUp = true;
 			}
 		}
@@ -25,8 +28,10 @@ public class WeaponItem : Pickupable {
 		bool success = true;
 
 		if (_weaponHandler && this.weaponPrefab) {
-			_weaponHandler.AddWeapon(this.weaponPrefab);
-			success = true;
+
+			// Create a short-lived weapon...
+			PlayerRangedWeaponBase newWeaponScript = this.weaponPrefab.GetComponent<PlayerRangedWeaponBase>();
+			success = _weaponHandler.AddWeapon(newWeaponScript);
 		}
 		
 		return success;

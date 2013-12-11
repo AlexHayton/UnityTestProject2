@@ -4,6 +4,7 @@ using System.Collections;
 public class AIWeaponBase : MonoBehaviour {
 	
 	public int damagePerSecond = 1;
+	public float range = 1f;
 	internal float lastAttack = 0f;	
 
 	public virtual void Attack(HealthHandler targetHealthHandler) {
@@ -12,4 +13,9 @@ public class AIWeaponBase : MonoBehaviour {
 			lastAttack = Time.time;
 		}
 	}
+
+	public virtual void Fire() {
+
+	}
+
 }

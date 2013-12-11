@@ -11,7 +11,6 @@ public class RigidPlayerScript : MonoBehaviour
 
     private Camera mainCamera;
     public float cameraHeight;
-    private Vector3 camOffsetFromEnemies;
     public float speed = 5f;
     public float gravity = 10.0f;
     public float maxVelocityChange = 10.0f;
@@ -41,13 +40,10 @@ public class RigidPlayerScript : MonoBehaviour
 
     void Start()
     {
-        camOffsetFromEnemies = new Vector3(0, 0, 0);
         gripPoint = transform.FindChildRecursive("PlayerGrabPoint");
         //sets initial camera position
-        mainCamera = transform.root.GetComponentInChildren<Camera>();
-        mainCamera.transform.parent = null;
-        mainCamera.transform.position = transform.position - mainCamera.transform.forward * cameraHeight * 10;
-        mainCamera.orthographicSize = 13;
+		mainCamera = Camera.main;
+        mainCamera.transform.position = transform.position - mainCamera.transform.forward * 20;
         cameraOffset = mainCamera.transform.position - transform.position;
 
 		animator = this.GetComponent<Animator>();
@@ -135,8 +131,7 @@ public class RigidPlayerScript : MonoBehaviour
 			// only rotate around y axis
 			targetRot.x = 0;
 			targetRot.z = 0;
-			
-			float rotSpeed = turnSpeed * Time.deltaTime;
+
 			rigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, 1000));
 		}
 	}
@@ -155,7 +150,7 @@ public class RigidPlayerScript : MonoBehaviour
 		Vector3 enemyDir = GetDirectionOfenemies();
 		Vector3 cameraDestination = transform.position + cameraOffset + enemyDir.normalized;
 		float cameraDestinationSize = 8 + enemyDir.magnitude * .2f;
-		mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
+		//mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
 		mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.fixedDeltaTime;
 	}
 

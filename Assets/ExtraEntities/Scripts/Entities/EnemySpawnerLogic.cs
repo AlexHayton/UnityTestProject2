@@ -9,8 +9,6 @@ public class EnemySpawnerLogic : Entity {
 	public int numberOfWaves = 1;
 	private int spawnedWaves = 0;
 	public bool infiniteWaves = true;
-	
-	private float lastSpawn = 0f;
 
 	// Use this for initialization
 	void Start () {
