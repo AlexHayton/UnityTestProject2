@@ -3,52 +3,60 @@ using TestProject;
 using System.Linq;
 using System.Collections.Generic;
 
-public struct DestructibleEffect
+[System.Serializable]
+public class DestructibleEffect
 {
-	public int triggerHealthPercentage;
-	public AudioClip soundEffectToPlay;
-	public AudioClip soundEffectToLoop;
-	public GameObject spawnPrefab;
-	public GameObject swapToModel;
-	public ParticleSystem particleToEmit;
-	public ParticleSystem particleToLoop;
+	public float triggerHealthPercentage = 99;
+	public GameEffect effect;
 }
 
 // Use this to auto-play any animations and auto-destroy when done
 [RequireComponent(typeof(HealthHandler))]
 public class Destructible : MonoBehaviour {
 	
-	List<DestructibleEffect> destructibleTriggers = new List<DestructibleEffect>();
-	float lastHealthPercentage = 100;
+	public List<DestructibleEffect> destructibleTriggers = new List<DestructibleEffect>();
+	public float lastHealthPercentage = 100;
+	public DestructibleEffect onDestroyEffect;
+	private HealthHandler healthHandler = null;
+	private MeshFilter meshFilter = null;
+	private MeshRenderer meshRenderer = null;
+
+	void Start()
+	{
+		healthHandler = GetComponent<HealthHandler>();
+		meshFilter = this.GetComponent<MeshFilter>();
+		meshRenderer = this.GetComponent<MeshRenderer>();
+	}
 	
-	public void HealthChanged(float newHealthPercentage)
+	public void OnTakeDamage()
 	{
 		// Just get the triggers that we need to trigger.
-		IEnumerable<DestructibleEffect> triggers = destructibleTriggers.Where(t => t.triggerHealthPercentage > newHealthPercentage && t.triggerHealthPercentage <= lastHealthPercentage).OrderBy(t => t.triggerHealthPercentage);
+		IEnumerable<DestructibleEffect> triggers = destructibleTriggers.Where(t => t.triggerHealthPercentage > healthHandler.GetHealthPercentage() && t.triggerHealthPercentage <= lastHealthPercentage).OrderByDescending(t => t.triggerHealthPercentage);
 		
-		foreach(DestructibleEffect effect in triggers)
+		foreach(DestructibleEffect eff in triggers)
 		{
-			PlaySoundEffects(effect);
-			SpawnDamagePrefab(effect);
-			SwapRenderModel(effect);
-			PlayParticleEffects(effect);
+			Debug.Log (this.name + " passed Destructible threshold of " + eff.triggerHealthPercentage);
+			PlaySoundEffects(eff.effect);
+			SpawnDamagePrefab(eff.effect);
+			SwapRenderModel(eff.effect);
+			PlayParticleEffects(eff.effect);
 		}
 	}
 	
-	private void PlaySoundEffects(DestructibleEffect effect)
+	private void PlaySoundEffects(GameEffect effect)
 	{
-		if (effect.soundEffectToPlay)
+		if (effect.playSoundEffect)
 		{
-			AudioSource.PlayClipAtPoint(effect.soundEffectToPlay, transform.position);
+			AudioSource.PlayClipAtPoint(effect.playSoundEffect, transform.position);
 		}
 		
-		if (effect.soundEffectToLoop)
+		if (effect.loopSoundEffect)
 		{
-			AudioSource.PlayClipAtPoint(effect.soundEffectToLoop, transform.position);
+			AudioSource.PlayClipAtPoint(effect.loopSoundEffect, transform.position);
 		}
 	}
 	
-	private void SpawnDamagePrefab(DestructibleEffect effect)
+	private void SpawnDamagePrefab(GameEffect effect)
 	{
 		if (effect.spawnPrefab)
 		{
@@ -56,24 +64,29 @@ public class Destructible : MonoBehaviour {
 		}
 	}
 	
-	private void SwapRenderModel(DestructibleEffect effect)
+	private void SwapRenderModel(GameEffect effect)
 	{
-		if (effect.swapToModel)
+		if (this.meshFilter != null && effect.swapToMesh != null)
 		{
-			//Instantiate(effect.swapToModel, transform.position, transform.rotation);
+			this.meshFilter.mesh = effect.swapToMesh;
+		}
+
+		if (this.meshRenderer != null && effect.swapToMaterials != null && effect.swapToMaterials.Count > 0)
+		{
+			this.meshRenderer.materials = effect.swapToMaterials.ToArray();
 		}
 	}
 	
-	private void PlayParticleEffects(DestructibleEffect effect)
+	private void PlayParticleEffects(GameEffect effect)
 	{
-		if (effect.particleToEmit)
+		if (effect.emitParticle)
 		{
-			effect.particleToEmit.Emit(1);
+			effect.emitParticle.Emit(1);
 		}
 		
-		if (effect.particleToLoop)
+		if (effect.loopParticle)
 		{
-			effect.particleToLoop.Play();
+			effect.loopParticle.Play();
 		}
 	}
 }
