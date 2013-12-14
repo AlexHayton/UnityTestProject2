@@ -15,8 +15,6 @@ public class LaserBase : MonoBehaviour
     private float originaLaserlLength;
     private float originalLaserScale;
 
-    private float radsPerDeg = 2f * Mathf.PI / 360f;
-
     // Use this for initialization
 
 
@@ -27,14 +25,14 @@ public class LaserBase : MonoBehaviour
         transform.position += transform.forward * originalLength / 2;
         laserSpot = transform.GetChild(0).gameObject;
         laserSpot.transform.parent = null;
-        LaserSpotSize *= .007f;
+        LaserSpotSize *= .003f;
         laserSpot.transform.localScale = new Vector3(1, 1, 1) * LaserSpotSize;
         laserSpot.renderer.material.color = renderer.material.color;
         originalSpotBrightness = laserSpot.renderer.material.GetFloat("_Overbright");
         originalLaserScale = transform.localScale.z;
         originaLaserlLength = originalLaserScale * 10;
         transform.position += transform.forward * originaLaserlLength / 2;
-        Update();
+        LateUpdate();
     }
 
     public void OnDestroy()
@@ -47,7 +45,7 @@ public class LaserBase : MonoBehaviour
         origin = orig;
     }
 
-    public void Update()
+    public void LateUpdate()
     {
         //laser stuff
         if (origin == null)
@@ -86,7 +84,7 @@ public class LaserBase : MonoBehaviour
             transform.position = origin.position + transform.forward * originaLaserlLength / 2;
             laserSpot.renderer.enabled = false;
         }
-        var tilt = Mathf.Cos(transform.parent.eulerAngles.y * radsPerDeg + 45);
+        var tilt = Mathf.Cos((transform.parent.eulerAngles.y + 45) * Mathf.Deg2Rad);
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, tilt * 45);
         renderer.material.SetTextureScale("_Noise", new Vector2(transform.localScale.x, transform.localScale.z));
         renderer.material.mainTextureOffset = new Vector2(.5018f, 1 - transform.localScale.z / originalLaserScale);

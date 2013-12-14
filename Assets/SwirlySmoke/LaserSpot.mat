@@ -9,6 +9,7 @@ Material:
   m_Name: LaserSpot
   m_Shader: {fileID: 4800000, guid: 2be6375ad8e4146da9bde2796e6735a0, type: 3}
   m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -38,7 +39,7 @@ Material:
       data:
         first:
           name: _Overbright
-        second: 2
+        second: 1.5
     m_Colors:
       data:
         first:
