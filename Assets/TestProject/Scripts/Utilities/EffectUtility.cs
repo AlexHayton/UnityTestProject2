@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using TestProject;
 
 // You can use these functions to instantiate and manage effects.
 public static class EffectUtility
@@ -86,7 +87,7 @@ public static class EffectUtility
 			lifetime = Mathf.Max(lifetime, gameObject.audio.clip.length);
 	    }
 	    
-	    GameObject.Destroy(gameObject, lifetime);
+	    EntityUtility.DestroyGameObject(gameObject, lifetime);
 	}
 
 }

@@ -9,15 +9,7 @@ namespace TestProject
 
 		void Start()
 		{
-			FadeOutHandler fadeOut = GetComponent<FadeOutHandler>();
-			if (fadeOut)
-			{
-				fadeOut.QueueDestroy(destroyAfterTime);
-			}
-			else
-			{
-				Destroy (gameObject, destroyAfterTime);
-			}
+			EntityUtility.DestroyGameObject(gameObject, destroyAfterTime);
 		}
 	}
 }

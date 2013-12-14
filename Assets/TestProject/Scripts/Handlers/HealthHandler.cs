@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TestProject;
 
 [RequireComponent(typeof(Collider))]
 
@@ -133,7 +134,7 @@ public class HealthHandler : MonoBehaviour
 
             // Spawn a pickup if the manager wants to.
             PickupDropManager pickupDropper = gameObject.GetComponent<PickupDropManager>();
-            Destroy(gameObject);
+            EntityUtility.DestroyGameObject(gameObject);
             if (pickupDropper)
             {
                 pickupDropper.SpawnPickups();
