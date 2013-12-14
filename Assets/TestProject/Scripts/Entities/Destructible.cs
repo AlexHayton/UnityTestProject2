@@ -16,10 +16,11 @@ public class Destructible : MonoBehaviour {
 	
 	public List<DestructibleEffect> destructibleTriggers = new List<DestructibleEffect>();
 	public float lastHealthPercentage = 100;
-	public DestructibleEffect onDestroyEffect;
+	public GameEffect onDestroyEffect = null;
 	private HealthHandler healthHandler = null;
 	private MeshFilter meshFilter = null;
 	private MeshRenderer meshRenderer = null;
+	private bool isShuttingDown = false;
 
 	void Start()
 	{
@@ -42,6 +43,22 @@ public class Destructible : MonoBehaviour {
 			PlayParticleEffects(eff.effect);
 		}
 	}
+
+	public void OnDestroy()
+	{
+		if (onDestroyEffect != null && !this.isShuttingDown)
+		{
+			PlaySoundEffects(onDestroyEffect);
+			SpawnDamagePrefab(onDestroyEffect);
+			SwapRenderModel(onDestroyEffect);
+			PlayParticleEffects(onDestroyEffect);
+		}
+	}
+
+	public void OnApplicationQuit()
+	{
+		this.isShuttingDown = true;
+	}
 	
 	private void PlaySoundEffects(GameEffect effect)
 	{
@@ -60,7 +77,8 @@ public class Destructible : MonoBehaviour {
 	{
 		if (effect.spawnPrefab)
 		{
-			Instantiate(effect.spawnPrefab, transform.position, transform.rotation);
+			GameObject newObject = Instantiate(effect.spawnPrefab, transform.position, transform.rotation) as GameObject;
+			newObject.transform.localScale = transform.localScale;
 		}
 	}
 	
