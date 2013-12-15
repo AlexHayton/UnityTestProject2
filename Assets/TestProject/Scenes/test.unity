@@ -590,11 +590,11 @@ GameObject:
   - 54: {fileID: 592325534}
   - 195: {fileID: 592325533}
   - 114: {fileID: 592325532}
-  - 114: {fileID: 592325531}
   - 114: {fileID: 592325530}
   - 114: {fileID: 592325529}
   - 114: {fileID: 592325528}
   - 114: {fileID: 592325539}
+  - 114: {fileID: 592325531}
   m_Layer: 12
   m_Name: RollingEnemy
   m_TagString: Enemy
@@ -665,16 +665,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 592325527}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89caaf9c94c54224494280865fc8666d, type: 3}
+  m_Script: {fileID: 11500000, guid: d422ddd2f859ccd4285790f4cfd383a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerSecond: 50
   range: 1
-  explodeTime: 1
-  explosionRadius: 20
-  explosionForce: 20
-  glowPrefab: {fileID: 100000, guid: 08b65335e7b8f384290bb1fce2097ea0, type: 2}
-  explodePrefab: {fileID: 100000, guid: f1401b8976ab04e4bb41a9fe0814c1e1, type: 2}
+  damageOnHit: 50
+  forceOnImpact: 20
+  coolDown: .100000001
+  weight: 10
+  gripPoint: {fileID: 0}
+  attachPointName: PlayerGrabPoint
+  icon: {fileID: 0}
+  sounds: []
+  pickupPrefab: {fileID: 0}
+  iginitionPrefab: {fileID: 100000, guid: 08b65335e7b8f384290bb1fce2097ea0, type: 2}
+  explosionPrefab: {fileID: 100000, guid: f1401b8976ab04e4bb41a9fe0814c1e1, type: 2}
 --- !u!114 &592325532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,8 +1013,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03009a7866d91d41ba06f3a11407392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerSecond: 1
   range: 1
+  damageOnHit: 10
+  forceOnImpact: 20
+  coolDown: .100000001
+  weight: 10
+  gripPoint: {fileID: 0}
+  attachPointName: PlayerGrabPoint
+  icon: {fileID: 0}
+  sounds: []
+  pickupPrefab: {fileID: 0}
 --- !u!114 &790210957
 MonoBehaviour:
   m_ObjectHideFlags: 0
