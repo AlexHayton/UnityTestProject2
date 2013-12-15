@@ -246,10 +246,11 @@ MonoBehaviour:
   coolDown: .100000001
   weight: 10
   gripPoint: {fileID: 400006}
+  attachPointName: PlayerGrabPoint
   icon: {fileID: 2800000, guid: 3e0a49a7425cc451fac4bb818f7b1509, type: 3}
   sounds:
   - {fileID: 8300000, guid: 3cf81683bdd878c409546a1a399dcbee, type: 3}
-  pickupPrefab: {fileID: 0}
+  pickupPrefab: {fileID: 100004, guid: 99ee75b87c3834a9b8859e97a89d2416, type: 2}
   coneAngle: .0390000008
   bulletsToCreate: 1
   bulletSpeed: 50
@@ -257,6 +258,9 @@ MonoBehaviour:
   muzzleEffectTime: .0500000007
   projectilePrefab: {fileID: 100000, guid: aab981ed5ca71f1409fc729fa4070773, type: 2}
   bulletOrigin: {fileID: 400004}
+  laserAttachPoint: {fileID: 400000}
+  laserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
+  laserColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -14,8 +14,12 @@ public class RangedWeapon : Weapon  {
 	public float muzzleEffectTime = 0.1f;
 	public GameObject projectilePrefab;
 	public Transform bulletOrigin;
+	public Transform laserAttachPoint;
+	public GameObject laserPointer;
+	public Color laserColor;
 
 	protected MuzzleFlashBase muzzleFlash;
+	protected LaserBase actualLaser;
 
 	// Lazy-Cache the bullet start values
 	protected bool initialisedStartValues = false;
@@ -41,6 +45,16 @@ public class RangedWeapon : Weapon  {
 	public override void Start() {
 		base.Start ();
 
+		if (laserPointer & laserAttachPoint) {
+			var laserObject = Instantiate(laserPointer, laserAttachPoint.position, Quaternion.identity) as GameObject;
+			actualLaser = laserObject.GetComponent<LaserBase>();
+			if (actualLaser) {
+				actualLaser.SetOrigin(laserAttachPoint.transform);
+				laserObject.transform.parent = laserAttachPoint;
+				laserObject.renderer.material.color = laserColor;
+			}
+		}
+
 		if (muzzleEffect) {
 			GameObject muzzleFlashObject = Instantiate(muzzleEffect) as GameObject;
 			muzzleFlashObject.transform.parent = bulletOrigin;
@@ -52,7 +66,7 @@ public class RangedWeapon : Weapon  {
 	}
 
 	
-	public void Update() {
+	public override void Update() {
 		base.Update ();
 
 		if (enemyDetector) {
