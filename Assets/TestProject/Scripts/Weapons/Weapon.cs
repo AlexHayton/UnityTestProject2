@@ -8,12 +8,14 @@ using Debug = System.Diagnostics.Debug;
 using Random = UnityEngine.Random;
 
 public class Weapon : MonoBehaviour  {
+
 	public float range = 200f;
 	public int damageOnHit = 10;
 	public float forceOnImpact = 20f;
 	public float coolDown = .1f;
 	public int weight = 10;
 	public Transform gripPoint;
+	public string attachPointName = "PlayerGrabPoint";
 	public Texture2D icon;
 	public List<AudioClip> sounds;
 	public GameObject pickupPrefab;
@@ -21,9 +23,20 @@ public class Weapon : MonoBehaviour  {
 	protected float lastAttack;
 	protected GameObject owner;
 	protected AudioSource audioObject;
+	protected EnemyDetector enemyDetector;
 
 	public virtual void Start() {
 		this.owner = this.transform.parent.gameObject;
+		
+		Transform attachPoint = owner.transform.FindChildRecursive(attachPointName);
+		
+		if (attachPoint) {
+			transform.parent = attachPoint.transform;
+			transform.rotation = owner.transform.rotation;
+			transform.position = transform.position + (attachPoint.position - gripPoint.position);
+			enemyDetector = owner.GetComponentInChildren<EnemyDetector>();
+		}
+
 	}
 
 	public virtual void Update() {
