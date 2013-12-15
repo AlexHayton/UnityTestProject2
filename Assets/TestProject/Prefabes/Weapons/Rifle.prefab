@@ -241,19 +241,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 200
-  damageOnHit: 10
-  forceOnImpact: 20
+  damageOnHit: 20
+  forceOnImpact: 5
   coolDown: .100000001
   weight: 10
   gripPoint: {fileID: 400006}
   icon: {fileID: 2800000, guid: 3e0a49a7425cc451fac4bb818f7b1509, type: 3}
-  sounds: []
+  sounds:
+  - {fileID: 8300000, guid: 3cf81683bdd878c409546a1a399dcbee, type: 3}
   pickupPrefab: {fileID: 0}
-  coneAngle: 1.5
+  coneAngle: .0390000008
   bulletsToCreate: 1
-  bulletSpeed: 20
+  bulletSpeed: 50
   muzzleEffect: {fileID: 100004, guid: 00eae9a0e0c7a4c03b5c9b156b47fede, type: 2}
-  muzzleEffectTime: .100000001
+  muzzleEffectTime: .0500000007
   projectilePrefab: {fileID: 100000, guid: aab981ed5ca71f1409fc729fa4070773, type: 2}
   bulletOrigin: {fileID: 400004}
 --- !u!136 &13600000
