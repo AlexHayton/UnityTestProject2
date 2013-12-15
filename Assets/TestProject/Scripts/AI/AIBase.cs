@@ -30,7 +30,7 @@ public class AIBase : MonoBehaviour
 	public virtual void Start ()
 	{
 		m_Agent = GetComponent<NavMeshAgent> ();
-		m_Weapon = GetComponent<Weapon> ();
+		m_Weapon = GetComponentInChildren<Weapon>();
 
 		if (activation.IsSet (ActivationMask.ActivationType.AfterSpawn)) {
 			FindNewTarget ();
@@ -99,13 +99,13 @@ public class AIBase : MonoBehaviour
 	protected virtual void OnAttackState ()
 	{
 		if (target) {
-			if (Vector3.Distance (target.transform.position, transform.position) <= m_Agent.stoppingDistance + 0.1) {
+			if (Vector3.Distance (target.transform.position, transform.position) <= m_Weapon.range) {
 				if (Attack ()) {
-					targetHealthHandler.DeductHealth(this.gameObject, m_Weapon.damageOnHit);
+					//targetHealthHandler.DeductHealth(this.gameObject, m_Weapon.damageOnHit);
 				}
-			} else {
-				MoveTo (target.transform.position);
 			}
+			MoveTo (target.transform.position);
+
 		} else {
 			myState = State.Idle;
 		}
@@ -176,6 +176,7 @@ public class AIBase : MonoBehaviour
 	{
 		if (movementAllowed) {
 			m_Agent.destination = (transform.position - position).sqrMagnitude > m_Agent.stoppingDistance ? position : transform.position;
+			transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation( position - transform.position ), Time.deltaTime );
 		}
 	}
 

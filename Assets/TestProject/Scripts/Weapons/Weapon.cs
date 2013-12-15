@@ -26,7 +26,11 @@ public class Weapon : MonoBehaviour  {
 	protected EnemyDetector enemyDetector;
 
 	public virtual void Start() {
-		this.owner = this.transform.parent.gameObject;
+		if (this.transform.parent) {
+			this.owner = this.transform.parent.gameObject;
+		} else {
+			this.owner = this.gameObject;
+		}
 		
 		Transform attachPoint = owner.transform.FindChildRecursive(attachPointName);
 		
