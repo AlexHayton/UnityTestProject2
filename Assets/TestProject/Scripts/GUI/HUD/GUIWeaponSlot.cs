@@ -8,9 +8,9 @@ public class GUIWeaponSlot : GUIContentHolder {
 
 	public int weaponSlot;
 	
-	private PlayerRangedWeaponBase GetWeapon()
+	private Weapon GetWeapon()
 	{
-		PlayerRangedWeaponBase currentWeapon = null;
+		Weapon currentWeapon = null;
 		owner = PlayerUtility.GetParentPlayer(this.gameObject);
 		WeaponHandler handler = owner.GetComponent<WeaponHandler>();
 		if (handler)
@@ -28,10 +28,10 @@ public class GUIWeaponSlot : GUIContentHolder {
 	
 	public override Texture2D GetImage()
 	{
-		PlayerRangedWeaponBase weapon = this.GetWeapon();
+		Weapon weapon = this.GetWeapon();
 		if (weapon)
 		{
-			return weapon.GetIcon();
+			return weapon.getIcon();
 		}
 		else
 		{

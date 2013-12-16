@@ -174,28 +174,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e66c4dbd89ad86419579e673d48f209, type: 3}
+  m_Script: {fileID: 11500000, guid: f1f0142a423ecab4d8ce52e10fb8acb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PickupPrefab: {fileID: 100000, guid: 83f64a020d5cc4279866f388eb2d1b99, type: 2}
-  FiringEffect: {fileID: 100004, guid: 00eae9a0e0c7a4c03b5c9b156b47fede, type: 2}
-  BulletPrefab: {fileID: 100000, guid: 076c0855584945c4ea799f69fe1ad1af, type: 2}
-  BulletSounds:
-  - {fileID: 8300000, guid: ea993112c95c83e4db916e00ad0ccb27, type: 3}
-  LaserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
-  LaserColor: {r: .737930775, g: 0, b: 1, a: 0}
-  Icon: {fileID: 2800000, guid: 6823791e142d1457fab4894e81d3f3be, type: 3}
-  LaserOrigin: {fileID: 0}
-  primary: 1
-  Cooldown: 1
-  ConeAngle: 0
-  BulletsToCreate: 1
-  showInMenu: 1
-  EnergyCost: 35
-  DamageOnHit: 60
-  BulletSpeed: 10
-  ForceOnImpact: 5
-  muzzleFlashTime: .0500000007
+  range: 50
+  damageOnHit: 60
+  forceOnImpact: 5
+  coolDown: 1
+  weight: 10
+  gripPoint: {fileID: 400006}
+  attachPointName: PlayerGrabPoint
+  icon: {fileID: 2800000, guid: 6823791e142d1457fab4894e81d3f3be, type: 3}
+  sounds: []
+  pickupPrefab: {fileID: 0}
+  coneAngle: 0
+  bulletsToCreate: 1
+  bulletSpeed: 10
+  muzzleEffect: {fileID: 100004, guid: 00eae9a0e0c7a4c03b5c9b156b47fede, type: 2}
+  muzzleEffectTime: .0500000007
+  projectilePrefab: {fileID: 100000, guid: 076c0855584945c4ea799f69fe1ad1af, type: 2}
+  bulletOrigin: {fileID: 400004}
+  laserAttachPoint: {fileID: 400000}
+  laserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
+  laserColor: {r: .737930775, g: 0, b: 1, a: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

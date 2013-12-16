@@ -226,7 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19adbe303d09264193406261a8059ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BufferDistance: 15
   myState: 0
   walkAroundDistance: 40
   targetSearchRange: 50
@@ -266,7 +265,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03009a7866d91d41ba06f3a11407392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerSecond: 1
+  range: 1
+  damageOnHit: 1
+  forceOnImpact: 0
+  coolDown: 1
+  weight: 10
+  gripPoint: {fileID: 0}
+  attachPointName: PlayerGrabPoint
+  icon: {fileID: 0}
+  sounds: []
+  pickupPrefab: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1

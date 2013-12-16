@@ -4,17 +4,17 @@ using System.Collections;
 public class TurretScript : MonoBehaviour {
 	
 	public Transform rotateTransform;
-	public PlayerRangedWeaponBase weapon;
+	public Weapon weapon;
 
 	// Use this for initialization
 	void Start () {
-		this.weapon = (PlayerRangedWeaponBase)GetComponentInChildren<PlayerRangedWeaponBase>();
+		this.weapon = (Weapon)GetComponentInChildren<Weapon>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (this.weapon) {
-			this.weapon.Fire();
+			this.weapon.Attack();
 		}
 	}
 }

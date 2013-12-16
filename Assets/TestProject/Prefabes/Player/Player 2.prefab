@@ -2587,6 +2587,7 @@ MonoBehaviour:
   Weapons:
   - {fileID: 11400000, guid: 563c8bb51e8cece4e82385d1903555d9, type: 2}
   - {fileID: 11400000, guid: 78118bef679375e4c9d6b4e527d437e5, type: 2}
+  - {fileID: 11400000, guid: 0aa00f2a55dbcaf47b3f5272768970b1, type: 2}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
