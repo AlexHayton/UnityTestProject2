@@ -2637,7 +2637,7 @@ GameObject:
   - 114: {fileID: 205551914}
   - 114: {fileID: 205551915}
   m_Layer: 0
-  m_Name: Cube_010
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7071,7 +7071,7 @@ MonoBehaviour:
       spawnPrefab: {fileID: 0}
       swapToMesh: {fileID: 0}
       swapToMaterials:
-      - {fileID: 2100000, guid: 2177968b87f184656ad991f65d472ddb, type: 2}
+      - {fileID: 2100000, guid: 436383602255f4ae9b15c6f17c002ba8, type: 2}
       emitParticle: {fileID: 0}
       loopParticle: {fileID: 0}
   lastHealthPercentage: 100
@@ -12221,6 +12221,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -.500000119
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c46cc2627c8d24602b8a16b7642545b7, type: 2}
+      propertyPath: m_Name
+      value: Cube
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c46cc2627c8d24602b8a16b7642545b7, type: 2}
   m_RootGameObject: {fileID: 1954485755}
@@ -13375,7 +13379,7 @@ MonoBehaviour:
       spawnPrefab: {fileID: 0}
       swapToMesh: {fileID: 0}
       swapToMaterials:
-      - {fileID: 2100000, guid: 2177968b87f184656ad991f65d472ddb, type: 2}
+      - {fileID: 2100000, guid: 436383602255f4ae9b15c6f17c002ba8, type: 2}
       emitParticle: {fileID: 0}
       loopParticle: {fileID: 0}
   lastHealthPercentage: 100
@@ -14896,7 +14900,7 @@ MonoBehaviour:
       spawnPrefab: {fileID: 0}
       swapToMesh: {fileID: 0}
       swapToMaterials:
-      - {fileID: 2100000, guid: 2177968b87f184656ad991f65d472ddb, type: 2}
+      - {fileID: 2100000, guid: 436383602255f4ae9b15c6f17c002ba8, type: 2}
       emitParticle: {fileID: 0}
       loopParticle: {fileID: 0}
   lastHealthPercentage: 100
@@ -17871,11 +17875,11 @@ MonoBehaviour:
   gridSnapSize_Base: .25
   gridUnitsIndex: 1
   gridSnapSize_Factored: .25
-  gridCenterPos: {x: 0, y: 0, z: 0}
+  gridCenterPos: {x: 33, y: 10.25, z: -7.25}
   superUnitSize: 
-  camView: {x: 0, y: 0, z: 0}
+  camView: {x: 0, y: 0, z: 1}
   gridObjPos: {x: 0, y: 0, z: 0}
-  nearestSnapPos: {x: 0, y: 0, z: 0}
+  nearestSnapPos: {x: 33, y: 10.25, z: -7.25}
   activePoint: {x: 0, y: 0, z: 0}
 --- !u!4 &1442489571
 Transform:
@@ -19116,7 +19120,7 @@ MonoBehaviour:
       spawnPrefab: {fileID: 0}
       swapToMesh: {fileID: 0}
       swapToMaterials:
-      - {fileID: 2100000, guid: 2177968b87f184656ad991f65d472ddb, type: 2}
+      - {fileID: 2100000, guid: 436383602255f4ae9b15c6f17c002ba8, type: 2}
       emitParticle: {fileID: 0}
       loopParticle: {fileID: 0}
   lastHealthPercentage: 100
