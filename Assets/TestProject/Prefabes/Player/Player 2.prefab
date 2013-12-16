@@ -1321,6 +1321,7 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400020}
+  - 81: {fileID: 8100000}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -2481,6 +2482,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .00999999978, y: 3.70000005, z: 38.8600006}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!81 &8100000
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100178}
+  m_Enabled: 1
 --- !u!95 &9500002
 Animator:
   serializedVersion: 2
@@ -2551,6 +2559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shakeAmountOnTakeDamage: .5
+  waitTimeBetweenShakes: .200000003
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2574,7 +2583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca7de6749a7db742b4fe0468758eca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedIndex: 0
+  SelectedIndex: 0
   Weapons:
   - {fileID: 11400000, guid: 563c8bb51e8cece4e82385d1903555d9, type: 2}
   - {fileID: 11400000, guid: 78118bef679375e4c9d6b4e527d437e5, type: 2}
