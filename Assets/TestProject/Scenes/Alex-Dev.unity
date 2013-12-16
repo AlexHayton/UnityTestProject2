@@ -17877,7 +17877,7 @@ MonoBehaviour:
   gridSnapSize_Factored: .25
   gridCenterPos: {x: 33, y: 10.25, z: -7.25}
   superUnitSize: 
-  camView: {x: 0, y: 0, z: 1}
+  camView: {x: -.61072731, y: -.454349458, z: -.648520589}
   gridObjPos: {x: 0, y: 0, z: 0}
   nearestSnapPos: {x: 33, y: 10.25, z: -7.25}
   activePoint: {x: 0, y: 0, z: 0}
