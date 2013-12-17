@@ -72,6 +72,7 @@ public class RangedWeaponBase : MonoBehaviour {
 			actualLaser.SetOrigin(LaserOrigin.transform);
 			laserObject.transform.parent = LaserOrigin;
 			laserObject.renderer.material.color = LaserColor;
+			laserObject.transform.rotation = LaserOrigin.rotation;
 		}
 
 		/*
