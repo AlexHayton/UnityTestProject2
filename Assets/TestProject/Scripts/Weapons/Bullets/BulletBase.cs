@@ -48,7 +48,6 @@ public class BulletBase : MonoBehaviour
         var enterObj = collision.gameObject;
         if (enterObj.tag != ignoreTag &&
                 enterObj.tag != "Bullet" &&
-                enterObj.tag != "Player" &&
                 enterObj.tag != "NoCollide" && !alreadyHit)
         {
             bool doDamage = true;

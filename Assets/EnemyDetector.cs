@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
 {
-    private PlayerRangedWeaponBase equippedWeapon;
+    private Weapon equippedWeapon;
     private List<Collider> enemiesInView;
 
     // Use this for initialization

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f1f0142a423ecab4d8ce52e10fb8acb2
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - gripPoint: {instanceID: 0}
+  - icon: {instanceID: 0}
+  - pickupPrefab: {instanceID: 0}
+  - muzzleEffect: {instanceID: 0}
+  - projectilePrefab: {instanceID: 0}
+  - bulletOrigin: {instanceID: 0}
+  - laserAttachPoint: {instanceID: 0}
+  - laserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

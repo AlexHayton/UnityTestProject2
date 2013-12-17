@@ -15,6 +15,17 @@ public class RollingAI : AIBase {
 		CheckRotation();
 	}
 
+	protected override bool Attack ()
+	{
+		if (base.Attack()) {
+			if (m_Weapon.Attack()) {
+				movementAllowed = false;
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	internal void CheckRotation() {
 		if (movementAllowed) {

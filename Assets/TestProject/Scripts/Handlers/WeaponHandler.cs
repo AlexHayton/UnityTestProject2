@@ -10,13 +10,13 @@ using TestProject;
 /// </summary>
 public class WeaponHandler : MonoBehaviour, ISelfTest
 {
-    private PlayerRangedWeaponBase SelectedWeapon;
+    private Weapon SelectedWeapon;
 
     [HideInInspector]
 	// SelectedIndex starts at 0;
 	// SelectedSlot starts at 1;
     public int SelectedIndex;
-    public List<PlayerRangedWeaponBase> Weapons;
+    public List<Weapon> Weapons;
     private RigidPlayerScript playerScript;
 	private GUISelectedWeapon _selectedWeaponGUI = null;
 
@@ -64,7 +64,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		if (gripLocation)
 		{
 			Vector3 gripPoint = gripLocation.position;
-			SelectedWeapon = (PlayerRangedWeaponBase)Instantiate(Weapons[SelectedIndex], gripPoint, Quaternion.identity);
+			SelectedWeapon = (Weapon)Instantiate(Weapons[SelectedIndex], gripPoint, Quaternion.identity);
 			SelectedWeapon.transform.parent = this.gameObject.transform;
 		}
 		else
@@ -83,7 +83,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		return Weapons.Any(w => w.name == weapon.name);
 	}
 
-	public bool HasWeapon(PlayerRangedWeaponBase weapon)
+	public bool HasWeapon(Weapon weapon)
 	{
 		return HasWeapon(weapon.gameObject);
 	}
@@ -93,7 +93,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		bool success = false;
 		if (!HasWeapon (weapon)) 
 		{
-			var weaponScript = weapon.GetComponent<PlayerRangedWeaponBase>();
+			var weaponScript = weapon.GetComponent<Weapon>();
 			if (weaponScript)
 			{
 				success = AddWeapon(weaponScript);
@@ -102,13 +102,13 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		return success;
 	}
 
-	public bool AddWeapon(PlayerRangedWeaponBase weapon)
+	public bool AddWeapon(Weapon weapon)
 	{
 		bool success = false;
 		if (weapon != null && !HasWeapon (weapon)) 
 		{
 			// Destroy the old weapon
-			RangedWeaponBase oldWeapon = SelectedWeapon;
+			Weapon oldWeapon = SelectedWeapon;
 			this.DropWeapon(SelectedIndex, false);
 
 			// Equip the new one.
@@ -132,7 +132,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 	{
 		if (SelectedWeapon)
 		{
-			GameObject pickupPrefab = SelectedWeapon.GetPickupPrefab();
+			GameObject pickupPrefab = SelectedWeapon.getPickupPrefab();
 			if (pickupPrefab)
 			{
 				Instantiate(pickupPrefab, transform.position, transform.rotation);
@@ -144,7 +144,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 
 			if (equipNext)
 			{
-				PlayerRangedWeaponBase nextWeapon = this.Weapons.FirstOrDefault();
+				Weapon nextWeapon = this.Weapons.FirstOrDefault();
 				if (nextWeapon)
 				{
 					int newIndex = this.Weapons.IndexOf(nextWeapon);
@@ -157,13 +157,11 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
     // Update is called once per frame
     void Update()
     {
-        if (playerScript.LaserTransform == null)
-            playerScript.LaserTransform = SelectedWeapon.LaserOrigin;
         if (playerScript)
         {
-            if (Input.GetButtonDown("Fire1") || Input.GetButton("Fire1"))
+			if ((Input.GetButtonDown("Fire1") || Input.GetButton("Fire1")) & SelectedWeapon)
             {
-                SelectedWeapon.Fire();
+				SelectedWeapon.Attack();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -190,9 +188,9 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
         }
     }
 	
-	public PlayerRangedWeaponBase GetWeaponInSlot(int slot)
+	public Weapon GetWeaponInSlot(int slot)
 	{
-		PlayerRangedWeaponBase weapon = null;
+		Weapon weapon = null;
 		
 		if (Weapons.Count >= slot)
 		{
@@ -202,7 +200,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		return weapon;
 	}
 
-	public PlayerRangedWeaponBase GetSelectedWeapon()
+	public Weapon GetSelectedWeapon()
 	{
 		return SelectedWeapon;
 	}
@@ -212,7 +210,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		return SelectedIndex + 1;
 	}
 
-    public void PickUpWeapon(ref PlayerRangedWeaponBase weapon)
+    public void PickUpWeapon(ref Weapon weapon)
     {
         //in theory this should add the "reference (not as in ref, just used that so I had access to the weapon to destroy it)" to the weapon, then destroy the actual object
         Weapons.Add(weapon);

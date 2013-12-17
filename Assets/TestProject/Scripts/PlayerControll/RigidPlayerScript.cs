@@ -124,17 +124,14 @@ public class RigidPlayerScript : MonoBehaviour
 	
 	void UpdateRotation()
 	{
-		if(LaserTransform != null)
-		{
-			var lookDir = GetMouseOnPlane(new Plane(Vector3.up, gripPoint.position)) - transform.position;
-			Quaternion targetRot = Quaternion.LookRotation(lookDir);
-			
-			// only rotate around y axis
-			targetRot.x = 0;
-			targetRot.z = 0;
+		var lookDir = GetMouseOnPlane(new Plane(Vector3.up, gripPoint.position)) - transform.position;
+		Quaternion targetRot = Quaternion.LookRotation(lookDir);
+		
+		// only rotate around y axis
+		targetRot.x = 0;
+		targetRot.z = 0;
 
-			rigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, 1000));
-		}
+		rigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, 1000));
 	}
 
 	void UpdateAnimationParameters()
