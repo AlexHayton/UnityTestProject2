@@ -90,7 +90,7 @@ MonoBehaviour:
       spawnPrefab: {fileID: 0}
       swapToMesh: {fileID: 0}
       swapToMaterials:
-      - {fileID: 2100000, guid: 2177968b87f184656ad991f65d472ddb, type: 2}
+      - {fileID: 2100000, guid: 436383602255f4ae9b15c6f17c002ba8, type: 2}
       emitParticle: {fileID: 0}
       loopParticle: {fileID: 0}
   lastHealthPercentage: 100

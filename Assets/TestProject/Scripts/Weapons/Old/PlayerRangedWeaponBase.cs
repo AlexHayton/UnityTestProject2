@@ -24,23 +24,12 @@ public class PlayerRangedWeaponBase : RangedWeaponBase, ISelfTest
         bulletOrigin = transform.FindChild("BarrelEnd");
         LaserOrigin = transform.FindChild("LaserOrigin");
 
-        var laserObject = Instantiate(LaserPointer, LaserOrigin.position, Quaternion.identity) as GameObject;
-        actualLaser = laserObject.GetComponent<LaserBase>();
-        actualLaser.SetOrigin(LaserOrigin.transform);
-        laserObject.transform.parent = LaserOrigin;
-        laserObject.renderer.material.color = LaserColor;
-
 		gripPoint = playerCapsule.transform.FindChildRecursive("PlayerGrabPoint");
         transform.parent = gripPoint.transform;
         transform.rotation = playerCapsule.transform.rotation;
         transform.position = transform.position + (gripPoint.position - attachPoint.position);
         enemyDetector = gripPoint.GetComponentInChildren<EnemyDetector>();
 
-        var muzzleFlashObject = Instantiate(FiringEffect) as GameObject;
-        muzzleFlashObject.transform.parent = bulletOrigin;
-        muzzleFlashObject.transform.localRotation = FiringEffect.transform.rotation;
-        muzzleFlashObject.transform.localPosition = FiringEffect.transform.position;
-        muzzleFlash = muzzleFlashObject.GetComponent<MuzzleFlashBase>();
         Update();
     }
 

@@ -43,6 +43,7 @@ public class RigidPlayerScript : MonoBehaviour
         gripPoint = transform.FindChildRecursive("PlayerGrabPoint");
         //sets initial camera position
 		mainCamera = Camera.main;
+        mainCamera.transform.parent = null;
         mainCamera.transform.position = transform.position - mainCamera.transform.forward * 20;
         cameraOffset = mainCamera.transform.position - transform.position;
 

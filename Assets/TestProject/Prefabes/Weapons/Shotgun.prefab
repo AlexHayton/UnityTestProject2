@@ -184,7 +184,7 @@ MonoBehaviour:
   weight: 10
   gripPoint: {fileID: 400002}
   attachPointName: PlayerGrabPoint
-  icon: {fileID: 2800000, guid: ead5850be28024153a41e615f90b18f5, type: 3}
+  icon: {fileID: 2800000, guid: 05c03652c29ec6f4889260ff2ab5392b, type: 3}
   sounds:
   - {fileID: 8300000, guid: 61a161846076f8c4fbc937f5ae1b4315, type: 3}
   pickupPrefab: {fileID: 100000, guid: fb9ff54b07b03487690fa3da4d7b0fb5, type: 2}

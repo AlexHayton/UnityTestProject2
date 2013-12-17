@@ -43,8 +43,9 @@ public class BulletBase : MonoBehaviour
     }
 
     //void  OnTriggerEnter (Collider collision) {
-    void OnTriggerEnter(Collider enterObj)
+    void OnCollisionEnter(Collision collision)
     {
+        var enterObj = collision.gameObject;
         if (enterObj.tag != ignoreTag &&
                 enterObj.tag != "Bullet" &&
                 enterObj.tag != "NoCollide" && !alreadyHit)
