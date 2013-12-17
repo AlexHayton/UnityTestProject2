@@ -47,7 +47,7 @@ public class RangedWeaponBase : MonoBehaviour {
 			{
 				m_BulletStartValues = new BulletBase.StartValues()
 				{
-					owner = this.transform.parent.gameObject, 
+					owner = this.transform.gameObject, 
 					DamageOnHit = this.DamageOnHit,
 					ForceOnImpact = this.ForceOnImpact
 				};
