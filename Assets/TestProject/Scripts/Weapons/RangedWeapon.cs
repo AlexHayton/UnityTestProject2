@@ -46,7 +46,7 @@ public class RangedWeapon : Weapon  {
 		base.Start ();
 
 		if (laserPointer & laserAttachPoint) {
-			var laserObject = Instantiate(laserPointer, laserAttachPoint.position, Quaternion.identity) as GameObject;
+			var laserObject = Instantiate(laserPointer, laserAttachPoint.position, Quaternion.LookRotation(laserAttachPoint.forward)) as GameObject;
 			actualLaser = laserObject.GetComponent<LaserBase>();
 			if (actualLaser) {
 				actualLaser.SetOrigin(laserAttachPoint.transform);
