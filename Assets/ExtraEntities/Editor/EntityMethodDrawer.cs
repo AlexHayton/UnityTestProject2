@@ -36,7 +36,7 @@ public class EntityMethodDrawer : PropertyDrawer {
 		Entity tempEnt = (Entity)target.objectReferenceValue;
 
 		if (tempEnt != null){
-			methods = EntityUtility.GetMethodList (tempEnt);
+			methods = ExtraEntities.EntityUtility.GetMethodList (tempEnt);
 		}		
 		
 		// to save the choosen index so it will not be always 0

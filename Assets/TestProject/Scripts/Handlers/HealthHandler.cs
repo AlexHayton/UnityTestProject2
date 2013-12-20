@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TestProject;
 
 [RequireComponent(typeof(Collider))]
 
@@ -19,31 +20,28 @@ public class HealthHandler : MonoBehaviour
 
     void Start()
     {
+		if (regenHealth > 0)
+		{
+			StartCoroutine(RegenerateHealth());
+		}
     }
 
     void Update()
     {
-        if (regenHealth > 0)
-        {
-
-            if (health < maxHealth)
-            {
-
-                if (nextRegen == 0.0f)
-                {
-                    nextRegen = Time.time + regenSpeed;
-                }
-                else if (Time.time > nextRegen)
-                {
-                    // regen health
-                    Debug.Log("Regen");
-                    this.health = Mathf.Min(this.health + regenHealth, maxHealth);
-                    nextRegen = Time.time + regenSpeed;
-                }
-
-            }
-        }
     }
+
+	public IEnumerator RegenerateHealth()
+	{
+		while (true)
+		{
+			if (health < maxHealth)
+			{
+				// regen health
+				this.health = Mathf.Min(this.health + regenHealth, maxHealth);
+			}
+			yield return new WaitForSeconds(regenSpeed);
+		}
+	}
     
     public bool GetCanBeHealed()
     {
@@ -93,6 +91,11 @@ public class HealthHandler : MonoBehaviour
         return this.maxHealth;
     }
 
+	public float GetHealthPercentage()
+	{
+		return this.health / this.maxHealth * 100.0f;
+	}
+
     public void AddHealth(int health)
     {
 		this.AddHealth((float)health);
@@ -131,7 +134,7 @@ public class HealthHandler : MonoBehaviour
 
             // Spawn a pickup if the manager wants to.
             PickupDropManager pickupDropper = gameObject.GetComponent<PickupDropManager>();
-            Destroy(gameObject);
+            EntityUtility.DestroyGameObject(gameObject);
             if (pickupDropper)
             {
                 pickupDropper.SpawnPickups();

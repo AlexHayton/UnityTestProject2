@@ -80,5 +80,24 @@ namespace TestProject
 
 			return foundChild;
 		}
+
+		public static void DestroyGameObject(GameObject objToDestroy)
+		{
+			DestroyGameObject(objToDestroy, 0.0f);
+		}
+
+		public static void DestroyGameObject(GameObject objToDestroy, float destroyAfterTime)
+		{
+			// Handles fading out etc.
+			FadeOutHandler fadeOut = objToDestroy.GetComponent<FadeOutHandler>();
+			if (fadeOut)
+			{
+				fadeOut.QueueDestroy(destroyAfterTime);
+			}
+			else
+			{
+				GameObject.Destroy(objToDestroy, destroyAfterTime);
+			}
+		}
 	}
 }
