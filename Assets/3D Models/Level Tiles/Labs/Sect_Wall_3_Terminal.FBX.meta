@@ -11,12 +11,15 @@ ModelImporter:
     400004: Wall_3_Terminal
     2300000: Monitor
     2300002: Wall_3_Terminal
+    2300004: //RootNode
     3300000: Monitor
     3300002: Wall_3_Terminal
+    3300004: //RootNode
     4300000: Monitor
     4300002: Wall_3_Terminal
     6400000: Monitor
     6400002: Wall_3_Terminal
+    6400004: //RootNode
     7400000: Take 001
     9500000: //RootNode
   materials:
