@@ -205,7 +205,6 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   guiPrefabs:
-  - {fileID: 100006, guid: a3ede8f312f4747e0bdc58df9f2f94ee, type: 2}
   - {fileID: 100004, guid: 53b1c009112b249dbb54677516e3f952, type: 2}
   - {fileID: 100014, guid: f50ee9d6d3a4e214a8e8798b97252b3a, type: 2}
 --- !u!114 &106326036
@@ -923,78 +922,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 2
---- !u!1 &592356756
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 592356761}
-  - 20: {fileID: 592356760}
-  - 124: {fileID: 592356759}
-  - 92: {fileID: 592356758}
-  m_Layer: 0
-  m_Name: MainCamera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!92 &592356758
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 592356756}
-  m_Enabled: 1
---- !u!124 &592356759
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 592356756}
-  m_Enabled: 1
---- !u!20 &592356760
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 592356756}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_HDR: 0
-  m_OcclusionCulling: 1
---- !u!4 &592356761
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 592356756}
-  m_LocalRotation: {x: .426600099, y: .339444399, z: -.176703572, w: .819491148}
-  m_LocalPosition: {x: 4.08429718, y: 20.0669041, z: -21.1743698}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &664999585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,7 +1636,7 @@ MonoBehaviour:
   weight: 10
   gripPoint: {fileID: 364047415}
   attachPointName: PlayerGrabPoint
-  icon: {fileID: 2800000, guid: 3e0a49a7425cc451fac4bb818f7b1509, type: 3}
+  icon: {fileID: 2800000, guid: 24c33c185218a1544a696676dce6ae78, type: 3}
   sounds:
   - {fileID: 8300000, guid: 3cf81683bdd878c409546a1a399dcbee, type: 3}
   pickupPrefab: {fileID: 100004, guid: 99ee75b87c3834a9b8859e97a89d2416, type: 2}
