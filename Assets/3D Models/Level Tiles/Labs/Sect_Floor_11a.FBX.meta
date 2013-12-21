@@ -8,9 +8,13 @@ ModelImporter:
     400000: Floor_11a
     400002: //RootNode
     2300000: Floor_11a
+    2300002: //RootNode
     3300000: Floor_11a
+    3300002: //RootNode
     4300000: Floor_11a
     6400000: Floor_11a
+    6400002: //RootNode
+    7400000: Take 001
     9500000: //RootNode
   materials:
     importMaterials: 1
