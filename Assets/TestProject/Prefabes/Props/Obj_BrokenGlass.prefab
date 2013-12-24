@@ -240,6 +240,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400022}
   - 114: {fileID: 11400044}
+  - 114: {fileID: 11400046}
   m_Layer: 0
   m_Name: Obj_BrokenGlass
   m_TagString: Shard
@@ -1284,6 +1285,18 @@ MonoBehaviour:
   xAxis: 1
   yAxis: 0
   zAxis: 0
+--- !u!114 &11400046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8323e845d11254074a149a68ba603a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeOutTime: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
