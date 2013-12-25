@@ -1340,7 +1340,6 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400020}
-  - 81: {fileID: 8100000}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -2542,13 +2541,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .00999999978, y: 3.70000005, z: 38.8600006}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!81 &8100000
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100178}
-  m_Enabled: 1
 --- !u!81 &8100002
 AudioListener:
   m_ObjectHideFlags: 1

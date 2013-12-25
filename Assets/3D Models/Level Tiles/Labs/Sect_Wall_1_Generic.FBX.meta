@@ -8,9 +8,12 @@ ModelImporter:
     400000: //RootNode
     400002: Wall_1_Generic
     2300000: Wall_1_Generic
+    2300002: //RootNode
     3300000: Wall_1_Generic
+    3300002: //RootNode
     4300000: Wall_1_Generic
     6400000: Wall_1_Generic
+    6400002: //RootNode
     7400000: Take 001
     9500000: //RootNode
   materials:

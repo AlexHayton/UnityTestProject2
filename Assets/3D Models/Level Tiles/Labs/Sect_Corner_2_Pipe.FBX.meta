@@ -6,9 +6,11 @@ ModelImporter:
     100000: //RootNode
     100002: Sect_Corner_C_002
     100004: Transparent_Corner_C_003
+    100006: Corner_2_Pipe
     400000: //RootNode
     400002: Sect_Corner_C_002
     400004: Transparent_Corner_C_003
+    400006: Corner_2_Pipe
     2300000: Sect_Corner_C_002
     2300002: Transparent_Corner_C_003
     3300000: Sect_Corner_C_002

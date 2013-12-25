@@ -30,7 +30,7 @@ public class AIBase : MonoBehaviour
 	public virtual void Start ()
 	{
 		m_Agent = GetComponent<NavMeshAgent> ();
-		m_Weapon = GetComponentInChildren<Weapon>();
+		m_Weapon = GetComponentInChildren<Weapon> ();
 
 		if (activation.IsSet (ActivationMask.ActivationType.AfterSpawn)) {
 			FindNewTarget ();
@@ -176,7 +176,10 @@ public class AIBase : MonoBehaviour
 	{
 		if (movementAllowed) {
 			m_Agent.destination = (transform.position - position).sqrMagnitude > m_Agent.stoppingDistance ? position : transform.position;
-			transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation( position - transform.position ), Time.deltaTime );
+
+			// only rotate around y axis
+			position.y = transform.position.y;
+			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (position - transform.position), Time.deltaTime * this.m_Agent.angularSpeed);
 		}
 	}
 

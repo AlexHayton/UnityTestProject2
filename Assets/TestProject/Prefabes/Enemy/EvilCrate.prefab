@@ -42,8 +42,8 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 1
-  m_LightmapTilingOffset: {x: .12109375, y: .12109375, z: 0, w: .521484375}
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
   - {fileID: 2100000, guid: 5d69df9d9d11e49d110086ba44295342, type: 2}
   m_SubsetIndices: 
@@ -83,10 +83,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.602, y: 5, z: 1.5}
+  m_Size: {x: 1.602, y: 8, z: 1.5}
   m_Center: {x: 0, y: 0, z: .75}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -99,14 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd5a1d5bb93c44c4ad31170515dc6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Items:
-  - Item: {fileID: 100000, guid: aa26b9f10b9e94ee9aed4542bb3c704c, type: 2}
-    DropChance: 70
-  - Item: {fileID: 100002, guid: c058639dbcd0a4b6097c848f81a55a7d, type: 2}
-    DropChance: 30
-  killValue: 1
-  DropEvery: 5
-  PlusOrMinus: 2
+  TierPercentages: []
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,7 +114,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   visible: 1
   guiStyleObject: {fileID: 100000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
-  guiStylePrefab: {fileID: 0}
+  guiStylePrefab: {fileID: 11400000, guid: e15f571bc88bc6342aba863dcf910143, type: 2}
   depth: 100
   color: {r: 1, g: 1, b: 1, a: 1}
   autoXPosition: 0
