@@ -214,6 +214,14 @@ public class RangedWeapon : Weapon  {
 		return closestHit.collider.GetComponent<TeamHandler>() != null ? closestHit.collider : null;
 	}
 
-	
+	public override void Drop()
+	{
+		if (actualLaser)
+		{
+			Destroy(actualLaser.gameObject);
+		}
+
+		base.Drop();
+	}
 
 }

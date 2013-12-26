@@ -90,7 +90,7 @@ public class RigidPlayerScript : MonoBehaviour
 			//************************************
 			
 			// rotate towards target
-			//Vector3 muzzleToMouse = (GetMouseOnPlane(new Plane(Vector3.up, GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position)) - GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position);
+			//Vector3 muzzleToMouse = (PlayerUtility.GetMouseOnPlane(transform, new Plane(Vector3.up, GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position)) - GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position);
 			//muzzleToMouse.y = 0;
 			//Vector3 playerToMuzzle = GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position - transform.position;
 			//playerToMuzzle.y = 0;
@@ -124,7 +124,7 @@ public class RigidPlayerScript : MonoBehaviour
 	
 	void UpdateRotation()
 	{
-		var lookDir = GetMouseOnPlane(new Plane(Vector3.up, gripPoint.position)) - transform.position;
+		var lookDir = PlayerUtility.GetMouseOnPlane(transform, new Plane(Vector3.up, gripPoint.position)) - transform.position;
 		Quaternion targetRot = Quaternion.LookRotation(lookDir);
 		
 		// only rotate around y axis
@@ -162,24 +162,6 @@ public class RigidPlayerScript : MonoBehaviour
 			Instantiate(onHitGui, onHitGui.transform.position, onHitGui.transform.rotation);
 		}	
 	}
-
-    public Vector3 GetMouseOnPlane(Plane plane)
-    {
-        // search point from the mouse on the plane too look at it
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        float hit;
-        if (plane.Raycast(ray, out hit))
-        {
-            return ray.GetPoint(hit);
-        }
-        else
-        {
-            Vector3 position = Input.mousePosition;
-            position.y = transform.position.y;
-            return position;
-        }
-    }
-
 
     float CalculateJumpVerticalSpeed()
     {

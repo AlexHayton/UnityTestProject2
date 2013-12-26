@@ -31,7 +31,8 @@ public class Weapon : MonoBehaviour  {
 		} else {
 			this.owner = this.gameObject;
 		}
-		
+
+		gripPoint = transform.root.FindChildRecursive("PlayerGrabPoint");
 		Transform attachPoint = owner.transform.FindChildRecursive(attachPointName);
 		
 		if (attachPoint) {
@@ -46,8 +47,13 @@ public class Weapon : MonoBehaviour  {
 	public virtual void Update() {
 	}
 
+	public virtual bool IsInCooldown()
+	{
+		return Time.time - lastAttack < coolDown;
+	}
+	
 	public virtual bool Attack() {
-		if (Time.time - lastAttack > coolDown) {
+		if (!IsInCooldown()) {
 			this.PlayAttackSound();
 			lastAttack = Time.time;
 			return true;
@@ -89,7 +95,7 @@ public class Weapon : MonoBehaviour  {
 		if (this.pickupPrefab)
 		{
 			Instantiate(this.pickupPrefab, transform.position, transform.rotation);
-			Destroy (this);
+			Destroy (this.gameObject);
 		}
 	}
 

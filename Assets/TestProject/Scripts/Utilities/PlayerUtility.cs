@@ -55,6 +55,23 @@ namespace TestProject
 		{
 			return GameObject.FindGameObjectsWithTag("Player");
 		}
+
+		public static Vector3 GetMouseOnPlane(Transform transform, Plane plane)
+		{
+			// search point from the mouse on the plane too look at it
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			float hit;
+			if (plane.Raycast(ray, out hit))
+			{
+				return ray.GetPoint(hit);
+			}
+			else
+			{
+				Vector3 position = Input.mousePosition;
+				position.y = transform.position.y;
+				return position;
+			}
+		}
 	}
 }
 
