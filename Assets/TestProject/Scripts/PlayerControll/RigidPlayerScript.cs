@@ -44,8 +44,8 @@ public class RigidPlayerScript : MonoBehaviour
         //sets initial camera position
 		mainCamera = Camera.main;
         mainCamera.transform.parent = null;
-        mainCamera.transform.position = transform.position - mainCamera.transform.forward * 20;
-        cameraOffset = mainCamera.transform.position - transform.position;
+        mainCamera.transform.position = transform.position - mainCamera.transform.forward;
+        cameraOffset = (mainCamera.transform.position - transform.position).normalized;
 
 		animator = this.GetComponent<Animator>();
     }
@@ -146,7 +146,7 @@ public class RigidPlayerScript : MonoBehaviour
 	{
 		//MoveCamera
 		Vector3 enemyDir = GetDirectionOfenemies();
-		Vector3 cameraDestination = transform.position + cameraOffset + enemyDir.normalized;
+		Vector3 cameraDestination = transform.position + cameraOffset * cameraHeight + enemyDir.normalized;
 		float cameraDestinationSize = 8 + enemyDir.magnitude * .2f;
 		//mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
 		mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.fixedDeltaTime;
