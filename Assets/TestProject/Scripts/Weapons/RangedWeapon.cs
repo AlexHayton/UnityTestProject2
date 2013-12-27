@@ -46,7 +46,7 @@ public class RangedWeapon : Weapon  {
 		base.Start ();
 
 		if (laserPointer & laserAttachPoint) {
-			var laserObject = Instantiate(laserPointer, laserAttachPoint.position, Quaternion.LookRotation(laserAttachPoint.forward)) as GameObject;
+			GameObject laserObject = Instantiate(laserPointer, laserAttachPoint.position, Quaternion.LookRotation(laserAttachPoint.forward)) as GameObject;
 			actualLaser = laserObject.GetComponent<LaserBase>();
 			if (actualLaser) {
 				actualLaser.SetOrigin(laserAttachPoint.transform);
@@ -85,34 +85,30 @@ public class RangedWeapon : Weapon  {
 
 	}
 
-	public override bool Attack() {
-		if (base.Attack ()) {
+	public override bool OnPrimaryAttack() {
 
-			// Spawn visual bullet	and set values for start				
-			for (int i = 0; i < bulletsToCreate; i++)
+		// Spawn visual bullet	and set values for start				
+		for (int i = 0; i < bulletsToCreate; i++)
+		{
+			this.SpawnProjectile();
+		}
+		
+		// show visul muzzle
+		if (muzzleFlash != null)
+		{
+			ParticleSystem particleSys = muzzleFlash.GetComponent<ParticleSystem>();
+			if (particleSys != null)
 			{
-				this.SpawnProjectile();
+				particleSys.Emit(1);
 			}
 			
-			// show visul muzzle
 			if (muzzleFlash != null)
 			{
-				ParticleSystem particleSys = muzzleFlash.GetComponent<ParticleSystem>();
-				if (particleSys != null)
-				{
-					particleSys.Emit(1);
-				}
-				
-				if (muzzleFlash != null)
-				{
-					muzzleFlash.Fire(this.muzzleEffectTime);
-				}
+				muzzleFlash.Fire(this.muzzleEffectTime);
 			}
-
-			return true;
 		}
-		return false;
 
+		return true;
 	}
 
 	public void SpawnProjectile() {

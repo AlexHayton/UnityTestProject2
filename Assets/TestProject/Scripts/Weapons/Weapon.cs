@@ -7,7 +7,7 @@ using TestProject;
 using Debug = System.Diagnostics.Debug;
 using Random = UnityEngine.Random;
 
-public class Weapon : MonoBehaviour  {
+public abstract class Weapon : MonoBehaviour  {
 
 	public float range = 200f;
 	public int damageOnHit = 10;
@@ -24,6 +24,8 @@ public class Weapon : MonoBehaviour  {
 	protected GameObject owner;
 	protected AudioSource audioObject;
 	protected EnemyDetector enemyDetector;
+	protected bool isEquipped = false;
+	public bool hasSecondary { get; protected set; }
 
 	public virtual void Start() {
 		if (this.transform.parent) {
@@ -41,7 +43,6 @@ public class Weapon : MonoBehaviour  {
 			transform.position = transform.position + (attachPoint.position - gripPoint.position);
 			enemyDetector = owner.GetComponentInChildren<EnemyDetector>();
 		}
-
 	}
 
 	public virtual void Update() {
@@ -52,24 +53,26 @@ public class Weapon : MonoBehaviour  {
 		return Time.time - lastAttack < coolDown;
 	}
 	
-	public virtual bool Attack() {
+	public bool Attack() {
 		if (!IsInCooldown()) {
 			this.PlayAttackSound();
 			lastAttack = Time.time;
-			return true;
+			return OnPrimaryAttack();
 		}
 		return false;
 	}
 
-	public virtual void AltAttack() {
-		throw new System.Exception("Not implemented");
-	}
+	public abstract bool OnPrimaryAttack();
 
 	protected virtual void PlayAttackSound() {
 		if (sounds.Any())
 		{
 			AudioSource.PlayClipAtPoint(sounds[Random.Range(0, sounds.Count - 1)], transform.position);
 		}
+	}
+
+	public virtual void AltAttack() {
+		throw new System.Exception("Not implemented");
 	}
 
 	public Texture2D getIcon()

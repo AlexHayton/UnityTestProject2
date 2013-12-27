@@ -13,11 +13,17 @@ public abstract class Pickupable : MonoBehaviour {
 	public float floatToPlayerSpeed = 2.0f;
 	private const float PLAYER_CHECK_INTERVAL = 0.5f;
 	private float nextValidityCheckTime;
+	public float lifeTime = 0;
+	private float timeToDestroySelf = 0;
 	
 	public virtual void Start()
 	{
 		Collider collider = GetCollider();
 		collider.isTrigger = true;
+		if (lifeTime > 0)
+		{
+			timeToDestroySelf = Time.time + lifeTime;
+		}
 	}
 
 	public Collider GetCollider()
@@ -47,6 +53,14 @@ public abstract class Pickupable : MonoBehaviour {
 	}
 	
 	public abstract bool CanBePickedUpBy(GameObject player);
+
+	protected void CheckLifetime()
+	{
+		if (Time.time >= timeToDestroySelf)
+		{
+			Destroy(gameObject);
+		}
+	}
 	
 	void Update()
 	{
@@ -80,6 +94,11 @@ public abstract class Pickupable : MonoBehaviour {
 		{
 			this.FloatTowardsPlayer(targetPlayer);
 		}
+
+		if (lifeTime > 0)
+		{
+			CheckLifetime();
+		}
 	}
 	
 	private bool IsNearEnoughToPickup(GameObject player)
@@ -91,11 +110,7 @@ public abstract class Pickupable : MonoBehaviour {
 	{
     	transform.position = Vector3.MoveTowards(transform.position, player.transform.position, floatToPlayerSpeed*Time.deltaTime);
 	}
-	
-	void OnBecameInvisible (){
-		Destroy (this.gameObject);
-	}
-	
+
 	public virtual bool OnPickUp(GameObject player) {
 		return true; 
 	}

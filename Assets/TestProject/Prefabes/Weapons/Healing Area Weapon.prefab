@@ -180,7 +180,7 @@ MonoBehaviour:
   range: 50
   damageOnHit: 60
   forceOnImpact: 5
-  coolDown: 1
+  coolDown: 3
   weight: 10
   gripPoint: {fileID: 400006}
   attachPointName: PlayerGrabPoint

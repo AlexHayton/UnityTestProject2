@@ -137,9 +137,9 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 			{
 				Instantiate(pickupPrefab, transform.position, transform.rotation);
 			}
+			Destroy (SelectedWeapon.gameObject);
 			Weapons[SelectedIndex] = null;
 			SelectedIndex = 0;
-			Destroy (SelectedWeapon);
 			SelectedWeapon = null;
 
 			if (equipNext)

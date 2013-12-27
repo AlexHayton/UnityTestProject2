@@ -11,13 +11,15 @@ public class DeployableWeapon : Weapon  {
 	public float stickyRange;
 	private bool snapped = false;
 	
-	public void Start()
+	public override void Start()
 	{
 		base.Start();
+
 		ghostDeploy = Instantiate(ghostPrefab) as GameObject;
+		ghostDeploy.transform.parent = this.transform;
 	}
 
-	public override bool Attack() {
+	public override bool OnPrimaryAttack() {
 		Vector3 snapPoint;
 		Quaternion snapRotation;
 
@@ -37,7 +39,9 @@ public class DeployableWeapon : Weapon  {
 	
 	public void OnSuccessfulPlacement(Vector3 position, Quaternion rotation)
 	{
-		Instantiate(deployedPrefab, position, rotation);
+		Instantiate(deployedPrefab);
+		deployedPrefab.transform.position = position;
+		deployedPrefab.transform.Rotate(rotation.eulerAngles);
 	}
 	
 	public bool GetSnapPoint(out Vector3 snapPoint, out Quaternion rotation)

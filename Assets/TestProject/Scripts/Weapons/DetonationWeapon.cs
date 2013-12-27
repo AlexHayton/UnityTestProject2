@@ -9,8 +9,8 @@ public class DetonationWeapon: Weapon {
 	protected bool ignited = false;
 	protected GameObject ignitionParticle;
 
-	public override bool Attack() {
-		if (!ignited && base.Attack()) {
+	public override bool OnPrimaryAttack() {
+		if (!ignited) {
 			this.Iginite();
 			return true;
 		}
