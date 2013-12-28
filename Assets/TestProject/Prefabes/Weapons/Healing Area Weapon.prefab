@@ -186,7 +186,7 @@ MonoBehaviour:
   attachPointName: PlayerGrabPoint
   icon: {fileID: 2800000, guid: 98ee7d1bb9229ce4b9949ee5e484d162, type: 3}
   sounds: []
-  pickupPrefab: {fileID: 100008}
+  pickupPrefab: {fileID: 100002, guid: 6af7d4233b20a43ad8cc4f72bf874342, type: 2}
   deployedPrefab: {fileID: 100000, guid: 91053658a0557454682f71dac6d2cbcf, type: 2}
   ghostPrefab: {fileID: 100000, guid: 1ff16ca26d3454b2fb768af68fc8e56f, type: 2}
   stickyRange: 3

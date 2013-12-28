@@ -16,6 +16,7 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 	// SelectedIndex starts at 0;
 	// SelectedSlot starts at 1;
     public int SelectedIndex;
+	public int NumberOfSlots = 3;
     public List<Weapon> Weapons;
     private RigidPlayerScript playerScript;
 	private GUISelectedWeapon _selectedWeaponGUI = null;
@@ -64,7 +65,8 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		if (gripLocation)
 		{
 			Vector3 gripPoint = gripLocation.position;
-			SelectedWeapon = (Weapon)Instantiate(Weapons[SelectedIndex], gripPoint, Quaternion.identity);
+			GameObject SelectedWeaponObject = Instantiate(Weapons[SelectedIndex].gameObject, gripPoint, Quaternion.identity) as GameObject;
+			SelectedWeapon = SelectedWeaponObject.GetComponent<Weapon>();
 			SelectedWeapon.transform.parent = this.gameObject.transform;
 		}
 		else
@@ -107,15 +109,24 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 		bool success = false;
 		if (weapon != null && !HasWeapon (weapon)) 
 		{
-			// Destroy the old weapon
-			Weapon oldWeapon = SelectedWeapon;
-			this.DropWeapon(SelectedIndex, false);
+			int equipIndex = SelectedIndex;
+			if (Weapons.Count >= NumberOfSlots)
+			{
+				// Destroy the old weapon in the current slot
+				Weapon oldWeapon = SelectedWeapon;
+				this.DropWeapon(equipIndex, false);
+				// Add the weapon in the current slot
+				Weapons[equipIndex] = weapon;
+			}
+			else
+			{
+				equipIndex = Weapons.Count;
+				Weapons[equipIndex] = weapon;
+			}
 
-			// Equip the new one.
-			Weapons[SelectedIndex] = weapon;
 			SelectedIndex = 0;
 			SelectedWeapon = null;
-			Equip(SelectedIndex);
+			Equip(equipIndex);
 
 			// Destroy the old weapon
 			success = true;
@@ -209,12 +220,5 @@ public class WeaponHandler : MonoBehaviour, ISelfTest
 	{
 		return SelectedIndex + 1;
 	}
-
-    public void PickUpWeapon(ref Weapon weapon)
-    {
-        //in theory this should add the "reference (not as in ref, just used that so I had access to the weapon to destroy it)" to the weapon, then destroy the actual object
-        Weapons.Add(weapon);
-        Destroy(weapon);
-    }
 
 }
