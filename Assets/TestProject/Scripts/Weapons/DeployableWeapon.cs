@@ -34,14 +34,14 @@ public class DeployableWeapon : Weapon  {
 	
 	public bool CanBePlaced()
 	{
-		return snapped && !IsInCooldown();
+		return snapped;
 	}
 	
 	public void OnSuccessfulPlacement(Vector3 position, Quaternion rotation)
 	{
-		Instantiate(deployedPrefab);
-		deployedPrefab.transform.position = position;
-		deployedPrefab.transform.Rotate(rotation.eulerAngles);
+		GameObject deployedInstance = Instantiate(deployedPrefab) as GameObject;
+		deployedInstance.transform.position = position;
+		deployedInstance.transform.Rotate(rotation.eulerAngles);
 	}
 	
 	public bool GetSnapPoint(out Vector3 snapPoint, out Quaternion rotation)

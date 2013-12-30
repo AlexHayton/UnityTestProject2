@@ -17,7 +17,7 @@ public class DetonationWeapon: Weapon {
 		return false;
 	}
 
-	override void Update() {
+	public override void Update() {
 		if (ignited && Time.time >= lastAttack + ignitionTime) {
 			
 			Collider[] hitColliders = Physics.OverlapSphere(transform.position, this.range);
