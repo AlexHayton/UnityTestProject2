@@ -2650,6 +2650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedIndex: 0
+  NumberOfSlots: 3
   Weapons:
   - {fileID: 11400000, guid: 563c8bb51e8cece4e82385d1903555d9, type: 2}
   - {fileID: 11400000, guid: 78118bef679375e4c9d6b4e527d437e5, type: 2}
@@ -2713,7 +2714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5844686a5bcc63f4ca186f0e432c96b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraHeight: 6
+  cameraHeight: 12
   speed: 5
   gravity: 10
   maxVelocityChange: 10
