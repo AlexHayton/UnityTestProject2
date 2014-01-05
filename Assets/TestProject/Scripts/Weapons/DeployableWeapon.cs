@@ -10,6 +10,7 @@ public class DeployableWeapon : Weapon  {
 	private GameObject ghostDeploy;
 	public float stickyRange;
 	private bool snapped = false;
+	private Light[] childLights = null;
 	
 	public override void Start()
 	{
@@ -17,6 +18,11 @@ public class DeployableWeapon : Weapon  {
 
 		ghostDeploy = Instantiate(ghostPrefab) as GameObject;
 		ghostDeploy.transform.parent = this.transform;
+		childLights = this.GetComponents<Light>();
+		if (childLights.Length == 0)
+		{
+			childLights = this.GetComponentsInChildren<Light>();
+		}
 	}
 
 	public override bool OnPrimaryAttack() {
@@ -49,11 +55,27 @@ public class DeployableWeapon : Weapon  {
 		// Calculate position
 		snapPoint = owner.transform.position;
 		rotation = owner.transform.rotation;
-		Vector3 mousePos = PlayerUtility.GetMouseOnPlane(transform, new Plane(Vector3.up, gripPoint.position));
 
-		snapped = true;
-		snapPoint = mousePos;
-		rotation = Quaternion.identity;
+		// Get the mouse position along the weapon plane.
+		Vector3 mousePos = PlayerUtility.GetMouseOnPlane(transform, new Plane(Vector3.up, gripPoint.position));
+		float maxDist = 10;
+		Vector3 rayDirection = Vector3.up * -1;
+		RaycastHit hit;
+
+		// Cast a ray to the ground.
+		if (Physics.Raycast(mousePos, rayDirection, out hit, maxDist))
+		{
+			snapped = true;
+			snapPoint = hit.point + (Vector3.up * 0.2f);
+			rotation = Quaternion.identity;
+		}
+		else
+		{
+			snapped = false;
+			snapPoint = mousePos;
+			rotation = Quaternion.identity;
+		}
+
 
 		/*IEnumerable<Collider> hits = Physics.OverlapSphere(mousePos, stickyRange).Where(c => c.gameObject.isStatic);
 		Collider target = hits.FirstOrDefault();
@@ -83,6 +105,10 @@ public class DeployableWeapon : Weapon  {
 
 			if (snapped)
 			{
+				foreach (Light light in childLights)
+				{
+					light.enabled = true;
+				}
 				ghostDeploy.renderer.enabled = true;
 				ghostDeploy.transform.position = position;
 				ghostDeploy.transform.rotation = rotation;
@@ -91,6 +117,10 @@ public class DeployableWeapon : Weapon  {
 
 		if (!snapped)
 		{
+			foreach (Light light in childLights)
+			{
+				light.enabled = false;
+			}
 			ghostDeploy.renderer.enabled = false;
 		}
 	}
