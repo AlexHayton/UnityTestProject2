@@ -13,8 +13,9 @@ public class CameraShakeHandler : MonoBehaviour {
 
 	void Start () {	
 		playerScript = this.gameObject.GetComponent<RigidPlayerScript>();
-		if (playerScript) {
-			mainCamera = playerScript.GetPlayerCamera();
+		if (playerScript)
+		{
+		    mainCamera = Camera.main;
 		}
 	}
 
