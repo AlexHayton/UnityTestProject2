@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
+using UnityEditor;
 using UnityEngine;
 using System.Collections;
 using TestProject;
@@ -17,10 +19,10 @@ public class RigidPlayerScript : MonoBehaviour
     public bool canJump = true;
     public float jumpHeight = 1.0f;
     public float turnSpeed = 400.0f;
-	public GameObject onHitGui;
+    public GameObject onHitGui;
 
     private Transform gripPoint;
-	private Animator animator;
+    private Animator animator;
 
     [HideInInspector]
     public Transform LaserTransform;
@@ -29,8 +31,8 @@ public class RigidPlayerScript : MonoBehaviour
     private Vector3 lookTarget;
     private Vector3 cameraOffset = Vector3.zero;
 
-	private const string ANIM_PARAMS_SPEED = "Speed";
-	private const string ANIM_PARAMS_RELOADING = "Reloading";
+    private const string ANIM_PARAMS_SPEED = "Speed";
+    private const string ANIM_PARAMS_RELOADING = "Reloading";
 
     void Awake()
     {
@@ -42,126 +44,110 @@ public class RigidPlayerScript : MonoBehaviour
     {
         gripPoint = transform.FindChildRecursive("PlayerGrabPoint");
         //sets initial camera position
-		mainCamera = Camera.main;
+        mainCamera = Camera.main;
         mainCamera.transform.parent = null;
         mainCamera.transform.position = transform.position - mainCamera.transform.forward;
         cameraOffset = (mainCamera.transform.position - transform.position).normalized;
 
-		animator = this.GetComponent<Animator>();
+        animator = this.GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
-		UpdateVelocity();
+        UpdateVelocity();
     }
 
-	void Update()
-	{
-		HandleSpecialInput();
-		UpdateRotation();
-		UpdateAnimationParameters();
-	}
+    void Update()
+    {
+        HandleSpecialInput();
+        UpdateRotation();
+        UpdateAnimationParameters();
+        UpdateCamera();
+    }
 
-	void LateUpdate()
-	{
-		UpdateCamera();	
-	}
-	
-	void HandleSpecialInput()
-	{
-		if (Input.GetKeyDown(KeyCode.F1))
-		{
-			Application.LoadLevel(Application.loadedLevel);
-		}
-		
-		if (Input.GetKeyDown (KeyCode.Escape)) 
-		{
-			Application.LoadLevel (1);
-		}
-	}
+    void LateUpdate()
+    {
+    }
 
-	void UpdateVelocity()
-	{
-		if (grounded)
-		{
-			
-			//************************************
-			// Rotation
-			//************************************
-			
-			// rotate towards target
-			//Vector3 muzzleToMouse = (PlayerUtility.GetMouseOnPlane(transform, new Plane(Vector3.up, GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position)) - GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position);
-			//muzzleToMouse.y = 0;
-			//Vector3 playerToMuzzle = GetComponentInChildren<WeaponScript>().PrimaryWeapon.muzzlePosition.transform.position - transform.position;
-			//playerToMuzzle.y = 0;
-			
-			//************************************
-			// Movement
-			//************************************
-			
-			// Calculate how fast we should be moving
-			Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-			
-			//rotate for isometric
-			targetVelocity = new Vector3(targetVelocity.x + targetVelocity.z, 0, targetVelocity.z - targetVelocity.x) * Mathf.Sqrt(2) / 2;
-			
-			if (targetVelocity.sqrMagnitude > 1f)
-				targetVelocity.Normalize();
-			//targetVelocity = transform.TransformDirection(targetVelocity);
-			targetVelocity *= speed;
-			
-			// Apply a force that attempts to reach our target velocity
-			Vector3 velocityChange = (targetVelocity - rigidbody.velocity);
-			//velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-			//velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-			//velocityChange.y = 0;
-			rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
-			
-		}
-		
-		grounded = false;
-	}
-	
-	void UpdateRotation()
-	{
-		var lookDir = PlayerUtility.GetMouseOnPlane(transform, new Plane(Vector3.up, gripPoint.position)) - transform.position;
-		Quaternion targetRot = Quaternion.LookRotation(lookDir);
-		
-		// only rotate around y axis
-		targetRot.x = 0;
-		targetRot.z = 0;
+    void HandleSpecialInput()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
 
-		rigidbody.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRot, 1000));
-	}
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.LoadLevel(1);
+        }
+    }
 
-	void UpdateAnimationParameters()
-	{
-		Vector3 velocity = this.rigidbody.velocity;
-		Vector3 walkSpeed = new Vector3(velocity.x, 0, velocity.z);
-		this.animator.SetFloat(ANIM_PARAMS_SPEED, walkSpeed.magnitude);
-		this.animator.SetBool(ANIM_PARAMS_RELOADING, false);
-	}
+    void UpdateVelocity()
+    {
+        if (grounded)
+        {
 
-	void UpdateCamera()
-	{
-		//MoveCamera
-		Vector3 enemyDir = GetDirectionOfenemies();
-		Vector3 cameraDestination = transform.position + cameraOffset * cameraHeight + enemyDir.normalized;
-		float cameraDestinationSize = 8 + enemyDir.magnitude * .2f;
-		//mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
-		mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.fixedDeltaTime;
-	}
+            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+            //rotate for isometric
+            targetVelocity = new Vector3(targetVelocity.x + targetVelocity.z, 0, targetVelocity.z - targetVelocity.x).normalized * speed;
+
+            Vector3 deltaV = (targetVelocity - rigidbody.velocity);
+            deltaV.y = 0;
+            rigidbody.AddForce(deltaV, ForceMode.VelocityChange);
+
+        }
+
+        grounded = false;
+    }
+
+    void UpdateRotation()
+    {
+        var mouseEnvironmentHit = mainCamera.ScreenPointToRay(Input.mousePosition);
+        var collPoints = Physics.RaycastAll(mouseEnvironmentHit);
+        if (collPoints.Any())
+        {
+            var lookAt = collPoints[0].point;
+            var forward = lookAt - transform.FindChild("Head").position;
+            forward.y = 0;
+            rigidbody.MoveRotation(Quaternion.LookRotation(forward));
+
+            Debug.DrawLine(transform.FindChild("Head").position, lookAt, Color.red);
+        }
+
+    }
+
+    void UpdateAnimationParameters()
+    {
+        Vector3 velocity = this.rigidbody.velocity;
+        //Vector3 walkSpeed = new Vector3(velocity.x, 0, velocity.z);
+        //this.animator.SetFloat(ANIM_PARAMS_SPEED, walkSpeed.magnitude);
+        //this.animator.SetBool(ANIM_PARAMS_RELOADING, false);
+    }
+
+    void UpdateCamera()
+    {
+        //MoveCamera
+        Vector3 enemyDir = GetDirectionOfenemies();
+        Vector3 cameraDestination = transform.position + cameraOffset * cameraHeight + enemyDir.normalized;
+        float cameraDestinationSize = 8 + enemyDir.magnitude * .2f;
+        if (mainCamera.isOrthoGraphic)
+            mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
+        mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.fixedDeltaTime;
+    }
 
     void OnCollisionStay()
     {
         grounded = true;
     }
 
-	public void OnTakeDamage(GameObject attacker) {
-		if (onHitGui){
-			Instantiate(onHitGui, onHitGui.transform.position, onHitGui.transform.rotation);
-		}	
-	}
+    public void OnTakeDamage(GameObject attacker)
+    {
+        if (onHitGui)
+        {
+            Instantiate(onHitGui, onHitGui.transform.position, onHitGui.transform.rotation);
+        }
+    }
 
     float CalculateJumpVerticalSpeed()
     {
@@ -193,7 +179,8 @@ public class RigidPlayerScript : MonoBehaviour
         return dir;
     }
 
-	public Camera GetPlayerCamera() {
-		return this.mainCamera;
-	}
+    public Camera GetPlayerCamera()
+    {
+        return this.mainCamera;
+    }
 }
