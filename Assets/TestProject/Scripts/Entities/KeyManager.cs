@@ -20,14 +20,26 @@ public class KeyManager : MonoBehaviour
 
     public void PopulateKeyLocations()
     {
-    	if (keyPrefabs.Count == 0)
-    	{
-    		foreach (GameObject location in GameObject.FindWithTag("KeyLocation"))
+    	GameObject[] keyLocations = GameObject.FindWithTag("KeyLocation");
+    	GameObject[] doorLocations = GameObject.FindWithTag("Door");
+    	
+    	IEnumerable<GameObject> keysToPopWith = keyPrefabs;
+    	keyLocationsToPop = keyLocations.Where(k => k.keyPrefab == null);
+    	doorLocationsToPop = doorLocations.Where(d => d.keyPrefab == null);
+    
+    	if (keyPrefabs.Count > 0)
+ 	   {
+    		foreach (GameObject location in keyLocations)
     		{
     			int rand = Random.IntRange(0, keyPrefabs.Count - 1);
-    			GameObject prefab = keyPrefabs
-    			GameObject key =
+    			location.keyPrefab = keyPrefabs[rand];
     		}
+    	}
+    	
+    	// Now actually instantiate the keys
+    	foreach (GameObject location in keyLocations)
+    	{
+    			GameObject key = Instantiate(location.keyPrefab, location.transform.position, location.transform.rotation);
     	}
     }
     
