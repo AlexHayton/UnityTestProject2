@@ -11,7 +11,6 @@ public class BulletBase : MonoBehaviour
     private Transform tr;
     private string ignoreTag;
     private bool alreadyHit = false;
-
     void OnBecameInvisible()
     {
         Destroy(gameObject);
@@ -19,7 +18,6 @@ public class BulletBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        
     }
 
     public struct StartValues
@@ -38,17 +36,16 @@ public class BulletBase : MonoBehaviour
         ignoreTag = values.owner.tag;
         float thisBulletSpeed = values.Speed * Random.Range(.9f, 1.1f);
         rigidbody.velocity = values.forward.normalized * thisBulletSpeed;
-        //var stretch = thisBulletSpeed*.001f;
-        //transform.localScale = new Vector3(.1f, .1f, stretch);
+        var capsule = GetComponent<CapsuleCollider>();
+        capsule.height = thisBulletSpeed * Time.maximumDeltaTime;
+        capsule.center = new Vector3(0, 0, capsule.height / 2f);
     }
 
     //void  OnTriggerEnter (Collider collision) {
     void OnCollisionEnter(Collision collision)
     {
         var enterObj = collision.gameObject;
-        if (enterObj.tag != ignoreTag &&
-                enterObj.tag != "Bullet" &&
-                enterObj.tag != "NoCollide" && !alreadyHit)
+        if (!(enterObj.tag == ignoreTag || enterObj.tag == "Bullet" || enterObj.tag == "NoCollide") && !alreadyHit)
         {
             bool doDamage = true;
             var health = enterObj.GetComponentInChildren<HealthHandler>();
@@ -96,12 +93,9 @@ public class BulletBase : MonoBehaviour
                     health.DeductHealth(values.owner, values.DamageOnHit);
                 }
             }
-            if (health == null || doDamage)
-            {
-                Destroy(gameObject);
-                alreadyHit = true;
-            }
         }
+        Destroy(gameObject);
+        alreadyHit = true;
     }
 
 }

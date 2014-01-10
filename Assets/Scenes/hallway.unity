@@ -193,6 +193,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8d999941c791fc84abe7bd34c7affb70, type: 2}
+    - target: {fileID: 100000, guid: 9274bd283a4cecb4dbcf4a5c8bfc14d6, type: 3}
+      propertyPath: m_Name
+      value: Body
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9274bd283a4cecb4dbcf4a5c8bfc14d6, type: 3}
   m_RootGameObject: {fileID: 942563475}
@@ -395,6 +399,7 @@ GameObject:
   - 33: {fileID: 811280843}
   - 135: {fileID: 811280842}
   - 23: {fileID: 811280841}
+  - 108: {fileID: 811280845}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -453,6 +458,41 @@ Transform:
   m_LocalScale: {x: .613431573, y: .613431573, z: .613431573}
   m_Children: []
   m_Father: {fileID: 1968194440}
+--- !u!108 &811280845
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 811280840}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: .5
+  m_Range: 20
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &816222948
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +629,7 @@ GameObject:
   - 23: {fileID: 942563478}
   - 95: {fileID: 942563477}
   m_Layer: 0
-  m_Name: player_base
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,7 +730,7 @@ GameObject:
   - 23: {fileID: 1319968743}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -759,7 +799,7 @@ GameObject:
   - 23: {fileID: 1329502147}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -828,7 +868,7 @@ GameObject:
   - 23: {fileID: 1853062313}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: World
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -931,8 +971,9 @@ GameObject:
   - 114: {fileID: 1968194437}
   - 114: {fileID: 1968194436}
   - 114: {fileID: 1968194441}
+  - 114: {fileID: 1968194442}
   m_Layer: 0
-  m_Name: 3rd Person Controller
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1050,3 +1091,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookDirection: {x: 0, y: 0, z: 0}
   LookPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &1968194442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1968194435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca7de6749a7db742b4fe0468758eca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedIndex: 0
+  NumberOfSlots: 3
+  GrabPoint: Head
+  Weapons:
+  - {fileID: 11400000, guid: 563c8bb51e8cece4e82385d1903555d9, type: 2}

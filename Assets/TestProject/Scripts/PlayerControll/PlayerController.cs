@@ -373,8 +373,6 @@ public class PlayerController : MonoBehaviour
         var lookDir = GetComponent<MouseLooker>().LookDirection;
         lookDir.y = 0;
         transform.rotation = Quaternion.LookRotation(lookDir);
-
-
         // We are in jump mode but just became grounded
         if (IsGrounded())
         {

@@ -186,11 +186,11 @@ MonoBehaviour:
   attachPointName: PlayerGrabPoint
   icon: {fileID: 2800000, guid: 24c33c185218a1544a696676dce6ae78, type: 3}
   sounds:
-  - {fileID: 8300000, guid: 3cf81683bdd878c409546a1a399dcbee, type: 3}
+  - {fileID: 8300000, guid: cbc34f3c351b15c4a9f38229505810e0, type: 3}
   pickupPrefab: {fileID: 100004, guid: 99ee75b87c3834a9b8859e97a89d2416, type: 2}
   coneAngle: .0390000008
   bulletsToCreate: 1
-  bulletSpeed: 50
+  bulletSpeed: 100
   muzzleEffect: {fileID: 100004, guid: 00eae9a0e0c7a4c03b5c9b156b47fede, type: 2}
   muzzleEffectTime: .0500000007
   projectilePrefab: {fileID: 100000, guid: aab981ed5ca71f1409fc729fa4070773, type: 2}
