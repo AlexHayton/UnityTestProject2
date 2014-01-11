@@ -22,9 +22,10 @@ public class MouseLooker : MonoBehaviour
         var collPoints = Physics.RaycastAll(mouseEnvironmentHit);
         if (collPoints.Any())
         {
-            var head = transform.FindChild("Head");
+            var head = transform;
             LookPosition = collPoints[0].point;
             LookDirection = LookPosition - head.position;
+            LookDirection.y = 0;
             head.rotation = Quaternion.LookRotation(LookDirection);
             Debug.DrawRay(head.position, head.forward, Color.red);
         }
