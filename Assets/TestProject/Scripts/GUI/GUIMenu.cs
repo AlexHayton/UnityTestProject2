@@ -11,6 +11,7 @@ public class GUIMenu : MonoBehaviour {
 	{
 		this.lastVisible = this.visible;
 		this.PopulateMenuVisible();
+		EffectUtility.PlayEffects(this);
 	}
 	
 	/// <summary>

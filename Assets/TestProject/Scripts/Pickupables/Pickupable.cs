@@ -46,7 +46,7 @@ public abstract class Pickupable : MonoBehaviour {
 					// EffectUtility sanity checks for us!
 					EffectUtility.TryInstantiateEffectPrefab(pickUpEffectPrefab, transform.position, transform.rotation);
 					
-					Destroy (this.gameObject);
+					EntityUtility.DestroyGameObject(this.gameObject);
 				}
 			}
 		}
