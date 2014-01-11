@@ -154,6 +154,7 @@ MonoBehaviour:
   state: 3
   stayOpenTime: 4
   opensOnEnter: 1
+  keyPrefab: {fileID: 0}
 --- !u!23 &17221421
 Renderer:
   m_ObjectHideFlags: 0
@@ -718,6 +719,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 3ed2a4fc2b0874cec94450c73c9c43bc, type: 2}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 100006, guid: 77fd80936ce1b0847aa6e2cead50c7e3, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ed2a4fc2b0874cec94450c73c9c43bc, type: 2}
   m_RootGameObject: {fileID: 525569868}
@@ -6963,7 +6968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4778c6fe6e079488c9435f2f05737ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 100224, guid: 6c96ec11760b54aaf95af1a72a904e6a, type: 2}
+  playerPrefab: {fileID: 100006, guid: 77fd80936ce1b0847aa6e2cead50c7e3, type: 2}
   spawnOffset: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   guiPrefabs:

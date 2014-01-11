@@ -16,7 +16,7 @@ public class DoorScript : MonoBehaviour {
 	public State state = State.Closed;
 	public float stayOpenTime = 2.0f;
 	public bool opensOnEnter = true;
-	
+	public GameObject keyPrefab;
 	
 	private float openedTime = -1f;
 		

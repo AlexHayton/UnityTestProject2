@@ -6,6 +6,7 @@ public class KeyItem : Pickupable {
 	public string name;
 	public Color color;
 	public Texture2D icon;
+	public GameObject keyPrefab;
 	
 	KeyManager manager = null;
 	
@@ -34,7 +35,7 @@ public class KeyItem : Pickupable {
 		bool success = true;
 
 		if (manager) {
-			manager.PickupKey(key);
+			manager.PickupKey(keyPrefab);
 			success = true;
 		}
 		
