@@ -22,16 +22,16 @@ Material:
           m_Offset: {x: .5, y: 0}
       data:
         first:
-          name: _Noise
+          name: _Detail
         second:
-          m_Texture: {fileID: 2800000, guid: c56e62f8c1d02b84dbf5228115859f3e, type: 3}
+          m_Texture: {fileID: 2800000, guid: 15702c5593c18a546ad50644d73f9d07, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Detail
+          name: _Noise
         second:
-          m_Texture: {fileID: 2800000, guid: 15702c5593c18a546ad50644d73f9d07, type: 3}
+          m_Texture: {fileID: 2800000, guid: c56e62f8c1d02b84dbf5228115859f3e, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -46,7 +46,7 @@ Material:
       data:
         first:
           name: _Overbright
-        second: .709999979
+        second: 1.61000001
       data:
         first:
           name: _BrightSpots

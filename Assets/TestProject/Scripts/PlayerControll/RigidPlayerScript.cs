@@ -1,12 +1,8 @@
-﻿using System.Linq;
-using System.Threading;
-using UnityEditor;
+﻿using System;
+using System.Linq;
 using UnityEngine;
-using System.Collections;
-using TestProject;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(Collider))]
 
 public class RigidPlayerScript : MonoBehaviour
 {
@@ -34,22 +30,13 @@ public class RigidPlayerScript : MonoBehaviour
     private const string ANIM_PARAMS_SPEED = "Speed";
     private const string ANIM_PARAMS_RELOADING = "Reloading";
 
-    void Awake()
-    {
-        rigidbody.freezeRotation = true;
-
-    }
-
     void Start()
     {
-        gripPoint = transform.FindChildRecursive("PlayerGrabPoint");
-        //sets initial camera position
+        //sets initial camera position``
         mainCamera = Camera.main;
         mainCamera.transform.parent = null;
         mainCamera.transform.position = transform.position - mainCamera.transform.forward;
         cameraOffset = (mainCamera.transform.position - transform.position).normalized;
-
-        animator = this.GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -60,9 +47,8 @@ public class RigidPlayerScript : MonoBehaviour
     void Update()
     {
         HandleSpecialInput();
-        UpdateRotation();
-        UpdateAnimationParameters();
         UpdateCamera();
+        UpdateRotation();
     }
 
     void LateUpdate()
@@ -75,7 +61,7 @@ public class RigidPlayerScript : MonoBehaviour
         {
             Application.LoadLevel(Application.loadedLevel);
         }
-
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.LoadLevel(1);
@@ -84,21 +70,27 @@ public class RigidPlayerScript : MonoBehaviour
 
     void UpdateVelocity()
     {
-        if (grounded)
-        {
+        var xVel = 0;
+        var yVel = 0;
+        if (Input.GetKey(KeyCode.A))
+            xVel -= 1;
+        if (Input.GetKey(KeyCode.D))
+            xVel += 1;
+        if (Input.GetKey(KeyCode.S))
+            yVel -= 1;
+        if (Input.GetKey(KeyCode.W))
+            yVel += 1;
 
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        var inputVector = new Vector3(xVel, 0, yVel).normalized;
 
-            //rotate for isometric
-            targetVelocity = new Vector3(targetVelocity.x + targetVelocity.z, 0, targetVelocity.z - targetVelocity.x).normalized * speed;
+        //rotate for isometric``
+        var targetVelocity = (inputVector.sqrMagnitude > 1 ?
+            new Vector3(inputVector.x + inputVector.z, 0, inputVector.z - inputVector.x).normalized : new Vector3(inputVector.x + inputVector.z, 0, inputVector.z - inputVector.x)) * speed;
 
-            Vector3 deltaV = (targetVelocity - rigidbody.velocity);
-            deltaV.y = 0;
-            rigidbody.AddForce(deltaV, ForceMode.VelocityChange);
-
-        }
-
-        grounded = false;
+        Vector3 deltaV = (targetVelocity - rigidbody.velocity);
+        deltaV.y = 0;
+        rigidbody.AddForce(deltaV, ForceMode.VelocityChange);
+        Console.WriteLine(deltaV);
     }
 
     void UpdateRotation()
@@ -114,7 +106,10 @@ public class RigidPlayerScript : MonoBehaviour
 
             Debug.DrawLine(transform.FindChild("Head").position, lookAt, Color.red);
         }
-
+        else
+        {
+            rigidbody.MoveRotation(Quaternion.LookRotation(rigidbody.velocity));
+        }
     }
 
     void UpdateAnimationParameters()
@@ -132,8 +127,10 @@ public class RigidPlayerScript : MonoBehaviour
         Vector3 cameraDestination = transform.position + cameraOffset * cameraHeight + enemyDir.normalized;
         float cameraDestinationSize = 8 + enemyDir.magnitude * .2f;
         if (mainCamera.isOrthoGraphic)
-            mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.fixedDeltaTime;
-        mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.fixedDeltaTime;
+            mainCamera.orthographicSize += (cameraDestinationSize - mainCamera.orthographicSize) * Time.deltaTime;
+        mainCamera.transform.position += (cameraDestination - mainCamera.transform.position) * Time.deltaTime;
+        mainCamera.transform.position = cameraDestination;
+
     }
 
     void OnCollisionStay()
@@ -162,25 +159,17 @@ public class RigidPlayerScript : MonoBehaviour
         var dir = new Vector3(0, 0, 0);
         if (enemies.Length == 0)
             return dir;
-        float avgDist = 0;
         foreach (var enemy in enemies)
         {
             dir += enemy.transform.position - transform.position;
         }
         dir.Normalize();
 
-        foreach (var enemy in enemies)
-        {
-            avgDist += Vector3.Dot(enemy.transform.position - transform.position, dir);
-        }
+        float avgDist = enemies.Sum(enemy => Vector3.Dot(enemy.transform.position - transform.position, dir));
+
         avgDist /= enemies.Length;
         dir.y = 0;
         dir *= avgDist;
         return dir;
-    }
-
-    public Camera GetPlayerCamera()
-    {
-        return this.mainCamera;
     }
 }
