@@ -90,7 +90,7 @@ ModelImporter:
     4300000: Head_Robot
     4300002: Neck_Robot
     4300004: Player_Base
-    7400000: Take 001
+    7400000: ForwardWalk
     9500000: //RootNode
     13700000: Player_Base
   materials:
@@ -109,7 +109,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: ForwardWalk
       takeName: Take 001
       firstFrame: 75
       lastFrame: 104
