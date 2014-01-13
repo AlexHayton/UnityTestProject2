@@ -8,13 +8,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
   - 108: {fileID: 10800000}
   - 65: {fileID: 6500000}
+  - 33: {fileID: 3300000}
   m_Layer: 0
-  m_Name: SphereKey
+  m_Name: CubeKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.0926514, y: .594799519, z: -9.8818388}
+  m_LocalPosition: {x: 20.0926514, y: 1.91626835, z: -4.28998232}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: bc3ac1483947764429dd043382b9055d, type: 2}
+  - {fileID: 2100000, guid: a87278d8008cbf14e8bd3cfd74e8b2c0, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -58,7 +58,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &6500000
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -80,7 +80,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: .875862122, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -122,9 +122,9 @@ MonoBehaviour:
   floatToPlayerRangeSquared: 9
   floatToPlayerSpeed: 2
   lifeTime: 0
-  name: SphereKey
-  color: {r: 1, g: 0, b: 0, a: 0}
-  icon: {fileID: 2800000, guid: 319c80762cb09f048afbd7353d025032, type: 3}
+  name: CubeKey
+  color: {r: 0, g: .875862122, b: 1, a: 0}
+  icon: {fileID: 2800000, guid: 1fe1cbfc7e189cb4aa987a5c9ca7d38c, type: 3}
   keyPrefab: {fileID: 100000}
 --- !u!1001 &100100000
 Prefab:

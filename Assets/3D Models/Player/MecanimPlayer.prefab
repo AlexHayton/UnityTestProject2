@@ -1421,6 +1421,9 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400008}
+  - 114: {fileID: 11400010}
+  - 114: {fileID: 11400012}
   m_Layer: 0
   m_Name: MecanimPlayer
   m_TagString: Player
@@ -2809,6 +2812,57 @@ MonoBehaviour:
   animSpeed: 1.5
   lookSmoother: 3
   useCurves: 0
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca7de6749a7db742b4fe0468758eca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedIndex: 0
+  NumberOfSlots: 2
+  GrabPoint: Bip001 L Hand
+  Weapons:
+  - {fileID: 11400000, guid: 563c8bb51e8cece4e82385d1903555d9, type: 2}
+  - {fileID: 11400000, guid: 0aa00f2a55dbcaf47b3f5272768970b1, type: 2}
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad9fb709e4a88b4cadf8abbea30e56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 100
+  dead: 0
+  regenHealth: 0
+  regenSpeed: 1
+  invincible: 0
+  destroyPrefab: {fileID: 0}
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281dcae3fbe8f459aaebcbd350d83852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnergy: 100
+  energy: 100
+  regenEnergyRate: 10
+  infiniteEnergy: 0
+  childEnergyHandlers: []
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
