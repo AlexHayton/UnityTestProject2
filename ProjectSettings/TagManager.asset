@@ -6,8 +6,11 @@ TagManager:
   - NoCollide
   - Enemy
   - Bullet
-  - LootChest
+  - GameManager
   - World
+  - 
+  - Shard
+  - hand
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

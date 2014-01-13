@@ -2714,6 +2714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectedIndex: 0
   NumberOfSlots: 3
+  GrabPoint: PlayerGrabPoint
   Weapons:
   - {fileID: 11400000, guid: 563c8bb51e8cece4e82385d1903555d9, type: 2}
   - {fileID: 11400000, guid: 78118bef679375e4c9d6b4e527d437e5, type: 2}

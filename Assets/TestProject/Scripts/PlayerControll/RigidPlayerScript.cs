@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
+using TestProject;
 
 [RequireComponent(typeof(Collider))]
 
@@ -81,10 +82,10 @@ public class RigidPlayerScript : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
             yVel += 1;
 
-        var inputVector = new Vector3(xVel, 0, yVel).normalized;
+        Vector3 inputVector = new Vector3(xVel, 0, yVel).normalized;
 
         //rotate for isometric``
-        var targetVelocity = (inputVector.sqrMagnitude > 1 ?
+        Vector3 targetVelocity = (inputVector.sqrMagnitude > 1 ?
             new Vector3(inputVector.x + inputVector.z, 0, inputVector.z - inputVector.x).normalized : new Vector3(inputVector.x + inputVector.z, 0, inputVector.z - inputVector.x)) * speed;
 
         Vector3 deltaV = (targetVelocity - rigidbody.velocity);
@@ -95,16 +96,16 @@ public class RigidPlayerScript : MonoBehaviour
 
     void UpdateRotation()
     {
-        var mouseEnvironmentHit = mainCamera.ScreenPointToRay(Input.mousePosition);
-        var collPoints = Physics.RaycastAll(mouseEnvironmentHit);
+        Ray mouseEnvironmentHit = mainCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] collPoints = Physics.RaycastAll(mouseEnvironmentHit);
         if (collPoints.Any())
         {
-            var lookAt = collPoints[0].point;
-            var forward = lookAt - transform.FindChild("Head").position;
+            Vector3 lookAt = collPoints[0].point;
+            Vector3 forward = lookAt - transform.FindChildRecursive("Head").position;
             forward.y = 0;
             rigidbody.MoveRotation(Quaternion.LookRotation(forward));
 
-            Debug.DrawLine(transform.FindChild("Head").position, lookAt, Color.red);
+			Debug.DrawLine(transform.FindChildRecursive("Head").position, lookAt, Color.red);
         }
         else
         {

@@ -30,7 +30,7 @@ public class PickupDropManager : MonoBehaviour, ISelfTest
     public void SpawnPickups()
     {
         var pickupsToSpawn = new List<GameObject>();
-        var chest = GameObject.FindWithTag("LootChest").GetComponent<LootChest>();
+        var chest = GameObject.FindWithTag("GameManager").GetComponent<LootChest>();
         foreach (var tierPercentage in TierPercentages)
         {
             pickupsToSpawn.AddRange(chest.AskForDrops(tierPercentage.Tier, tierPercentage.Percentage * .01f));
