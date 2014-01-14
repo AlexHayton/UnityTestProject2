@@ -14,13 +14,19 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Speed
+  - m_Name: SpeedH
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: StrafeDir
+  - m_Name: SpeedV
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -56,33 +62,47 @@ BlendTree:
   m_PrefabInternal: {fileID: 0}
   m_Name: Blend Tree
   m_Childs:
-  - m_Motion: {fileID: 7400000, guid: 76f81fdfeb8200949919fa8b54d4e3fe, type: 3}
-    m_Threshold: -1
-    m_Position: {x: .0489999987, y: .264999986}
+  - m_Motion: {fileID: 7400000, guid: 87bed76b73e0ba74289c67f784262b7d, type: 3}
+    m_Threshold: .5
+    m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 7400002, guid: 76f81fdfeb8200949919fa8b54d4e3fe, type: 3}
-    m_Threshold: 0
-    m_Position: {x: .540000021, y: .671000004}
+  - m_Motion: {fileID: 7400000, guid: 7230d43377daf6a4a8b40b864258615b, type: 3}
+    m_Threshold: .5
+    m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 7400000, guid: 76f81fdfeb8200949919fa8b54d4e3fe, type: 3}
-    m_Threshold: 1
-    m_Position: {x: -.340000004, y: .569999993}
+  - m_Motion: {fileID: 7400000, guid: d5b03f1a9ae0e2e41af638e3ae9986c3, type: 3}
+    m_Threshold: .5
+    m_Position: {x: 0, y: -1}
     m_TimeScale: 1
-    m_CycleOffset: .5
+    m_CycleOffset: 0
     m_IsAnim: 1
-    m_Mirror: 1
-  m_BlendParameter: StrafeDir
-  m_BlendParameterY: Speed
-  m_MinThreshold: -1
-  m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 1
-  m_BlendType: 0
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: 28c68126745ee57408e99f125c33dfb7, type: 3}
+    m_Threshold: .5
+    m_Position: {x: 1, y: 0}
+    m_TimeScale: .5
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400002, guid: 28c68126745ee57408e99f125c33dfb7, type: 3}
+    m_Threshold: .5
+    m_Position: {x: -1, y: 0}
+    m_TimeScale: .5
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  m_BlendParameter: SpeedH
+  m_BlendParameterY: SpeedV
+  m_MinThreshold: .5
+  m_MaxThreshold: .5
+  m_UseAutomaticThresholds: 0
+  m_BlendType: 2
 --- !u!1101 &110100000
 Transition:
   m_ObjectHideFlags: 3
@@ -274,14 +294,14 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Idle
+  m_Name: Motion
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 4be0089f667ba430a8cde85202d66dea, type: 3}
+  - {fileID: 20600000}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -96, y: -96, z: 0}
-  m_IKOnFeet: 1
+  m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110277300
@@ -324,7 +344,6 @@ StateMachine:
   m_DefaultState: {fileID: 110251594}
   m_States:
   - {fileID: 110251594}
-  - {fileID: 110277300}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
@@ -333,14 +352,6 @@ StateMachine:
       second: []
     data:
       first: {fileID: 110251594}
-      second:
-      - {fileID: 110191976}
-    data:
-      first: {fileID: 110277300}
-      second:
-      - {fileID: 110126783}
-    data:
-      first: {fileID: 0}
       second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -312, y: -96, z: 0}
