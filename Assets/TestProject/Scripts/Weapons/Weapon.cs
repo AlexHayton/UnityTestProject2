@@ -26,6 +26,7 @@ public abstract class Weapon : MonoBehaviour
     protected AudioSource audioObject;
     protected EnemyDetector enemyDetector;
     protected bool isEquipped = false;
+    private CharacterController characterController;
     public bool hasSecondary { get; protected set; }
 
     public virtual void Start()
@@ -115,5 +116,15 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-
+    public virtual Vector3 GetForwardVector()
+    {
+        if (characterController)
+        {
+            return characterController.velocity.normalized;
+        }
+        else
+        {
+            return transform.root.forward;
+        }
+    }
 }

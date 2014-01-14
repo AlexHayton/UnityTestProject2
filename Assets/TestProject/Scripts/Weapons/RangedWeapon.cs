@@ -129,7 +129,7 @@ public class RangedWeapon : Weapon  {
 			float actualbulletSpeed = this.bulletSpeed * Mathf.Cos(Mathf.Deg2Rad * spreadAngle);
 			// Use cached bullet startValues when possible
 			BulletBase.StartValues values = this.BulletStartValues;
-            values.forward = dirWithConeRandomization * 10 + transform.root.GetComponentInChildren<CharacterController>().velocity.normalized;
+            values.forward = dirWithConeRandomization * 10 + this.GetForwardVector();
 			values.Speed = actualbulletSpeed;
 			bullet.SetStartValues(values);
 		}
