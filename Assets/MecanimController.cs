@@ -13,6 +13,7 @@ public class MecanimController : MonoBehaviour
     [System.NonSerialized]
     public Transform enemy;						// a transform to Lerp the camera to during head look
 
+	public float strafeDir;
     public float animSpeed = 1.5f;				// a public setting for overall animator animation speed
     public float lookSmoother = 3f;				// a smoothing setting for camera motion
     public bool useCurves;						// a setting for teaching purposes to show use of curves
@@ -46,11 +47,13 @@ public class MecanimController : MonoBehaviour
     void FixedUpdate()
     {
         float h = Input.GetAxis("Horizontal");				// setup h variable as our horizontal input axis
-        float v = Input.GetAxis("Vertical");				// setup v variables as our vertical input axis
-        if (Input.GetKey(KeyCode.LeftShift))
-            v *= 2;
-        anim.SetFloat("Speed", v);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
-        anim.SetFloat("Direction", h); 						// set our animator's float parameter 'Direction' equal to the horizontal input axis		
+        float v = Input.GetAxis("Vertical");
+
+		var direction = new Vector2 (h, v);
+		strafeDir = direction.normalized.x;
+
+        anim.SetFloat("Speed", direction.magnitude);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
+        anim.SetFloat("StrafeDir", strafeDir); 						// set our animator's float parameter 'Direction' equal to the horizontal input axis		
         anim.speed = animSpeed;								// set the speed of our animator to the public variable 'animSpeed'
         anim.SetLookAtWeight(lookWeight);					// set the Look At Weight - amount to use look at IK vs using the head's animation
         currentBaseState = anim.GetCurrentAnimatorStateInfo(0);	// set our currentState variable to the current state of the Base Layer (0) of animation
