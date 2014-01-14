@@ -47,7 +47,9 @@ public class MecanimController : MonoBehaviour
     void FixedUpdate()
     {
         var vel = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
+        if(Input.GetKey(KeyCode.LeftShift))
+            if (vel.y > 0)
+                vel *= 2;
         anim.SetFloat("Speed", vel.magnitude);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
         anim.SetFloat("SpeedH", vel.x);
         anim.SetFloat("SpeedV", vel.y);                             // set our animator's float parameter 'Direction' equal to the horizontal input axis		
