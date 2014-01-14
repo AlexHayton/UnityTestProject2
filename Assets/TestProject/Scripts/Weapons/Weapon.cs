@@ -50,6 +50,8 @@ public abstract class Weapon : MonoBehaviour
             transform.position = transform.position + (attachPoint.position - gripPoint.position);
             enemyDetector = owner.GetComponentInChildren<EnemyDetector>();
         }
+		
+		characterController = transform.root.GetComponentInChildren<CharacterController>();
     }
 
     public virtual void Update()
