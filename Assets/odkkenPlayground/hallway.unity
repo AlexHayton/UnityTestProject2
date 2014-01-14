@@ -517,7 +517,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed799b0c10cba4940903fc8347509796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strafeDir: 0
+  correctedInput: {x: 0, y: 0}
+  vel: {x: 0, y: 0}
+  rotationAngle: 0
   animSpeed: 1.5
   lookSmoother: 3
   useCurves: 0
@@ -579,8 +581,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraAngle: {x: 45, y: 45, z: 0}
-  CameraDistance: 12
-  CameraMouseLead: .100000001
+  CameraDistance: 15
+  CameraMouseLead: 0
   SlideLead: 0
   mainCameraTransform: {fileID: 0}
 --- !u!1 &213872743

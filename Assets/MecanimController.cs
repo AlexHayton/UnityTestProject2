@@ -13,7 +13,9 @@ public class MecanimController : MonoBehaviour
     [System.NonSerialized]
     public Transform enemy;						// a transform to Lerp the camera to during head look
 
-    public float strafeDir;
+    public Vector2 correctedInput;
+    public Vector2 vel;
+    public float rotationAngle;
     public float animSpeed = 1.5f;				// a public setting for overall animator animation speed
     public float lookSmoother = 3f;				// a smoothing setting for camera motion
     public bool useCurves;						// a setting for teaching purposes to show use of curves
@@ -23,7 +25,8 @@ public class MecanimController : MonoBehaviour
     private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
     private AnimatorStateInfo layer2CurrentState;	// a reference to the current state of the animator, used for layer 2
     private CapsuleCollider col;					// a reference to the capsule collider of the character
-
+    private MouseLooker mouseLooker;
+    private CameraFollow cameraFollower;
 
     static int idleState = Animator.StringToHash("Base Layer.Idle");
     static int locoState = Animator.StringToHash("Base Layer.Locomotion");			// these integers are references to our animator's states
@@ -41,13 +44,34 @@ public class MecanimController : MonoBehaviour
         col = GetComponent<CapsuleCollider>();
         if (anim.layerCount == 2)
             anim.SetLayerWeight(1, 1);
+        mouseLooker = GetComponent<MouseLooker>();
+        cameraFollower = GetComponent<CameraFollow>();
     }
 
 
     void FixedUpdate()
     {
-        var vel = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if(Input.GetKey(KeyCode.LeftShift))
+        //straight from controller, need to buffer this internally and smooth
+        var rawInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+
+        var playerDir = new Vector2(mouseLooker.LookDirection.x, mouseLooker.LookDirection.z).normalized;
+
+        //angle between world forward (z) and player's direction
+        rotationAngle = Vector2.Angle(new Vector2(0, 1), playerDir);
+        if (playerDir.x > 0)
+            rotationAngle = 360 - rotationAngle;
+        var cosPlayer = Mathf.Cos(-rotationAngle * Mathf.Deg2Rad);
+        var sinPlayer = Mathf.Sin(-rotationAngle * Mathf.Deg2Rad);
+        var rotatedInput = new Vector2(rawInput.x * cosPlayer - rawInput.y * sinPlayer, rawInput.y * cosPlayer + rawInput.x * sinPlayer).normalized;
+
+        //correct for camera angle
+        var cameraRotation = -cameraFollower.CameraAngle.y;
+        var cosCam = Mathf.Cos(cameraRotation * Mathf.Deg2Rad);
+        var sinCam = Mathf.Sin(cameraRotation * Mathf.Deg2Rad);
+        vel = new Vector2(rotatedInput.x * cosCam - rotatedInput.y * sinCam, rotatedInput.y * cosCam + rotatedInput.x * sinCam).normalized;
+
+
+        if (Input.GetKey(KeyCode.LeftShift))
             if (vel.y > 0)
                 vel *= 2;
         anim.SetFloat("Speed", vel.magnitude);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
