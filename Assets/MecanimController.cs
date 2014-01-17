@@ -52,23 +52,22 @@ public class MecanimController : MonoBehaviour
     void FixedUpdate()
     {
         //straight from controller, need to buffer this internally and smooth
-        var rawInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        var rawInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        var playerDir = new Vector2(mouseLooker.LookDirection.x, mouseLooker.LookDirection.z).normalized;
-
+        var playerDir = new Vector2(mouseLooker.LookDirection.x, mouseLooker.LookDirection.z);
         //angle between world forward (z) and player's direction
         rotationAngle = Vector2.Angle(new Vector2(0, 1), playerDir);
         if (playerDir.x > 0)
             rotationAngle = 360 - rotationAngle;
         var cosPlayer = Mathf.Cos(-rotationAngle * Mathf.Deg2Rad);
         var sinPlayer = Mathf.Sin(-rotationAngle * Mathf.Deg2Rad);
-        var rotatedInput = new Vector2(rawInput.x * cosPlayer - rawInput.y * sinPlayer, rawInput.y * cosPlayer + rawInput.x * sinPlayer).normalized;
+        var rotatedInput = new Vector2(rawInput.x * cosPlayer - rawInput.y * sinPlayer, rawInput.y * cosPlayer + rawInput.x * sinPlayer);
 
         //correct for camera angle
         var cameraRotation = -cameraFollower.CameraAngle.y;
         var cosCam = Mathf.Cos(cameraRotation * Mathf.Deg2Rad);
         var sinCam = Mathf.Sin(cameraRotation * Mathf.Deg2Rad);
-        vel = new Vector2(rotatedInput.x * cosCam - rotatedInput.y * sinCam, rotatedInput.y * cosCam + rotatedInput.x * sinCam).normalized;
+        vel = new Vector2(rotatedInput.x * cosCam - rotatedInput.y * sinCam, rotatedInput.y * cosCam + rotatedInput.x * sinCam);
 
 
         if (Input.GetKey(KeyCode.LeftShift))

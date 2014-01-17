@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5594484281a3547ba13950ea036e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraAngle: {x: 45, y: 45, z: 0}
+  CameraAngle: {x: 30, y: 90, z: 0}
   CameraDistance: 15
   CameraMouseLead: 0
   SlideLead: 0
