@@ -354,8 +354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed799b0c10cba4940903fc8347509796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctedInput: {x: 0, y: 0}
-  vel: {x: 0, y: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  Speed: 4
   rotationAngle: 0
   animSpeed: 1.5
   lookSmoother: 3
@@ -402,8 +402,8 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 87bed76b73e0ba74289c67f784262b7d, type: 3}
   m_Controller: {fileID: 9100000, guid: 179dfa5ebf80646ea83c88313a75d775, type: 2}
   m_CullingMode: 1
-  m_ApplyRootMotion: 1
-  m_AnimatePhysics: 1
+  m_ApplyRootMotion: 0
+  m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
 --- !u!114 &213683442
 MonoBehaviour:
@@ -419,9 +419,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraAngle: {x: 30, y: 90, z: 0}
   CameraDistance: 15
-  CameraMouseLead: 0
-  SlideLead: 0
-  mainCameraTransform: {fileID: 0}
+  CameraHeightOffset: 0
+  MouseLead: 0
+  LeadAmount: .100000001
+  MainCameraTransform: {fileID: 0}
 --- !u!1 &213872743
 GameObject:
   m_ObjectHideFlags: 0
