@@ -4,52 +4,36 @@ using System.Collections;
 public class CameraFollow : MonoBehaviour
 {
 
-    /// <summary>
-    /// y should always be 45deg
-    /// </summary>
     public Vector3 CameraAngle;
+    public float CameraDistance = 12;
+    public float CameraHeightOffset = 0;
 
-    /// <summary>
-    /// how high above the player the camera will be
-    /// </summary>
-    public float CameraDistance;
+    public bool MouseLead = false;
+    public float LeadAmount = .1f;
 
-    /// <summary>
-    /// how far the camera will look in the direction of the mouse - set to 0 to disable
-    /// </summary>
-    public float CameraMouseLead;
-
-    /// <summary>
-    /// if true, camera will slide to lead the player, otherwise it will pivot
-    /// </summary>
-    public bool SlideLead = false;
-
-
-    public Transform mainCameraTransform;
+    [HideInInspector]
+    public Transform MainCameraTransform;
 
     // Use this for initialization
     void Awake()
     {
-        mainCameraTransform = transform.FindChild("PlayerCamera");
-        mainCameraTransform.parent = null;
+        MainCameraTransform = transform.FindChild("PlayerCamera");
+        MainCameraTransform.parent = null;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         //start out with normal orientation and position
-        mainCameraTransform.rotation = Quaternion.Euler(CameraAngle);
-        mainCameraTransform.position = transform.position - mainCameraTransform.forward * CameraDistance;
+        MainCameraTransform.rotation = Quaternion.Euler(CameraAngle);
+        MainCameraTransform.position = transform.position - MainCameraTransform.forward * CameraDistance;
 
         //add lead
-        if (SlideLead)
+        if (MouseLead)
         {
             var mouseDirection = GetComponent<MouseLooker>().LookDirection;
-            mainCameraTransform.position += mouseDirection * CameraMouseLead;
+            MainCameraTransform.position += mouseDirection * LeadAmount;
         }
-        else
-        {
-            //yet to be implemented
-        }
+
     }
 }

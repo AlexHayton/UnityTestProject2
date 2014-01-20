@@ -12,7 +12,7 @@ public class MouseLooker : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        playerCamera = GetComponent<CameraFollow>().mainCameraTransform.camera;
+        playerCamera = GetComponent<CameraFollow>().MainCameraTransform.camera;
     }
 
     // Update is called once per frame

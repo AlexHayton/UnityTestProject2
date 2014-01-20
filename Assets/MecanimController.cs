@@ -13,8 +13,8 @@ public class MecanimController : MonoBehaviour
     [System.NonSerialized]
     public Transform enemy;						// a transform to Lerp the camera to during head look
 
-    public Vector2 correctedInput;
-    public Vector2 vel;
+    public Vector3 velocity;
+    public float Speed = 4;
     public float rotationAngle;
     public float animSpeed = 1.5f;				// a public setting for overall animator animation speed
     public float lookSmoother = 3f;				// a smoothing setting for camera motion
@@ -52,31 +52,28 @@ public class MecanimController : MonoBehaviour
     void FixedUpdate()
     {
         //straight from controller, need to buffer this internally and smooth
-        var rawInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        var playerDir = new Vector2(mouseLooker.LookDirection.x, mouseLooker.LookDirection.z);
-        //angle between world forward (z) and player's direction
-        rotationAngle = Vector2.Angle(new Vector2(0, 1), playerDir);
-        if (playerDir.x > 0)
-            rotationAngle = 360 - rotationAngle;
-        var cosPlayer = Mathf.Cos(-rotationAngle * Mathf.Deg2Rad);
-        var sinPlayer = Mathf.Sin(-rotationAngle * Mathf.Deg2Rad);
-        var rotatedInput = new Vector2(rawInput.x * cosPlayer - rawInput.y * sinPlayer, rawInput.y * cosPlayer + rawInput.x * sinPlayer);
+        var rawInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        if (rawInput.sqrMagnitude > 1)
+            rawInput = rawInput.normalized;
 
         //correct for camera angle
-        var cameraRotation = -cameraFollower.CameraAngle.y;
-        var cosCam = Mathf.Cos(cameraRotation * Mathf.Deg2Rad);
-        var sinCam = Mathf.Sin(cameraRotation * Mathf.Deg2Rad);
-        vel = new Vector2(rotatedInput.x * cosCam - rotatedInput.y * sinCam, rotatedInput.y * cosCam + rotatedInput.x * sinCam);
+        var cameraForward = new Vector3(cameraFollower.MainCameraTransform.forward.x, 0, cameraFollower.MainCameraTransform.forward.z).normalized;
+        velocity = Quaternion.FromToRotation(Vector3.forward, cameraForward) * rawInput * Speed;
+
+        //rotate movement for player
+        var playerForward = mouseLooker.LookDirection;
+        var animationInput = Quaternion.FromToRotation(playerForward, Vector3.forward) * velocity; //don't ask me why this is correct, trial and error bitch
+
+        //move the player
+        transform.position += velocity * Time.fixedDeltaTime;
+
+        anim.SetFloat("Speed", animationInput.magnitude);
+        anim.SetFloat("SpeedH", animationInput.x);
+        anim.SetFloat("SpeedV", animationInput.z);
+        anim.speed = animationInput.magnitude;
 
 
-        if (Input.GetKey(KeyCode.LeftShift))
-            if (vel.y > 0)
-                vel *= 2;
-        anim.SetFloat("Speed", vel.magnitude);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
-        anim.SetFloat("SpeedH", vel.x);
-        anim.SetFloat("SpeedV", vel.y);                             // set our animator's float parameter 'Direction' equal to the horizontal input axis		
-        anim.speed = animSpeed;								// set the speed of our animator to the public variable 'animSpeed'
+
         anim.SetLookAtWeight(lookWeight);					// set the Look At Weight - amount to use look at IK vs using the head's animation
         currentBaseState = anim.GetCurrentAnimatorStateInfo(0);	// set our currentState variable to the current state of the Base Layer (0) of animation
 
