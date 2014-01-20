@@ -354,10 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d142426f664319e42b71a7866845a4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
   Speed: 4
-  rotationAngle: 0
-  animSpeed: 1.5
   lookSmoother: 3
   useCurves: 0
 --- !u!136 &213683439
