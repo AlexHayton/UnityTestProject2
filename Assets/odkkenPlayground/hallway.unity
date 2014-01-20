@@ -337,7 +337,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 213683435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d34b088ddfb46d344be1a77a4bf3d10e, type: 3}
+  m_Script: {fileID: 11500000, guid: 528b94f53f3374b40990deae726ecb27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LookDirection: {x: 0, y: 0, z: 0}
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 213683435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed799b0c10cba4940903fc8347509796, type: 3}
+  m_Script: {fileID: 11500000, guid: d142426f664319e42b71a7866845a4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 213683435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5594484281a3547ba13950ea036e3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 87dd406f00a9f6944b7b8c85e9f8cabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CameraAngle: {x: 30, y: 90, z: 0}
@@ -1307,11 +1307,17 @@ MonoBehaviour:
   coolDown: .100000001
   weight: 10
   gripPoint: {fileID: 1950104337}
-  attachPointName: PlayerGrabPoint
+  attachPointName: 506c6179657247726162506f696e74
   icon: {fileID: 2800000, guid: 24c33c185218a1544a696676dce6ae78, type: 3}
   sounds:
   - {fileID: 8300000, guid: cbc34f3c351b15c4a9f38229505810e0, type: 3}
   pickupPrefab: {fileID: 100004, guid: 99ee75b87c3834a9b8859e97a89d2416, type: 2}
+  lastAttack: 0
+  owner: {fileID: 0}
+  audioObject: {fileID: 0}
+  enemyDetector: {fileID: 0}
+  isEquipped: 0
+  <hasSecondary>k__BackingField: 0
   coneAngle: .0390000008
   bulletsToCreate: 1
   bulletSpeed: 100
@@ -1321,7 +1327,14 @@ MonoBehaviour:
   bulletOrigin: {fileID: 193253398}
   laserAttachPoint: {fileID: 1750447395}
   laserPointer: {fileID: 100002, guid: 009c1794e83a2704aa8d40fcb8bec132, type: 2}
-  laserColor: {r: 1, g: 0, b: 0, a: 0}
+  laserColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 0
+  muzzleFlash: {fileID: 0}
+  actualLaser: {fileID: 0}
+  initialisedStartValues: 0
 --- !u!1 &1131866569
 GameObject:
   m_ObjectHideFlags: 0
