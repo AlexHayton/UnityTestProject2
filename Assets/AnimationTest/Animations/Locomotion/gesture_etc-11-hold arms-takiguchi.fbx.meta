@@ -1,0 +1,355 @@
+fileFormatVersion: 2
+guid: 8c169029d15c954499a52a3603f031fe
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: C3D:taki_C7
+    100002: C3D:taki_CLAV
+    100004: C3D:taki_LANK
+    100006: C3D:taki_LBHD
+    100008: C3D:taki_LBWT
+    100010: C3D:taki_LELB
+    100012: C3D:taki_LFHD
+    100014: C3D:taki_LFIN
+    100016: C3D:taki_LFWT
+    100018: C3D:taki_LHEE
+    100020: C3D:taki_LKNE
+    100022: C3D:taki_LMT5
+    100024: C3D:taki_LSHN
+    100026: C3D:taki_LSHO
+    100028: C3D:taki_LTHI
+    100030: C3D:taki_LTOE
+    100032: C3D:taki_LUPA
+    100034: C3D:taki_LWRA
+    100036: C3D:taki_LWRB
+    100038: C3D:taki_RANK
+    100040: C3D:taki_RBAC
+    100042: C3D:taki_RBHD
+    100044: C3D:taki_RBWT
+    100046: C3D:taki_RELB
+    100048: C3D:taki_RFHD
+    100050: C3D:taki_RFIN
+    100052: C3D:taki_RFWT
+    100054: C3D:taki_RHEE
+    100056: C3D:taki_RKNE
+    100058: C3D:taki_RMT5
+    100060: C3D:taki_RSHN
+    100062: C3D:taki_RSHO
+    100064: C3D:taki_RTHI
+    100066: C3D:taki_RTOE
+    100068: C3D:taki_RUPA
+    100070: C3D:taki_RWRA
+    100072: C3D:taki_RWRB
+    100074: C3D:taki_STRN
+    100076: C3D:taki_T10
+    100078: //RootNode
+    400000: C3D:taki_C7
+    400002: C3D:taki_CLAV
+    400004: C3D:taki_LANK
+    400006: C3D:taki_LBHD
+    400008: C3D:taki_LBWT
+    400010: C3D:taki_LELB
+    400012: C3D:taki_LFHD
+    400014: C3D:taki_LFIN
+    400016: C3D:taki_LFWT
+    400018: C3D:taki_LHEE
+    400020: C3D:taki_LKNE
+    400022: C3D:taki_LMT5
+    400024: C3D:taki_LSHN
+    400026: C3D:taki_LSHO
+    400028: C3D:taki_LTHI
+    400030: C3D:taki_LTOE
+    400032: C3D:taki_LUPA
+    400034: C3D:taki_LWRA
+    400036: C3D:taki_LWRB
+    400038: C3D:taki_RANK
+    400040: C3D:taki_RBAC
+    400042: C3D:taki_RBHD
+    400044: C3D:taki_RBWT
+    400046: C3D:taki_RELB
+    400048: C3D:taki_RFHD
+    400050: C3D:taki_RFIN
+    400052: C3D:taki_RFWT
+    400054: C3D:taki_RHEE
+    400056: C3D:taki_RKNE
+    400058: C3D:taki_RMT5
+    400060: C3D:taki_RSHN
+    400062: C3D:taki_RSHO
+    400064: C3D:taki_RTHI
+    400066: C3D:taki_RTOE
+    400068: C3D:taki_RUPA
+    400070: C3D:taki_RWRA
+    400072: C3D:taki_RWRB
+    400074: C3D:taki_STRN
+    400076: C3D:taki_T10
+    400078: //RootNode
+    7400000: ta_15_11_gesture_HoldArms_040218
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: C3D:taki_LKNE
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: C3D:taki_RKNE
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: gesture_etc-11-hold arms-takiguchi(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: C3D:taki_C7
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_CLAV
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LANK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LBHD
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LBWT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LELB
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LFHD
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LFIN
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LFWT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LHEE
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LKNE
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LMT5
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LSHN
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LSHO
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LTHI
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LTOE
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LUPA
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LWRA
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_LWRB
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RANK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RBAC
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RBHD
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RBWT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RELB
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RFHD
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RFIN
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RFWT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RHEE
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RKNE
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RMT5
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RSHN
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RSHO
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RTHI
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RTOE
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RUPA
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RWRA
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_RWRB
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_STRN
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    - name: C3D:taki_T10
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: .75, y: .75, z: .75}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  userData: 
